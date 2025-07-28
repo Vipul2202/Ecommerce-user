@@ -4,7 +4,7 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import GoogleLogo from "../../img/images.png";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { ChevronDown, ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
+import { ChevronDown, ShoppingCart, Trash2, Plus, Minus, MapPin, User, Phone, Mail, Download, X } from "lucide-react";
 import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -21,6 +21,12 @@ const Navbar = () => {
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   
+  // Checkout modal states
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [showOrderSlip, setShowOrderSlip] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  
   const sidebarRef = useRef(null);
   const profileRef = useRef(null);
   const cartRef = useRef(null);
@@ -33,6 +39,18 @@ const Navbar = () => {
     phone: "",
     password: "",
     confirmPassword: "",
+  });
+
+  // Address form state
+  const [addressForm, setAddressForm] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
+    landmark: ""
   });
 
   const navItems = [
@@ -95,11 +113,23 @@ const Navbar = () => {
     const userData = localStorage.getItem("user");
     if (userData) {
       setUser(JSON.parse(userData));
+      // Pre-fill address form with user data
+      const userObj = JSON.parse(userData);
+      setAddressForm(prev => ({
+        ...prev,
+        fullName: userObj.name || "",
+        email: userObj.email || "",
+        phone: userObj.phone || ""
+      }));
     }
   }, [showModal]);
 
   const handleFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleAddressChange = (e) => {
+    setAddressForm({ ...addressForm, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
@@ -232,12 +262,139 @@ const Navbar = () => {
       return;
     }
     setIsCartOpen(false);
-    navigate("/checkout");
+    setShowCheckoutModal(true);
   };
 
   const handleViewProductDetails = (productId) => {
     setIsCartOpen(false);
     navigate(`/product-details/${productId}`);
+  };
+
+  // Validate address form
+  const validateAddressForm = () => {
+    const required = ['fullName', 'email', 'phone', 'address', 'city', 'state', 'pincode'];
+    for (let field of required) {
+      if (!addressForm[field].trim()) {
+        toast.error(`${field.charAt(0).toUpperCase() + field.slice(1)} is required`);
+        return false;
+      }
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(addressForm.email)) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
+    
+    // Basic phone validation
+    if (addressForm.phone.length < 10) {
+      toast.error("Please enter a valid phone number");
+      return false;
+    }
+    
+    // Basic pincode validation
+    if (addressForm.pincode.length !== 6) {
+      toast.error("Please enter a valid 6-digit pincode");
+      return false;
+    }
+    
+    return true;
+  };
+
+  // Handle checkout submission
+  const handleCheckoutSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateAddressForm()) {
+      return;
+    }
+    
+    setCheckoutLoading(true);
+    
+    try {
+      // Generate order details
+      const orderId = `ORD-${Date.now()}`;
+      const orderData = {
+        orderId,
+        customerInfo: addressForm,
+        items: cartItems,
+        totalAmount: getTotalPrice(),
+        orderDate: new Date().toISOString(),
+        status: 'Confirmed'
+      };
+      
+      // Here you would typically send this to your backend
+      // await axios.post('your-api-endpoint/orders', orderData);
+      
+      // For now, we'll simulate the API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setOrderDetails(orderData);
+      setShowCheckoutModal(false);
+      setShowOrderSlip(true);
+      
+      // Clear cart after successful order
+      localStorage.removeItem("cart");
+      setCartItems([]);
+      setCartCount(0);
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+      
+      toast.success("Order placed successfully!");
+      
+    } catch (error) {
+      toast.error("Failed to place order. Please try again.");
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
+
+  // Download order slip as PDF/Text
+  const downloadOrderSlip = () => {
+    if (!orderDetails) return;
+    
+    const orderSlipContent = `
+ORDER CONFIRMATION
+==================
+
+Order ID: ${orderDetails.orderId}
+Order Date: ${new Date(orderDetails.orderDate).toLocaleDateString()}
+Status: ${orderDetails.status}
+
+CUSTOMER INFORMATION
+--------------------
+Name: ${orderDetails.customerInfo.fullName}
+Email: ${orderDetails.customerInfo.email}
+Phone: ${orderDetails.customerInfo.phone}
+
+DELIVERY ADDRESS
+----------------
+${orderDetails.customerInfo.address}
+${orderDetails.customerInfo.landmark ? orderDetails.customerInfo.landmark + ', ' : ''}${orderDetails.customerInfo.city}
+${orderDetails.customerInfo.state} - ${orderDetails.customerInfo.pincode}
+
+ORDER ITEMS
+-----------
+${orderDetails.items.map(item => 
+  `${item.name} - Qty: ${item.quantity} - ₹${item.price} each = ₹${item.price * item.quantity}`
+).join('\n')}
+
+TOTAL AMOUNT: ₹${orderDetails.totalAmount}
+
+Thank you for your order!
+    `;
+    
+    const blob = new Blob([orderSlipContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Order_${orderDetails.orderId}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+    
+    toast.success("Order slip downloaded successfully!");
   };
 
   return (
@@ -580,6 +737,308 @@ const Navbar = () => {
                 </div>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Checkout Modal */}
+      {showCheckoutModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[9999]">
+          <div className="bg-white p-6 rounded-2xl shadow-xl w-[90%] max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-800">Checkout</h2>
+              <button 
+                onClick={() => setShowCheckoutModal(false)} 
+                className="text-2xl text-gray-600 hover:text-black"
+              >
+                ×
+              </button>
+            </div>
+
+            <form onSubmit={handleCheckoutSubmit} className="space-y-6">
+              {/* Personal Information */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <User size={20} />
+                  Personal Information
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Full Name *</label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={addressForm.fullName}
+                      onChange={handleAddressChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Email *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={addressForm.email}
+                      onChange={handleAddressChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Phone Number *</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={addressForm.phone}
+                      onChange={handleAddressChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Delivery Address */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <MapPin size={20} />
+                  Delivery Address
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Complete Address *</label>
+                    <textarea
+                      name="address"
+                      value={addressForm.address}
+                      onChange={handleAddressChange}
+                      rows="3"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="House/Flat No., Street, Area"
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">City *</label>
+                      <input
+                        type="text"
+                        name="city"
+                        value={addressForm.city}
+                        onChange={handleAddressChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">State *</label>
+                      <input
+                        type="text"
+                        name="state"
+                        value={addressForm.state}
+                        onChange={handleAddressChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Pincode *</label>
+                      <input
+                        type="text"
+                        name="pincode"
+                        value={addressForm.pincode}
+                        onChange={handleAddressChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        maxLength="6"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Landmark (Optional)</label>
+                    <input
+                      type="text"
+                      name="landmark"
+                      value={addressForm.landmark}
+                      onChange={handleAddressChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Near hospital, school, etc."
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Order Summary */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  {cartItems.map((item) => (
+                    <div key={item._id} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0">
+                      <div className="flex items-center gap-3">
+                        <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
+                        <div>
+                          <p className="font-medium">{item.name}</p>
+                          <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                        </div>
+                      </div>
+                      <p className="font-medium">₹{item.price * item.quantity}</p>
+                    </div>
+                  ))}
+                  <div className="flex justify-between items-center pt-4 mt-4 border-t border-gray-300">
+                    <span className="text-lg font-bold">Total Amount:</span>
+                    <span className="text-lg font-bold text-green-600">₹{getTotalPrice()}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex gap-4">
+                <button
+                  type="button"
+                  onClick={() => setShowCheckoutModal(false)}
+                  className="flex-1 py-3 px-6 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={checkoutLoading}
+                  className="flex-1 py-3 px-6 bg-[#00a0db] text-white rounded-lg hover:bg-blue-600 transition font-medium flex items-center justify-center gap-2"
+                >
+                  {checkoutLoading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Processing...
+                    </>
+                  ) : (
+                    'Confirm Order'
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Order Slip Modal */}
+      {showOrderSlip && orderDetails && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[9999]">
+          <div className="bg-white p-6 rounded-2xl shadow-xl w-[90%] max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-green-600">Order Confirmed!</h2>
+              <button 
+                onClick={() => setShowOrderSlip(false)} 
+                className="text-2xl text-gray-600 hover:text-black"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {/* Order Details */}
+              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Order ID</p>
+                    <p className="font-bold text-lg">{orderDetails.orderId}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Order Date</p>
+                    <p className="font-medium">{new Date(orderDetails.orderDate).toLocaleDateString()}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Status</p>
+                    <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium">
+                      {orderDetails.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Total Amount</p>
+                    <p className="font-bold text-lg text-green-600">₹{orderDetails.totalAmount}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Customer Information */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Customer Information</h3>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">Name</p>
+                      <p className="font-medium">{orderDetails.customerInfo.fullName}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Email</p>
+                      <p className="font-medium">{orderDetails.customerInfo.email}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Phone</p>
+                      <p className="font-medium">{orderDetails.customerInfo.phone}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Delivery Address */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Delivery Address</h3>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="font-medium">{orderDetails.customerInfo.address}</p>
+                  {orderDetails.customerInfo.landmark && (
+                    <p className="text-gray-600">Landmark: {orderDetails.customerInfo.landmark}</p>
+                  )}
+                  <p className="font-medium">
+                    {orderDetails.customerInfo.city}, {orderDetails.customerInfo.state} - {orderDetails.customerInfo.pincode}
+                  </p>
+                </div>
+              </div>
+
+              {/* Order Items */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Order Items</h3>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  {orderDetails.items.map((item) => (
+                    <div key={item._id} className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
+                      <div className="flex items-center gap-3">
+                        <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
+                        <div>
+                          <p className="font-medium">{item.name}</p>
+                          <p className="text-sm text-gray-600">₹{item.price} × {item.quantity}</p>
+                        </div>
+                      </div>
+                      <p className="font-medium">₹{item.price * item.quantity}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-4">
+                <button
+                  onClick={downloadOrderSlip}
+                  className="flex-1 py-3 px-6 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium flex items-center justify-center gap-2"
+                >
+                  <Download size={20} />
+                  Download Order Slip
+                </button>
+                <button
+                  onClick={() => {
+                    setShowOrderSlip(false);
+                    navigate('/');
+                  }}
+                  className="flex-1 py-3 px-6 bg-[#00a0db] text-white rounded-lg hover:bg-blue-600 transition font-medium"
+                >
+                  Continue Shopping
+                </button>
+              </div>
+
+              {/* Thank You Message */}
+              <div className="text-center bg-blue-50 p-4 rounded-lg">
+                <p className="text-lg font-semibold text-blue-800 mb-2">Thank you for your order!</p>
+                <p className="text-blue-600">You will receive a confirmation email shortly with tracking details.</p>
+              </div>
+            </div>
           </div>
         </div>
       )}
