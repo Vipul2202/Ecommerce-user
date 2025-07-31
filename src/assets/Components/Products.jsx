@@ -24,11 +24,13 @@ const Products = () => {
   const [showQuantityModal, setShowQuantityModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
-
+  const [addingToCart, setAddingToCart] = useState(false); // Loading state for API call
+  const [userId, setUserId] = useState(null);
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
       setUser(JSON.parse(userData));
+      setUserId(JSON.parse(userData)._id);
     }
   }, []);
 
@@ -84,6 +86,7 @@ const Products = () => {
     setShowQuantityModal(false);
     setSelectedProduct(null);
     setQuantity(1);
+    setAddingToCart(false);
   };
 
   // Handle quantity change
@@ -109,13 +112,12 @@ const Products = () => {
     }
   };
 
-
   // Handle manual input
   const handleManualInput = (e) => {
     const value = e.target.value;
 
     if (value === '') {
-      setQuantity(1); // ✅ Always fallback to 1, or you can prevent updating state
+      setQuantity(1);
       return;
     }
 
@@ -123,9 +125,6 @@ const Products = () => {
     if (!isNaN(numValue)) {
       setQuantity(numValue);
     }
-
-
-
   };
 
   // Handle input blur (when user leaves the input field)
@@ -137,39 +136,70 @@ const Products = () => {
     }
   };
 
-
-  // Add to cart with specified quantity
-  const handleAddToCart = () => {
+  // Add to cart with API integration
+  const handleAddToCart = async () => {
     if (!selectedProduct || !quantity || quantity < 1) return;
 
-    // Get existing cart from localStorage
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setAddingToCart(true);
 
-    // Check if product already exists in cart
-    const existingItemIndex = existingCart.findIndex(item => item._id === selectedProduct._id);
-
-    const finalQuantity = parseInt(quantity) || 1;
-
-    if (existingItemIndex > -1) {
-      // Update quantity if item exists
-      existingCart[existingItemIndex].quantity += finalQuantity;
-    } else {
-      // Add new item to cart
-      existingCart.push({
-        ...selectedProduct,
+    try {
+      const finalQuantity = parseInt(quantity) || 1;
+      // API call to add product to cart
+      const response = await axios.post('http://localhost:9006/user/add-to-cart', {
+        productId: selectedProduct._id,
         quantity: finalQuantity,
-        addedAt: new Date().toISOString()
+        userId: userId
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add authorization header if you have token
+          'Authorization': `Bearer ${user?.token || localStorage.getItem('token')}` 
+        }
       });
+
+      if (response.data && response.data.success !== false) {
+        // Success - Update local cart for immediate UI feedback
+        const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existingItemIndex = existingCart.findIndex(item => item._id === selectedProduct._id);
+
+        if (existingItemIndex > -1) {
+          existingCart[existingItemIndex].quantity += finalQuantity;
+        } else {
+          existingCart.push({
+            ...selectedProduct,
+            quantity: finalQuantity,
+            addedAt: new Date().toISOString()
+          });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(existingCart));
+        window.dispatchEvent(new CustomEvent('cartUpdated'));
+
+        toast.success(`Added ${finalQuantity} ${selectedProduct.name}${finalQuantity > 1 ? 's' : ''} to cart`);
+        closeModal();
+      } else {
+        throw new Error(response.data?.message || 'Failed to add to cart');
+      }
+
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      
+      // Handle different error scenarios
+      if (error.response?.status === 401) {
+        toast.error("Please login to add items to cart");
+        navigate("/", { state: { openLogin: true } });
+      } else if (error.response?.status === 400) {
+        toast.error(error.response.data?.message || "Invalid request");
+      } else if (error.response?.status === 404) {
+        toast.error("Product not found");
+      } else if (error.response?.status === 500) {
+        toast.error("Server error. Please try again later");
+      } else {
+        toast.error(error.response?.data?.message || "Failed to add to cart. Please try again");
+      }
+    } finally {
+      setAddingToCart(false);
     }
-
-    // Save updated cart to localStorage
-    localStorage.setItem("cart", JSON.stringify(existingCart));
-
-    // Dispatch custom event to update cart count in navbar
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
-
-    toast.success(`Added ${finalQuantity} ${selectedProduct.name}${finalQuantity > 1 ? 's' : ''} to cart`);
-    closeModal();
   };
 
   const handleViewDetails = (product) => {
@@ -349,6 +379,7 @@ const Products = () => {
                 <button
                   onClick={closeModal}
                   className={`p-1 rounded-full hover:bg-gray-200 ${darkMode ? 'hover:bg-gray-700' : ''}`}
+                  disabled={addingToCart}
                 >
                   <X size={20} />
                 </button>
@@ -368,18 +399,15 @@ const Products = () => {
                     Available: {selectedProduct.qty}
                   </p>
                 </div>
-
               </div>
-
-
 
               {/* Quantity Selector */}
               <label className="block text-sm font-medium mb-2">Quantity:</label>
               <div className="flex items-center gap-3">
                 <button
                   onClick={decrementQuantity}
-                  disabled={quantity <= 1}
-                  className={`p-2 rounded-lg border transition-colors ${quantity <= 1
+                  disabled={quantity <= 1 || addingToCart}
+                  className={`p-2 rounded-lg border transition-colors ${quantity <= 1 || addingToCart
                     ? 'opacity-50 cursor-not-allowed bg-gray-100' + (darkMode ? ' bg-gray-800' : '')
                     : 'hover:bg-gray-100 active:bg-gray-200 ' + (darkMode ? 'hover:bg-gray-700 active:bg-gray-600 border-gray-600' : 'border-gray-300')
                     }`}
@@ -401,15 +429,16 @@ const Products = () => {
                     }
                   }}
                   onBlur={handleInputBlur}
+                  disabled={addingToCart}
                   className={`w-24 px-3 py-2 text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-black'
-                    }`}
+                    } ${addingToCart ? 'opacity-50 cursor-not-allowed' : ''}`}
                   placeholder="1"
                 />
 
                 <button
                   onClick={incrementQuantity}
-                  disabled={quantity >= selectedProduct?.qty}
-                  className={`p-2 rounded-lg border transition-colors ${quantity >= selectedProduct?.qty
+                  disabled={quantity >= selectedProduct?.qty || addingToCart}
+                  className={`p-2 rounded-lg border transition-colors ${quantity >= selectedProduct?.qty || addingToCart
                     ? 'opacity-50 cursor-not-allowed bg-gray-100' + (darkMode ? ' bg-gray-800' : '')
                     : 'hover:bg-gray-100 active:bg-gray-200 ' + (darkMode ? 'hover:bg-gray-700 active:bg-gray-600 border-gray-600' : 'border-gray-300')
                     }`}
@@ -432,18 +461,20 @@ const Products = () => {
               <div className="flex gap-3">
                 <button
                   onClick={closeModal}
+                  disabled={addingToCart}
                   className={`flex-1 py-2 px-4 rounded-lg border transition ${darkMode
                     ? 'border-gray-600 hover:bg-gray-700'
                     : 'border-gray-300 hover:bg-gray-50'
-                    }`}
+                    } ${addingToCart ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 py-2 px-4 rounded-lg bg-[#00a0db] hover:bg-blue-600 text-white transition font-medium"
+                  disabled={addingToCart}
+                  className={`flex-1 py-2 px-4 rounded-lg bg-[#00a0db] hover:bg-blue-600 text-white transition font-medium ${addingToCart ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  Add to Cart
+                  {addingToCart ? 'Adding...' : 'Add to Cart'}
                 </button>
               </div>
             </div>
