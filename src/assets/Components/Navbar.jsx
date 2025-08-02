@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import GoogleLogo from "../../img/images.png";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { ChevronDown, ShoppingCart, Trash2, Plus, Minus, MapPin, User, Phone, Mail, Download, X } from "lucide-react";
 import { useLocation } from 'react-router-dom';
-
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -62,7 +62,8 @@ const Navbar = () => {
   ];
 
   // API Base URL
-  const API_BASE_URL = "http://localhost:9006";
+  // const API_BASE_URL = "http://localhost:9006";
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   // Get Authorization Token
   const getAuthToken = () => {
@@ -73,7 +74,7 @@ const Navbar = () => {
   const createAuthAxios = () => {
     const token = getAuthToken();
     return axios.create({
-      baseURL: API_BASE_URL,
+      baseURL: API,
       headers: {
         'Authorization': token ? `Bearer ${token}` : '',
         'Content-Type': 'application/json'
@@ -124,31 +125,31 @@ const Navbar = () => {
   };
 
   // Remove item from cart via API
-const removeFromCart = async (productId) => {
-  if (!user) {
-    toast.error("Please login to manage cart");
-    return;
-  }
+  const removeFromCart = async (productId) => {
+    if (!user) {
+      toast.error("Please login to manage cart");
+      return;
+    }
 
-  try {
-    const authAxios = createAuthAxios();
-    const response = await authAxios.delete(`/user/remove-from-cart/${productId}`);
-    if (response.status === 200) {
-      await loadCartItems(); // Reload cart
-      toast.success(response.data?.message || "Item removed from cart");
-    } else {
-      toast.error(response.data?.message || "Failed to remove item from cart");
+    try {
+      const authAxios = createAuthAxios();
+      const response = await authAxios.delete(`/user/remove-from-cart/${productId}`);
+      if (response.status === 200) {
+        await loadCartItems(); // Reload cart
+        toast.success(response.data?.message || "Item removed from cart");
+      } else {
+        toast.error(response.data?.message || "Failed to remove item from cart");
+      }
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+      if (error.response?.status === 401) {
+        handleLogout();
+        toast.error("Session expired. Please login again.");
+      } else {
+        toast.error(error.response?.data?.message || "Failed to remove item from cart");
+      }
     }
-  } catch (error) {
-    console.error('Error removing item from cart:', error);
-    if (error.response?.status === 401) {
-      handleLogout();
-      toast.error("Session expired. Please login again.");
-    } else {
-      toast.error(error.response?.data?.message || "Failed to remove item from cart");
-    }
-  }
-};
+  };
 
 
   // Update cart quantity (you might need to implement this API endpoint)
@@ -358,12 +359,12 @@ const removeFromCart = async (productId) => {
     navigate("/");
   };
 
-const getTotalPrice = () => {
-  return cartItems.reduce((acc, item) => {
-    const price = item.productDetails?.price || item.productId?.price || 0;
-    return acc + price * item.quantity;
-  }, 0);
-};
+  const getTotalPrice = () => {
+    return cartItems.reduce((acc, item) => {
+      const price = item.productDetails?.price || item.productId?.price || 0;
+      return acc + price * item.quantity;
+    }, 0);
+  };
   const handlePlaceOrder = () => {
     if (cartItems.length === 0) {
       toast.error("Your cart is empty");
@@ -427,7 +428,7 @@ const getTotalPrice = () => {
 
     try {
       const authAxios = createAuthAxios();
-      
+
       // Prepare shipping address according to API format
       const shippingAddress = {
         fullName: addressForm.fullName,
@@ -455,7 +456,7 @@ const getTotalPrice = () => {
 
       if (response.data && response.data.success) {
         const orderData = response.data.data;
-        
+
         // Prepare order details for display
         const orderDetails = {
           orderId: orderData._id || orderData.orderId || `ORD-${Date.now()}`,
@@ -497,7 +498,7 @@ const getTotalPrice = () => {
 
     } catch (error) {
       console.error('Error creating order:', error);
-      
+
       if (error.response?.status === 401) {
         handleLogout();
         toast.error("Session expired. Please login again.");
@@ -514,34 +515,34 @@ const getTotalPrice = () => {
   };
 
   // Fetch user orders (you can call this function when needed)
-  const fetchUserOrders = async () => {
-    if (!user) {
-      toast.error("Please login to view orders");
-      return [];
-    }
+  // const fetchUserOrders = async () => {
+  //   if (!user) {
+  //     toast.error("Please login to view orders");
+  //     return [];
+  //   }
 
-    try {
-      const authAxios = createAuthAxios();
-      const response = await authAxios.get('/user/get-my-orders');
-      
-      if (response.data && response.data.success) {
-        console.log('User orders:', response.data.data);
-        return response.data.data;
-      } else {
-        throw new Error(response.data?.message || "Failed to fetch orders");
-      }
-    } catch (error) {
-      console.error('Error fetching orders:', error);
-      
-      if (error.response?.status === 401) {
-        handleLogout();
-        toast.error("Session expired. Please login again.");
-      } else {
-        toast.error(error.response?.data?.message || "Failed to fetch orders");
-      }
-      return [];
-    }
-  };
+  //   try {
+  //     const authAxios = createAuthAxios();
+  //     const response = await authAxios.get('/user/get-my-orders');
+
+  //     if (response.data && response.data.success) {
+  //       console.log('User orders:', response.data.data);
+  //       return response.data.data;
+  //     } else {
+  //       throw new Error(response.data?.message || "Failed to fetch orders");
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching orders:', error);
+
+  //     if (error.response?.status === 401) {
+  //       handleLogout();
+  //       toast.error("Session expired. Please login again.");
+  //     } else {
+  //       toast.error(error.response?.data?.message || "Failed to fetch orders");
+  //     }
+  //     return [];
+  //   }
+  // };
 
   // Download order slip as PDF/Text
   const downloadOrderSlip = () => {
@@ -641,15 +642,16 @@ Thank you for your order!
                         <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin"></div>
                       </span>
                     ) : cartCount > 0 ? (
-                      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold">
+                      <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full min-w-[1.5rem] px-2 h-6 flex items-center justify-center font-bold">
                         {cartCount}
                       </span>
+
                     ) : null}
                   </button>
 
                   {/* Cart Modal */}
                   {isCartOpen && (
-                    <div className="absolute right-0 mt-2 w-96 bg-white text-black rounded-lg shadow-xl z-50 max-h-96 overflow-hidden">
+                    <div className="absolute right-0 mt-2 w-96 bg-white text-black rounded-lg shadow-xl z-50 max-h-[500px] flex flex-col">
                       <div className="p-4 border-b">
                         <h3 className="text-lg font-semibold">Shopping Cart ({cartCount})</h3>
                         {cartLoading && (
@@ -661,52 +663,52 @@ Thank you for your order!
                       </div>
 
                       {cartItems.length === 0 ? (
-                        <div className="p-4 text-center text-gray-500">
+                        <div className="p-4 text-center text-gray-500 flex-1 overflow-auto">
                           {cartLoading ? "Loading..." : "Your cart is empty"}
                         </div>
                       ) : (
                         <>
-                          <div className="max-h-64 overflow-y-auto">
+                          <div className="flex-1 overflow-y-auto">
                             {cartItems.map((item) => (
                               <div key={item._id} className="p-4 border-b flex gap-3">
                                 <img
-                                  src={ item.productDetails?.image}
-                                  alt={ item.productDetails?.name}
+                                  src={item.productDetails?.image}
+                                  alt={item.productDetails?.name}
                                   className="w-16 h-16 object-cover rounded cursor-pointer"
-                                  onClick={() => handleViewProductDetails( item.productDetails?._id)}
+                                  onClick={() => handleViewProductDetails(item.productDetails?._id)}
                                 />
                                 <div className="flex-1">
                                   <h4
                                     className="font-medium truncate cursor-pointer hover:text-blue-600"
-                                    onClick={() => handleViewProductDetails( item.productDetails?._id)}
+                                    onClick={() => handleViewProductDetails(item.productDetails?._id)}
                                   >
                                     {item.productDetails.name}
                                   </h4>
-                                  <p className="text-sm text-gray-600">₹{ item.productDetails?.price}</p>
+                                  <p className="text-sm text-gray-600">₹{item.productDetails?.price}</p>
                                   <div className="flex items-center gap-2 mt-2">
                                     <button
-                                      onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity - 1)}
+                                      onClick={() => updateCartQuantity(item.productDetails?._id, item.quantity - 1)}
                                       className="p-1 rounded bg-gray-200 hover:bg-gray-300"
                                     >
                                       <Minus size={12} />
                                     </button>
                                     <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
                                     <button
-                                      onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity + 1)}
+                                      onClick={() => updateCartQuantity(item.productDetails?._id, item.quantity + 1)}
                                       className="p-1 rounded bg-gray-200 hover:bg-gray-300"
                                     >
                                       <Plus size={12} />
                                     </button>
                                     <button
-                                      onClick={() => removeFromCart( item.productDetails?._id)}
-                                      className="p-1 rounded bg-red-200 hover:bg-red-300 text-red-600 ml-2"
+                                      onClick={() => removeFromCart(item.productDetails?._id)}
+                                      className="p-1 rounded bg-black hover:bg-red-300 text-white ml-2"
                                     >
                                       <Trash2 size={12} />
                                     </button>
                                   </div>
                                 </div>
                                 <div className="text-right">
-                                  <p className="font-medium">₹{( item.productDetails?.price) * item.quantity}</p>
+                                  <p className="font-medium">₹{item.productDetails?.price * item.quantity}</p>
                                 </div>
                               </div>
                             ))}
@@ -727,6 +729,7 @@ Thank you for your order!
                       )}
                     </div>
                   )}
+
                 </div>
               )}
 
@@ -744,7 +747,9 @@ Thank you for your order!
                       <p className="text-sm truncate w-40" title={user.email}>{user.email}</p>
                       <button
                         onClick={() => {
-                          fetchUserOrders();
+                      
+    setIsProfileOpen(false);
+    navigate('/my-orders');
                           setIsProfileOpen(false);
                         }}
                         className="mt-2 bg-green-600 text-white w-full rounded py-1 hover:bg-green-700 mb-2"
@@ -808,7 +813,8 @@ Thank you for your order!
                           <div className="w-2 h-2 border border-white border-t-transparent rounded-full animate-spin"></div>
                         </span>
                       ) : cartCount > 0 ? (
-                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                        <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full min-w-[1.5rem] px-2 h-6 flex items-center justify-center font-bold">
+
                           {cartCount}
                         </span>
                       ) : null}
@@ -861,8 +867,8 @@ Thank you for your order!
                 <>
                   <button
                     onClick={() => {
-                      fetchUserOrders();
-                      setIsSidebarOpen(false);
+    setIsProfileOpen(false);
+    navigate('/my-orders');
                     }}
                     className="relative px-4 py-2 rounded-full bg-green-600 text-white text-center overflow-hidden group"
                   >
@@ -875,7 +881,7 @@ Thank you for your order!
                     onClick={handleLogout}
                     className="relative px-4 py-2 rounded-full bg-red-500 text-white text-center overflow-hidden group"
                   >
-                    <span className="relative z-10 transition-colors duration-300 group-hover:text-red-500">
+                    <span className="relative z-10 transition-colors duration-300  group-hover:text-red-500">
                       Logout
                     </span>
                     <span className="absolute inset-0 bg-white z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
@@ -923,35 +929,35 @@ Thank you for your order!
                   {cartItems.map((item) => (
                     <div key={item._id} className="flex gap-3 p-3 border-b">
                       <img
-                        src={ item.productDetails?.image}
-                        alt={ item.productDetails?.name}
+                        src={item.productDetails?.image}
+                        alt={item.productDetails?.name}
                         className="w-12 h-12 object-cover rounded cursor-pointer"
-                        onClick={() => handleViewProductDetails( item.productDetails?._id)}
+                        onClick={() => handleViewProductDetails(item.productDetails?._id)}
                       />
                       <div className="flex-1">
                         <h4
                           className="font-medium text-sm truncate cursor-pointer hover:text-blue-600"
-                          onClick={() => handleViewProductDetails( item.productDetails?._id)}
+                          onClick={() => handleViewProductDetails(item.productDetails?._id)}
                         >
                           {item.productDetails?.name}
                         </h4>
-                        <p className="text-xs text-gray-600">₹{ item.productDetails?.price}</p>
+                        <p className="text-xs text-gray-600">₹{item.productDetails?.price}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <button
-                            onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity - 1)}
+                            onClick={() => updateCartQuantity(item.productDetails?._id, item.quantity - 1)}
                             className="p-1 rounded bg-gray-200 hover:bg-gray-300"
                           >
                             <Minus size={10} />
                           </button>
                           <span className="text-xs font-medium w-6 text-center">{item.quantity}</span>
                           <button
-                            onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity + 1)}
+                            onClick={() => updateCartQuantity(item.productDetails?._id, item.quantity + 1)}
                             className="p-1 rounded bg-gray-200 hover:bg-gray-300"
                           >
                             <Plus size={10} />
                           </button>
                           <button
-                            onClick={() => removeFromCart( item.productDetails?._id)}
+                            onClick={() => removeFromCart(item.productDetails?._id)}
                             className="p-1 rounded bg-red-200 hover:bg-red-300 text-red-600 ml-1"
                           >
                             <Trash2 size={10} />
@@ -959,7 +965,7 @@ Thank you for your order!
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium text-sm">₹{( item.productDetails?.price) * item.quantity}</p>
+                        <p className="font-medium text-sm">₹{(item.productDetails?.price) * item.quantity}</p>
                       </div>
                     </div>
                   ))}
@@ -1404,6 +1410,18 @@ Thank you for your order!
           </div>
         </>
       )}
+       <ToastContainer
+  position="top-center"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light" 
+/>
     </>
   );
 };

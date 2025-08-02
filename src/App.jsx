@@ -24,6 +24,8 @@ import CarDetailPage from './assets/Components/CarDetailPage'
 // import Gallery from './assets/Components/Gallery'
 import Gallery from './assets/Components/Gallery'
 import ConfirmationPage from './assets/Components/ConfirmationPage'
+import MyOrders from './assets/Components/MyOrders';
+
 function App() {
   return (
     <div>
@@ -53,6 +55,7 @@ function App() {
           <Route path="/car-details/:id" element={<CarDetailPage />} />
           <Route path='gallery' element={<Gallery />} />
           <Route path ='confirmation' element={<ConfirmationPage />} />
+          <Route path ="my-orders" element={<MyOrders />} />
         </Routes>
 
         <Footer />

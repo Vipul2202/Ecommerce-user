@@ -3,9 +3,16 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import noDataImage from '../../../src/img/no-data.png';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
+
+
+
+
 import { Table } from 'react-bootstrap';
 import { Menu, Grid3x3, Eye, ShoppingCart, X, Plus, Minus } from 'lucide-react';
+const API = import.meta.env.VITE_API_BASE_URL;
 
 const Products = () => {
   const navigate = useNavigate();
@@ -38,7 +45,8 @@ const Products = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:9006/user/get-categories");
+      const res = await axios.get(`${API}/user/get-categories`);
+
       setCategories(res.data?.data || []);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -49,8 +57,9 @@ const Products = () => {
     setLoading(true);
     try {
       const url = categoryId
-        ? `http://localhost:9006/user/get-products?category=${categoryId}`
-        : `http://localhost:9006/user/get-products`;
+        ? `${API}/user/get-products?category=${categoryId}`
+        : `${API}/user/get-products`;
+
 
       const res = await axios.get(url);
       setProducts(res.data?.data || []);
@@ -145,7 +154,7 @@ const Products = () => {
     try {
       const finalQuantity = parseInt(quantity) || 1;
       // API call to add product to cart
-      const response = await axios.post('http://localhost:9006/user/add-to-cart', {
+      const response = await axios.post(`${API}/user/add-to-cart`, {
         productId: selectedProduct._id,
         quantity: finalQuantity,
         userId: userId
@@ -153,7 +162,7 @@ const Products = () => {
         headers: {
           'Content-Type': 'application/json',
           // Add authorization header if you have token
-          'Authorization': `Bearer ${user?.token || localStorage.getItem('token')}` 
+          'Authorization': `Bearer ${user?.token || localStorage.getItem('token')}`
         }
       });
 
@@ -183,7 +192,7 @@ const Products = () => {
 
     } catch (error) {
       console.error('Error adding to cart:', error);
-      
+
       // Handle different error scenarios
       if (error.response?.status === 401) {
         toast.error("Please login to add items to cart");
@@ -479,8 +488,22 @@ const Products = () => {
               </div>
             </div>
           </div>
+
         )}
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        toastClassName="custom-toast"
+        bodyClassName="custom-toast-body"
+      />
     </div>
   );
 };

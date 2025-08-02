@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import about from "../../../src/img/about.jpg";
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 const About = () => {
   const [formData, setFormData] = useState({
     carType: "",
@@ -47,6 +49,19 @@ const About = () => {
                </p>
              </div>
            </div>
+              <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              toastClassName="custom-toast"
+              bodyClassName="custom-toast-body"
+            />
          </section>
 
     

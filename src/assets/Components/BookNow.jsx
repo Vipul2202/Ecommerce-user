@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom"; // Add these imports
 import axios from "axios";
+const API = import.meta.env.VITE_API_BASE_URL;
+
 
 const BookNow = () => {
   const [searchParams] = useSearchParams(); // Hook to get URL parameters
@@ -111,7 +113,7 @@ const BookNow = () => {
       setIsLoading(true);
       const payload = [formData];
       console.log("Booking payload:", payload);
-      const response = await axios.post("http://localhost:9006/user/create-booking", payload);
+     const response = await axios.post(`${API}/user/create-booking`, payload);
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
         setFormData({

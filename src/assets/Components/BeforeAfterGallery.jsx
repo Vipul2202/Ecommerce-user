@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 const BeforeAfterViewer = ({ beforeImg, afterImg, onClose }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
@@ -33,6 +34,19 @@ const BeforeAfterViewer = ({ beforeImg, afterImg, onClose }) => {
           Close
         </button>
       </div>
+         <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              toastClassName="custom-toast"
+              bodyClassName="custom-toast-body"
+            />
     </div>
   );
 };

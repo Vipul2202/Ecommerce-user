@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ArrowLeftCircle, X, Plus, Minus } from 'react-feather';
+import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 
 const CarDetailPage = () => {
@@ -28,7 +29,7 @@ const CarDetailPage = () => {
   });
   const [orderLoading, setOrderLoading] = useState(false);
 
-  const BASE_URL = 'http://localhost:9006';
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -39,7 +40,7 @@ const CarDetailPage = () => {
 
   const fetchCarDetail = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/user/get-product/${id}`, {
+      const response = await axios.get(`${API}/user/get-product/${id}`, {
         timeout: 5000
       });
       setCar(response.data?.data);
@@ -206,7 +207,7 @@ const CarDetailPage = () => {
       console.log('Sending order data:', orderData);
       
       // Try the API call
-      const response = await axios.post(`${BASE_URL}/user/place-order`, orderData, {
+      const response = await axios.post(`${API}/user/place-order`, orderData, {
         headers: {
           'Content-Type': 'application/json',
           // Add authorization header if needed
@@ -593,6 +594,19 @@ const CarDetailPage = () => {
           </div>
         </div>
       )}
+         <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              toastClassName="custom-toast"
+              bodyClassName="custom-toast-body"
+            />
     </div>
   );
 };

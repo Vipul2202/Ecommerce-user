@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Clock, Phone, Mail, MapPin } from "lucide-react";
 import { FaSpinner } from "react-icons/fa";
-
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 const ContactUs = () => {
     const formRef = useRef();
 
@@ -103,9 +104,9 @@ const ContactUs = () => {
         <div className=" bg-gray-50">
 
             <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
-                <h1 className="text-4xl md:text-5xl font-bold text-orange-500 mb-4">Contact Us</h1>
+                <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">Contact Us</h1>
                 <nav className="text-gray-600">
-                    <span className="text-orange-500">Home</span>
+                    <span className="text-[#00a0db]">Home</span>
                     <span className="mx-2">/</span>
                     <span>Contact</span>
                 </nav>
@@ -116,12 +117,12 @@ const ContactUs = () => {
                 <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10">
 
 
-                    <div className="bg-orange-500 rounded-2xl p-6 text-white max-w-full w-full">
+                    <div className="bg-[#00a0db] rounded-2xl p-6 text-white max-w-full w-full">
                         <h3 className="text-2xl font-bold mb-8">Quick Contact Info</h3>
                         <div className="space-y-6">
                             {contactInfo.map((info) => (
                                 <div key={info.id} className="flex items-start space-x-4">
-                                    <div className="bg-white rounded-full p-3 text-orange-500">
+                                    <div className="bg-white rounded-full p-3 text-black">
                                         {info.icon}
                                     </div>
                                     <div>
@@ -216,7 +217,7 @@ const ContactUs = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold rounded-full hover:bg-orange-600 transition transform hover:scale-105 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                                    className={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold  hover:bg-[#00a0db] transition transform hover:scale-105 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                                         }`}
                                 >
                                     {isSubmitting ? (
@@ -233,6 +234,19 @@ const ContactUs = () => {
                     </div>
                 </div>
             </div>
+               <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              toastClassName="custom-toast"
+              bodyClassName="custom-toast-body"
+            />
         </div>
     );
 };

@@ -48,7 +48,7 @@ const Footer = () => {
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Popular Links</h2>
                         <ul className="space-y-2">
                             <li><a href="/about" className="hover:underline">About Us</a></li>
-                            <li><a href="/contact" className="hover:underline">Contact Us</a></li>
+                            <li><a href="/contact" className="hover:underline hover:text-blue-400">Contact Us</a></li>
                             <li><a href="/washing_services" className="hover:underline">Washing Service</a></li>
                             <li><a href="/detailing_services" className="hover:underline">Detailing Service</a></li>
                             <li><a href="/ultra_premium_finishes" className="hover:underline">Ultra Premium Services</a></li>
