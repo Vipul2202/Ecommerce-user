@@ -51,7 +51,8 @@ const Navbar = () => {
     city: "",
     state: "",
     pincode: "",
-    landmark: ""
+    landmark: "",
+    country: "India" // Default country
   });
 
   const navItems = [
@@ -409,7 +410,7 @@ const getTotalPrice = () => {
     return true;
   };
 
-  // Handle checkout submission
+  // Handle checkout submission with actual API integration
   const handleCheckoutSubmit = async (e) => {
     e.preventDefault();
 
@@ -417,39 +418,128 @@ const getTotalPrice = () => {
       return;
     }
 
+    if (!user) {
+      toast.error("Please login to place order");
+      return;
+    }
+
     setCheckoutLoading(true);
 
     try {
-      // Generate order details
-      const orderId = `ORD-${Date.now()}`;
-      const orderData = {
-        orderId,
-        customerInfo: addressForm,
-        items: cartItems,
-        totalAmount: getTotalPrice(),
-        orderDate: new Date().toISOString(),
-        status: 'Confirmed'
+      const authAxios = createAuthAxios();
+      
+      // Prepare shipping address according to API format
+      const shippingAddress = {
+        fullName: addressForm.fullName,
+        address: addressForm.address,
+        city: addressForm.city,
+        state: addressForm.state,
+        postalCode: parseInt(addressForm.pincode), // Convert to number as per API
+        country: addressForm.country,
+        phone: addressForm.phone
       };
 
-      // Here you would typically send this to your backend
-      // await axios.post('your-api-endpoint/orders', orderData);
+      // If landmark is provided, add it to address
+      if (addressForm.landmark.trim()) {
+        shippingAddress.address = `${addressForm.address}, ${addressForm.landmark}`;
+      }
 
-      // For now, we'll simulate the API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Creating order with:', { shippingAddress });
 
-      setOrderDetails(orderData);
-      setShowCheckoutModal(false);
-      setShowOrderSlip(true);
+      // Create order via API
+      const response = await authAxios.post('/user/create-order', {
+        shippingAddress
+      });
 
-      // Clear cart after successful order - reload from API
-      await loadCartItems();
+      console.log('Order creation response:', response.data);
 
-      toast.success("Order placed successfully!");
+      if (response.data && response.data.success) {
+        const orderData = response.data.data;
+        
+        // Prepare order details for display
+        const orderDetails = {
+          orderId: orderData._id || orderData.orderId || `ORD-${Date.now()}`,
+          customerInfo: {
+            fullName: shippingAddress.fullName,
+            email: addressForm.email,
+            phone: shippingAddress.phone,
+            address: shippingAddress.address,
+            city: shippingAddress.city,
+            state: shippingAddress.state,
+            pincode: shippingAddress.postalCode,
+            country: shippingAddress.country,
+            landmark: addressForm.landmark
+          },
+          items: cartItems.map(item => ({
+            _id: item._id,
+            name: item.productDetails?.name || item.name,
+            price: item.productDetails?.price || item.price,
+            quantity: item.quantity,
+            image: item.productDetails?.image || item.image
+          })),
+          totalAmount: getTotalPrice(),
+          orderDate: orderData.createdAt || new Date().toISOString(),
+          status: orderData.status || 'Confirmed'
+        };
+
+        setOrderDetails(orderDetails);
+        setShowCheckoutModal(false);
+        setShowOrderSlip(true);
+
+        // Clear cart after successful order
+        await loadCartItems();
+
+        toast.success(response.data.message || "Order placed successfully!");
+
+      } else {
+        throw new Error(response.data?.message || "Failed to create order");
+      }
 
     } catch (error) {
-      toast.error("Failed to place order. Please try again.");
+      console.error('Error creating order:', error);
+      
+      if (error.response?.status === 401) {
+        handleLogout();
+        toast.error("Session expired. Please login again.");
+      } else if (error.response?.status === 400) {
+        toast.error(error.response.data?.message || "Invalid order data. Please check your information.");
+      } else if (error.response?.status === 500) {
+        toast.error("Server error. Please try again later.");
+      } else {
+        toast.error(error.response?.data?.message || error.message || "Failed to place order. Please try again.");
+      }
     } finally {
       setCheckoutLoading(false);
+    }
+  };
+
+  // Fetch user orders (you can call this function when needed)
+  const fetchUserOrders = async () => {
+    if (!user) {
+      toast.error("Please login to view orders");
+      return [];
+    }
+
+    try {
+      const authAxios = createAuthAxios();
+      const response = await authAxios.get('/user/get-my-orders');
+      
+      if (response.data && response.data.success) {
+        console.log('User orders:', response.data.data);
+        return response.data.data;
+      } else {
+        throw new Error(response.data?.message || "Failed to fetch orders");
+      }
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      
+      if (error.response?.status === 401) {
+        handleLogout();
+        toast.error("Session expired. Please login again.");
+      } else {
+        toast.error(error.response?.data?.message || "Failed to fetch orders");
+      }
+      return [];
     }
   };
 
@@ -476,6 +566,7 @@ DELIVERY ADDRESS
 ${orderDetails.customerInfo.address}
 ${orderDetails.customerInfo.landmark ? orderDetails.customerInfo.landmark + ', ' : ''}${orderDetails.customerInfo.city}
 ${orderDetails.customerInfo.state} - ${orderDetails.customerInfo.pincode}
+${orderDetails.customerInfo.country}
 
 ORDER ITEMS
 -----------
@@ -652,9 +743,18 @@ Thank you for your order!
                       <p className="font-semibold">{user.name}</p>
                       <p className="text-sm truncate w-40" title={user.email}>{user.email}</p>
                       <button
+                        onClick={() => {
+                          fetchUserOrders();
+                          setIsProfileOpen(false);
+                        }}
+                        className="mt-2 bg-green-600 text-white w-full rounded py-1 hover:bg-green-700 mb-2"
+                      >
+                        My Orders
+                      </button>
+                      <button
                         data-logout
                         onClick={handleLogout}
-                        className="mt-2 bg-[#00a0db] text-white w-full rounded py-1 hover:bg-black"
+                        className="bg-[#00a0db] text-white w-full rounded py-1 hover:bg-black"
                       >
                         Logout
                       </button>
@@ -758,15 +858,29 @@ Thank you for your order!
               </Link>
 
               {user ? (
-                <button
-                  onClick={handleLogout}
-                  className="relative px-4 py-2 rounded-full bg-red-500 text-white text-center overflow-hidden group"
-                >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-red-500">
-                    Logout
-                  </span>
-                  <span className="absolute inset-0 bg-white z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-                </button>
+                <>
+                  <button
+                    onClick={() => {
+                      fetchUserOrders();
+                      setIsSidebarOpen(false);
+                    }}
+                    className="relative px-4 py-2 rounded-full bg-green-600 text-white text-center overflow-hidden group"
+                  >
+                    <span className="relative z-10 transition-colors duration-300 group-hover:text-green-600">
+                      My Orders
+                    </span>
+                    <span className="absolute inset-0 bg-white z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="relative px-4 py-2 rounded-full bg-red-500 text-white text-center overflow-hidden group"
+                  >
+                    <span className="relative z-10 transition-colors duration-300 group-hover:text-red-500">
+                      Logout
+                    </span>
+                    <span className="absolute inset-0 bg-white z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+                  </button>
+                </>
               ) : (
                 <button
                   onClick={() => setShowModal(true)}
@@ -792,78 +906,78 @@ Thank you for your order!
               <button onClick={() => setIsCartOpen(false)} className="text-2xl text-gray-600 hover:text-black">×</button>
             </div>
 
-            {/* {cartLoading ? (
-              <div className="text-center text-gray-500 py-8 flex items-center justify-center gap-2">
-                <div className="w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
-                Loading cart...
-              </div>
-            ) : cartItems.length === 0 ? (
+            {cartItems.length === 0 ? (
               <div className="text-center text-gray-500 py-8">
-                Your cart is empty
+                {cartLoading ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                    Loading cart...
+                  </div>
+                ) : (
+                  "Your cart is empty"
+                )}
               </div>
-            ) : ( */}
-            <>
-              <div className="max-h-48 overflow-y-auto mb-4">
-                {cartItems.map((item) => (
-                  <div key={item._id} className="flex gap-3 p-3 border-b">
-                    <img
-                      src={ item.productDetails?.image}
-                      alt={ item.productDetails?.name}
-                      className="w-12 h-12 object-cover rounded cursor-pointer"
-                      onClick={() => handleViewProductDetails( item.productDetails?._id)}
-                    />
-                    <div className="flex-1">
-                      <h4
-                        className="font-medium text-sm truncate cursor-pointer hover:text-blue-600"
+            ) : (
+              <>
+                <div className="max-h-48 overflow-y-auto mb-4">
+                  {cartItems.map((item) => (
+                    <div key={item._id} className="flex gap-3 p-3 border-b">
+                      <img
+                        src={ item.productDetails?.image}
+                        alt={ item.productDetails?.name}
+                        className="w-12 h-12 object-cover rounded cursor-pointer"
                         onClick={() => handleViewProductDetails( item.productDetails?._id)}
-                      >
-                        {console.log("Item productId:", item.productDetails)}
-                        {item.productDetails
-                          ?.name}
-                      </h4>
-                      <p className="text-xs text-gray-600">₹{ item.productDetails?.price}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <button
-                          onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity - 1)}
-                          className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                      />
+                      <div className="flex-1">
+                        <h4
+                          className="font-medium text-sm truncate cursor-pointer hover:text-blue-600"
+                          onClick={() => handleViewProductDetails( item.productDetails?._id)}
                         >
-                          <Minus size={10} />
-                        </button>
-                        <span className="text-xs font-medium w-6 text-center">{item.quantity}</span>
-                        <button
-                          onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity + 1)}
-                          className="p-1 rounded bg-gray-200 hover:bg-gray-300"
-                        >
-                          <Plus size={10} />
-                        </button>
-                        <button
-                          onClick={() => removeFromCart( item.productDetails?._id)}
-                          className="p-1 rounded bg-red-200 hover:bg-red-300 text-red-600 ml-1"
-                        >
-                          <Trash2 size={10} />
-                        </button>
+                          {item.productDetails?.name}
+                        </h4>
+                        <p className="text-xs text-gray-600">₹{ item.productDetails?.price}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <button
+                            onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity - 1)}
+                            className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                          >
+                            <Minus size={10} />
+                          </button>
+                          <span className="text-xs font-medium w-6 text-center">{item.quantity}</span>
+                          <button
+                            onClick={() => updateCartQuantity( item.productDetails?._id, item.quantity + 1)}
+                            className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                          >
+                            <Plus size={10} />
+                          </button>
+                          <button
+                            onClick={() => removeFromCart( item.productDetails?._id)}
+                            className="p-1 rounded bg-red-200 hover:bg-red-300 text-red-600 ml-1"
+                          >
+                            <Trash2 size={10} />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium text-sm">₹{( item.productDetails?.price) * item.quantity}</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-medium text-sm">₹{( item.productDetails?.price) * item.quantity}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="border-t pt-4">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-semibold">Total: ₹{getTotalPrice()}</span>
+                  ))}
                 </div>
-                <button
-                  onClick={handlePlaceOrder}
-                  className="w-full bg-[#00a0db] text-white py-2 rounded-lg hover:bg-black transition font-semibold"
-                >
-                  Place Order
-                </button>
-              </div>
-            </>
-            {/* // )} */}
+
+                <div className="border-t pt-4">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="font-semibold">Total: ₹{getTotalPrice()}</span>
+                  </div>
+                  <button
+                    onClick={handlePlaceOrder}
+                    className="w-full bg-[#00a0db] text-white py-2 rounded-lg hover:bg-black transition font-semibold"
+                  >
+                    Place Order
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -981,16 +1095,29 @@ Thank you for your order!
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Landmark (Optional)</label>
-                    <input
-                      type="text"
-                      name="landmark"
-                      value={addressForm.landmark}
-                      onChange={handleAddressChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Near hospital, school, etc."
-                    />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Landmark (Optional)</label>
+                      <input
+                        type="text"
+                        name="landmark"
+                        value={addressForm.landmark}
+                        onChange={handleAddressChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Near hospital, school, etc."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Country *</label>
+                      <input
+                        type="text"
+                        name="country"
+                        value={addressForm.country}
+                        onChange={handleAddressChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1002,13 +1129,13 @@ Thank you for your order!
                   {cartItems.map((item) => (
                     <div key={item._id} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0">
                       <div className="flex items-center gap-3">
-                        <img src={item.productDetails?.image || item.productId?.image} alt={item.name || item.productId?.name} className="w-12 h-12 object-cover rounded" />
+                        <img src={item.productDetails?.image} alt={item.productDetails?.name} className="w-12 h-12 object-cover rounded" />
                         <div>
-                          <p className="font-medium">{item.name || item.productId?.name}</p>
+                          <p className="font-medium">{item.productDetails?.name}</p>
                           <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                         </div>
                       </div>
-                      <p className="font-medium">₹{(item.productDetails?.price || item.productId?.price) * item.quantity}</p>
+                      <p className="font-medium">₹{item.productDetails?.price * item.quantity}</p>
                     </div>
                   ))}
                   <div className="flex justify-between items-center pt-4 mt-4 border-t border-gray-300">
@@ -1035,7 +1162,7 @@ Thank you for your order!
                   {checkoutLoading ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Processing...
+                      Processing Order...
                     </>
                   ) : (
                     'Confirm Order'
@@ -1118,6 +1245,7 @@ Thank you for your order!
                   <p className="font-medium">
                     {orderDetails.customerInfo.city}, {orderDetails.customerInfo.state} - {orderDetails.customerInfo.pincode}
                   </p>
+                  <p className="font-medium">{orderDetails.customerInfo.country}</p>
                 </div>
               </div>
 
@@ -1128,13 +1256,13 @@ Thank you for your order!
                   {orderDetails.items.map((item) => (
                     <div key={item._id} className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
                       <div className="flex items-center gap-3">
-                        <img src={item.image || item.productId?.image} alt={item.name || item.productId?.name} className="w-12 h-12 object-cover rounded" />
+                        <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
                         <div>
-                          <p className="font-medium">{item.name || item.productId?.name}</p>
-                          <p className="text-sm text-gray-600">₹{item.price || item.productId?.price} × {item.quantity}</p>
+                          <p className="font-medium">{item.name}</p>
+                          <p className="text-sm text-gray-600">₹{item.price} × {item.quantity}</p>
                         </div>
                       </div>
-                      <p className="font-medium">₹{(item.price || item.productId?.price) * item.quantity}</p>
+                      <p className="font-medium">₹{item.price * item.quantity}</p>
                     </div>
                   ))}
                 </div>
