@@ -92,9 +92,29 @@ const Navbar = () => {
 
     try {
       setCartLoading(true);
+
+      // const token =  localStorage.getItem("token");
+
       const authAxios = createAuthAxios();
       const token = localStorage.getItem('token');
-      const response = await authAxios.get('/user/get-cart');
+      // const response = await authAxios.get('/user/get-cart',  {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     // Add authorization header if needed
+      //     'Authorization': `Bearer ${toastoken}`
+      //   },
+      //   timeout: 10000 // 10 second timeout
+      // });
+
+        const API = import.meta.env.VITE_API_BASE_URL;
+       const response = await axios.get(`${API}/user/get-cart`,  {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add authorization header if needed
+          'Authorization': `Bearer ${token}`
+        },
+        timeout: 10000 // 10 second timeout
+      });
       console.log('Cart response:', response.data.data);
       if (response.data && response.data.data) {
         const cartData = response.data.data;
@@ -115,7 +135,7 @@ const Navbar = () => {
         handleLogout();
         toast.error("Session expired. Please login again.");
       } else {
-        toast.error("Failed to load cart items");
+        // toast.error("Failed to load cart items");
       }
       setCartItems([]);
       setCartCount(0);
