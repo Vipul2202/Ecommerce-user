@@ -53,6 +53,7 @@ const Footer = () => {
                             <li><a href="/detailing" className="hover:underline">Detailing Service</a></li>
                             <li><a href="/ultrapremium" className="hover:underline">Ultra Premium Services</a></li>
                             <li><a href="/extras" className="hover:underline">Extras</a></li>
+                            
                         </ul>
                     </div>
 
