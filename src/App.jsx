@@ -9,7 +9,7 @@ function App() {
       <div>
         <h1 className="text-4xl font-bold mb-4">🚧 Website Coming Soon 🚧</h1>
         <p className="text-lg">
-          We're updating with the latest functionality.<br />
+          The work is on updation.<br />
           Please check back in a few hours!
         </p>
       </div>
