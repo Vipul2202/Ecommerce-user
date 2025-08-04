@@ -92,9 +92,29 @@ const Navbar = () => {
 
     try {
       setCartLoading(true);
+
+      // const token =  localStorage.getItem("token");
+
       const authAxios = createAuthAxios();
       const token = localStorage.getItem('token');
-      const response = await authAxios.get('/user/get-cart');
+      // const response = await authAxios.get('/user/get-cart',  {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     // Add authorization header if needed
+      //     'Authorization': `Bearer ${toastoken}`
+      //   },
+      //   timeout: 10000 // 10 second timeout
+      // });
+
+        const API = import.meta.env.VITE_API_BASE_URL;
+       const response = await axios.get(`${API}/user/get-cart`,  {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add authorization header if needed
+          'Authorization': `Bearer ${token}`
+        },
+        timeout: 10000 // 10 second timeout
+      });
       console.log('Cart response:', response.data.data);
       if (response.data && response.data.data) {
         const cartData = response.data.data;
@@ -115,7 +135,7 @@ const Navbar = () => {
         handleLogout();
         toast.error("Session expired. Please login again.");
       } else {
-        toast.error("Failed to load cart items");
+        // toast.error("Failed to load cart items");
       }
       setCartItems([]);
       setCartCount(0);
@@ -572,10 +592,10 @@ ${orderDetails.customerInfo.country}
 ORDER ITEMS
 -----------
 ${orderDetails.items.map(item =>
-      `${item.name} - Qty: ${item.quantity} - ₹${item.price} each = ₹${item.price * item.quantity}`
+      `${item.name} - Qty: ${item.quantity} - $${item.price} each = $${item.price * item.quantity}`
     ).join('\n')}
 
-TOTAL AMOUNT: ₹${orderDetails.totalAmount}
+TOTAL AMOUNT: $${orderDetails.totalAmount}
 
 Thank you for your order!
     `;
@@ -684,7 +704,7 @@ Thank you for your order!
                                   >
                                     {item.productDetails.name}
                                   </h4>
-                                  <p className="text-sm text-gray-600">₹{item.productDetails?.price}</p>
+                                  <p className="text-sm text-gray-600">${item.productDetails?.price}</p>
                                   <div className="flex items-center gap-2 mt-2">
                                     <button
                                       onClick={() => updateCartQuantity(item.productDetails?._id, item.quantity - 1)}
@@ -708,7 +728,7 @@ Thank you for your order!
                                   </div>
                                 </div>
                                 <div className="text-right">
-                                  <p className="font-medium">₹{item.productDetails?.price * item.quantity}</p>
+                                  <p className="font-medium">${item.productDetails?.price * item.quantity}</p>
                                 </div>
                               </div>
                             ))}
@@ -716,7 +736,7 @@ Thank you for your order!
 
                           <div className="p-4 border-t">
                             <div className="flex justify-between items-center mb-3">
-                              <span className="font-semibold">Total: ₹{getTotalPrice()}</span>
+                              <span className="font-semibold">Total: ${getTotalPrice()}</span>
                             </div>
                             <button
                               onClick={handlePlaceOrder}
@@ -941,7 +961,7 @@ Thank you for your order!
                         >
                           {item.productDetails?.name}
                         </h4>
-                        <p className="text-xs text-gray-600">₹{item.productDetails?.price}</p>
+                        <p className="text-xs text-gray-600">${item.productDetails?.price}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <button
                             onClick={() => updateCartQuantity(item.productDetails?._id, item.quantity - 1)}
@@ -965,7 +985,7 @@ Thank you for your order!
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium text-sm">₹{(item.productDetails?.price) * item.quantity}</p>
+                        <p className="font-medium text-sm">${(item.productDetails?.price) * item.quantity}</p>
                       </div>
                     </div>
                   ))}
@@ -973,7 +993,7 @@ Thank you for your order!
 
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center mb-3">
-                    <span className="font-semibold">Total: ₹{getTotalPrice()}</span>
+                    <span className="font-semibold">Total: ${getTotalPrice()}</span>
                   </div>
                   <button
                     onClick={handlePlaceOrder}
@@ -1141,12 +1161,12 @@ Thank you for your order!
                           <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                         </div>
                       </div>
-                      <p className="font-medium">₹{item.productDetails?.price * item.quantity}</p>
+                      <p className="font-medium">${item.productDetails?.price * item.quantity}</p>
                     </div>
                   ))}
                   <div className="flex justify-between items-center pt-4 mt-4 border-t border-gray-300">
                     <span className="text-lg font-bold">Total Amount:</span>
-                    <span className="text-lg font-bold text-green-600">₹{getTotalPrice()}</span>
+                    <span className="text-lg font-bold text-green-600">${getTotalPrice()}</span>
                   </div>
                 </div>
               </div>
@@ -1214,7 +1234,7 @@ Thank you for your order!
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Total Amount</p>
-                    <p className="font-bold text-lg text-green-600">₹{orderDetails.totalAmount}</p>
+                    <p className="font-bold text-lg text-green-600">${orderDetails.totalAmount}</p>
                   </div>
                 </div>
               </div>
@@ -1265,10 +1285,10 @@ Thank you for your order!
                         <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
                         <div>
                           <p className="font-medium">{item.name}</p>
-                          <p className="text-sm text-gray-600">₹{item.price} × {item.quantity}</p>
+                          <p className="text-sm text-gray-600">${item.price} × {item.quantity}</p>
                         </div>
                       </div>
-                      <p className="font-medium">₹{item.price * item.quantity}</p>
+                      <p className="font-medium">${item.price * item.quantity}</p>
                     </div>
                   ))}
                 </div>

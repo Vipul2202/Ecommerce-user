@@ -256,14 +256,14 @@ const BookNow = () => {
                     required
                     className="p-2 text-black rounded w-full"
                   >
-                    <option value="">--Select Time (IST)--</option>
+                    <option value="">--Select Time</option>
                     {Array.from({ length: 17 - 9 + 1 }, (_, hour) => {
                       const h = hour + 9;
                       return [":00", ":30"].map((m) => {
                         const time = `${h.toString().padStart(2, "0")}${m}`;
                         return (
                           <option key={time} value={time}>
-                            {time} IST
+                            {time} 
                           </option>
                         );
                       });
@@ -285,15 +285,18 @@ const BookNow = () => {
                   required
                   className="p-2 text-black rounded w-full"
                 />
+
+                
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Last Name (optional)</label>
+                <label className="block mb-1 font-medium text-white">Last Name *</label>
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
                   value={formData.lastName}
                   onChange={handleChange}
+                   required
                   className="p-2 text-black rounded w-full"
                 />
               </div>
@@ -313,13 +316,14 @@ const BookNow = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Phone Number (optional)</label>
+                <label className="block mb-1 font-medium text-white">Phone Number *</label>
                 <input
                   type="tel"
                   name="phone"
                   placeholder="Mobile Number"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                   className="p-2 text-black rounded w-full"
                 />
               </div>
