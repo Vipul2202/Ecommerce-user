@@ -128,10 +128,10 @@ ${order.items?.map(item => {
                           item.price || 
                           item.product?.price || 
                           0;
-      return `${productName} - Qty: ${item.quantity} - ₹${productPrice} each = ₹${productPrice * item.quantity}`;
+      return `${productName} - Qty: ${item.quantity} - $${productPrice} each = $${productPrice * item.quantity}`;
     }).join('\n') || 'Items not available'}
 
-TOTAL AMOUNT: ₹${order.totalAmount}
+TOTAL AMOUNT: $${order.totalAmount}
 
 Thank you for your order!
     `;
@@ -266,7 +266,7 @@ Thank you for your order!
                     <div className="flex items-center gap-3">
                       <div className="text-right">
                         <p className="text-sm text-gray-600">Total Amount</p>
-                        <p className="font-bold text-xl text-green-600">₹{order.totalAmount || 0}</p>
+                        <p className="font-bold text-xl text-green-600">${order.totalAmount || 0}</p>
                       </div>
                       <button
                         onClick={() => downloadOrderSlip(order)}
@@ -325,11 +325,11 @@ Thank you for your order!
                                 <div className="flex-1">
                                   <h4 className="font-medium">{productName}</h4>
                                   <p className="text-sm text-gray-600">
-                                    ₹{productPrice} × {quantity}
+                                    ${productPrice} × {quantity}
                                   </p>
                                 </div>
                                 <div className="text-right">
-                                  <p className="font-semibold">₹{productPrice * quantity}</p>
+                                  <p className="font-semibold">${productPrice * quantity}</p>
                                 </div>
                               </div>
                             );

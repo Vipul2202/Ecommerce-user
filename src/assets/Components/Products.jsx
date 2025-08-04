@@ -295,7 +295,7 @@ const Products = () => {
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-semibold truncate mb-2">{product.name}</h3>
-                  <p className="text-purple-400 text-lg font-bold mb-2">₹{product.price}</p>
+                  <p className="text-purple-400 text-lg font-bold mb-2">${product.price}</p>
                   <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} line-clamp-2 mb-4`}>
                     {product.description || "No description available."}
                   </p>
@@ -343,7 +343,7 @@ const Products = () => {
                       <img src={product.image} alt={product.name} className="h-14 w-14 object-cover rounded" />
                     </td>
                     <td className="px-4 py-2">{product.name}</td>
-                    <td className="px-4 py-2">₹{product.price}</td>
+                    <td className="px-4 py-2">${product.price}</td>
                     <td className="px-4 py-2">
                       {product.qty <= 0 ? (
                         <span className="text-red-500 font-semibold">Out of Stock</span>
@@ -403,7 +403,7 @@ const Products = () => {
                 />
                 <div>
                   <h4 className="font-medium truncate">{selectedProduct.name}</h4>
-                  <p className="text-purple-400 font-bold">₹{selectedProduct.price}</p>
+                  <p className="text-purple-400 font-bold">${selectedProduct.price}</p>
                   <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     Available: {selectedProduct.qty}
                   </p>
@@ -461,7 +461,7 @@ const Products = () => {
                 <div className="flex justify-between items-center">
                   <span className="font-medium">Total:</span>
                   <span className="text-lg font-bold text-purple-400">
-                    ₹{(selectedProduct.price * (parseInt(quantity) || 1)).toFixed(2)}
+                    ${(selectedProduct.price * (parseInt(quantity) || 1)).toFixed(2)}
                   </span>
                 </div>
               </div>

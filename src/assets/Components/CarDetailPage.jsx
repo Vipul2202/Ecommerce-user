@@ -359,7 +359,7 @@ const CarDetailPage = () => {
           <div>
             <h2 className="text-2xl font-semibold mb-4">{car.name}</h2>
             <p className="text-black mb-4">{car.description}</p>
-            <p className="text-purple-500 text-2xl font-bold mb-4">₹ {car.price}</p>
+            <p className="text-purple-500 text-2xl font-bold mb-4">$ {car.price}</p>
 
             <div className="space-y-2 mb-6">
               <p className="text-sm">
@@ -412,7 +412,7 @@ const CarDetailPage = () => {
                 />
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-800">{car.name}</h3>
-                  <p className="text-purple-600 text-xl font-bold">₹{car.price}</p>
+                  <p className="text-purple-600 text-xl font-bold">${car.price}</p>
                 </div>
               </div>
 
@@ -443,7 +443,7 @@ const CarDetailPage = () => {
                 </div>
                 <div className="mt-3 p-3 bg-purple-50 rounded-lg">
                   <p className="text-sm text-gray-700">
-                    Total Price: <span className="font-bold text-xl text-purple-600">₹{totalPrice}</span>
+                    Total Price: <span className="font-bold text-xl text-purple-600">${totalPrice}</span>
                   </p>
                 </div>
               </div>
@@ -572,7 +572,7 @@ const CarDetailPage = () => {
                   disabled={orderLoading}
                   className="flex-1 py-3 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 transition-colors"
                 >
-                  {orderLoading ? 'Placing Order...' : `Confirm Order - ₹${totalPrice}`}
+                  {orderLoading ? 'Placing Order...' : `Confirm Order - $${totalPrice}`}
                 </button>
               </div>
 
@@ -583,7 +583,7 @@ const CarDetailPage = () => {
                 <p>API Endpoint: {BASE_URL}/user/place-order</p>
                 <p>User ID: {user?.id || user?._id || 'Not found'}</p>
                 <p>Product ID: {car?._id}</p>
-                <p>Total Price: ₹{totalPrice}</p>
+                <p>Total Price: ${totalPrice}</p>
                 {serverError && (
                   <p className="text-orange-600 mt-2">
                     ⚠️ Orders will be saved locally and synced when server is available

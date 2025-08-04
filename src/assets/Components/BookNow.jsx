@@ -287,13 +287,14 @@ const BookNow = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Last Name (optional)</label>
+                <label className="block mb-1 font-medium text-white">Last Name *</label>
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
                   value={formData.lastName}
                   onChange={handleChange}
+                   required
                   className="p-2 text-black rounded w-full"
                 />
               </div>
