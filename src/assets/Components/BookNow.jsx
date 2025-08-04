@@ -286,10 +286,10 @@ const BookNow = () => {
                   className="p-2 text-black rounded w-full"
                 />
 
-                
+
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Last Name *</label>
+                <label className="block mb-1 font-medium text-white hello">Last Name *</label>
                 <input
                   type="text"
                   name="lastName"
