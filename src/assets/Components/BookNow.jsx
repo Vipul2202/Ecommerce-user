@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom"; // Add these imports
+import { useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 const API = import.meta.env.VITE_API_BASE_URL;
 
-
 const BookNow = () => {
-  const [searchParams] = useSearchParams(); // Hook to get URL parameters
+  const [searchParams] = useSearchParams();
   const location = useLocation();
 
   const [formData, setFormData] = useState({
@@ -22,6 +21,7 @@ const BookNow = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [minDate, setMinDate] = useState("");
 
   const servicesList = [
     "Outside Only", "Mini Detail", "Ceramic Coating", "Paintless Dent Removal", "Head Light Restoration",
@@ -29,16 +29,20 @@ const BookNow = () => {
     "Premium Wash", "Full Detail", "Windows Tinting", "Buff and Polish", "Dog Hair Removal"
   ];
 
-  // Auto-select service based on URL parameter
+  useEffect(() => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    setMinDate(`${yyyy}-${mm}-${dd}`);
+  }, []);
+
   useEffect(() => {
     const serviceFromUrl = searchParams.get('service');
     if (serviceFromUrl) {
       const decodedService = decodeURIComponent(serviceFromUrl);
-      
-      // Map service names to match the servicesList
       let mappedService = decodedService;
-      
-      // Handle mapping from card titles to actual service names
+
       switch (decodedService.toLowerCase()) {
         case 'mini detail':
           mappedService = 'Mini Detail';
@@ -62,7 +66,6 @@ const BookNow = () => {
           mappedService = 'Stage 3 Paint Correction';
           break;
         default:
-          // Check if the service exists in the list (case-insensitive)
           const foundService = servicesList.find(
             service => service.toLowerCase() === decodedService.toLowerCase()
           );
@@ -71,7 +74,6 @@ const BookNow = () => {
           }
       }
 
-      // Only add if the service exists in our servicesList
       if (servicesList.includes(mappedService)) {
         setFormData(prev => ({
           ...prev,
@@ -113,7 +115,7 @@ const BookNow = () => {
       setIsLoading(true);
       const payload = [formData];
       console.log("Booking payload:", payload);
-     const response = await axios.post(`${API}/user/create-booking`, payload);
+      const response = await axios.post(`${API}/user/create-booking`, payload);
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
         setFormData({
@@ -172,7 +174,6 @@ const BookNow = () => {
         <div className="w-full max-w-4xl bg-black text-white">
           <div className="bg-[#00a0db] text-center py-2 rounded mb-6 text-white font-semibold">
             Book A Service
-            {/* Show selected service from URL */}
             {searchParams.get('service') && (
               <div className="text-sm font-normal mt-1 opacity-90">
                 Pre-selected: {decodeURIComponent(searchParams.get('service'))}
@@ -243,33 +244,37 @@ const BookNow = () => {
                   value={formData.date}
                   onChange={handleChange}
                   required
+                  min={minDate}
                   className="p-2 text-black rounded w-full"
                 />
               </div>
               <div>
                 <label className="block mb-1 font-medium text-white">Clock *</label>
-                <div>
-                  <select
-                    name="time"
-                    value={formData.time}
-                    onChange={handleChange}
-                    required
-                    className="p-2 text-black rounded w-full"
-                  >
-                    <option value="">--Select Time</option>
-                    {Array.from({ length: 17 - 9 + 1 }, (_, hour) => {
-                      const h = hour + 9;
-                      return [":00", ":30"].map((m) => {
-                        const time = `${h.toString().padStart(2, "0")}${m}`;
-                        return (
-                          <option key={time} value={time}>
-                            {time} 
-                          </option>
-                        );
-                      });
-                    }).flat()}
-                  </select>
-                </div>
+                <select
+                  name="time"
+                  value={formData.time}
+                  onChange={handleChange}
+                  required
+                  className="p-2 text-black rounded w-full"
+                >
+                  <option value="">--Select Time</option>
+                  {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
+                    const hour = hourOffset + 7; // Start from 07:00
+                    return [0, 30].map((minute) => {
+                      const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+                      const ampm = hour < 12 ? "AM" : "PM";
+                      const minuteStr = minute.toString().padStart(2, '0');
+                      const value = `${hour.toString().padStart(2, '0')}:${minuteStr}`;
+                      const label = `${hour12}:${minuteStr} ${ampm}`;
+                      return (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      );
+                    });
+                  }).flat()}
+
+                </select>
               </div>
             </div>
 
@@ -285,18 +290,16 @@ const BookNow = () => {
                   required
                   className="p-2 text-black rounded w-full"
                 />
-
-
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white hello">Last Name *</label>
+                <label className="block mb-1 font-medium text-white">Last Name *</label>
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
                   value={formData.lastName}
                   onChange={handleChange}
-                   required
+                  required
                   className="p-2 text-black rounded w-full"
                 />
               </div>
