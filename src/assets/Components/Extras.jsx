@@ -176,7 +176,7 @@ const Extras = () => {
                   />
                   <p className="text-white font-semibold text-sm">{card.price}</p>
                 </div>
-                <button className="bg-white text-black px-4 py-2 rounded-full hover:bg-orange-200 text-sm font-semibold transition duration-300">
+                <button className="bg-white text-black  hover:scale-105 transform  ease-in-out px-4 py-2 rounded-full hover:bg-black hover:text-white text-sm font-semibold transition duration-300">
                   Book Now
                 </button>
               </div>

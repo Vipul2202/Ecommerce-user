@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     FaMapMarkerAlt,
     FaPhoneAlt,
@@ -8,7 +8,14 @@ import {
     FaChevronUp,
 } from "react-icons/fa";
 
+
 const Footer = () => {
+    const [tooltip, setTooltip] = useState(null);
+    const handleClick = (e, id) => {
+        e.preventDefault();
+        setTooltip(id);
+        setTimeout(() => setTooltip(null), 1500); // Hide after 1.5s
+    };
     return (
         <div className="bg-black text-white pt-10  mx-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,23 +54,40 @@ const Footer = () => {
                     <div>
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Popular Links</h2>
                         <ul className="space-y-2">
-                            <li><a href="/about" className="hover:underline">About Us</a></li>
-                            <li><a href="/contact" className="hover:underline hover:text-blue-400">Contact Us</a></li>
-                            <li><a href="/washing" className="hover:underline">Washing Service</a></li>
-                            <li><a href="/detailing" className="hover:underline">Detailing Service</a></li>
-                            <li><a href="/ultrapremium" className="hover:underline">Ultra Premium Services</a></li>
-                            <li><a href="/extras" className="hover:underline">Extras</a></li>
-                            
+                            <li><a href="/about" className="hover:text-[#00a0db]">About Us</a></li>
+                            <li><a href="/contact" className="hover: hover:text-[#00a0db]">Contact Us</a></li>
+                            <li><a href="/washing" className="hover: hover:text-[#00a0db]">Washing Service</a></li>
+                            <li><a href="/detailing" className="hover: hover:text-[#00a0db]">Detailing Service</a></li>
+                            <li><a href="/ultrapremium" className="hover: hover:text-[#00a0db]">Ultra Premium Services</a></li>
+                            <li><a href="/extras" className="hover: hover:text-[#00a0db]">Extras</a></li>
+
                         </ul>
                     </div>
 
-                   
+
                     <div>
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Useful Links</h2>
-                        <ul className="space-y-2">
-                            <li><a href="/terms_use" className="hover:underline">Terms of Use</a></li>
-                            <li><a href="/privacy" className="hover:underline">Privacy Policy</a></li>
-                            <li><a href="/faq" className="hover:underline">FAQs</a></li>
+                        <ul className="space-y-2 relative">
+                            {[
+                                { id: 1, label: "Terms of Use" },
+                                { id: 2, label: "Privacy Policy" },
+                                { id: 3, label: "FAQs" },
+                            ].map((link) => (
+                                <li key={link.id} className="relative">
+                                    <a
+                                        href="/#"
+                                        onClick={(e) => handleClick(e, link.id)}
+                                        className="hover:text-[#00a0db] relative transition-colors duration-300"
+                                    >
+                                        {link.label}
+                                        {tooltip === link.id && (
+                                            <span className=" ml-2 px-2 py-1 text-sm bg-black text-white ">
+                                                Coming Soon
+                                            </span>
+                                        )}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
@@ -75,7 +99,7 @@ const Footer = () => {
                 </div>
             </div>
 
-      
+
             <button
                 onClick={() =>
                     window.scrollTo({

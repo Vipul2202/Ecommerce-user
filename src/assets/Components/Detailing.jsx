@@ -64,19 +64,19 @@ const Detailing = () => {
 
         <h3 className="text-2xl font-semibold mb-4">We provide a range of detailing services to keep your car looking brand new:</h3>
         <ul className="space-y-2 mb-6">
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Exterior Detailing – Deep cleaning, polishing, and ceramic coating for a flawless shine.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Interior Detailing – Vacuuming, leather conditioning, and steam cleaning for a fresh cabin.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Paint Correction – Removes scratches, swirl marks, and restores the original paint finish.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Engine Bay Detailing – Cleans and protects your engine for better performance and longevity.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Headlight Restoration – Enhances visibility and gives headlights a crystal-clear look.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Exterior Detailing – Deep cleaning, polishing, and ceramic coating for a flawless shine.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Interior Detailing – Vacuuming, leather conditioning, and steam cleaning for a fresh cabin.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Paint Correction – Removes scratches, swirl marks, and restores the original paint finish.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Engine Bay Detailing – Cleans and protects your engine for better performance and longevity.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Headlight Restoration – Enhances visibility and gives headlights a crystal-clear look.</li>
         </ul>
 
         <h3 className="text-2xl font-semibold mb-4">Why Choose Our Car Saloon?</h3>
         <ul className="space-y-2">
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Expert Technicians – Skilled professionals using advanced techniques.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>High-Quality Products – Eco-friendly and premium-grade cleaning solutions.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Advanced Equipment – Steam cleaning, clay bar treatment, and paint protection technology.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Affordable Packages – Custom detailing options to fit your needs and budget.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Expert Technicians – Skilled professionals using advanced techniques.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>High-Quality Products – Eco-friendly and premium-grade cleaning solutions.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Advanced Equipment – Steam cleaning, clay bar treatment, and paint protection technology.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Affordable Packages – Custom detailing options to fit your needs and budget.</li>
         </ul>
       </div>
 

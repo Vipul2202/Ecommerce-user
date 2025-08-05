@@ -160,9 +160,10 @@ const Ultrapremium = () => {
                   />
                   <p className="text-white font-semibold text-sm">{card.price}</p>
                 </div>
-                <button className="bg-white text-[#00a0db] px-4 py-2 rounded-full hover:bg-[#00a0db] text-sm font-semibold transition duration-300 flex justify-center items-center">
-                  Book Now
-                </button>
+               <button className="bg-white text-[#00a0db] px-4 py-2 rounded-full hover:bg-black hover:text-white hover:scale-105 transform transition duration-300 ease-in-out text-sm font-semibold flex justify-center items-center">
+  Book Now
+</button>
+
               </div>
             </div>
           ))}

@@ -64,12 +64,11 @@ const Washing = () => {
         </p>
 
         <h3 className="text-2xl font-semibold mb-4">Why Choose Our Car Salon?</h3>
-        <ul className="space-y-2 mb-6">
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Eco-Friendly Products – Safe, high-quality cleaning agents.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Expert Technicians – Skilled professionals ensuring a showroom-like finish.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Convenient Packages – Affordable and tailored services for every car owner..</li>
-          
-        </ul>
+     <ul className="space-y-2 mb-6">
+  <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Eco-Friendly Products – Safe, high-quality cleaning agents.</li>
+  <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Expert Technicians – Skilled professionals ensuring a showroom-like finish.</li>
+  <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Convenient Packages – Affordable and tailored services for every car owner.</li>
+</ul>
       </div>
 
       {/* Centered Service Cards */}
