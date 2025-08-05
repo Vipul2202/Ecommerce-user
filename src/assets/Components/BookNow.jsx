@@ -199,16 +199,26 @@ const BookNow = () => {
                 </select>
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Vehicle Registration *</label>
+                <label className="block mb-1 font-medium text-white ">Vehicle Registration *</label>
                 <input
                   type="text"
                   name="registration"
-                  placeholder="Enter Vehicle Registration"
+                  placeholder="Enter vehicle registration"
                   value={formData.registration}
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    handleChange({
+                      target: {
+                        name: e.target.name,
+                        value: e.target.value.toUpperCase(),
+                      },
+                    })
+                  }
                   required
-                  className="p-2 text-black rounded w-full"
+                  className="p-2 text-black rounded w-full uppercase placeholder:normal-case"
                 />
+
+
+
               </div>
             </div>
 
