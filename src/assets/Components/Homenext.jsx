@@ -124,7 +124,7 @@ const Homenext = () => {
 
   // Function to handle "Learn More" navigation for premium services
   const handleLearnMore = (serviceName) => {
-    navigate(`/book-now?service=${encodeURIComponent(serviceName)}`);
+    navigate(`/ultrapremium`);
   };
 
   return (

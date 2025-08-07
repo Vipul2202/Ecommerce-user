@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import sedan from "../../../src/img/sedan.png";
 
+import { useNavigate } from "react-router-dom";
+
 const Ultrapremium = () => {
   const [formData, setFormData] = useState({
     carType: "",
@@ -13,6 +15,7 @@ const Ultrapremium = () => {
     email: "",
     phone: "",
   });
+  const navigate = useNavigate();
 
   const serviceCards = [
     {
@@ -30,11 +33,10 @@ const Ultrapremium = () => {
         "Guaranteed Satisfaction – Brighter headlights",
       ],
       price: "From $50 onwards",
-     
     },
     {
       title: "INTERIOR PROTECTION PACK",
-      
+
       offers: [
         "Paint Correction – Removes swirl marks, scratches",
         "Professional Polishing – Mirror-like gloss",
@@ -46,11 +48,10 @@ const Ultrapremium = () => {
         "Long-Lasting Results – Shiny longer with premium",
       ],
       price: "From $299 onwards",
-     
     },
     {
       title: "WINDOW TINTING",
-     
+
       offers: [
         "UV & Heat Protection – Blocks 99% UV",
         "Enhanced Privacy – Keeps prying eyes away",
@@ -64,11 +65,10 @@ const Ultrapremium = () => {
         "Legal Compliance – Meets local rules",
       ],
       price: "From $499 onwards",
-      
     },
     {
       title: "STAGE 3 PAINT CORRECTION",
-      
+
       offers: [
         "No Paint, No Filler – Keeps original paint",
         "Eco-Friendly – No chemicals",
@@ -82,7 +82,6 @@ const Ultrapremium = () => {
         "Guaranteed – Flawless repairs",
       ],
       price: "From $199 onwards",
-     
     },
   ];
 
@@ -91,7 +90,7 @@ const Ultrapremium = () => {
       {/* Header */}
       <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
-         Ultra Premium Finishes
+          Ultra Premium Finishes
         </h1>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
@@ -102,9 +101,14 @@ const Ultrapremium = () => {
 
       {/* Centered Description */}
       <div className="text-center px-4 py-8">
-        <h1 className="text-2xl font-semibold mb-4">About Our Premium Services</h1>
+        <h1 className="text-2xl font-semibold mb-4">
+          About Our Premium Services
+        </h1>
         <p className="max-w-4xl mx-auto text-lg text-white">
-          At CarSaloon, we redefine automotive luxury with our ultra-premium finishes, designed for car enthusiasts who demand nothing but the best. Our high-end detailing solutions not only protect your vehicle but also elevate its aesthetic appeal to a whole new level.
+          At CarSaloon, we redefine automotive luxury with our ultra-premium
+          finishes, designed for car enthusiasts who demand nothing but the
+          best. Our high-end detailing solutions not only protect your vehicle
+          but also elevate its aesthetic appeal to a whole new level.
         </p>
       </div>
 
@@ -117,11 +121,13 @@ const Ultrapremium = () => {
               className="bg-[#00a0db] p-6 rounded-lg flex flex-col justify-between"
             >
               <div>
-                <h2 className="text-2xl font-bold mb-2 items-center flex justify-center text-black">{card.title}</h2>
+                <h2 className="text-2xl font-bold mb-2 items-center flex justify-center text-black">
+                  {card.title}
+                </h2>
                 <p className="text-sm mb-2">{card.Paragraph}</p>
 
                 {/* What We Offer */}
-                
+
                 <ul className="mb-3 text-sm space-y-1">
                   {card.offers.map((item, idx) => (
                     <li key={idx} className="flex items-center">
@@ -134,7 +140,7 @@ const Ultrapremium = () => {
                 </ul>
 
                 {/* Why Choose Us */}
-              
+
                 <ul className="mb-4 text-sm space-y-1">
                   {card.whyUs.map((item, idx) => (
                     <li key={idx} className="flex items-center">
@@ -145,25 +151,27 @@ const Ultrapremium = () => {
                     </li>
                   ))}
                 </ul>
-
-                
               </div>
 
               {/* Card Footer */}
               <div className="">
                 <div className="flex items-center gap-2">
                   <img
-                  draggable="false"
+                    draggable="false"
                     src={sedan}
                     alt="Service"
                     className="w-16 h-16 object-cover rounded-full"
                   />
-                  <p className="text-white font-semibold text-sm">{card.price}</p>
+                  <p className="text-white font-semibold text-sm">
+                    {card.price}
+                  </p>
                 </div>
-               <button className="bg-white text-[#00a0db] px-4 py-2 rounded-full hover:bg-black hover:text-white hover:scale-105 transform transition duration-300 ease-in-out text-sm font-semibold flex justify-center items-center">
-  Book Now
-</button>
-
+                <button
+                  onClick={() => navigate("/booking")}
+                  className="bg-white text-[#00a0db] px-4 py-2 rounded-full hover:bg-black hover:text-white hover:scale-105 transform transition duration-300 ease-in-out text-sm font-semibold flex justify-center items-center"
+                >
+                  Book Now
+                </button>
               </div>
             </div>
           ))}

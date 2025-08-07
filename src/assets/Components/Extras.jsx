@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import sedan from "../../../src/img/sedan.png";
 import back from "../../../src/img/back.jpg";
 import carousal from "../../../src/img/carousel-1.jpg";
+import { useNavigate } from "react-router-dom";
 const Extras = () => {
   const [formData, setFormData] = useState({
     carType: "",
@@ -15,6 +16,10 @@ const Extras = () => {
     phone: "",
   });
 
+  const navigate = useNavigate();
+   const handleLearnMore = (serviceTitle) => {
+    navigate(`/booking`);
+  };
   const serviceCards = [
     {
       title: "Headlight Restoration – See & Be Seen Clearly!",
@@ -90,10 +95,11 @@ const Extras = () => {
       price: "From $199 onwards",
       footer: "Say Goodbye to Dents – The Smart Way!",
     },
+    
   ];
 
   return (
-    <div className="flex flex-col  text-white">
+    <div className="flex flex-col  text-white bg-black">
       {/* Header */}
 <div
   className="bg-black bg-cover bg-center py-20 px-4 sm:px-6 lg:px-8 text-center relative"
@@ -117,15 +123,15 @@ const Extras = () => {
 
 
       {/* Centered Description */}
-      <div className="text-center px-4 py-8 text-black">
+      <div className="text-center px-4 py-8 text-white">
         <h1 className="text-2xl font-semibold mb-4">About Our Touch Up Service</h1>
-        <p className="max-w-4xl mx-auto text-lg text-black">
+        <p className="max-w-4xl mx-auto text-lg text-white">
           Achieve a flawless finish with Paintless Dent Removal, Buff and Polish, Headlight Restoration, Leather Clean, Seat Steam Clean, and Dog Hair Removal, leaving your vehicle looking and feeling like new.
         </p>
       </div>
 
       {/* Cards Section */}
-      <div className="max-w-4xl mx-auto px-4 py-10 bg-white">
+      <div className="max-w-4xl mx-auto px-4 py-10 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {serviceCards.map((card, index) => (
             <div
@@ -176,9 +182,13 @@ const Extras = () => {
                   />
                   <p className="text-white font-semibold text-sm">{card.price}</p>
                 </div>
-                <button className="bg-white text-black  hover:scale-105 transform  ease-in-out px-4 py-2 rounded-full hover:bg-black hover:text-white text-sm font-semibold transition duration-300">
-                  Book Now
-                </button>
+             <button
+  onClick={() => handleLearnMore(card.title)}
+  className="bg-white text-black hover:scale-105 transform ease-in-out px-4 py-2 rounded-full hover:bg-black hover:text-white text-sm font-semibold transition duration-300"
+>
+  Book Now
+</button>
+
               </div>
             </div>
           ))}
