@@ -32,8 +32,8 @@ import Footer from './assets/Components/Footer'
 import ContactUs from './assets/Components/Contactus'
 import BookNow from './assets/Components/BookNow'
 import Extras from './assets/Components/Extras'
-import Service from './assets/Components/Service'
-
+// import Service from './assets/Components/Service'
+// import Faqs from './assets/Components/Faqs';
 import Ultrapremium from './assets/Components/Ultrapremium'
 import Detailing from './assets/Components/Detailing'
 import Washing from './assets/Components/Washing'
@@ -46,6 +46,15 @@ import Gallery from './assets/Components/Gallery'
 import ConfirmationPage from './assets/Components/ConfirmationPage'
 import MyOrders from './assets/Components/MyOrders';
 import LastBar from './assets/Components/Lastbar';
+import CarRentalPage from './assets/Components/CarRentalPage';
+import CarRentalPage1 from './assets/Components/CarRentalPage1';
+import CarRentalPage2 from './assets/Components/CarRentalPage2';
+import CarRentalPage4 from './assets/Components/CarRentalPage4';
+import CarRentalPage3 from './assets/Components/CarRentalPage3';
+import CarRentalPage5 from './assets/Components/CarRentalPage5';
+import Terms from './assets/Components/Terms';
+import Faqs from './assets/Components/Faqs';
+import Privacy from './assets/Components/Privacy';
 function App() {
   return (
     <div>
@@ -76,8 +85,17 @@ function App() {
           <Route path="/car-details/:id" element={<CarDetailPage />} />
           <Route path='gallery' element={<Gallery />} />
           <Route path ='confirmation' element={<ConfirmationPage />} />
-          <Route path="/service" element={<Service />} />
+          {/* <Route path="/service" element={<Service />} /> */}
           <Route path ="my-orders" element={<MyOrders />} />
+          <Route path="/carrental" element={<CarRentalPage />} />
+           <Route path="/carrental1" element={<CarRentalPage1 />} />
+            <Route path="/carrental2" element={<CarRentalPage2 />} />
+             <Route path="/carrental3" element={<CarRentalPage3 />} />
+              <Route path="/carrental4" element={<CarRentalPage4 />} />
+               <Route path="/carrental5" element={<CarRentalPage5 />} />
+               <Route path="/terms" element={<Terms />} />
+                <Route path="/faqs" element={<Faqs />} />
+                 <Route path="/privacy" element={<Privacy />} />
         </Routes>
 
         <Footer />

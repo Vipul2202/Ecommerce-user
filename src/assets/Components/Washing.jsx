@@ -14,7 +14,9 @@ const Washing = () => {
     email: "",
     phone: "",
   });
-const navigate = useNavigate();
+  
+  const navigate = useNavigate();
+  
   const service = [
     {
       id: 1,
@@ -22,6 +24,7 @@ const navigate = useNavigate();
       price: "From $35* onwards",
       image: team,
       buttonStyle: "black",
+      route: "/carrental" // Navigate to CarRentalPage
     },
     {
       id: 2,
@@ -29,6 +32,7 @@ const navigate = useNavigate();
       price: "From $55* onwards",
       image: team,
       buttonStyle: "white",
+      route: "/carrental1" // Navigate to CarRentalPage1
     },
     {
       id: 3,
@@ -36,8 +40,14 @@ const navigate = useNavigate();
       price: "From $95* onwards",
       image: team,
       buttonStyle: "black",
+      route: "/carrental2" // Navigate to CarRentalPage2
     },
   ];
+
+  // Function to handle navigation to different CarRental pages
+  const handleLearnMore = (route) => {
+    navigate(route);
+  };
 
   return (
     <div className=" flex flex-col min-h-screen bg-black text-white">
@@ -62,7 +72,7 @@ const navigate = useNavigate();
         <p className="text-lg mb-6">
           Looking for the best car washing services to keep your vehicle in
           pristine condition? At our car salon, we provide top-notch auto
-          detailing and cleaning solutions to enhance your car’s appearance and
+          detailing and cleaning solutions to enhance your car's appearance and
           protect its value.
         </p>
 
@@ -121,8 +131,8 @@ const navigate = useNavigate();
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-sm mb-4">{item.price}</p>
                 <button
-                  onClick={() => navigate('/service')}
-                  className={`px-4 py-2 rounded-full text-sm font-medium ${
+                  onClick={() => handleLearnMore(item.route)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                     item.buttonStyle === "black"
                       ? "bg-black text-white hover:bg-gray-800"
                       : "bg-white text-black hover:bg-gray-200"

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import team from "../../../src/img/team-2.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Detailing = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ const Detailing = () => {
     phone: "",
   });
 
+  const navigate = useNavigate();
+
   const service = [
     {
       id: 1,
@@ -21,6 +24,7 @@ const Detailing = () => {
       price: "From $199* onwards",
       image: team,
       buttonStyle: "black",
+      route: "/carrental3" // Navigate to CarRentalPage3
     },
     {
       id: 2,
@@ -28,6 +32,7 @@ const Detailing = () => {
       price: "From $299* onwards",
       image: team,
       buttonStyle: "white",
+      route: "/carrental4" // Navigate to CarRentalPage4
     },
     {
       id: 3,
@@ -35,8 +40,14 @@ const Detailing = () => {
       price: "From $499* onwards",
       image: team,
       buttonStyle: "black",
+      route: "/carrental5" // Navigate to CarRentalPage5
     },
   ];
+
+  // Function to handle navigation to different CarRental pages
+  const handleLearnMore = (route) => {
+    navigate(route);
+  };
 
   return (
     <div className="flex flex-col  bg-black text-white">
@@ -55,11 +66,11 @@ const Detailing = () => {
       {/* Description */}
       <div className="max-w-5xl mx-auto px-4 py-10 text-white">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Premium Car Detailing Services at Our Car Salon – Restore Your Vehicle’s Shine!
+          Premium Car Detailing Services at Our Car Salon – Restore Your Vehicle's Shine!
         </h2>
         <p className="text-lg mb-6">
           Looking for professional car detailing services to give your vehicle a showroom finish?
-          Our car salon offers expert auto detailing solutions designed to restore, protect, and enhance your car’s interior and exterior.
+          Our car salon offers expert auto detailing solutions designed to restore, protect, and enhance your car's interior and exterior.
         </p>
 
         <h3 className="text-2xl font-semibold mb-4">We provide a range of detailing services to keep your car looking brand new:</h3>
@@ -103,7 +114,8 @@ const Detailing = () => {
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-sm mb-4">{item.price}</p>
                 <button
-                  className={`px-4 py-2 rounded-full text-sm font-medium ${
+                  onClick={() => handleLearnMore(item.route)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                     item.buttonStyle === "black"
                       ? "bg-black text-white hover:bg-gray-800"
                       : "bg-white text-black hover:bg-gray-200"

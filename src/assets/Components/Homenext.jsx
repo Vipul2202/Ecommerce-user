@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Add this import
+import { useNavigate } from "react-router-dom";
 import Carousel from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,7 +14,7 @@ import team3 from "../../../src/img/team3.jpg";
 import team4 from "../../../src/img/team4.jpeg";
 
 const Homenext = () => {
-  const navigate = useNavigate(); // Add navigation hook
+  const navigate = useNavigate();
 
   const carouselData = [
     { img: carousel1, subtitle: "Car Washing", title: "Keep your Car Newer" },
@@ -40,6 +40,7 @@ const Homenext = () => {
       price: "From $199* onwards",
       image: team1,
       buttonStyle: "black",
+      route: "/ceramic-coating", // Add specific route
     },
     {
       id: 2,
@@ -47,6 +48,7 @@ const Homenext = () => {
       price: "From $299* onwards",
       image: team2,
       buttonStyle: "white",
+      route: "/interior-protection", // Add specific route
     },
     {
       id: 3,
@@ -54,6 +56,7 @@ const Homenext = () => {
       price: "From $499* onwards",
       image: team3,
       buttonStyle: "black",
+      route: "/windows-tinting", // Add specific route
     },
     {
       id: 4,
@@ -61,6 +64,7 @@ const Homenext = () => {
       price: "From $399* onwards",
       image: team4,
       buttonStyle: "black",
+      route: "/paint-correction", // Add specific route
     },
   ];
 
@@ -87,7 +91,8 @@ const Homenext = () => {
         "Floor Mats Steam Clean"
       ],
       buttonStyle: "black",
-      popular: false
+      popular: false,
+      route: "/car-rental" // Navigate to CarRentalPage
     },
     {
       id: 2,
@@ -100,7 +105,8 @@ const Homenext = () => {
         "Odour Eliminated Treatment"
       ],
       buttonStyle: "white",
-      popular: true
+      popular: true,
+      route: "/carrental1" // Navigate to CarRentalPage1
     },
     {
       id: 3,
@@ -112,27 +118,71 @@ const Homenext = () => {
         "Buff & Polish(Correct Minor Scratches)"
       ],
       buttonStyle: "black",
-      popular: false
+      popular: false,
+      route: "/carrental2" // Navigate to CarRentalPage2
+    }
+  ];
+
+  // Duplicate plans for second section with different routes
+  const plansSecondSection = [
+    {
+      id: 4,
+      name: "MINI DETAIL",
+      price: "149",
+      features: [
+        "Includes Premium Wash",
+        "Clay Block Treatment(Paint Cleansing)",
+        "Interior Trims Detailed & Protection",
+        "Leather Clean & Condition (Fabric Seats Steam Clean)",
+        "Floor Mats Steam Clean"
+      ],
+      buttonStyle: "black",
+      popular: false,
+      route: "/carrental3" // Navigate to CarRentalPage3
+    },
+    {
+      id: 5,
+      name: "INTERIOR DETAIL",
+      price: "199",
+      features: [
+        "Includes Mini Detail",
+        "Carpets Steam Clean",
+        "Roof Lining Steam Clean",
+        "Odour Eliminated Treatment"
+      ],
+      buttonStyle: "white",
+      popular: true,
+      route: "/carrental4" // Navigate to CarRentalPage4
+    },
+    {
+      id: 6,
+      name: "FULL DETAIL",
+      price: "349",
+      features: [
+        "Include Interior Detail",
+        "Engine Bay Degreased",
+        "Buff & Polish(Correct Minor Scratches)"
+      ],
+      buttonStyle: "black",
+      popular: false,
+      route: "/carrental5" // Navigate to CarRentalPage5
     }
   ];
 
   // Function to handle navigation to booking page with selected service
-  const handleBookNow = (serviceName) => {
-    // Navigate to booking page with the service name as a URL parameter
-    navigate(`/booking?service=${encodeURIComponent(serviceName)}`);
+  const handleBookNow = (route) => {
+    navigate(route);
   };
 
   // Function to handle "Learn More" navigation for premium services
-  const handleLearnMore = (serviceName) => {
-    navigate(`/ultrapremium`);
+  const handleLearnMore = (route) => {
+    navigate(route);
   };
 
   return (
     <div className="text-white">
-
-      <div className=" bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className="bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-
           <div className="text-center mb-16">
             <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
               HAVE A LOOK AT OUR PREMIUM SERVICES
@@ -163,7 +213,7 @@ const Homenext = () => {
                   <h3 className="text-xl font-bold tracking-wide">{item.title}</h3>
                   <p className="text-sm opacity-80 mt-1">{item.price}</p>
                   <button
-                    onClick={() => handleLearnMore(item.title)}
+                    onClick={() => handleLearnMore(item.route)}
                     className={`mt-4 relative px-5 py-2 rounded-full font-medium text-sm overflow-hidden group/button transition-all duration-300
             ${item.buttonStyle === "black"
                         ? "bg-black text-white hover:bg-gray-900"
@@ -191,6 +241,8 @@ const Homenext = () => {
           </div>
         </div>
       </div>
+
+      {/* First Plans Section */}
       <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -211,7 +263,6 @@ const Homenext = () => {
                   : 'min-h-[600px] lg:min-h-[650px]'
                   }`}
               >
-
                 {/* Popular badge */}
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -252,7 +303,7 @@ const Homenext = () => {
                 {/* Button */}
                 <div className="text-center">
                   <button
-                    onClick={() => handleBookNow(plan.name)}
+                    onClick={() => handleBookNow(plan.route)}
                     className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${plan.buttonStyle === "black"
                       ? "bg-black text-white hover:bg-gray-800"
                       : "bg-white text-black hover:bg-gray-200"
@@ -267,28 +318,27 @@ const Homenext = () => {
         </div>
       </div>
 
-      {/* Second section - keeping it as is since it's a duplicate */}
+      {/* Second Plans Section */}
       <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
-              DETAILING SERVICES
+              ADDITIONAL DETAILING SERVICES
             </h2>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              Choose Your Plan
+              More Options Available
             </h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {plans.map((plan) => (
+            {plansSecondSection.map((plan) => (
               <div
-                key={`duplicate-${plan.id}`}
+                key={plan.id}
                 className={`relative bg-gradient-to-b from-[#00a0db] to-[#00a0db] rounded-2xl p-8 lg:p-10 flex flex-col transform hover:scale-105 transition-all duration-300 ${plan.popular
                   ? 'min-h-[750px] lg:min-h-[660px] ring-4 ring-white/20 lg:scale-105 hover:scale-110'
                   : 'min-h-[600px] lg:min-h-[650px]'
                   }`}
               >
-
                 {/* Popular badge */}
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -329,7 +379,7 @@ const Homenext = () => {
                 {/* Button */}
                 <div className="text-center">
                   <button
-                    onClick={() => handleBookNow(plan.name)}
+                    onClick={() => handleBookNow(plan.route)}
                     className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${plan.buttonStyle === "black"
                       ? "bg-black text-white hover:bg-gray-800"
                       : "bg-white text-black hover:bg-gray-200"
@@ -343,7 +393,6 @@ const Homenext = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

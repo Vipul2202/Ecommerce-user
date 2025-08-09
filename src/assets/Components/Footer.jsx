@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     FaMapMarkerAlt,
     FaPhoneAlt,
@@ -7,19 +7,20 @@ import {
     FaInstagram,
     FaChevronUp,
 } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
-    const [tooltip, setTooltip] = useState(null);
-    const handleClick = (e, id) => {
-        e.preventDefault();
-        setTooltip(id);
-        setTimeout(() => setTooltip(null), 1500); // Hide after 1.5s
+    const navigate = useNavigate();
+
+    const handleNavigation = (path) => {
+        navigate(path);
     };
+
     return (
         <div className="bg-black text-white pt-10  mx-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                    
                     {/* Contact Info */}
                     <div>
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Get In Touch</h2>
@@ -38,7 +39,7 @@ const Footer = () => {
                         <div className="flex space-x-3">
                             <a
                                 href="#"
-                                className="p-2 bg-white rounded-full  transition-colors duration-300 hover:bg-[#00a0db]"
+                                className="p-2 bg-white rounded-full hover:bg-[#00a0db] transition-colors duration-300"
                             >
                                 <FaFacebookF className="text-black " />
                             </a>
@@ -51,47 +52,52 @@ const Footer = () => {
                         </div>
                     </div>
 
+                    {/* Popular Links */}
                     <div>
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Popular Links</h2>
                         <ul className="space-y-2">
                             <li><a href="/about" className="hover:text-[#00a0db]">About Us</a></li>
-                            <li><a href="/contact" className="hover: hover:text-[#00a0db]">Contact Us</a></li>
-                            <li><a href="/washing" className="hover: hover:text-[#00a0db]">Washing Service</a></li>
-                            <li><a href="/detailing" className="hover: hover:text-[#00a0db]">Detailing Service</a></li>
-                            <li><a href="/ultrapremium" className="hover: hover:text-[#00a0db]">Ultra Premium Services</a></li>
-                            <li><a href="/extras" className="hover: hover:text-[#00a0db]">Extras</a></li>
-
+                            <li><a href="/contact" className="hover:text-[#00a0db]">Contact Us</a></li>
+                            <li><a href="/washing" className="hover:text-[#00a0db]">Washing Service</a></li>
+                            <li><a href="/detailing" className="hover:text-[#00a0db]">Detailing Service</a></li>
+                            <li><a href="/ultrapremium" className="hover:text-[#00a0db]">Ultra Premium Services</a></li>
+                            <li><a href="/extras" className="hover:text-[#00a0db]">Extras</a></li>
                         </ul>
                     </div>
 
-
+                    {/* Useful Links */}
                     <div>
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Useful Links</h2>
-                        <ul className="space-y-2 relative">
-                            {[
-                                { id: 1, label: "Terms of Use" },
-                                { id: 2, label: "Privacy Policy" },
-                                { id: 3, label: "FAQs" },
-                            ].map((link) => (
-                                <li key={link.id} className="relative">
-                                    <a
-                                        href="/#"
-                                        onClick={(e) => handleClick(e, link.id)}
-                                        className="hover:text-[#00a0db] relative transition-colors duration-300"
-                                    >
-                                        {link.label}
-                                        {tooltip === link.id && (
-                                            <span className=" ml-2 px-2 py-1 text-sm bg-black text-white ">
-                                                Coming Soon
-                                            </span>
-                                        )}
-                                    </a>
-                                </li>
-                            ))}
+                        <ul className="space-y-2">
+                            <li>
+                                <button
+                                    onClick={() => handleNavigation("/terms")}
+                                    className="hover:text-[#00a0db] transition-colors duration-300"
+                                >
+                                    Terms of Use
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    onClick={() => handleNavigation("/privacy")}
+                                    className="hover:text-[#00a0db] transition-colors duration-300"
+                                >
+                                    Privacy Policy
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    onClick={() => handleNavigation("/faqs")}
+                                    className="hover:text-[#00a0db] transition-colors duration-300"
+                                >
+                                    FAQs
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
+                {/* Footer bottom */}
                 <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm">
                     <p>
                         &copy; <a href="#" className="text-[#00a0db] hover:underline">© carsaloon.com.au</a>, All Rights Reserved.
@@ -99,7 +105,7 @@ const Footer = () => {
                 </div>
             </div>
 
-
+            {/* Back to Top Button */}
             <button
                 onClick={() =>
                     window.scrollTo({
@@ -112,7 +118,6 @@ const Footer = () => {
             >
                 <FaChevronUp />
             </button>
-
         </div>
     );
 };
