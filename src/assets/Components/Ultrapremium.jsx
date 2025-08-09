@@ -32,7 +32,7 @@ const Ultrapremium = () => {
         "Quick Service – Done while you wait",
         "Guaranteed Satisfaction – Brighter headlights",
       ],
-      price: "From $50 onwards",
+      price: "From $499 onwards",
     },
     {
       title: "INTERIOR PROTECTION PACK",
@@ -81,7 +81,7 @@ const Ultrapremium = () => {
         "Advanced PDR – Perfect results",
         "Guaranteed – Flawless repairs",
       ],
-      price: "From $199 onwards",
+      price: "From $399 onwards",
     },
   ];
 

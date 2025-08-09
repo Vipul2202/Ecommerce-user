@@ -54,7 +54,7 @@ const Extras = () => {
         "Tailored Services – Based on your car’s condition",
         "Long-Lasting Results – Shiny longer with premium",
       ],
-      price: "From $299 onwards",
+      price: "From $179 onwards",
       footer: "Give Your Car the Glow It Deserves!",
     },
     {
@@ -102,21 +102,21 @@ const Extras = () => {
     <div className="flex flex-col  text-white bg-black">
       {/* Header */}
 <div
-  className="bg-black bg-cover bg-center py-20 px-4 sm:px-6 lg:px-8 text-center relative"
+  className="bg-white  bg-center py-20 px-4 sm:px-6 lg:px-8 text-center relative"
   style={{
-    backgroundImage: `url(${carousal})`,
+    //backgroundImage: `url(${carousal})`,
   }}
 >
-  <div className="absolute inset-0 bg-black opacity-60"></div> {/* dark overlay */}
+  <div className="absolute inset-0 bg-white text-black"></div> {/* dark overlay */}
 
   <div className="relative z-10">
-    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
       Touch Up Services
     </h1>
     <nav className="text-gray-200">
-      <span className="text-white">Home</span>
-      <span className="mx-2">/</span>
-      <span>Extras</span>
+      <span className="text-black">Home</span>
+      <span className=" text-black mx-2">/</span>
+      <span className="text-black">Extras</span>
     </nav>
   </div>
 </div>

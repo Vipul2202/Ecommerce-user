@@ -37,10 +37,10 @@ const Homenext = () => {
     {
       id: 1,
       title: "Ceramic Coating",
-      price: "From $199* onwards",
+      price: "From $499* onwards",
       image: team1,
       buttonStyle: "black",
-      route: "/ceramic-coating", // Add specific route
+      route: "/ultrapremium", // Add specific route
     },
     {
       id: 2,
@@ -48,7 +48,7 @@ const Homenext = () => {
       price: "From $299* onwards",
       image: team2,
       buttonStyle: "white",
-      route: "/interior-protection", // Add specific route
+      route: "/ultrapremium", // Add specific route
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ const Homenext = () => {
       price: "From $499* onwards",
       image: team3,
       buttonStyle: "black",
-      route: "/windows-tinting", // Add specific route
+      route: "/ultrapremium", // Add specific route
     },
     {
       id: 4,
@@ -64,7 +64,7 @@ const Homenext = () => {
       price: "From $399* onwards",
       image: team4,
       buttonStyle: "black",
-      route: "/paint-correction", // Add specific route
+      route: "/ultrapremium", // Add specific route
     },
   ];
 
@@ -81,45 +81,46 @@ const Homenext = () => {
   const plans = [
     {
       id: 1,
-      name: "MINI DETAIL",
-      price: "149",
+      name: "OUTSIDE ONLY",
+      price: "35",
       features: [
-        "Includes Premium Wash",
-        "Clay Block Treatment(Paint Cleansing)",
-        "Interior Trims Detailed & Protection",
-        "Leather Clean & Condition (Fabric Seats Steam Clean)",
-        "Floor Mats Steam Clean"
+        "Wash & Chamois Dry",
+        "Exterior Windows",
+        "Wheels Clean & Tyres Gloss",
+        "Spray-On Wax"
       ],
       buttonStyle: "black",
       popular: false,
-      route: "/car-rental" // Navigate to CarRentalPage
+      route: "/outside" // Navigate to CarRentalPage
     },
     {
       id: 2,
-      name: "INTERIOR DETAIL",
-      price: "199",
+      name: "INSIDE & OUTSIDE",
+      price: "55",
       features: [
-        "Includes Mini Detail",
-        "Carpets Steam Clean",
-        "Roof Lining Steam Clean",
-        "Odour Eliminated Treatment"
+        "Includes Outside Only",
+        "Interior Wiped & Dusted",
+        "Interior & Boot Vacuumed",
+        "Windows Clean Inside & Out"
       ],
       buttonStyle: "white",
       popular: true,
-      route: "/carrental1" // Navigate to CarRentalPage1
+      route: "/inside_outside" // Navigate to CarRentalPage1
     },
     {
       id: 3,
-      name: "FULL DETAIL",
-      price: "349",
+      name: "PREMIUM WASH",
+      price: "95",
       features: [
-        "Include Interior Detail",
-        "Engine Bay Degreased",
-        "Buff & Polish(Correct Minor Scratches)"
+        "Include Inside & Out clean",
+        "Dash & Console Detailed with all plastic trims",
+        "Eternal Plastic Trims Rejuvenation",
+        "Hand Wax & Polish",
+        "Seats Wiped & Spot Clean"
       ],
       buttonStyle: "black",
       popular: false,
-      route: "/carrental2" // Navigate to CarRentalPage2
+      route: "/premium_wash" // Navigate to CarRentalPage2
     }
   ];
 
@@ -138,12 +139,12 @@ const Homenext = () => {
       ],
       buttonStyle: "black",
       popular: false,
-      route: "/carrental3" // Navigate to CarRentalPage3
+      route: "/mini_detail" // Navigate to CarRentalPage3
     },
     {
       id: 5,
       name: "INTERIOR DETAIL",
-      price: "199",
+      price: "229",
       features: [
         "Includes Mini Detail",
         "Carpets Steam Clean",
@@ -152,7 +153,7 @@ const Homenext = () => {
       ],
       buttonStyle: "white",
       popular: true,
-      route: "/carrental4" // Navigate to CarRentalPage4
+      route: "/interior_detail" // Navigate to CarRentalPage4
     },
     {
       id: 6,
@@ -161,11 +162,13 @@ const Homenext = () => {
       features: [
         "Include Interior Detail",
         "Engine Bay Degreased",
-        "Buff & Polish(Correct Minor Scratches)"
+        "Buff & Polish(Correct Minor Scratches)",
+        "Fabric Seats Steam Clean",
+        "Leather Seats Steam Clean"
       ],
       buttonStyle: "black",
       popular: false,
-      route: "/carrental5" // Navigate to CarRentalPage5
+      route: "/full_detail" // Navigate to CarRentalPage5
     }
   ];
 
@@ -232,7 +235,7 @@ const Homenext = () => {
           </div>
 
           <div className="text-center mt-16">
-            <button 
+            <button
               onClick={() => navigate('/book-now')}
               className="bg-[#00a0db] hover:bg-[#00a0db] text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
@@ -247,7 +250,7 @@ const Homenext = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
-              DETAILING SERVICES
+              WASHING SERVICES
             </h2>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Choose Your Plan
@@ -323,10 +326,10 @@ const Homenext = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
-              ADDITIONAL DETAILING SERVICES
+              DETAILING SERVICES
             </h2>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              More Options Available
+              Choose Your Plan
             </h1>
           </div>
 

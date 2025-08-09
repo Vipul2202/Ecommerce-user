@@ -20,27 +20,27 @@ const Detailing = () => {
   const service = [
     {
       id: 1,
-      title: "Ceramic Coating",
-      price: "From $199* onwards",
+      title: "Mini Detail",
+      price: "From $149* onwards",
       image: team,
       buttonStyle: "black",
-      route: "/carrental3" // Navigate to CarRentalPage3
+      route: "/mini_detail" // Navigate to CarRentalPage3
     },
     {
       id: 2,
-      title: "Interior Protection Pack",
-      price: "From $299* onwards",
+      title: "Interior Detail",
+      price: "From $229* onwards",
       image: team,
       buttonStyle: "white",
-      route: "/carrental4" // Navigate to CarRentalPage4
+      route: "/interior_detail" // Navigate to CarRentalPage4
     },
     {
       id: 3,
-      title: "Windows Tinting",
-      price: "From $499* onwards",
+      title: "Full Detail",
+      price: "From $349* onwards",
       image: team,
       buttonStyle: "black",
-      route: "/carrental5" // Navigate to CarRentalPage5
+      route: "/full_detail" // Navigate to CarRentalPage5
     },
   ];
 

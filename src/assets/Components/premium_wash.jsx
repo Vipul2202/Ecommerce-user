@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CarRentalPage2 = () => {
+const PremiumWash = () => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
@@ -161,4 +161,4 @@ const CarRentalPage2 = () => {
   );
 };
 
-export default CarRentalPage2;
+export default PremiumWash;

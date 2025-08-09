@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CarRentalPage2 = () => {
+const MiniDetail = () => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
@@ -14,13 +14,13 @@ const CarRentalPage2 = () => {
       {/* Header */}
          <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
-        Premium Wash
+Mini Detail
         </h1>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
           <span className="mx-2">/</span>
-          <span> 
-            Premium Wash
+          <span>
+            Mini Detail
           </span>
         </nav>
       </div>
@@ -33,7 +33,7 @@ const CarRentalPage2 = () => {
           <div className="lg:col-span-2">
             <div className="bg-[#00a0db] rounded-lg p-8 md:p-12 text-white">
               <h1 className="text-3xl md:text-4xl font-bold mb-6 flex justify-center items-center">
-                About Premium Wash
+                About Mini Detail
               </h1>
 
               {/* Services Included */}
@@ -41,40 +41,54 @@ const CarRentalPage2 = () => {
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Inside & out clean plus
+                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Premium Wash Plus
                   </li>
                   <li className="flex items-center">
-                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Dash & Console Detailed with all plastic trims
+                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Clay Block Treatment (Paint Cleansing)
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> External Plastic Trims Rejuvenation
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior Trims Detailed & Protection
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Hand wax & Polish
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Leather Clean & Condition (Fabric Seats Steam Clean)
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Seats wiped & Spot Clean
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Floor Mats Steam clean
                   </li>
                 </ul>
               </div>
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">DASH & CONSOLE DETAILED (INCLUDING ALL PLASTIC TRIMS)</h2>
+                <h2 className="text-lg font-semibold mb-2">CLAY BLOCK TREATMENT (PAINT CLEANSING)</h2>
                 <p className="text-sm leading-relaxed">
-                  We meticulously clean and detail your dashboard and console, ensuring all plastic trims are free from dust, dirt, and buildup. Every surface, including buttons, vents, and hard-to-reach areas, is carefully wiped and restored for a fresh, well-maintained look.
+                  Using a clay bar, we remove built-up dirt, grime, and pollutants from your vehicle's paint, which can dull its appearance over time. This process smooths the surface, restoring its shine and preparing it for waxing or sealing. The outcome is a cleaner, smoother finish that helps protect and preserve the paint’s quality.
                 </p>
-                
+               
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">EXTERNAL PLASTIC TRIMS REJUVENATION</h2>
+                <h2 className="text-lg font-semibold mb-2">INTERIOR TRIMS DETAILED & PROTECTED</h2>
                 <p className="text-sm leading-relaxed">
-                 We revitalize the external plastic trims on your vehicle, restoring their original color and luster. Our treatment protects against UV damage, prevents fading, and helps maintain the trims' durability, leaving them looking refreshed and well-preserved.
+                  We carefully clean and detail all interior trims, including dashboard panels, door handles, and center consoles, removing dirt, dust, and grime. After cleaning, we apply a protective layer to safeguard the trims from wear, fading, and UV damage, keeping them looking fresh and well-maintained for longer.
                 </p>
-                
+               
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">LEATHER CLEAN & CONDITION (FABRIC SEATS STEAM CLEAN)</h2>
+                <p className="text-sm leading-relaxed">
+                  Whether your vehicle has leather or fabric seats, we offer a tailored cleaning solution for each. We thoroughly clean and condition your leather seats, restoring their natural softness and shine while protecting them from cracking and fading. For fabric seats, we use steam cleaning to lift dirt, stains, and Odors, leaving your seats fresh and revitalized.
+                </p>
+               
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">FLOOR MATS STEAM CLEAN</h2>
+                <p className="text-sm leading-relaxed">
+                  Our steam cleaning service deeply cleans your floor mats, removing dirt, stains, and Odors while disinfecting the fabric. This process restores your mats to a fresh, spotless condition, ensuring they look and feel like new.
+                </p>
+               
               </div>
 
-              
+             
             </div>
           </div>
 
@@ -102,7 +116,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $95</p>
+                  <p className="text-gray-400 italic">From $149</p>
                 </div>
               </div>
 
@@ -120,7 +134,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $105</p>
+                  <p className="text-gray-400 italic">From $179</p>
                 </div>
               </div>
 
@@ -140,7 +154,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD</h3>
-                  <p className="text-gray-400 italic">From $115</p>
+                  <p className="text-gray-400 italic">From $199</p>
                 </div>
               </div>
             </div>
@@ -161,4 +175,4 @@ const CarRentalPage2 = () => {
   );
 };
 
-export default CarRentalPage2;
+export default MiniDetail;

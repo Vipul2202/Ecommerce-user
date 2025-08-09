@@ -75,7 +75,7 @@ const Faqs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-black text-white">
       {/* Header Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -176,17 +176,12 @@ const Faqs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="mailto:info@carsaloon.com.au" 
+                href="/contact" 
                 className="bg-[#00a0db] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300"
               >
-                Email Support
+                Contact Us
               </a>
-              <a 
-                href="tel:+61234567890" 
-                className="bg-[#00a0db] hover:text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300"
-              >
-                Call Us
-              </a>
+             
             </div>
           </div>
         </div>

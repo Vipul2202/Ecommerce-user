@@ -16,7 +16,7 @@ const Lastbar = () => {
   const service = [
     {
       id: 1,
-      title: "Car Touch-up Services",
+      title: "Paintless Dent Removal",
       price: "From $199* onwards",
       image: team1,
       buttonStyle: "black",

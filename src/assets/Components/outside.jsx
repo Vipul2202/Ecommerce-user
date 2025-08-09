@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CarRentalPage2 = () => {
+const Outside = () => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
@@ -14,14 +14,14 @@ const CarRentalPage2 = () => {
       {/* Header */}
          <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
-        Premium Wash
+Outside Only
         </h1>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
           <span className="mx-2">/</span>
-          <span> 
-            Premium Wash
-          </span>
+          <span>
+            Outside
+         </span>
         </nav>
       </div>
 
@@ -33,7 +33,7 @@ const CarRentalPage2 = () => {
           <div className="lg:col-span-2">
             <div className="bg-[#00a0db] rounded-lg p-8 md:p-12 text-white">
               <h1 className="text-3xl md:text-4xl font-bold mb-6 flex justify-center items-center">
-                About Premium Wash
+                About Outside Only
               </h1>
 
               {/* Services Included */}
@@ -41,40 +41,48 @@ const CarRentalPage2 = () => {
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Inside & out clean plus
+                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Wash &amp; chamois Dry
                   </li>
                   <li className="flex items-center">
-                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Dash & Console Detailed with all plastic trims
+                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Exterior Windows
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> External Plastic Trims Rejuvenation
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Wheels Clean and Tyres Gloss
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Hand wax & Polish
-                  </li>
-                  <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Seats wiped & Spot Clean
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Spray on wax
                   </li>
                 </ul>
               </div>
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">DASH & CONSOLE DETAILED (INCLUDING ALL PLASTIC TRIMS)</h2>
+                <h2 className="text-lg font-semibold mb-2">Exterior Wash:</h2>
                 <p className="text-sm leading-relaxed">
-                  We meticulously clean and detail your dashboard and console, ensuring all plastic trims are free from dust, dirt, and buildup. Every surface, including buttons, vents, and hard-to-reach areas, is carefully wiped and restored for a fresh, well-maintained look.
+                  Our exterior wash thoroughly eliminates dirt and grime from various 
+                  surfaces, including paint, glass, plastic trims, wheels, chrome, 
+                  and exhaust tips. We also ensure your paint and windows are chamois 
+                  dried and apply a glossy finish to your tyres.
                 </p>
-                
-              </div>
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">EXTERNAL PLASTIC TRIMS REJUVENATION</h2>
-                <p className="text-sm leading-relaxed">
-                 We revitalize the external plastic trims on your vehicle, restoring their original color and luster. Our treatment protects against UV damage, prevents fading, and helps maintain the trims' durability, leaving them looking refreshed and well-preserved.
+                <p className="text-sm leading-relaxed mt-2">
+                  <strong>External Body Check:</strong> This service includes the 
+                  removal of any smudges, smears, or fingerprints, ensuring your 
+                  vehicle looks immaculate.
                 </p>
-                
               </div>
 
-              
+              {/* Our Products */}
+              <div>
+                <h2 className="text-lg font-semibold mb-2">Our Products:</h2>
+                <p className="text-sm leading-relaxed">
+                  We pride ourselves on using safe and effective chemicals. We 
+                  exclusively utilize the latest tried, tested, and approved products, 
+                  including pH-neutral shampoos specially formulated for vehicle 
+                  cleaning. These chemicals, used across our 20+ locations nationwide, 
+                  are certified safe for our employees and will not harm your vehicle 
+                  or any paint protection treatments that have been applied.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -102,7 +110,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $95</p>
+                  <p className="text-gray-400 italic">From $35</p>
                 </div>
               </div>
 
@@ -120,7 +128,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $105</p>
+                  <p className="text-gray-400 italic">From $45</p>
                 </div>
               </div>
 
@@ -140,7 +148,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD</h3>
-                  <p className="text-gray-400 italic">From $115</p>
+                  <p className="text-gray-400 italic">From $55</p>
                 </div>
               </div>
             </div>
@@ -161,4 +169,4 @@ const CarRentalPage2 = () => {
   );
 };
 
-export default CarRentalPage2;
+export default Outside;

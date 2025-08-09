@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const CarRentalPage2 = () => {
+const InsideOutside = () => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
@@ -12,28 +13,28 @@ const CarRentalPage2 = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-         <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
-        Premium Wash
+          Inside and Outside
         </h1>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
           <span className="mx-2">/</span>
-          <span> 
-            Premium Wash
-          </span>
+          <span><Link to="/inside_outside">
+            Inside and Outside
+          </Link></span>
         </nav>
       </div>
 
       {/* Main Content */}
       <main className="px-4 py-12 md:px-8 max-w-7xl mx-auto ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-          
+
           {/* Left Section - About */}
           <div className="lg:col-span-2">
             <div className="bg-[#00a0db] rounded-lg p-8 md:p-12 text-white">
               <h1 className="text-3xl md:text-4xl font-bold mb-6 flex justify-center items-center">
-                About Premium Wash
+                About Inside and Outside
               </h1>
 
               {/* Services Included */}
@@ -41,39 +42,48 @@ const CarRentalPage2 = () => {
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Inside & out clean plus
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Outside Only plus
                   </li>
                   <li className="flex items-center">
-                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Dash & Console Detailed with all plastic trims
+                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior wiped & Dusted
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> External Plastic Trims Rejuvenation
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior & BOOT Vacuumed
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Hand wax & Polish
-                  </li>
-                  <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Seats wiped & Spot Clean
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Windows Clean Inside & Out
                   </li>
                 </ul>
               </div>
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">DASH & CONSOLE DETAILED (INCLUDING ALL PLASTIC TRIMS)</h2>
+                <h2 className="text-lg font-semibold mb-2">The Details:</h2>
                 <p className="text-sm leading-relaxed">
-                  We meticulously clean and detail your dashboard and console, ensuring all plastic trims are free from dust, dirt, and buildup. Every surface, including buttons, vents, and hard-to-reach areas, is carefully wiped and restored for a fresh, well-maintained look.
-                </p>
-                
-              </div>
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">EXTERNAL PLASTIC TRIMS REJUVENATION</h2>
-                <p className="text-sm leading-relaxed">
-                 We revitalize the external plastic trims on your vehicle, restoring their original color and luster. Our treatment protects against UV damage, prevents fading, and helps maintain the trims' durability, leaving them looking refreshed and well-preserved.
+                  Our Inside-Only Service effectively removes dirt and grime from your seats, dashboard, console, and carpets. We also provide vacuuming of the floors, window cleaning, and surface wiping to leave your car's interior immaculate.
                 </p>
                 
               </div>
 
+              {/* Our Products */}
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">INTERIOR WIPED & DUSTED</h2>
+                <p className="text-sm leading-relaxed">
+                  Your dashboard, centre console, steering wheel, gear shift, handbrake, door trims, and leather or vinyl seats are carefully wiped and dusted with a damp cloth. Cup holders are cleaned, and vents and instruments are dusted using a specialized brush.
+                </p>
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">INTERIOR & BOOT VACUUMED</h2>
+                <p className="text-sm leading-relaxed">
+                  We vacuum your seats, including every crease in fabric or leather, along with carpets, mats, and the boot—making sure to reach under the seats. Door pockets and ashtrays are also thoroughly cleaned. To ensure a complete clean, please empty your boot before our service.
+                </p>
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">WINDOWS CLEANED INSIDE & OUT</h2>
+                <p className="text-sm leading-relaxed">
+                  We thoroughly clean all windows inside and out, removing dirt, smudges, and streaks for a crystal-clear finish and improved visibility.
+                </p>
+              </div>
               
             </div>
           </div>
@@ -102,7 +112,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $95</p>
+                  <p className="text-gray-400 italic">From $55</p>
                 </div>
               </div>
 
@@ -120,7 +130,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $105</p>
+                  <p className="text-gray-400 italic">From $65</p>
                 </div>
               </div>
 
@@ -140,7 +150,7 @@ const CarRentalPage2 = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD</h3>
-                  <p className="text-gray-400 italic">From $115</p>
+                  <p className="text-gray-400 italic">From $75</p>
                 </div>
               </div>
             </div>
@@ -161,4 +171,4 @@ const CarRentalPage2 = () => {
   );
 };
 
-export default CarRentalPage2;
+export default InsideOutside

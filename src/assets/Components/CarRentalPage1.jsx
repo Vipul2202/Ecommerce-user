@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const CarRentalPage1 = () => {
   const navigate = useNavigate();
@@ -12,26 +13,28 @@ const CarRentalPage1 = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-         <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
-About 
+          Inside and Outside
         </h1>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
           <span className="mx-2">/</span>
-          {/* <span>Detailing Services</span> */}
+          <span><Link to="/carrental1">
+            Inside and Outside
+          </Link></span>
         </nav>
       </div>
 
       {/* Main Content */}
       <main className="px-4 py-12 md:px-8 max-w-7xl mx-auto ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-          
+
           {/* Left Section - About */}
           <div className="lg:col-span-2">
             <div className="bg-[#00a0db] rounded-lg p-8 md:p-12 text-white">
               <h1 className="text-3xl md:text-4xl font-bold mb-6 flex justify-center items-center">
-                About Outside Only
+                About Inside and Outside
               </h1>
 
               {/* Services Included */}
@@ -39,48 +42,49 @@ About
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Wash &amp; chamois Dry
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Outside Only plus
                   </li>
                   <li className="flex items-center">
-                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Exterior Windows
+                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior wiped & Dusted
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Wheels Clean and Tyres Gloss
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior & BOOT Vacuumed
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Spray on wax
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Windows Clean Inside & Out
                   </li>
                 </ul>
               </div>
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">Exterior Wash:</h2>
+                <h2 className="text-lg font-semibold mb-2">The Details:</h2>
                 <p className="text-sm leading-relaxed">
-                  Our exterior wash thoroughly eliminates dirt and grime from various 
-                  surfaces, including paint, glass, plastic trims, wheels, chrome, 
-                  and exhaust tips. We also ensure your paint and windows are chamois 
-                  dried and apply a glossy finish to your tyres.
+                  Our Inside-Only Service effectively removes dirt and grime from your seats, dashboard, console, and carpets. We also provide vacuuming of the floors, window cleaning, and surface wiping to leave your car's interior immaculate.
                 </p>
-                <p className="text-sm leading-relaxed mt-2">
-                  <strong>External Body Check:</strong> This service includes the 
-                  removal of any smudges, smears, or fingerprints, ensuring your 
-                  vehicle looks immaculate.
-                </p>
+                
               </div>
 
               {/* Our Products */}
-              <div>
-                <h2 className="text-lg font-semibold mb-2">Our Products:</h2>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">INTERIOR WIPED & DUSTED</h2>
                 <p className="text-sm leading-relaxed">
-                  We pride ourselves on using safe and effective chemicals. We 
-                  exclusively utilize the latest tried, tested, and approved products, 
-                  including pH-neutral shampoos specially formulated for vehicle 
-                  cleaning. These chemicals, used across our 20+ locations nationwide, 
-                  are certified safe for our employees and will not harm your vehicle 
-                  or any paint protection treatments that have been applied.
+                  Your dashboard, centre console, steering wheel, gear shift, handbrake, door trims, and leather or vinyl seats are carefully wiped and dusted with a damp cloth. Cup holders are cleaned, and vents and instruments are dusted using a specialized brush.
                 </p>
               </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">INTERIOR & BOOT VACUUMED</h2>
+                <p className="text-sm leading-relaxed">
+                  We vacuum your seats, including every crease in fabric or leather, along with carpets, mats, and the boot—making sure to reach under the seats. Door pockets and ashtrays are also thoroughly cleaned. To ensure a complete clean, please empty your boot before our service.
+                </p>
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">WINDOWS CLEANED INSIDE & OUT</h2>
+                <p className="text-sm leading-relaxed">
+                  We thoroughly clean all windows inside and out, removing dirt, smudges, and streaks for a crystal-clear finish and improved visibility.
+                </p>
+              </div>
+              
             </div>
           </div>
 
@@ -99,7 +103,7 @@ About
               <div className="flex items-center space-x-4 p-4 bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
                 <div className="w-16 h-10 bg-[#00a0db] rounded flex items-center justify-center">
                   <svg
-                    className="w-8 h-6 text-gray-800"
+                    className="w-8 h-6 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -108,7 +112,7 @@ About
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $35</p>
+                  <p className="text-gray-400 italic">From $55</p>
                 </div>
               </div>
 
@@ -126,7 +130,7 @@ About
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $45</p>
+                  <p className="text-gray-400 italic">From $65</p>
                 </div>
               </div>
 
@@ -134,7 +138,7 @@ About
               <div className="flex items-center space-x-4 p-4 bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
                 <div className="w-16 h-10 bg-[#00a0db] rounded flex items-center justify-center relative">
                   <svg
-                    className="w-8 h-6 text-gray-800"
+                    className="w-8 h-6 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -146,7 +150,7 @@ About
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD</h3>
-                  <p className="text-gray-400 italic">From $55</p>
+                  <p className="text-gray-400 italic">From $75</p>
                 </div>
               </div>
             </div>

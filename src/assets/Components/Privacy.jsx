@@ -2,7 +2,7 @@ import React from 'react';
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-black text-white">
       {/* Header Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -195,8 +195,8 @@ const Privacy = () => {
             </section>
 
             {/* Final Statement */}
-            <section className="bg-gray-800 rounded-lg p-8 border border-gray-700">
-              <p className="text-gray-300 text-lg leading-relaxed">
+            <section className="bg-[#00a0db] rounded-lg p-8 border border-gray-700">
+              <p className="text-white text-lg leading-relaxed">
                 By using CarSaloon.com.au, you acknowledge that you have read, understood, and agreed to this Privacy Policy.
               </p>
             </section>
@@ -214,7 +214,7 @@ const Privacy = () => {
             We're here to help. Contact us for any privacy-related inquiries.
           </p>
           <a 
-            href="mailto:info@carsaloon.com.au" 
+            href="/contact" 
             className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300"
           >
             Contact Us

@@ -46,12 +46,14 @@ import Gallery from './assets/Components/Gallery'
 import ConfirmationPage from './assets/Components/ConfirmationPage'
 import MyOrders from './assets/Components/MyOrders';
 import LastBar from './assets/Components/Lastbar';
-import CarRentalPage from './assets/Components/CarRentalPage';
-import CarRentalPage1 from './assets/Components/CarRentalPage1';
-import CarRentalPage2 from './assets/Components/CarRentalPage2';
-import CarRentalPage4 from './assets/Components/CarRentalPage4';
-import CarRentalPage3 from './assets/Components/CarRentalPage3';
-import CarRentalPage5 from './assets/Components/CarRentalPage5';
+import Outside from './assets/Components/outside';
+import InsideOutside from './assets/Components/inside_outside';
+import PremiumWash from './assets/Components/premium_wash';
+
+import MiniDetail from './assets/Components/mini_detail';
+import InteriorDetail from './assets/Components/interior_detail';
+import FullDetail from './assets/Components/full_detail';
+
 import Terms from './assets/Components/Terms';
 import Faqs from './assets/Components/Faqs';
 import Privacy from './assets/Components/Privacy';
@@ -84,18 +86,19 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/car-details/:id" element={<CarDetailPage />} />
           <Route path='gallery' element={<Gallery />} />
-          <Route path ='confirmation' element={<ConfirmationPage />} />
+          <Route path='confirmation' element={<ConfirmationPage />} />
           {/* <Route path="/service" element={<Service />} /> */}
-          <Route path ="my-orders" element={<MyOrders />} />
-          <Route path="/carrental" element={<CarRentalPage />} />
-           <Route path="/carrental1" element={<CarRentalPage1 />} />
-            <Route path="/carrental2" element={<CarRentalPage2 />} />
-             <Route path="/carrental3" element={<CarRentalPage3 />} />
-              <Route path="/carrental4" element={<CarRentalPage4 />} />
-               <Route path="/carrental5" element={<CarRentalPage5 />} />
-               <Route path="/terms" element={<Terms />} />
-                <Route path="/faqs" element={<Faqs />} />
-                 <Route path="/privacy" element={<Privacy />} />
+          <Route path="my-orders" element={<MyOrders />} />
+          <Route path="/outside" element={<Outside />} />
+          <Route path="/inside_outside" element={<InsideOutside />} />
+          <Route path="/premium_wash" element={<PremiumWash />} />
+          <Route path="/mini_detail" element={<MiniDetail />} />
+
+         <Route path="/interior_detail" element={<InteriorDetail />} />
+         <Route path="/full_detail" element={<FullDetail />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
 
         <Footer />
