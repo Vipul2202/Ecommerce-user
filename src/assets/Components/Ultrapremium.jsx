@@ -102,7 +102,7 @@ const Ultrapremium = () => {
       {/* Centered Description */}
       <div className="text-center px-4 py-8">
         <h1 className="text-2xl font-semibold mb-4">
-          About Our Premium Services
+          About Our Ultra Premium Services
         </h1>
         <p className="max-w-4xl mx-auto text-lg text-white">
           At CarSaloon, we redefine automotive luxury with our ultra-premium

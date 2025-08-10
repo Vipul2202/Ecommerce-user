@@ -50,9 +50,6 @@ Mini Detail
                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior Trims Detailed & Protection
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Leather Clean & Condition (Fabric Seats Steam Clean)
-                  </li>
-                  <li className="flex items-center">
                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Floor Mats Steam clean
                   </li>
                 </ul>
@@ -70,13 +67,6 @@ Mini Detail
                 <h2 className="text-lg font-semibold mb-2">INTERIOR TRIMS DETAILED & PROTECTED</h2>
                 <p className="text-sm leading-relaxed">
                   We carefully clean and detail all interior trims, including dashboard panels, door handles, and center consoles, removing dirt, dust, and grime. After cleaning, we apply a protective layer to safeguard the trims from wear, fading, and UV damage, keeping them looking fresh and well-maintained for longer.
-                </p>
-               
-              </div>
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">LEATHER CLEAN & CONDITION (FABRIC SEATS STEAM CLEAN)</h2>
-                <p className="text-sm leading-relaxed">
-                  Whether your vehicle has leather or fabric seats, we offer a tailored cleaning solution for each. We thoroughly clean and condition your leather seats, restoring their natural softness and shine while protecting them from cracking and fading. For fabric seats, we use steam cleaning to lift dirt, stains, and Odors, leaving your seats fresh and revitalized.
                 </p>
                
               </div>

@@ -197,8 +197,8 @@ const HomePage = () => {
               We are a specialized facility that provides professional cleaning and
               detailing services for vehicles. We offer a range of services, from basic
               exterior washes to full interior and exterior detailing. At car wash
-              saloon, we use automated systems, high-pressure water jets, eco-friendly
-              cleaning solutions, and manual handwashing techniques to ensure a thorough
+              saloon, we handwash your car with high-pressure water jets, eco-friendly
+              cleaning solutions to ensure a thorough
               and gentle cleaning process.
             </p>
           </div>

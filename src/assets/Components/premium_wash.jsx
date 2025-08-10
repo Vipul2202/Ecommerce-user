@@ -12,14 +12,14 @@ const PremiumWash = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-         <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
-        Premium Wash
+          Premium Wash
         </h1>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
           <span className="mx-2">/</span>
-          <span> 
+          <span>
             Premium Wash
           </span>
         </nav>
@@ -28,7 +28,7 @@ const PremiumWash = () => {
       {/* Main Content */}
       <main className="px-4 py-12 md:px-8 max-w-7xl mx-auto ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-          
+
           {/* Left Section - About */}
           <div className="lg:col-span-2">
             <div className="bg-[#00a0db] rounded-lg p-8 md:p-12 text-white">
@@ -41,19 +41,19 @@ const PremiumWash = () => {
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Inside & out clean plus
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Inside & out clean plus
                   </li>
                   <li className="flex items-center">
                     <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Dash & Console Detailed with all plastic trims
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> External Plastic Trims Rejuvenation
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> External Plastic Trims Rejuvenation
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Hand wax & Polish
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Hand wax & Polish
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Seats wiped & Spot Clean
+                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Seats wiped & Spot Clean
                   </li>
                 </ul>
               </div>
@@ -64,17 +64,26 @@ const PremiumWash = () => {
                 <p className="text-sm leading-relaxed">
                   We meticulously clean and detail your dashboard and console, ensuring all plastic trims are free from dust, dirt, and buildup. Every surface, including buttons, vents, and hard-to-reach areas, is carefully wiped and restored for a fresh, well-maintained look.
                 </p>
-                
+
               </div>
               <div className="mb-6">
                 <h2 className="text-lg font-semibold mb-2">EXTERNAL PLASTIC TRIMS REJUVENATION</h2>
                 <p className="text-sm leading-relaxed">
-                 We revitalize the external plastic trims on your vehicle, restoring their original color and luster. Our treatment protects against UV damage, prevents fading, and helps maintain the trims' durability, leaving them looking refreshed and well-preserved.
+                  We revitalize the external plastic trims on your vehicle, restoring their original color and luster. Our treatment protects against UV damage, prevents fading, and helps maintain the trims' durability, leaving them looking refreshed and well-preserved.
                 </p>
-                
+
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">HAND WAX AND POLISH</h2>
+                <p className="text-sm leading-relaxed">
+                  our Hand Wax & Polish service is designed to give your vehicle that flawless, showroom finish while adding a protective shield against the elements. Unlike machine polishing, our expert team applies wax by hand for precision, care, and attention to every curve and contour of your car.
+
+                  We use premium-grade carnauba and synthetic waxes that not only enhance your vehicle’s paint depth and gloss but also create a smooth, water-repellent layer that protects against UV rays, road grime, and minor scratches. The gentle polishing process removes light oxidation, swirl marks, and surface imperfections, leaving your paintwork silky-smooth and brilliantly reflective.
+                </p>
+
               </div>
 
-              
+
             </div>
           </div>
 

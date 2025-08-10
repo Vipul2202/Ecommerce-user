@@ -60,7 +60,7 @@ const InsideOutside = () => {
               <div className="mb-6">
                 <h2 className="text-lg font-semibold mb-2">The Details:</h2>
                 <p className="text-sm leading-relaxed">
-                  Our Inside-Only Service effectively removes dirt and grime from your seats, dashboard, console, and carpets. We also provide vacuuming of the floors, window cleaning, and surface wiping to leave your car's interior immaculate.
+                  Our Inside-Outside only Service effectively removes dirt and grime from your seats, dashboard, console, and carpets. We also provide vacuuming of the floors, window cleaning, and surface wiping to leave your car's interior immaculate.
                 </p>
                 
               </div>

@@ -82,7 +82,7 @@ const FullDetail = () => {
                
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">Leather Seats Clean and Condition</h2>
+                <h2 className="text-lg font-semibold mb-2">LEATHER SEATS CLEAN AND CONDITION</h2>
                 <p className="text-sm leading-relaxed">
                   Your vehicle's leather seats are a premium feature — but without proper care, they can crack, fade, or lose their supple feel. At CarSaloon, our Leather Seats Clean & Condition service is designed to restore and protect your leather interior, keeping it looking luxurious and feeling smooth.
                 </p>

@@ -66,11 +66,11 @@ const Detailing = () => {
       {/* Description */}
       <div className="max-w-5xl mx-auto px-4 py-10 text-white">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Premium Car Detailing Services at Our Car Salon – Restore Your Vehicle's Shine!
+          Car Detailing Services at Our Car Saloon – Restore Your Vehicle's Shine!
         </h2>
         <p className="text-lg mb-6">
           Looking for professional car detailing services to give your vehicle a showroom finish?
-          Our car salon offers expert auto detailing solutions designed to restore, protect, and enhance your car's interior and exterior.
+          Our car saloon offers expert auto detailing solutions designed to restore, protect, and enhance your car's interior and exterior.
         </p>
 
         <h3 className="text-2xl font-semibold mb-4">We provide a range of detailing services to keep your car looking brand new:</h3>
@@ -84,7 +84,7 @@ const Detailing = () => {
 
         <h3 className="text-2xl font-semibold mb-4">Why Choose Our Car Saloon?</h3>
         <ul className="space-y-2">
-          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Expert Technicians – Skilled professionals using advanced techniques.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Expert Team – Skilled professionals using advanced techniques.</li>
           <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>High-Quality Products – Eco-friendly and premium-grade cleaning solutions.</li>
           <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Advanced Equipment – Steam cleaning, clay bar treatment, and paint protection technology.</li>
           <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Affordable Packages – Custom detailing options to fit your needs and budget.</li>
