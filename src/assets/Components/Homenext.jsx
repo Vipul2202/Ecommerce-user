@@ -104,7 +104,7 @@ const Homenext = () => {
         "Windows Clean Inside & Out"
       ],
       buttonStyle: "white",
-      popular: true,
+      popular: false,
       route: "/inside_outside" // Navigate to CarRentalPage1
     },
     {
@@ -134,7 +134,6 @@ const Homenext = () => {
         "Includes Premium Wash",
         "Clay Block Treatment(Paint Cleansing)",
         "Interior Trims Detailed & Protection",
-        "Leather Clean & Condition (Fabric Seats Steam Clean)",
         "Floor Mats Steam Clean"
       ],
       buttonStyle: "black",
@@ -152,7 +151,7 @@ const Homenext = () => {
         "Odour Eliminated Treatment"
       ],
       buttonStyle: "white",
-      popular: true,
+      popular: false,
       route: "/interior_detail" // Navigate to CarRentalPage4
     },
     {
@@ -167,7 +166,7 @@ const Homenext = () => {
         "Leather Seats Steam Clean"
       ],
       buttonStyle: "black",
-      popular: false,
+      popular: true,
       route: "/full_detail" // Navigate to CarRentalPage5
     }
   ];
@@ -249,10 +248,10 @@ const Homenext = () => {
       <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
+            <h2 className="text-[#00a0db] text-4xl font-bold tracking-wider uppercase mb-4">
               WASHING SERVICES
             </h2>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h1 className="text-3xl md:text-xl lg:text-4xl font-semibold">
               Choose Your Plan
             </h1>
           </div>
@@ -312,7 +311,7 @@ const Homenext = () => {
                       : "bg-white text-black hover:bg-gray-200"
                       }`}
                   >
-                    Book Now
+                    Learn More
                   </button>
                 </div>
               </div>
@@ -325,10 +324,10 @@ const Homenext = () => {
       <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
+            <h2 className="text-[#00a0db] text-4xl font-bold tracking-wider uppercase mb-4">
               DETAILING SERVICES
             </h2>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h1 className="text-3xl md:text-xl lg:text-4xl font-semibold">
               Choose Your Plan
             </h1>
           </div>
@@ -388,7 +387,7 @@ const Homenext = () => {
                       : "bg-white text-black hover:bg-gray-200"
                       }`}
                   >
-                    Book Now
+                    Learn More
                   </button>
                 </div>
               </div>

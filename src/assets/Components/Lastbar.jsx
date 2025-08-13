@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Replace these imports with your actual image imports
-import team1 from "../../img/team1.jpeg";
-import team2 from "../../img/team2.jpg";
+import team1 from "../../img/paintless_dent_repair.png";
+import team2 from "../../img/buff_and_polish.jpg";
 // import team3 from "../..img/team3.jpg";
-import team3 from "../../img/team3.jpg"
+import team3 from "../../img/headlight_restoration.jpg";
 // import team4 from "../..img/team4.jpeg";
-import team4 from "../../img/team4.jpeg";
+import team4 from "../../img/dog_hair_removal.jpg";
 // import team4 from "../../img/team4.png";
 
 const Lastbar = () => {
