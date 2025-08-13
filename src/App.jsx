@@ -1,24 +1,6 @@
-// import './App.css';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-// function App() {
-//   return (
-//     <div className="flex items-center justify-center min-h-screen bg-black text-white text-center p-4">
-//       <ToastContainer position="top-right" autoClose={3000} />
-//       <div>
-//         <h1 className="text-4xl font-bold mb-4">🚧 Website Coming Soon 🚧</h1>
-//         <p className="text-lg">
-//           The work is on updation.<br />
-//           Please check back in a few hours!
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './App.css'
 
 import { ToastContainer } from 'react-toastify';
@@ -57,11 +39,24 @@ import FullDetail from './assets/Components/full_detail';
 import Terms from './assets/Components/Terms';
 import Faqs from './assets/Components/Faqs';
 import Privacy from './assets/Components/Privacy';
+
+// ScrollToTop component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <div>
       <ToastContainer position="top-right" autoClose={3000} />
       <Router>
+        <ScrollToTop />
         <TopBar />
         <Navbar />
 
@@ -108,4 +103,3 @@ function App() {
 }
 
 export default App
-
