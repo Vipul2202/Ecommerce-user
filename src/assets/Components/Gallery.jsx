@@ -6,15 +6,15 @@ import img2 from '../../img/blog-3.jpg';
 import img3 from '../../img/single.jpg';
 
 const imagePairs = [
-  { before: blog, after: img1 },
-  { before: img1, after: img2 },
-  { before: img2, after: img3 },
-  { before: img1, after: blog },
-  { before: img1, after: img3 },
-  { before: img3, after: blog },
+  { before: blog, after: img1 ,serviceName: 'Full Exterior Wash' },
+  { before: img1, after: img2 ,serviceName: 'Full Exterior Wash' },
+  { before: img2, after: img3 ,serviceName: 'Full Exterior Wash' },
+  { before: img1, after: blog ,serviceName: 'Full Exterior Wash' },
+  { before: img1, after: img3, serviceName: 'Full Exterior Wash' },
+  { before: img3, after: blog,serviceName: 'Full Exterior Wash' },
 ];
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 6;
 
 const Gallery = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,26 +29,33 @@ const Gallery = () => {
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-10 ">Before & After Gallery</h1>
 
       {/* Grid of Thumbnails */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        {visiblePairs.map((pair, idx) => (
-          <div
-            key={idx}
-            className="cursor-pointer group transform transition duration-300 hover:scale-105"
-            onClick={() => setSelectedPair(pair)}
-          >
-            <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl backdrop-blur-lg bg-white/30 border border-white/20">
-              <img
-                src={pair.after}
-                alt="After"
-                className="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-80"
-              />
-              <div className="absolute bottom-0 left-0 w-full p-3 bg-black/40 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                <p className="text-sm font-semibold">Click to view Before & After</p>
-              </div>
-            </div>
-          </div>
-        ))}
+     {/* Grid of Thumbnails */}
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
+  {visiblePairs.map((pair, idx) => (
+    <div
+      key={idx}
+      className="cursor-pointer group transform transition duration-300 hover:scale-105"
+      onClick={() => setSelectedPair(pair)}
+    >
+      <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl backdrop-blur-lg bg-white/30 border border-white/20">
+        <img
+          src={pair.after}
+          alt={pair.serviceName || "After"}
+          className="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-80"
+        />
+        <div className="absolute bottom-0 left-0 w-full p-3 bg-black/40 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+          <p className="text-sm font-semibold">Click to view Before & After</p>
+        </div>
       </div>
+
+      {/* Service Name */}
+      <p className="mt-3 text-center text-lg font-semibold text-gray-700 italic">
+        {pair.serviceName}
+      </p>
+    </div>
+  ))}
+</div>
+
 
       {/* Pagination */}
       <div className="flex justify-center mt-10 space-x-4">

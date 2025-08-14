@@ -58,23 +58,23 @@ const Extras = () => {
       footer: "Give Your Car the Glow It Deserves!",
     },
     {
-      title: "Window Tinting – Style, Comfort & Protection for Your Ride!",
+      title: "Leather Clean & Steam Clean – Professional Leather Care You Can Trust",
       Paragraph:
-        "Cloudy, yellowed, or foggy headlights don’t just make your car look old—they also reduce visibility and compromise safety. Our Headlight Restoration Service restores clarity, improves brightness, and enhances the overall look of your vehicle.",
+        "Our Leather Clean & Steam Clean service restores that original elegance while protecting your investment.We use advanced steam cleaning technology to gently lift dirt and sanitize without harsh chemicals. ",
       offers: [
-        "UV & Heat Protection – Blocks 99% UV",
-        "Enhanced Privacy – Keeps prying eyes away",
-        "Clearer Vision – Improves visibility",
-        "Interior Protection – Prevents fading & cracking",
+        "Professional leather steam cleaning and sanitization",
+        "Gentle, pH-balanced leather-safe cleaning solutions",
+        "Removal of dirt, oils, and stubborn stains",
+        "Premium conditioning to prevent cracks and fading",
       ],
       whyUs: [
-        "Top Quality Film – Industry leading tints",
-        "Expert Installation – No bubbles",
-        "Variety of Shades – Match your style",
-        "Legal Compliance – Meets local rules",
+        "Specialist Care – Treat each piece with precision",
+        "Advanced Equipment – Steam cleaning technology for deep yet gentle cleaning.",
+        "Customer Satisfaction Guarantee – We don’t just clean, we bring back the luxury feel.",
+        "Eco-Friendly Solutions – Safe for leather, safe for you, and safe for the environment.",
       ],
-      price: "From $499 onwards",
-      footer: "Get the Perfect Tint for Your Car Today!",
+      price: "From $70 onwards",
+      footer: "Get the Perfect Service for Your Car Today!",
     },
     {
       title: "Paintless Dent Removal – Flawless Finish Without the Hassle!",
@@ -94,6 +94,44 @@ const Extras = () => {
       ],
       price: "From $199 onwards",
       footer: "Say Goodbye to Dents – The Smart Way!",
+    },
+    {
+      title: "Dog Hair Removal – Say Goodbye to Fur!",
+      Paragraph:
+        "Our Dog Hair Removal service is designed to eliminate stubborn pet hair from every nook and cranny, leaving your space fresh, clean, and allergen-free.Using specialized tools and techniques, we loosen and lift even the most embedded hairs from fabric, leather, and hard-to-reach areas. ",
+      offers: [
+        "Professional removal of dog and pet hair from all surfaces",
+        "Safe techniques for leather and delicate fabrics",
+        "Allergen reduction for a healthier environment",
+        "Fresh, hair-free, and revitalized appearance",
+      ],
+      whyUs: [
+        "Pet-Friendly Cleaning – Safe methods that protect your surfaces and your pets.",
+        "Thorough & Precise – No spot left behind, even in tight spaces.",
+        "Fast & Efficient Service – We value your time while delivering top-quality results.",
+        "Specialized Equipment – Tools designed to extract hair from any surface.",
+      ],
+      price: "From $50 onwards",
+      footer: "Say Goodbye to Fur – Enjoy a Hair-Free Ride!",
+    },
+    {
+      title: "Underbody Clean & Paint – Protect Your Vehicle from Rust and Corrosion",
+      Paragraph:
+        "Our Underbody Clean & Paint service ensures your vehicle stays protected, extending its life and maintaining its value.We start with a thorough underbody wash, removing accumulated grime and salt buildup. Then, we apply a high-quality protective coating or paint, sealing the metal against moisture and corrosion. The result is an underbody that is clean, protected, and ready to withstand harsh conditions. ",
+      offers: [
+        "Complete underbody cleaning to remove dirt, mud, and salt",
+        "Rust prevention and corrosion protection",
+        "Long-lasting protection for all vehicle types",
+        "Enhanced vehicle durability",
+      ],
+      whyUs: [
+        "Expert Care – We specialize in underbody protection for all vehicles.",
+        "Experienced Technicians – Skilled in cleaning, painting, and rust prevention.",
+        "Premium Materials – High-quality paints and coatings for lasting results.",
+        "Customer Satisfaction Guarantee – We protect your investment with precision and care.",
+      ],
+      price: "From $249 onwards",
+      footer: "Say Goodbye to Rust – Protect Your Vehicle Today!",
     },
     
   ];
@@ -139,7 +177,7 @@ const Extras = () => {
               className="bg-[#00a0db] p-6 rounded-lg flex flex-col justify-between "
             >
               <div>
-                <h2 className="text-lg font-bold mb-2 ">{card.title}</h2>
+                <h2 className="text-lg font-bold mb-2 items-center flex justify-center text-black ">{card.title}</h2>
                 <p className="text-sm mb-2">{card.Paragraph}</p>
 
                 {/* What We Offer */}

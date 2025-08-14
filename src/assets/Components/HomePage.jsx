@@ -197,10 +197,10 @@ const HomePage = () => {
             className="w-full md:w-1/2 rounded-lg"
           />
           <div className="md:w-1/2">
-            <div className="text-[#00a0db] font-bold mb-4 border-b-2 border-[#00a0db] pb-1 inline-block">
-              About
+            <div className="text-[#00a0db] text-3xl font-bold mb-4 border-b-2 border-[#00a0db] pb-1 inline-block">
+              CAR SALOON
             </div>
-            <h2 className="text-3xl font-bold mb-4">Car Wash & Detailing</h2>
+            <h2 className="text-xl font-bold italic mb-4">Perth’s Trusted Car Wash & Auto Detailing Specialists</h2>
             <p className="text-justify">
               We are a specialized facility that provides professional cleaning and
               detailing services for vehicles. We offer a range of services, from basic

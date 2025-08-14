@@ -276,10 +276,10 @@ const Homenext = () => {
 
                 {/* Header */}
                 <div className="text-center mb-8">
-                  <h3 className="text-white font-bold text-xl mb-4 tracking-wide">
+                  <h3 className="text-white font-bold text-2xl mb-4 tracking-wide">
                     {plan.name}
                   </h3>
-                  <div className="text-white text-5xl font-bold">
+                  <div className="text-black text-5xl font-bold">
                     ${plan.price}
                     <span className="text-2xl">*</span>
                   </div>
@@ -295,7 +295,7 @@ const Homenext = () => {
                       <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
                         <Check className="w-3 h-3 text-[#00a0db]" />
                       </div>
-                      <span className="text-white text-sm leading-relaxed">
+                      <span className="text-white text-md leading-relaxed">
                         {feature}
                       </span>
                     </div>
@@ -352,10 +352,10 @@ const Homenext = () => {
 
                 {/* Header */}
                 <div className="text-center mb-8">
-                  <h3 className="text-white font-bold text-xl mb-4 tracking-wide">
+                  <h3 className="text-white font-bold text-2xl mb-4 tracking-wide">
                     {plan.name}
                   </h3>
-                  <div className="text-white text-5xl font-bold">
+                  <div className="text-black text-5xl font-bold">
                     ${plan.price}
                     <span className="text-2xl">*</span>
                   </div>
@@ -371,7 +371,7 @@ const Homenext = () => {
                       <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
                         <Check className="w-3 h-3 text-[#00a0db]" />
                       </div>
-                      <span className="text-white text-sm leading-relaxed">
+                      <span className="text-white text-md leading-relaxed">
                         {feature}
                       </span>
                     </div>

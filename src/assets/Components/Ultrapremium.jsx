@@ -73,7 +73,7 @@ const Ultrapremium = () => {
         "No Paint, No Filler – Keeps original paint",
         "Eco-Friendly – No chemicals",
         "Cost Effective – Avoid full repaint",
-        "Faster – Ideal for small dents",
+        "Faster – Ideal for minor and surface scratches",
       ],
       whyUs: [
         "Expert Technicians – Precision tools",
