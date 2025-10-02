@@ -113,7 +113,7 @@ const BookNow = () => {
 
     try {
       setIsLoading(true);
-      const payload = [formData];
+      const payload = formData;
       console.log("Booking payload:", payload);
       const response = await axios.post(`${API}/user/create-booking`, payload);
       console.log("Booking response:", response);
@@ -216,9 +216,6 @@ const BookNow = () => {
                   required
                   className="p-2 text-black rounded w-full uppercase placeholder:normal-case"
                 />
-
-
-
               </div>
             </div>
 
@@ -269,7 +266,7 @@ const BookNow = () => {
                 >
                   <option value="">--Select Time</option>
                   {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
-                    const hour = hourOffset + 7; // Start from 07:00
+                    const hour = hourOffset + 7;
                     return [0, 30].map((minute) => {
                       const hour12 = hour % 12 === 0 ? 12 : hour % 12;
                       const ampm = hour < 12 ? "AM" : "PM";
@@ -283,7 +280,6 @@ const BookNow = () => {
                       );
                     });
                   }).flat()}
-
                 </select>
               </div>
             </div>
