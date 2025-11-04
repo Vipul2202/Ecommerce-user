@@ -17,8 +17,8 @@ const Homenext = () => {
   const navigate = useNavigate();
 
   const carouselData = [
-    { img: carousel1, subtitle: "Car Washing", title: "Keep your Car Newer" },
-    { img: carousel2, subtitle: "Car Washing", title: "Quality service for you" },
+    { img: carousel1, subtitle: "", title: "" },
+    { img: carousel2, subtitle: "", title: "" },
     { img: carousel3, subtitle: "Car Washing", title: "Exterior & Interior Washing" },
   ];
 
