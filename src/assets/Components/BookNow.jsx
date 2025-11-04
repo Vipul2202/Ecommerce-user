@@ -411,7 +411,6 @@ const BookNow = () => {
                     errors.registration ? 'border-red-500' : 'border-gray-300'
                   }`}
                   required
-                  className="p-2 text-black rounded w-full uppercase placeholder:normal-case"
                 />
                 {errors.registration && (
                   <p className="text-red-400 text-sm mt-1">{errors.registration}</p>
@@ -456,8 +455,6 @@ const BookNow = () => {
                     errors.date ? 'border-red-500' : 'border-gray-300'
                   }`}
                   required
-                  min={minDate}
-                  className="p-2 text-black rounded w-full"
                 />
                 {errors.date && (
                   <p className="text-red-400 text-sm mt-1">{errors.date}</p>
@@ -473,12 +470,6 @@ const BookNow = () => {
                   className={`p-2 text-black rounded w-full border-2 ${
                     errors.time ? 'border-red-500' : 'border-gray-300'
                   }`}
-                >
-                  <option value="">--Select Time</option>
-                  {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
-                    const hour = hourOffset + 7; // Start from 07:00
-                  required
-                  className="p-2 text-black rounded w-full"
                 >
                   <option value="">--Select Time</option>
                   {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
@@ -534,7 +525,6 @@ const BookNow = () => {
                     errors.lastName ? 'border-red-500' : 'border-gray-300'
                   }`}
                   required
-                  className="p-2 text-black rounded w-full"
                 />
                 {errors.lastName && (
                   <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
