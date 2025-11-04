@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import team from "../../../src/img/team-2.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Detailing = () => {
   const [formData, setFormData] = useState({
@@ -14,29 +15,39 @@ const Detailing = () => {
     phone: "",
   });
 
+  const navigate = useNavigate();
+
   const service = [
     {
       id: 1,
-      title: "Ceramic Coating",
-      price: "From $199* onwards",
+      title: "Mini Detail",
+      price: "From $149* onwards",
       image: team,
       buttonStyle: "black",
+      route: "/mini_detail" // Navigate to CarRentalPage3
     },
     {
       id: 2,
-      title: "Interior Protection Pack",
-      price: "From $299* onwards",
+      title: "Interior Detail",
+      price: "From $229* onwards",
       image: team,
       buttonStyle: "white",
+      route: "/interior_detail" // Navigate to CarRentalPage4
     },
     {
       id: 3,
-      title: "Windows Tinting",
-      price: "From $499* onwards",
+      title: "Full Detail",
+      price: "From $349* onwards",
       image: team,
       buttonStyle: "black",
+      route: "/full_detail" // Navigate to CarRentalPage5
     },
   ];
+
+  // Function to handle navigation to different CarRental pages
+  const handleLearnMore = (route) => {
+    navigate(route);
+  };
 
   return (
     <div className="flex flex-col  bg-black text-white">
@@ -55,28 +66,28 @@ const Detailing = () => {
       {/* Description */}
       <div className="max-w-5xl mx-auto px-4 py-10 text-white">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Premium Car Detailing Services at Our Car Salon – Restore Your Vehicle’s Shine!
+          Car Detailing Services at Our Car Saloon – Restore Your Vehicle's Shine!
         </h2>
         <p className="text-lg mb-6">
           Looking for professional car detailing services to give your vehicle a showroom finish?
-          Our car salon offers expert auto detailing solutions designed to restore, protect, and enhance your car’s interior and exterior.
+          Our car saloon offers expert auto detailing solutions designed to restore, protect, and enhance your car's interior and exterior.
         </p>
 
         <h3 className="text-2xl font-semibold mb-4">We provide a range of detailing services to keep your car looking brand new:</h3>
         <ul className="space-y-2 mb-6">
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Exterior Detailing – Deep cleaning, polishing, and ceramic coating for a flawless shine.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Interior Detailing – Vacuuming, leather conditioning, and steam cleaning for a fresh cabin.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Paint Correction – Removes scratches, swirl marks, and restores the original paint finish.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Engine Bay Detailing – Cleans and protects your engine for better performance and longevity.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Headlight Restoration – Enhances visibility and gives headlights a crystal-clear look.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Exterior Detailing – Deep cleaning, polishing, and ceramic coating for a flawless shine.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Interior Detailing – Vacuuming, leather conditioning, and steam cleaning for a fresh cabin.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Paint Correction – Removes scratches, swirl marks, and restores the original paint finish.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Engine Bay Detailing – Cleans and protects your engine for better performance and longevity.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Headlight Restoration – Enhances visibility and gives headlights a crystal-clear look.</li>
         </ul>
 
         <h3 className="text-2xl font-semibold mb-4">Why Choose Our Car Saloon?</h3>
         <ul className="space-y-2">
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Expert Technicians – Skilled professionals using advanced techniques.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>High-Quality Products – Eco-friendly and premium-grade cleaning solutions.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Advanced Equipment – Steam cleaning, clay bar treatment, and paint protection technology.</li>
-          <li className="flex items-start"><span className="text-green-400 mr-2">✅</span>Affordable Packages – Custom detailing options to fit your needs and budget.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Expert Team – Skilled professionals using advanced techniques.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>High-Quality Products – Eco-friendly and premium-grade cleaning solutions.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Advanced Equipment – Steam cleaning, clay bar treatment, and paint protection technology.</li>
+          <li className="flex items-start"><span className="w-4 h-4 text-white bg-[#00a0db] mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Affordable Packages – Custom detailing options to fit your needs and budget.</li>
         </ul>
       </div>
 
@@ -103,7 +114,8 @@ const Detailing = () => {
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-sm mb-4">{item.price}</p>
                 <button
-                  className={`px-4 py-2 rounded-full text-sm font-medium ${
+                  onClick={() => handleLearnMore(item.route)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                     item.buttonStyle === "black"
                       ? "bg-black text-white hover:bg-gray-800"
                       : "bg-white text-black hover:bg-gray-200"

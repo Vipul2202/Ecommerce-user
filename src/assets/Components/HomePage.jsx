@@ -78,41 +78,49 @@ const HomePage = () => {
       icon: <Car className="w-12 h-12" />,
       title: "Outside Only",
       description: "Exterior wash and rinse",
+      link: "/outside"
     },
     {
       icon: <Droplets className="w-12 h-12" />,
       title: "Inside & Out",
       description: "Complete interior and exterior cleaning",
+      link: "/inside_outside"
     },
     {
       icon: <Shield className="w-12 h-12" />,
       title: "Premium Wash",
       description: "Premium exterior treatment",
+      link: "/premium_wash"
     },
     {
       icon: <Sparkles className="w-12 h-12" />,
       title: "Mini Detail",
       description: "Quick detailing service",
+      link: "/mini_detail"
     },
     {
       icon: <Home className="w-12 h-12" />,
       title: "Interior Detail",
       description: "Deep interior cleaning",
+      link: "/interior_detail"
     },
     {
       icon: <Settings className="w-12 h-12" />,
       title: "Full Detail",
       description: "Complete detailing package",
+      link: "/full_detail"
     },
     {
       icon: <Wrench className="w-12 h-12" />,
       title: "Ultra Premium Finishes",
       description: "Luxury finishing touches",
+      link: "/Ultrapremium"
     },
     {
       icon: <Plus className="w-12 h-12" />,
       title: "Extras",
       description: "Additional services",
+      link: "/Extras"
     },
   ];
 
@@ -189,16 +197,15 @@ const HomePage = () => {
             className="w-full md:w-1/2 rounded-lg"
           />
           <div className="md:w-1/2">
-            <div className="text-[#00a0db] font-bold mb-4 border-b-2 border-[#00a0db] pb-1 inline-block">
-              About
+            <div className="text-[#00a0db] text-3xl font-bold mb-4 border-b-2 border-[#00a0db] pb-1 inline-block">
+              CAR SALOON
             </div>
-            <h2 className="text-3xl font-bold mb-4">Car Wash & Detailing</h2>
+            <h2 className="text-xl font-bold italic mb-4">Perth’s Trusted Car Wash & Auto Detailing Specialists</h2>
             <p className="text-justify">
               We are a specialized facility that provides professional cleaning and
               detailing services for vehicles. We offer a range of services, from basic
-              exterior washes to full interior and exterior detailing. At car wash
-              saloon, we use automated systems, high-pressure water jets, eco-friendly
-              cleaning solutions, and manual handwashing techniques to ensure a thorough
+              exterior washes to full interior and exterior detailing. At car saloon, we handwash your car with high-pressure water jets, eco-friendly
+              cleaning solutions to ensure a thorough
               and gentle cleaning process.
             </p>
           </div>
@@ -219,25 +226,29 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300 cursor-pointer"
-              >
-                <div className="mb-6 p-6 rounded-lg border-2 border-[#00a0db] bg-transparent hover:bg-[#00a0db]/10 transition-colors duration-300">
-                  <div className="text-[#00a0db] group-hover:text-white transition-colors duration-300">
-                    {service.icon}
-                  </div>
-                </div>
+            
+             
+  <a
+    key={index}
+    href={service.link}
+    className="flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300 cursor-pointer"
+  >
+    <div className="mb-6 p-6 rounded-lg border-2 border-[#00a0db] bg-transparent hover:bg-[#00a0db]/10 transition-colors duration-300">
+      <div className="text-[#00a0db] group-hover:text-white transition-colors duration-300">
+        {service.icon}
+      </div>
+    </div>
 
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#00a0db] transition-colors duration-300">
-                  {service.title}
-                </h3>
+    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#00a0db] transition-colors duration-300">
+      {service.title}
+    </h3>
 
-                <p className="text-gray-400 text-sm hidden md:block group-hover:text-gray-300 transition-colors duration-300">
-                  {service.description}
-                </p>
-              </div>
-            ))}
+    <p className="text-gray-400 text-sm hidden md:block group-hover:text-gray-300 transition-colors duration-300">
+      {service.description}
+    </p>
+  </a>
+))}
+            
           </div>
         </div>
       </div>

@@ -12,7 +12,6 @@ const BeforeAfterViewer = ({ beforeImg, afterImg, onClose }) => {
       setSliderPosition(position);
     }
   };
-
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
       <div className="relative w-full max-w-4xl h-[300px] md:h-[500px] overflow-hidden rounded-xl shadow-lg"

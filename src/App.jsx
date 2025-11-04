@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './App.css'
 
 import { ToastContainer } from 'react-toastify';
@@ -12,8 +14,8 @@ import Footer from './assets/Components/Footer'
 import ContactUs from './assets/Components/Contactus'
 import BookNow from './assets/Components/BookNow'
 import Extras from './assets/Components/Extras'
-
-
+// import Service from './assets/Components/Service'
+// import Faqs from './assets/Components/Faqs';
 import Ultrapremium from './assets/Components/Ultrapremium'
 import Detailing from './assets/Components/Detailing'
 import Washing from './assets/Components/Washing'
@@ -25,12 +27,36 @@ import CarDetailPage from './assets/Components/CarDetailPage'
 import Gallery from './assets/Components/Gallery'
 import ConfirmationPage from './assets/Components/ConfirmationPage'
 import MyOrders from './assets/Components/MyOrders';
+import LastBar from './assets/Components/Lastbar';
+import Outside from './assets/Components/outside';
+import InsideOutside from './assets/Components/inside_outside';
+import PremiumWash from './assets/Components/premium_wash';
+
+import MiniDetail from './assets/Components/mini_detail';
+import InteriorDetail from './assets/Components/interior_detail';
+import FullDetail from './assets/Components/full_detail';
+
+import Terms from './assets/Components/Terms';
+import Faqs from './assets/Components/Faqs';
+import Privacy from './assets/Components/Privacy';
+
+// ScrollToTop component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 function App() {
   return (
     <div>
       <ToastContainer position="top-right" autoClose={3000} />
       <Router>
+        <ScrollToTop />
         <TopBar />
         <Navbar />
 
@@ -41,6 +67,7 @@ function App() {
               <>
                 <HomePage />
                 <Homenext />
+                <LastBar />
               </>
             }
           />
@@ -54,8 +81,19 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/car-details/:id" element={<CarDetailPage />} />
           <Route path='gallery' element={<Gallery />} />
-          <Route path ='confirmation' element={<ConfirmationPage />} />
-          <Route path ="my-orders" element={<MyOrders />} />
+          <Route path='confirmation' element={<ConfirmationPage />} />
+          {/* <Route path="/service" element={<Service />} /> */}
+          <Route path="my-orders" element={<MyOrders />} />
+          <Route path="/outside" element={<Outside />} />
+          <Route path="/inside_outside" element={<InsideOutside />} />
+          <Route path="/premium_wash" element={<PremiumWash />} />
+          <Route path="/mini_detail" element={<MiniDetail />} />
+
+         <Route path="/interior_detail" element={<InteriorDetail />} />
+         <Route path="/full_detail" element={<FullDetail />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
 
         <Footer />

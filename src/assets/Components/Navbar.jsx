@@ -7,15 +7,17 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import { ChevronDown, ShoppingCart, Trash2, Plus, Minus, MapPin, User, Phone, Mail, Download, X } from "lucide-react";
 import { useLocation } from 'react-router-dom';
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isOpen, setIsOpen] = useState(false); const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [forgotMode, setForgotMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [activeTooltip, setActiveTooltip] = useState("");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
@@ -54,7 +56,9 @@ const Navbar = () => {
     landmark: "",
     country: "India" // Default country
   });
-
+  const handleClick = (type) => {
+    setActiveTooltip((prev) => (prev === type ? "" : type));
+  };
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
@@ -106,8 +110,8 @@ const Navbar = () => {
       //   timeout: 10000 // 10 second timeout
       // });
 
-        const API = import.meta.env.VITE_API_BASE_URL;
-       const response = await axios.get(`${API}/user/get-cart`,  {
+      const API = import.meta.env.VITE_API_BASE_URL;
+      const response = await axios.get(`${API}/user/get-cart`, {
         headers: {
           'Content-Type': 'application/json',
           // Add authorization header if needed
@@ -612,7 +616,10 @@ Thank you for your order!
 
     toast.success("Order slip downloaded successfully!");
   };
-
+  useEffect(() => {
+    setIsOpen(false);
+    setIsSidebarOpen(false);
+  }, [location.pathname]);
   return (
     <>
       <nav className="bg-[#00a0db] text-white sticky top-0 z-50 shadow-2xl">
@@ -625,19 +632,42 @@ Thank you for your order!
                 </Link>
               ))}
               <div className="relative">
+                {/* Toggle button */}
                 <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center gap-2 hover:text-black focus:outline-none"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="px-4 py-2 flex items-center gap-2 b hover:text-black text-white rounded-full transition-all duration-200"
                 >
                   Services
-                  <ChevronDown className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`} />
+                  {isOpen ? <FaChevronUp /> : <FaChevronDown />}
                 </button>
-                {isDropdownOpen && (
+
+                {/* Dropdown */}
+                {isOpen && (
                   <div className="absolute top-full left-0 mt-2 w-56 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
-                    <Link to="/washing" className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300">Washing Services</Link>
-                    <Link to="/detailing" className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300">Detailing Services</Link>
-                    <Link to="/ultrapremium" className="block px-4 py-2 border-b hover:bg-gray-100">Ultra Premium Services</Link>
-                    <Link to="/extras" className="block px-4 py-2 hover:bg-gray-100">Extras</Link>
+                    <Link
+                      to="/washing"
+                      className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                    >
+                      Washing Services
+                    </Link>
+                    <Link
+                      to="/detailing"
+                      className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                    >
+                      Detailing Services
+                    </Link>
+                    <Link
+                      to="/ultrapremium"
+                      className="block px-4 py-2 border-b hover:bg-gray-100"
+                    >
+                      Ultra Premium Services
+                    </Link>
+                    <Link
+                      to="/extras"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Extras
+                    </Link>
                   </div>
                 )}
               </div>
@@ -767,9 +797,9 @@ Thank you for your order!
                       <p className="text-sm truncate w-40" title={user.email}>{user.email}</p>
                       <button
                         onClick={() => {
-                      
-    setIsProfileOpen(false);
-    navigate('/my-orders');
+
+                          setIsProfileOpen(false);
+                          navigate('/my-orders');
                           setIsProfileOpen(false);
                         }}
                         className="mt-2 bg-green-600 text-white w-full rounded py-1 hover:bg-green-700 mb-2"
@@ -847,30 +877,59 @@ Thank you for your order!
 
             {/* Navigation Items */}
             {navItems.map((item, index) => (
-              <Link key={index} to={item.href} onClick={() => setIsSidebarOpen(false)} className="hover:text-[#00a0db]">
-                {item.label}
-              </Link>
-            ))}
+  <Link key={index} to={item.href} onClick={() => {
+    setIsSidebarOpen(false);
+    setIsOpen(false);
+  }} className="hover:text-[#00a0db]">
+    {item.label}
+  </Link>
+))}
 
             {/* Dropdown Services */}
             <div className="relative">
+              {/* Toggle button */}
               <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 hover:text-black focus:outline-none"
+                onClick={() => setIsOpen(!isOpen)}
+                className=" py-2 flex items-center  b hover:text-black text-black rounded-full transition-all duration-200"
               >
                 Services
-                <ChevronDown className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`} />
+                {isOpen ? <FaChevronUp /> : <FaChevronDown />}
               </button>
-              {isDropdownOpen && (
+
+              {/* Dropdown */}
+              {isOpen && (
                 <div className="absolute top-full left-0 mt-2 w-56 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
-                  <Link to="/washing" className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300">Washing Services</Link>
-                  <Link to="/detailing" className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300">Detailing Services</Link>
-                  <Link to="/ultrapremium" className="block px-4 py-2 hover:bg-gray-100">Ultra Premium Services</Link>
-                  <Link to="/extras" className="block px-4 py-2 hover:bg-gray-100">Extras</Link>
+                 <Link
+  to="/washing"
+  onClick={() => {
+    setIsSidebarOpen(false);
+    setIsOpen(false);
+  }}
+  className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+>
+  Washing Services
+</Link>
+                  <Link
+                    to="/detailing"
+                    className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                  >
+                    Detailing Services
+                  </Link>
+                  <Link
+                    to="/ultrapremium"
+                    className="block px-4 py-2 border-b hover:bg-gray-100"
+                  >
+                    Ultra Premium Services
+                  </Link>
+                  <Link
+                    to="/extras"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Extras
+                  </Link>
                 </div>
               )}
             </div>
-
             {/* Book Now & Register/Login Buttons (stacked vertically) */}
             <div className="flex flex-col gap-3 mt-5">
               <Link
@@ -887,8 +946,8 @@ Thank you for your order!
                 <>
                   <button
                     onClick={() => {
-    setIsProfileOpen(false);
-    navigate('/my-orders');
+                      setIsProfileOpen(false);
+                      navigate('/my-orders');
                     }}
                     className="relative px-4 py-2 rounded-full bg-green-600 text-white text-center overflow-hidden group"
                   >
@@ -1370,7 +1429,7 @@ Thank you for your order!
                     )}
                   </>
                 )}
-                <button type="submit" className="w-full bg-orange-500 text-white py-2 rounded-md font-semibold hover:bg-orange-600 flex justify-center items-center gap-2">
+                <button type="submit" className="w-full bg-[#00a0db] text-white py-2 rounded-md font-semibold hover:bg-black flex justify-center items-center gap-2">
                   {loading ? (
                     <span className="loader w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                   ) : (
@@ -1383,7 +1442,7 @@ Thank you for your order!
                 {forgotMode ? (
                   <p>
                     Remember your password?{" "}
-                    <button onClick={() => setForgotMode(false)} className="text-blue-600 font-medium hover:underline">
+                    <button onClick={() => setForgotMode(false)} className="text-[#00a0db] font-medium hover:underline">
                       Back to Login
                     </button>
                   </p>
@@ -1391,13 +1450,13 @@ Thank you for your order!
                   <>
                     <p>
                       Forgot Password?{" "}
-                      <button onClick={() => setForgotMode(true)} className="text-blue-600 font-medium hover:underline">
+                      <button onClick={() => setForgotMode(true)} className="text-[#00a0db] font-medium hover:underline">
                         Click here
                       </button>
                     </p>
                     <p className="mt-2">
                       Don't have an account?{" "}
-                      <button onClick={() => setIsLogin(false)} className="text-blue-600 font-medium hover:underline">
+                      <button onClick={() => setIsLogin(false)} className="text-[#00a0db] font-medium hover:underline">
                         Register
                       </button>
                     </p>
@@ -1415,33 +1474,62 @@ Thank you for your order!
               {/* Social Login */}
               <div className="mt-6 text-center">
                 <p className="text-black text-sm mb-2">or Login with</p>
-                <div className="flex justify-center gap-4">
-                  <button type="button" className="flex items-center gap-2 px-4 py-2 rounded-full border hover:bg-gray-100 transition">
-                    <img src={GoogleLogo} alt="Google" className="w-5 h-5" />
-                    <span>Google</span>
-                  </button>
-                  <button type="button" className="flex items-center gap-2 px-4 py-2 rounded-full border hover:bg-gray-100 transition">
-                    <FaFacebook className="text-blue-600" />
-                    <span>Facebook</span>
-                  </button>
+                <div className="flex justify-center gap-4 mt-4">
+                  {/* Google Button + Tooltip */}
+                  <div className="relative flex flex-col items-center">
+                    {activeTooltip === "google" && (
+                      <div className="absolute bottom-full mb-2 w-full flex justify-center">
+                        <div className="flex items-center gap-2 px-2 py-2 rounded-full border bg-white bg-opacity-20 backdrop-blur-md text-black text-sm shadow-md border-white/30">
+                          <span>Coming Soon</span>
+                        </div>
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleClick("google")}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full border hover:bg-gray-100 transition"
+                    >
+                      <img src={GoogleLogo} alt="Google" className="w-5 h-5" />
+                      <span>Google</span>
+                    </button>
+                  </div>
+
+                  {/* Facebook Button + Tooltip */}
+                  <div className="relative flex flex-col items-center">
+                    {activeTooltip === "facebook" && (
+                      <div className="absolute bottom-full mb-2 w-full flex justify-center">
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-white bg-opacity-20 backdrop-blur-md text-black text-sm shadow-md border-white/30">
+                          <span>Coming Soon</span>
+                        </div>
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleClick("facebook")}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full border hover:bg-gray-100 transition"
+                    >
+                      <FaFacebook className="text-blue-600" />
+                      <span>Facebook</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </>
       )}
-       <ToastContainer
-  position="top-center"
-  autoClose={3000}
-  hideProgressBar={false}
-  newestOnTop={false}
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  theme="light" 
-/>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

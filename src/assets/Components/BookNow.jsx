@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom"; // Add these imports
+import { useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 const API = import.meta.env.VITE_API_BASE_URL;
 
-
 const BookNow = () => {
-  const [searchParams] = useSearchParams(); // Hook to get URL parameters
+  const [searchParams] = useSearchParams();
   const location = useLocation();
 
   const [formData, setFormData] = useState({
@@ -22,6 +21,9 @@ const BookNow = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [minDate, setMinDate] = useState("");
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
 
   const servicesList = [
     "Outside Only", "Mini Detail", "Ceramic Coating", "Paintless Dent Removal", "Head Light Restoration",
@@ -29,16 +31,20 @@ const BookNow = () => {
     "Premium Wash", "Full Detail", "Windows Tinting", "Buff and Polish", "Dog Hair Removal"
   ];
 
-  // Auto-select service based on URL parameter
+  useEffect(() => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    setMinDate(`${yyyy}-${mm}-${dd}`);
+  }, []);
+
   useEffect(() => {
     const serviceFromUrl = searchParams.get('service');
     if (serviceFromUrl) {
       const decodedService = decodeURIComponent(serviceFromUrl);
-      
-      // Map service names to match the servicesList
       let mappedService = decodedService;
-      
-      // Handle mapping from card titles to actual service names
+
       switch (decodedService.toLowerCase()) {
         case 'mini detail':
           mappedService = 'Mini Detail';
@@ -62,7 +68,6 @@ const BookNow = () => {
           mappedService = 'Stage 3 Paint Correction';
           break;
         default:
-          // Check if the service exists in the list (case-insensitive)
           const foundService = servicesList.find(
             service => service.toLowerCase() === decodedService.toLowerCase()
           );
@@ -71,7 +76,6 @@ const BookNow = () => {
           }
       }
 
-      // Only add if the service exists in our servicesList
       if (servicesList.includes(mappedService)) {
         setFormData(prev => ({
           ...prev,
@@ -81,39 +85,200 @@ const BookNow = () => {
     }
   }, [searchParams]);
 
+  const validateField = (name, value) => {
+    const newErrors = { ...errors };
+    
+    switch (name) {
+      case 'firstName':
+        if (!value.trim()) {
+          newErrors.firstName = 'First name is required';
+        } else if (value.trim().length < 2) {
+          newErrors.firstName = 'First name must be at least 2 characters';
+        } else {
+          delete newErrors.firstName;
+        }
+        break;
+        
+      case 'lastName':
+        if (!value.trim()) {
+          newErrors.lastName = 'Last name is required';
+        } else if (value.trim().length < 2) {
+          newErrors.lastName = 'Last name must be at least 2 characters';
+        } else {
+          delete newErrors.lastName;
+        }
+        break;
+        
+      case 'email':
+        if (!value.trim()) {
+          newErrors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          newErrors.email = 'Please enter a valid email address';
+        } else {
+          delete newErrors.email;
+        }
+        break;
+        
+      case 'phone':
+        if (!value.trim()) {
+          newErrors.phone = 'Phone number is required';
+        } else if (value.trim().length < 8) {
+          newErrors.phone = 'Please enter a valid phone number';
+        } else {
+          delete newErrors.phone;
+        }
+        break;
+        
+      case 'carType':
+        if (!value) {
+          newErrors.carType = 'Car type is required';
+        } else {
+          delete newErrors.carType;
+        }
+        break;
+        
+      case 'registration':
+        if (!value.trim()) {
+          newErrors.registration = 'Vehicle registration is required';
+        } else if (value.trim().length < 3) {
+          newErrors.registration = 'Vehicle registration must be at least 3 characters';
+        } else {
+          delete newErrors.registration;
+        }
+        break;
+        
+      case 'date':
+        if (!value) {
+          newErrors.date = 'Date is required';
+        } else {
+          const selectedDate = new Date(value);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (selectedDate < today) {
+            newErrors.date = 'Please select a future date';
+          } else {
+            delete newErrors.date;
+          }
+        }
+        break;
+        
+      case 'time':
+        if (!value) {
+          newErrors.time = 'Time is required';
+        } else {
+          const [hour, minute] = value.split(":").map(Number);
+          const totalMinutes = hour * 60 + minute;
+          const minMinutes = 7 * 60;
+          const maxMinutes = 17 * 60;
+          
+          if (totalMinutes < minMinutes || totalMinutes > maxMinutes) {
+            newErrors.time = 'Please select a time between 07:00 and 17:00';
+          } else {
+            delete newErrors.time;
+          }
+        }
+        break;
+        
+      default:
+        break;
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    let processedValue = value;
+    
+    // Allow flexible phone number format for Australian numbers
+    if (name === 'phone') {
+      // Allow digits, spaces, hyphens, parentheses, and plus sign
+      processedValue = value.replace(/[^\d\s\-\(\)\+]/g, '');
+    }
+    
+    setFormData((prev) => ({ ...prev, [name]: processedValue }));
+    
+    // Clear general error when user starts typing
+    if (errors.general) {
+      setErrors(prev => ({ ...prev, general: '' }));
+    }
+    
+    // Validate field if it has been touched
+    if (touched[name]) {
+      validateField(name, processedValue);
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    validateField(name, value);
   };
 
   const handleServiceChange = (e) => {
     const { value, checked } = e.target;
+    const newServices = checked
+      ? [...formData.services, value]
+      : formData.services.filter((service) => service !== value);
+    
     setFormData((prev) => ({
       ...prev,
-      services: checked
-        ? [...prev.services, value]
-        : prev.services.filter((service) => service !== value),
+      services: newServices,
     }));
+    
+    // Validate services
+    const newErrors = { ...errors };
+    if (newServices.length === 0) {
+      newErrors.services = 'Please select at least one service';
+    } else {
+      delete newErrors.services;
+    }
+    setErrors(newErrors);
+  };
+
+  const isFormValid = () => {
+    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'carType', 'registration', 'date', 'time'];
+    const hasRequiredFields = requiredFields.every(field => formData[field] && formData[field].toString().trim());
+    const hasServices = formData.services.length > 0;
+    const hasNoErrors = Object.keys(errors).length === 0;
+    
+    return hasRequiredFields && hasServices && hasNoErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const [hour, minute] = formData.time.split(":").map(Number);
-    const totalMinutes = hour * 60 + minute;
-    const minMinutes = 7 * 60;
-    const maxMinutes = 17 * 60;
+    // Mark all fields as touched to show validation errors
+    const allTouched = {};
+    Object.keys(formData).forEach(key => {
+      allTouched[key] = true;
+    });
+    setTouched(allTouched);
 
-    if (totalMinutes < minMinutes || totalMinutes > maxMinutes) {
-      alert("Please select a time between 07:00 and 17:00.");
+    // Validate all fields
+    let hasErrors = false;
+    Object.keys(formData).forEach(key => {
+      if (key !== 'services') {
+        const isValid = validateField(key, formData[key]);
+        if (!isValid) hasErrors = true;
+      }
+    });
+
+    // Validate services
+    if (formData.services.length === 0) {
+      setErrors(prev => ({ ...prev, services: 'Please select at least one service' }));
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
       return;
     }
 
     try {
       setIsLoading(true);
-      const payload = [formData];
-      console.log("Booking payload:", payload);
-     const response = await axios.post(`${API}/user/create-booking`, payload);
+      console.log("Booking payload:", formData);
+      const response = await axios.post(`${API}/user/create-booking`, formData);
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
         setFormData({
@@ -127,10 +292,34 @@ const BookNow = () => {
           email: "",
           phone: "",
         });
+        setErrors({});
+        setTouched({});
         setShowModal(true);
       }
     } catch (error) {
       console.error("Booking failed:", error);
+      if (error.response?.data?.errors) {
+        // Handle validation errors from backend
+        const backendErrors = {};
+        error.response.data.errors.forEach(err => {
+          // Map backend error messages to field names
+          if (err.includes('First name')) backendErrors.firstName = err;
+          else if (err.includes('Last name')) backendErrors.lastName = err;
+          else if (err.includes('email')) backendErrors.email = err;
+          else if (err.includes('phone')) backendErrors.phone = err;
+          else if (err.includes('Car type')) backendErrors.carType = err;
+          else if (err.includes('registration')) backendErrors.registration = err;
+          else if (err.includes('Date')) backendErrors.date = err;
+          else if (err.includes('Time')) backendErrors.time = err;
+          else if (err.includes('service')) backendErrors.services = err;
+        });
+        setErrors(prev => ({ ...prev, ...backendErrors }));
+      } else if (error.response?.data?.message) {
+        // Show general error message
+        setErrors(prev => ({ ...prev, general: error.response.data.message }));
+      } else {
+        setErrors(prev => ({ ...prev, general: "Booking failed. Please try again." }));
+      }
     } finally {
       setIsLoading(false);
     }
@@ -172,7 +361,6 @@ const BookNow = () => {
         <div className="w-full max-w-4xl bg-black text-white">
           <div className="bg-[#00a0db] text-center py-2 rounded mb-6 text-white font-semibold">
             Book A Service
-            {/* Show selected service from URL */}
             {searchParams.get('service') && (
               <div className="text-sm font-normal mt-1 opacity-90">
                 Pre-selected: {decodeURIComponent(searchParams.get('service'))}
@@ -188,26 +376,43 @@ const BookNow = () => {
                   name="carType"
                   value={formData.carType}
                   onChange={handleChange}
-                  required
-                  className="p-2 text-black rounded w-full"
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.carType ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 >
                   <option value="">--Select--</option>
                   <option value="sedan">Sedan</option>
                   <option value="suv">SUV</option>
                   <option value="hatchback">Hatchback</option>
                 </select>
+                {errors.carType && (
+                  <p className="text-red-400 text-sm mt-1">{errors.carType}</p>
+                )}
               </div>
               <div>
                 <label className="block mb-1 font-medium text-white">Vehicle Registration *</label>
                 <input
                   type="text"
                   name="registration"
-                  placeholder="Enter Vehicle Registration"
+                  placeholder="Enter vehicle registration"
                   value={formData.registration}
-                  onChange={handleChange}
-                  required
-                  className="p-2 text-black rounded w-full"
+                  onChange={(e) =>
+                    handleChange({
+                      target: {
+                        name: e.target.name,
+                        value: e.target.value.toUpperCase(),
+                      },
+                    })
+                  }
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full uppercase placeholder:normal-case border-2 ${
+                    errors.registration ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 />
+                {errors.registration && (
+                  <p className="text-red-400 text-sm mt-1">{errors.registration}</p>
+                )}
               </div>
             </div>
 
@@ -229,8 +434,8 @@ const BookNow = () => {
                   </label>
                 ))}
               </div>
-              {formData.services.length === 0 && (
-                <p className="text-red-400 text-sm mt-2">Please select at least one service</p>
+              {errors.services && (
+                <p className="text-red-400 text-sm mt-2">{errors.services}</p>
               )}
             </div>
 
@@ -242,34 +447,47 @@ const BookNow = () => {
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  required
-                  className="p-2 text-black rounded w-full"
+                  onBlur={handleBlur}
+                  min={minDate}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.date ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 />
+                {errors.date && (
+                  <p className="text-red-400 text-sm mt-1">{errors.date}</p>
+                )}
               </div>
               <div>
                 <label className="block mb-1 font-medium text-white">Clock *</label>
-                <div>
-                  <select
-                    name="time"
-                    value={formData.time}
-                    onChange={handleChange}
-                    required
-                    className="p-2 text-black rounded w-full"
-                  >
-                    <option value="">--Select Time</option>
-                    {Array.from({ length: 17 - 9 + 1 }, (_, hour) => {
-                      const h = hour + 9;
-                      return [":00", ":30"].map((m) => {
-                        const time = `${h.toString().padStart(2, "0")}${m}`;
-                        return (
-                          <option key={time} value={time}>
-                            {time} 
-                          </option>
-                        );
-                      });
-                    }).flat()}
-                  </select>
-                </div>
+                <select
+                  name="time"
+                  value={formData.time}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.time ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">--Select Time</option>
+                  {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
+                    const hour = hourOffset + 7; // Start from 07:00
+                    return [0, 30].map((minute) => {
+                      const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+                      const ampm = hour < 12 ? "AM" : "PM";
+                      const minuteStr = minute.toString().padStart(2, '0');
+                      const value = `${hour.toString().padStart(2, '0')}:${minuteStr}`;
+                      const label = `${hour12}:${minuteStr} ${ampm}`;
+                      return (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      );
+                    });
+                  }).flat()}
+                </select>
+                {errors.time && (
+                  <p className="text-red-400 text-sm mt-1">{errors.time}</p>
+                )}
               </div>
             </div>
 
@@ -282,11 +500,14 @@ const BookNow = () => {
                   placeholder="First Name"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
-                  className="p-2 text-black rounded w-full"
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.firstName ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 />
-
-                
+                {errors.firstName && (
+                  <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
+                )}
               </div>
               <div>
                 <label className="block mb-1 font-medium text-white">Last Name *</label>
@@ -296,9 +517,14 @@ const BookNow = () => {
                   placeholder="Last Name"
                   value={formData.lastName}
                   onChange={handleChange}
-                   required
-                  className="p-2 text-black rounded w-full"
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.lastName ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 />
+                {errors.lastName && (
+                  <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -311,9 +537,14 @@ const BookNow = () => {
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="p-2 text-black rounded w-full"
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.email ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
               <div>
                 <label className="block mb-1 font-medium text-white">Phone Number *</label>
@@ -323,17 +554,32 @@ const BookNow = () => {
                   placeholder="Mobile Number"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
-                  className="p-2 text-black rounded w-full"
+                  onBlur={handleBlur}
+                  className={`p-2 text-black rounded w-full border-2 ${
+                    errors.phone ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 />
+                {errors.phone && (
+                  <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                )}
               </div>
             </div>
+
+            {errors.general && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <p className="text-sm">{errors.general}</p>
+              </div>
+            )}
 
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-[#00a0db] hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isLoading || formData.services.length === 0}
+                className={`px-6 py-2 rounded-full font-semibold transition ${
+                  isFormValid() && !isLoading
+                    ? 'bg-white text-black hover:bg-[#00a0db] hover:text-white'
+                    : 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                }`}
+                disabled={!isFormValid() || isLoading}
               >
                 {isLoading ? "Submitting..." : "Submit"}
               </button>
@@ -346,3 +592,4 @@ const BookNow = () => {
 };
 
 export default BookNow;
+
