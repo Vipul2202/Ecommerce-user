@@ -58,13 +58,12 @@ const HomePage = () => {
   const carouselData = [
     {
       img: carousel1,
-      subtitle: "Car Washing",
-      title: "Keep your Car Newer",
+      
     },
     {
       img: carousel2,
-      subtitle: "Car Washing",
-      title: "Quality service for you",
+     
+      
     },
     {
       img: carousel3,
@@ -187,31 +186,48 @@ const HomePage = () => {
         )}
       </div>
 
-      {/* About Section */}
-      <section className="py-12 bg-black" id="about">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-          <img
-            src={about}
-            alt="About"
-            draggable="false"
-            className="w-full md:w-1/2 rounded-lg"
-          />
-          <div className="md:w-1/2">
-            <div className="text-[#00a0db] text-3xl font-bold mb-4 border-b-2 border-[#00a0db] pb-1 inline-block">
-              CAR SALOON
-            </div>
-            <h2 className="text-xl font-bold italic mb-4">Perth’s Trusted Car Wash & Auto Detailing Specialists</h2>
-            <p className="text-justify">
-              We are a specialized facility that provides professional cleaning and
-              detailing services for vehicles. We offer a range of services, from basic
-              exterior washes to full interior and exterior detailing. At car saloon, we handwash your car with high-pressure water jets, eco-friendly
-              cleaning solutions to ensure a thorough
-              and gentle cleaning process.
-            </p>
-          </div>
-        </div>
-      </section>
+     {/* About Section */}
+<section className="py-12 bg-black text-white" id="about">
+  {/* Top Heading Section */}
+  <div className="container mx-auto px-4 flex flex-col items-center text-center mb-10">
+  <h1 className="text-[#00a0db] text-4xl font-bold mb-2">CAR SALOON</h1>
+  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4">
+    Where Your Car Gets the Saloon Treatment
+  </h2>
+  {/* Stylish Blue Divider */}
+  <div className="w-24 h-1 bg-[#00a0db] rounded-full"></div>
+</div>
 
+  {/* Content Section */}
+  <div className="container mx-auto px-4 flex flex-col md:flex-row items-start gap-8">
+    {/* Image Section */}
+    <div className="w-full md:w-1/3 flex justify-center">
+      <img
+        src={about}
+        alt="About"
+        draggable="false"
+        className="rounded-lg w-full"
+      />
+    </div>
+
+    {/* Animated Divider */}
+   {/* White Divider */}
+<div className="hidden md:block w-px bg-white mx-4 transition-all duration-500 hover:scale-y-125 origin-center animate-pulse"></div>
+
+    {/* Text Section */}
+    <div className="w-full md:w-2/3">
+      <p className="text-justify leading-relaxed text-lg">
+        At Car Saloon, we believe your car deserves more than a rinse—it deserves respect.
+        Whether you're a passionate car enthusiast, a dealer preparing for sale, or simply someone who loves their ride, our expert team delivers premium car care with precision and pride.
+        <br /><br />
+        For Those Who Love Their Cars. Your car deserves more than a rinse—it deserves respect.
+        At Car Saloon, we offer high-end detailing, ceramic coating, tinting, and paint correction tailored for true enthusiasts.
+        Our friendly professionals go beyond the basics, offering precision dent and paint repair that revives your car’s flawless finish.
+        From underbody washes to full detailing, we’re here to help you drive clean, confident, and proud.
+      </p>
+    </div>
+  </div>
+</section>
       {/* Services Section */}
       <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

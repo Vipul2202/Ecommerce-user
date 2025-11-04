@@ -277,8 +277,9 @@ const BookNow = () => {
 
     try {
       setIsLoading(true);
-      console.log("Booking payload:", formData);
-      const response = await axios.post(`${API}/user/create-booking`, formData);
+      const payload = formData;
+      console.log("Booking payload:", payload);
+      const response = await axios.post(`${API}/user/create-booking`, payload);
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
         setFormData({
@@ -391,7 +392,7 @@ const BookNow = () => {
                 )}
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Vehicle Registration *</label>
+                <label className="block mb-1 font-medium text-white ">Vehicle Registration *</label>
                 <input
                   type="text"
                   name="registration"
@@ -409,6 +410,8 @@ const BookNow = () => {
                   className={`p-2 text-black rounded w-full uppercase placeholder:normal-case border-2 ${
                     errors.registration ? 'border-red-500' : 'border-gray-300'
                   }`}
+                  required
+                  className="p-2 text-black rounded w-full uppercase placeholder:normal-case"
                 />
                 {errors.registration && (
                   <p className="text-red-400 text-sm mt-1">{errors.registration}</p>
@@ -452,6 +455,9 @@ const BookNow = () => {
                   className={`p-2 text-black rounded w-full border-2 ${
                     errors.date ? 'border-red-500' : 'border-gray-300'
                   }`}
+                  required
+                  min={minDate}
+                  className="p-2 text-black rounded w-full"
                 />
                 {errors.date && (
                   <p className="text-red-400 text-sm mt-1">{errors.date}</p>
@@ -471,6 +477,12 @@ const BookNow = () => {
                   <option value="">--Select Time</option>
                   {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
                     const hour = hourOffset + 7; // Start from 07:00
+                  required
+                  className="p-2 text-black rounded w-full"
+                >
+                  <option value="">--Select Time</option>
+                  {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
+                    const hour = hourOffset + 7;
                     return [0, 30].map((minute) => {
                       const hour12 = hour % 12 === 0 ? 12 : hour % 12;
                       const ampm = hour < 12 ? "AM" : "PM";
@@ -521,6 +533,8 @@ const BookNow = () => {
                   className={`p-2 text-black rounded w-full border-2 ${
                     errors.lastName ? 'border-red-500' : 'border-gray-300'
                   }`}
+                  required
+                  className="p-2 text-black rounded w-full"
                 />
                 {errors.lastName && (
                   <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
