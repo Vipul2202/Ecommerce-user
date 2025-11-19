@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import BeforeAfterViewer from "./BeforeAfterGallery";
-import blog from '../../img/blog-2.jpg';
-import img1 from '../../img/blog-1.jpg';
-import img2 from '../../img/blog-3.jpg';
-import img3 from '../../img/single.jpg';
+import blog from '../../img/hr-old.jpg';
+import img1 from '../../img/hr-new.jpg';
+import idold from '../../img/ID-old.jpg';
+import idnew from '../../img/ID-new.jpg';
+import ubold from '../../img/uc-old.jpg';
+import ubnew from '../../img/uc-neww.jpg';
 
 const imagePairs = [
-  { before: blog, after: img1 ,serviceName: 'Full Exterior Wash' },
-  { before: img1, after: img2 ,serviceName: 'Full Exterior Wash' },
-  { before: img2, after: img3 ,serviceName: 'Full Exterior Wash' },
-  { before: img1, after: blog ,serviceName: 'Full Exterior Wash' },
-  { before: img1, after: img3, serviceName: 'Full Exterior Wash' },
-  { before: img3, after: blog,serviceName: 'Full Exterior Wash' },
+  { before: blog, after: img1 ,serviceName: 'Headlight Restoration' },
+  { before: idold, after: idnew ,serviceName: 'Interior Detail' },
+  { before: ubold, after: ubnew ,serviceName: 'Underbody Clean & Paint' },
+ 
 ];
 
 const ITEMS_PER_PAGE = 6;
