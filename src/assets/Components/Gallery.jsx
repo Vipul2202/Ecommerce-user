@@ -14,8 +14,8 @@ import pcnew from '../../img/pcnew.jpg';
 
 const imagePairs = [
   { before: blog, after: img1 ,serviceName: 'Headlight Restoration' },
-  { before: idold, after: idnew ,serviceName: 'Interior Detail' },
-  { before: ubold, after: ubnew ,serviceName: 'Underbody Clean & Paint' },
+  { before: idold, after: idnew ,serviceName: 'Interior Detail ' },
+  { before: ubold, after: ubnew ,serviceName: 'Underbody Clean & Paint Service' },
   { before: wpold, after: wpnew ,serviceName: 'Alloy Wheel Polishing' },
   { before: pcold, after: pcnew ,serviceName: 'Paint Correction' },
 ];
