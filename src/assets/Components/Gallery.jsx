@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import BeforeAfterViewer from "./BeforeAfterGallery";
-import blog from '../../img/hr-old.jpg';
-import img1 from '../../img/hr-new.jpg';
-import idold from '../../img/ID-old.jpg';
-import idnew from '../../img/ID-new.jpg';
+import blog from '../../img/hr-old.JPG';
+import img1 from '../../img/hr-new.JPG';
+import idold from '../../img/ID-old.JPG';
+import idnew from '../../img/ID-new.JPG';
 import ubold from '../../img/uc-old.jpg';
 import ubnew from '../../img/uc-neww.jpg';
 import wpold from '../../img/wheelpolish-old.jpg';
 import wpnew from '../../img/wheelpolish-new.jpg';
 import pcold from '../../img/pcold.jpg';
-import pcnew from '../../img/pcnew.jpg';
 
 
 const imagePairs = [
