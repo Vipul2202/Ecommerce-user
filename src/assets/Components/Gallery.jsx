@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import BeforeAfterViewer from "./BeforeAfterGallery";
-import blog from '../../img/hr-old.JPG';
-import img1 from '../../img/hr-new.JPG';
-import idold from '../../img/ID-old.JPG';
-import idnew from '../../img/ID-new.JPG';
+import hrold from '../../img/hrold.jpg';
+import hrnew from '../../img/hrnew.jpg';
+import idold from '../../img/idold.jpg';
+import idnew from '../../img/idnew.jpg';
 import ubold from '../../img/uc-old.jpg';
 import ubnew from '../../img/uc-neww.jpg';
 import wpold from '../../img/wheelpolish-old.jpg';
 import wpnew from '../../img/wheelpolish-new.jpg';
 import pcold from '../../img/pcold.jpg';
+import pcnew from '../../img/pcnew.jpg';
 
 
 const imagePairs = [
-  { before: blog, after: img1 ,serviceName: 'Headlight Restoration' },
-  { before: idold, after: idnew ,serviceName: 'Interior Detail ' },
+ { before: hrold, after: hrnew ,serviceName: 'Headlight Restoration' },
+ { before: idold, after: idnew ,serviceName: 'Interior Protection' },
   { before: ubold, after: ubnew ,serviceName: 'Underbody Clean & Paint Service' },
   { before: wpold, after: wpnew ,serviceName: 'Alloy Wheel Polishing' },
-  { before: pcold, after: pcnew ,serviceName: 'Paint Correction' },
+  { before: pcold, after: pcnew ,serviceName: 'Stage 3 Paint Protection' },
+  
 ];
 
 const ITEMS_PER_PAGE = 6;
