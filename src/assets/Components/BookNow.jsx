@@ -8,13 +8,13 @@ const BookNow = () => {
   const location = useLocation();
 
   const [formData, setFormData] = useState({
-    carType: "",
+    
     registration: "",
     services: [],
     date: "",
     time: "",
     firstName: "",
-    lastName: "",
+    
     email: "",
     phone: "",
   });
@@ -91,23 +91,15 @@ const BookNow = () => {
     switch (name) {
       case 'firstName':
         if (!value.trim()) {
-          newErrors.firstName = 'First name is required';
+          newErrors.firstName = 'Name is required';
         } else if (value.trim().length < 2) {
-          newErrors.firstName = 'First name must be at least 2 characters';
+          newErrors.firstName = 'Name must be at least 2 characters';
         } else {
           delete newErrors.firstName;
         }
         break;
         
-      case 'lastName':
-        if (!value.trim()) {
-          newErrors.lastName = 'Last name is required';
-        } else if (value.trim().length < 2) {
-          newErrors.lastName = 'Last name must be at least 2 characters';
-        } else {
-          delete newErrors.lastName;
-        }
-        break;
+      
         
       case 'email':
         if (!value.trim()) {
@@ -129,13 +121,7 @@ const BookNow = () => {
         }
         break;
         
-      case 'carType':
-        if (!value) {
-          newErrors.carType = 'Car type is required';
-        } else {
-          delete newErrors.carType;
-        }
-        break;
+      
         
       case 'registration':
         if (!value.trim()) {
@@ -238,7 +224,7 @@ const BookNow = () => {
   };
 
   const isFormValid = () => {
-    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'carType', 'registration', 'date', 'time'];
+    const requiredFields = ['firstName', 'email', 'phone',  'registration', 'date', 'time'];
     const hasRequiredFields = requiredFields.every(field => formData[field] && formData[field].toString().trim());
     const hasServices = formData.services.length > 0;
     const hasNoErrors = Object.keys(errors).length === 0;
@@ -280,16 +266,17 @@ const BookNow = () => {
       const payload = formData;
       console.log("Booking payload:", payload);
       const response = await axios.post(`${API}/user/create-booking`, payload);
+      
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
         setFormData({
-          carType: "",
+          
           registration: "",
           services: [],
           date: "",
           time: "",
           firstName: "",
-          lastName: "",
+         
           email: "",
           phone: "",
         });
@@ -305,10 +292,10 @@ const BookNow = () => {
         error.response.data.errors.forEach(err => {
           // Map backend error messages to field names
           if (err.includes('First name')) backendErrors.firstName = err;
-          else if (err.includes('Last name')) backendErrors.lastName = err;
+         
           else if (err.includes('email')) backendErrors.email = err;
           else if (err.includes('phone')) backendErrors.phone = err;
-          else if (err.includes('Car type')) backendErrors.carType = err;
+          
           else if (err.includes('registration')) backendErrors.registration = err;
           else if (err.includes('Date')) backendErrors.date = err;
           else if (err.includes('Time')) backendErrors.time = err;
@@ -370,26 +357,9 @@ const BookNow = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               <div>
-                <label className="block mb-1 font-medium text-white">Choose Car Type *</label>
-                <select
-                  name="carType"
-                  value={formData.carType}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={`p-2 text-black rounded w-full border-2 ${
-                    errors.carType ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                >
-                  <option value="">--Select--</option>
-                  <option value="sedan">Sedan</option>
-                  <option value="suv">SUV</option>
-                  <option value="hatchback">Hatchback</option>
-                </select>
-                {errors.carType && (
-                  <p className="text-red-400 text-sm mt-1">{errors.carType}</p>
-                )}
+                
               </div>
               <div>
                 <label className="block mb-1 font-medium text-white ">Vehicle Registration *</label>
@@ -494,13 +464,13 @@ const BookNow = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               <div>
-                <label className="block mb-1 font-medium text-white">First Name *</label>
+                <label className="block mb-1 font-medium text-white">Name *</label>
                 <input
                   type="text"
                   name="firstName"
-                  placeholder="First Name"
+                  placeholder="Name"
                   value={formData.firstName}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -513,22 +483,7 @@ const BookNow = () => {
                 )}
               </div>
               <div>
-                <label className="block mb-1 font-medium text-white">Last Name *</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Last Name"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={`p-2 text-black rounded w-full border-2 ${
-                    errors.lastName ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  required
-                />
-                {errors.lastName && (
-                  <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
-                )}
+                
               </div>
             </div>
 
