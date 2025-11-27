@@ -37,18 +37,21 @@ const Footer = () => {
                             info@carsaloon.com.au
                         </p>
                         <div className="flex space-x-3">
+                        
                             <a
-                                href="#"
+                                href="https://www.facebook.com/p/Carsaloon-Perth-100075514525242/"
                                 className="p-2 bg-white rounded-full hover:bg-[#00a0db] transition-colors duration-300"
                             >
                                 <FaFacebookF className="text-black " />
                             </a>
+                            
                             <a
-                                href="#"
+                                href="https://www.instagram.com/carsaloon_perth"
                                 className="p-2 bg-white rounded-full hover:bg-[#00a0db] transition-colors duration-300"
                             >
                                 <FaInstagram className="text-black hover:text-white" />
                             </a>
+                            
                         </div>
                     </div>
 
