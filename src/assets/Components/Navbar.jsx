@@ -828,11 +828,20 @@ Thank you for your order!
             </div>
           </div>
 
-          <button className="lg:hidden focus:outline-none z-50" onClick={() => setIsSidebarOpen(true)}>
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          <button
+  className="lg:hidden flex items-center gap-2 focus:outline-none z-50"
+  onClick={() => setIsSidebarOpen(true)}
+>
+  {/* Left: Hamburger icon */}
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+
+  {/* Right: Services text */}
+  <span className="text-white font-semibold">Services</span>
+</button>
+
+
         </div>
 
         {isSidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-30 z-40"></div>}
