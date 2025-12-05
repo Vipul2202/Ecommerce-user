@@ -32,7 +32,7 @@ const TopBar = () => {
               <div className="leading-tight">
                 <h3 className="text-[#00a0db] font-bold">Opening Hour</h3>
                 <p className="font-bold">Mon – Fri, 7:00AM – 5:00PM</p>
-                <p className="font-bold">Sat– 8:00AM - 4:00PM</p>
+                <p className="font-bold">Sat– 8:00AM - 2:00PM</p>
                 <p className="font-bold">Sun - Appointment Only</p>
               </div>
             </div>
