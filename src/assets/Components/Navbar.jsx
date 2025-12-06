@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { ChevronDown, ShoppingCart, Trash2, Plus, Minus, MapPin, User, Phone, Mail, Download, X } from "lucide-react";
 import { useLocation } from 'react-router-dom';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-
+import OpeningHours from "../../../src/assets/Components/OpeningHours";
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
