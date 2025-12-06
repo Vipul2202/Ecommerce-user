@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { ChevronDown, ShoppingCart, Trash2, Plus, Minus, MapPin, User, Phone, Mail, Download, X } from "lucide-react";
 import { useLocation } from 'react-router-dom';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -883,7 +884,11 @@ Thank you for your order!
               )}
               <button className="text-gray-500 hover:text-black ml-auto" onClick={() => setIsSidebarOpen(false)}>✕</button>
             </div>
-
+              {/* Opening Hours for Mobile */}
+  <div className="bg-[#00a0db] text-white text-sm p-3 rounded-lg">
+    <p className="font-bold">Opening Hours</p>
+    <OpeningHours className="bg-[#00a0db] text-white p-3 rounded-lg" />
+  </div>
             {/* Navigation Items */}
             {navItems.map((item, index) => (
   <Link key={index} to={item.href} onClick={() => {
