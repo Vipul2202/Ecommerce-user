@@ -38,12 +38,21 @@ const ContactUs = () => {
             title: "Email Us",
             details: ["info@carsaloon.com.au"],
         },
-        {
-            id: 4,
-            icon: <MapPin className="w-6 h-6" />,
-            title: "Location",
-            details: ["7 Loton Avenue, Midland, 6056"],
-        },
+       {
+ 
+  id: 4,
+  icon: <MapPin className="w-6 h-6" />, // styled with color
+  title: "Locations",
+  details: [
+    
+     "7 Loton Avenue, Midland, 6056",
+    
+      "4/41 McCoy Street, Myaree, 6154"
+    
+  ],
+  className: "p-4 bg-gray-50 rounded-lg shadow-md space-y-3" // extra styling
+}
+
     ];
 
     const validateForm = () => {

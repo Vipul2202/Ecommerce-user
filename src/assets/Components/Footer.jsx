@@ -26,7 +26,13 @@ const Footer = () => {
                         <h2 className="text-2xl font-semibold mb-4 text-[#00a0db]">Get In Touch</h2>
                         <p className="flex items-center mb-2">
                             <FaMapMarkerAlt className="mr-2" />
-                            7 Loton Avenue, Midland, 6056
+                            7 Loton Avenue, Midland, 6056 
+                           
+                        </p>
+                        <p className="flex items-center mb-2">
+                            <FaMapMarkerAlt className="mr-2" />
+                            4/41 McCoy Street, Myaree, 6154
+                           
                         </p>
                         <p className="flex items-center mb-2">
                             <FaPhoneAlt className="mr-2" />
@@ -103,7 +109,7 @@ const Footer = () => {
                 {/* Footer bottom */}
                 <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm">
                     <p>
-                        &copy; <a href="#" className="text-[#00a0db] hover:underline">© carsaloon.com.au</a>, All Rights Reserved.
+                        &copy; <a href="#" className="text-[#00a0db] hover:underline"> carsaloon.com.au</a>, All Rights Reserved.
                     </p>
                 </div>
             </div>

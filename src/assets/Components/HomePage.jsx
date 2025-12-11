@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 import carousel3 from "../../../src/img/carousel-3.jpg";
+import carousel4 from "../../../src/img/car-4.png";
 import about from "../../../src/img/about.jpg";
 import {
   Car,
@@ -23,25 +24,26 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 const NextArrow = ({ onClick }) => (
   <div
     onClick={onClick}
-    className="hidden md:flex absolute right-6 top-1/2 transform -translate-y-1/2 
-    w-12 h-12 items-center justify-center
-    bg-white/20 backdrop-blur-md rounded-full cursor-pointer z-10 
-    hover:bg-white/30 shadow-lg border border-white/30 transition"
+    className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2
+    w-10 h-10 rounded-full bg-white/30 backdrop-blur-md 
+    flex items-center justify-center cursor-pointer z-20 
+    hover:bg-white/50 transition"
   >
-    <span className="text-white text-lg">▶</span>
+    <span className="text-black text-xl">›</span>
   </div>
 );
 
 const PrevArrow = ({ onClick }) => (
   <div
     onClick={onClick}
-    className="hidden md:flex absolute left-6 top-1/2 transform -translate-y-1/2 
-    w-12 h-12 items-center justify-center
-    bg-white/20 backdrop-blur-md rounded-full cursor-pointer z-10 
-    hover:bg-white/30 shadow-lg border border-white/30 transition"
+    className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2
+    w-10 h-10 rounded-full bg-white/30 backdrop-blur-md 
+    flex items-center justify-center cursor-pointer z-20 
+    hover:bg-white/50 transition"
   >
-    <span className="text-white text-lg">◀</span>
+    <span className="text-black text-xl">‹</span>
   </div>
+
 );
 
 const HomePage = () => {
@@ -57,6 +59,10 @@ const HomePage = () => {
 
   const carouselData = [
     {
+      img: carousel4,
+      
+    },
+    {
       img: carousel1,
       
     },
@@ -65,11 +71,7 @@ const HomePage = () => {
      
       
     },
-    {
-      img: carousel3,
-      subtitle: "Car Washing",
-      title: "Exterior & Interior Washing",
-    },
+   
   ];
 
   const services = [
@@ -124,15 +126,16 @@ const HomePage = () => {
   ];
 
   const settings = {
-    dots: true,
-    infinite: true,
-    speed: 0,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+   dots: true,
+  infinite: true,
+  speed: 800,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  arrows: true,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
   };
 
   // ✅ Updated functions to use ref instead of querySelector
@@ -142,7 +145,7 @@ const HomePage = () => {
   return (
     <div className="text-white mx-auto bg-black">
       {/* Carousel Section */}
-      <div className="overflow-hidden relative max-w-screen-2xl mx-auto px-4">
+      <div className="overflow-hidden relative w-full mx-0 px-0">
         <Slider ref={sliderRef} {...settings}>
           {carouselData.map((item, index) => (
             <div
