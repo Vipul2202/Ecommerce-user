@@ -43,7 +43,7 @@ const Extras = () => {
     {
       title: "Buff & Polish – Restore Your Car’s Showroom Shine!",
       Paragraph:
-        "Cloudy, yellowed, or foggy headlights don’t just make your car look old—they also reduce visibility and compromise safety. Our Headlight Restoration Service restores clarity, improves brightness, and enhances the overall look of your vehicle.",
+        "Our Buff & Polish service is designed to restore your car’s shine and enhance its overall appearance. Using professional-grade compounds and polishing equipment, we gently remove light scratches, swirl marks, oxidation, and dullness from the paint surface.The process smooths the clear coat and revives the original color, leaving your vehicle with a deep, glossy finish.",
       offers: [
         "Paint Correction – Removes swirl marks, scratches",
         "Professional Polishing – Mirror-like gloss",
@@ -79,7 +79,7 @@ const Extras = () => {
     {
       title: "Paintless Dent Removal – Flawless Finish Without the Hassle!",
       Paragraph:
-        "Cloudy, yellowed, or foggy headlights don’t just make your car look old—they also reduce visibility and compromise safety. Our Headlight Restoration Service restores clarity, improves brightness, and enhances the overall look of your vehicle.",
+        "Our Paintless Dent Removal service is a quick and effective way to remove minor dents and dings without repainting. Using specialized tools and techniques, our technicians carefully massage the dented area from behind the panel, restoring it to its original shape while preserving the factory paint. ",
       offers: [
         "No Paint, No Filler – Keeps original paint",
         "Eco-Friendly – No chemicals",
