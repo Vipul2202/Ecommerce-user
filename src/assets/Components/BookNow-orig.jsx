@@ -8,7 +8,7 @@ const BookNow = () => {
   const location = useLocation();
 
   const [formData, setFormData] = useState({
-    location:"",
+    
     registration: "",
     services: [],
     date: "",
@@ -26,7 +26,9 @@ const BookNow = () => {
   const [touched, setTouched] = useState({});
 
   const servicesList = [
-    "Outside Only", "Inside and Outside","Premium Wash","Mini Detail", "Interior Detail","Full Detail","Ceramic Coating", "Interior Protection Pack","Windows Tinting", "Paintless Dent Removal","Stage 3 Paint Correction","Buff and Polish", "Head Light Restoration","Leather Clean/Seats Steam Clean","Dog Hair Removal"
+     "Outside Only", "Mini Detail", "Ceramic Coating", "Paintless Dent Removal", "Head Light Restoration",
+    "Inside and Outside", "Interior Detail", "Interior Protection Pack", "Stage 3 Paint Correction", "Leather Clean/Seats Steam Clean",
+    "Premium Wash", "Full Detail", "Windows Tinting", "Buff and Polish", "Dog Hair Removal"
   ];
 
   useEffect(() => {
@@ -162,22 +164,13 @@ const BookNow = () => {
           }
         }
         break;
-        case 'location':
-          if (!value) {
-            newErrors.location = 'Please select a location';
-          } else {
-            delete newErrors.location;
-          }
-        break;
-
+        
       default:
         break;
     }
     
-   /* setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;*/
     setErrors(newErrors);
-    return !newErrors[name];
+    return Object.keys(newErrors).length === 0; 
   };
 
   const handleChange = (e) => {
@@ -231,7 +224,7 @@ const BookNow = () => {
   };
 
   const isFormValid = () => {
-    const requiredFields = ['location','firstName', 'email', 'phone',  'registration', 'date', 'time'];
+    const requiredFields = ['firstName', 'email', 'phone',  'registration', 'date', 'time'];
     const hasRequiredFields = requiredFields.every(field => formData[field] && formData[field].toString().trim());
     const hasServices = formData.services.length > 0;
     const hasNoErrors = Object.keys(errors).length === 0;
@@ -241,7 +234,7 @@ const BookNow = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
+
     // Mark all fields as touched to show validation errors
     const allTouched = {};
     Object.keys(formData).forEach(key => {
@@ -277,7 +270,7 @@ const BookNow = () => {
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
         setFormData({
-          location:"",
+          
           registration: "",
           services: [],
           date: "",
@@ -299,6 +292,7 @@ const BookNow = () => {
         error.response.data.errors.forEach(err => {
           // Map backend error messages to field names
           if (err.includes('First name')) backendErrors.firstName = err;
+         
           else if (err.includes('email')) backendErrors.email = err;
           else if (err.includes('phone')) backendErrors.phone = err;
           
@@ -367,36 +361,6 @@ const BookNow = () => {
               <div>
                 
               </div>
-              <div>
-              <label className="block mb-2 font-medium text-white">
-                Select Location *
-              </label>
-
-                <div className="flex gap-6">
-                  {["Midland", "Myaree"].map((loc) => (
-                    <label key={loc} className="flex items-center gap-2 cursor-pointer"
-                    >
-                      <input type="radio" name="location" value={loc} checked={formData.location === loc} onChange={handleChange} onBlur={handleBlur} className="accent-[#00a0db]"
-                      />
-                      <span className={
-                          formData.location === loc
-                            ? "text-[#00a0db] font-medium"
-                            : ""
-                        }
-                      >
-                        {loc}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-
-                {errors.location && (
-                  <p className="text-red-400 text-sm mt-1">
-                    {errors.location}
-                  </p>
-                )}
-              </div>
-
               <div>
                 <label className="block mb-1 font-medium text-white ">Vehicle Registration *</label>
                 <input
@@ -578,10 +542,7 @@ const BookNow = () => {
               >
                 {isLoading ? "Submitting..." : "Submit"}
               </button>
-
             </div>
-           
-
           </form>
         </div>
       </div>
