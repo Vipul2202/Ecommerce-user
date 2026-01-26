@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 import carousel3 from "../../../src/img/carousel-3.jpg";
-import carousel4 from "../../../src/img/car-4.png";
+import carousel4 from "../../../src/img/carsaloon.png";
 import about from "../../../src/img/about.jpg";
 import {
   Car,
