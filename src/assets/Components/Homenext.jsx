@@ -116,7 +116,7 @@ const Homenext = () => {
       features: [
         "Include Inside & Out clean",
         "Dash & Console Detailed with all plastic trims",
-        "Eternal Plastic Trims Rejuvenation",
+        "External Plastic Trims Rejuvenation",
         "Hand Wax & Polish",
         "Seats Wiped & Spot Clean"
       ],
