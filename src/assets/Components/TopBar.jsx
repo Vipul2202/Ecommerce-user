@@ -8,7 +8,7 @@ const TopBar = () => {
       {/* Mobile Blue Bar */}
       <div className="bg-[#00a0db] text-white text-center py-1 lg:hidden">
         <p className="text-sm font-bold">
-          Mon–Fri: 7:00AM–5:00PM | Sat: 8:00AM–2:00PM | Sun: Appointment Only
+          Mon–Fri: 7:00AM–5:00PM | Sat: 7:00AM–4:00PM(Only Myaree)| Sun: Appointment Only
         </p>
       </div>
 
