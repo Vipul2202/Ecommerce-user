@@ -58,10 +58,7 @@ const HomePage = () => {
   }, []);
 
   const carouselData = [
-    {
-      img: carousel4,
-      
-    },
+  
     {
       img: carousel1,
       
