@@ -28,8 +28,9 @@
           whyUs: [
             "High-Grade Products – Quality restoration kits",
             "Cost-Effective – Fraction of headlight replacement",
-            "Quick Service – Done while you wait",
+           
             "Guaranteed Satisfaction – Brighter headlights",
+            "We use Gtechniq and Gyeon products only",
           ],
           note: "**We are charging ONLY product application cost. We are not certified by GTechniq or Gyeon.",
           price: "From $499 onwards",
