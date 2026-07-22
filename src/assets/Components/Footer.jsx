@@ -37,6 +37,10 @@ const Footer = () => {
                         <p className="flex items-center mb-2">
                             <FaPhoneAlt className="mr-2" />
                             Midland : 0478 551 640
+                            
+                        </p>
+                         <p className="flex items-center mb-2">
+                            <FaPhoneAlt className="" />
                             Myaree : 0430 170 164 / 0451 288 164
                            
                         </p>
