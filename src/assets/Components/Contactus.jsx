@@ -30,7 +30,7 @@ const ContactUs = () => {
             id: 2,
             icon: <Phone className="w-6 h-6" />,
             title: "Call Us",
-            details: ["0430170164"],
+            details: ["Midland : 0478 551 640", "Myaree : 0430 170 164 / 0451 288 164"],
         },
         {
             id: 3,

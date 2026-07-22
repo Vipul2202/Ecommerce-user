@@ -41,7 +41,8 @@ const TopBar = () => {
               <i className="fa fa-phone-alt text-xl text-[#00a0db]" />
               <div className="leading-tight">
                 <h3 className="font-bold text-[#00a0db]">Call Us</h3>
-                <p className="font-bold">0430 170 164</p>
+                <p className="font-bold">Midland : 0478 551 640</p>
+                <p className="font-bold">Myaree : 0430 170 164 / 0451 288 164</p>
               </div>
             </div>
 
