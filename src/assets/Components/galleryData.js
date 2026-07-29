@@ -1,13 +1,13 @@
-import hrold from '../../img/hrold.JPG';
-import hrnew from '../../img/hrnew.JPG';
-import idold from '../../img/idold.JPG';
-import idnew from '../../img/idnew.JPG';
+import hrold from '../../img/hrold.jpg';
+import hrnew from '../../img/hrnew.jpg';
+import idold from '../../img/idold.jpg';
+import idnew from '../../img/idnew.jpg';
 import ubold from '../../img/uc-old.jpg';
 import ubnew from '../../img/uc-neww.jpg';
 import wpold from '../../img/wheelpolish-old.jpg';
 import wpnew from '../../img/wheelpolish-new.jpg';
-import pcold from '../../img/pcold.JPG';
-import pcnew from '../../img/pcnew.JPG';
+import pcold from '../../img/pcold.jpg';
+import pcnew from '../../img/pcnew.jpg';
 
 // Each category can hold MULTIPLE before/after pairs.
 // To add a new example to an existing category, just add another
