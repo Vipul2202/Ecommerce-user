@@ -19,8 +19,8 @@ const BeforeAfterViewer = ({ beforeImg, afterImg, onClose }) => {
         onMouseMove={handleSliderMove}
         onTouchMove={(e) => handleSliderMove(e.touches[0])}
       >
-        <img src={afterImg} alt="After" className="absolute top-0 left-0 w-full h-full object-contain" />
-        <img src={beforeImg} alt="Before" className="absolute top-0 left-0 w-full h-full object-contain"
+        <img src={afterImg} alt="After" className="absolute top-0 left-0 w-full h-full object-cover" />
+        <img src={beforeImg} alt="Before" className="absolute top-0 left-0 w-full h-full object-cover"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
 
         <div className="absolute top-0 bottom-0 w-1 bg-white z-10" style={{ left: `${sliderPosition}%` }} />
