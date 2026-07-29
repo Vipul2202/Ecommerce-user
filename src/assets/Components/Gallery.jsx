@@ -28,9 +28,7 @@ const Gallery = () => {
               </div>
 
               <div className="absolute bottom-0 left-0 w-full p-3 bg-black/40 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                <p className="text-sm font-semibold">
-                  {category.pairs.length} {category.pairs.length === 1 ? 'example' : 'examples'} — Click to view
-                </p>
+                <p className="text-sm font-semibold">Click to view</p>
               </div>
             </div>
           </Link>
