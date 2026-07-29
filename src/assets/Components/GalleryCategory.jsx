@@ -45,12 +45,6 @@ const GalleryCategory = () => {
                 <p className="text-sm font-semibold">Click to view Before & After</p>
               </div>
             </div>
-
-            {pair.title && (
-              <p className="mt-3 text-center text-lg font-semibold text-gray-700 italic">
-                {pair.title}
-              </p>
-            )}
           </div>
         ))}
       </div>

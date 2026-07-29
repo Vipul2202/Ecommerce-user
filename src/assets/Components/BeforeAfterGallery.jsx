@@ -14,14 +14,14 @@ const BeforeAfterViewer = ({ beforeImg, afterImg, onClose }) => {
   };
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
-      <div className="relative w-full max-w-4xl h-[300px] md:h-[500px] overflow-hidden rounded-xl shadow-lg"
+      <div className="relative w-full max-w-4xl h-[300px] md:h-[500px] overflow-hidden rounded-xl shadow-lg bg-black"
         ref={containerRef}
         onMouseMove={handleSliderMove}
         onTouchMove={(e) => handleSliderMove(e.touches[0])}
       >
-        <img src={afterImg} alt="After" className="absolute top-0 left-0 w-full h-full object-cover" />
-        <img src={beforeImg} alt="Before" className="absolute top-0 left-0 h-full object-cover"
-          style={{ width: `${sliderPosition}%`, clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
+        <img src={afterImg} alt="After" className="absolute top-0 left-0 w-full h-full object-contain" />
+        <img src={beforeImg} alt="Before" className="absolute top-0 left-0 w-full h-full object-contain"
+          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
 
         <div className="absolute top-0 bottom-0 w-1 bg-white z-10" style={{ left: `${sliderPosition}%` }} />
         <div className="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-[#00a0db] border-4 border-white z-20 cursor-ew-resize"
