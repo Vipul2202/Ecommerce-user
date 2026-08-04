@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import carousel1 from "../../../src/img/carousel-1.jpg";
 import carousel2 from "../../../src/img/carousel-2.jpg";
-import carousel3 from "../../../src/img/carousel-3.jpg";
+import carousel4 from "../../../src/img/gtechniq_s.png";
 
 import team from "../../../src/img/team-2.jpg";
 import { Check, ChevronUp } from 'lucide-react';
@@ -18,7 +18,7 @@ const Homenext = () => {
   const navigate = useNavigate();
 
   const carouselData = [
-   
+     { img: carousel4, subtitle: "", title: "" },
     { img: carousel1, subtitle: "", title: "" },
     { img: carousel2, subtitle: "", title: "" },
     { img: carousel3, subtitle: "Car Washing", title: "Exterior & Interior Washing" },
