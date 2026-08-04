@@ -31,8 +31,9 @@
            
             "Guaranteed Satisfaction – Brighter headlights",
             "We use Gtechniq and Gyeon products only",
+            
           ],
-          note: "**We are charging ONLY product application cost. We are not certified by GTechniq or Gyeon.",
+          note: "** We are GTechniq Accredited Professional Applicator **",
           price: "From $499 onwards",
         },
         {
