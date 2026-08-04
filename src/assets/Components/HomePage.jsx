@@ -61,14 +61,17 @@ const HomePage = () => {
   const carouselData = [
      {
       img: carousel4,
+      fit: "contain",
       
     },
     {
       img: carousel1,
+      fit: "contain",
       
     },
     {
       img: carousel2,
+      fit: "cover",
      
       
     },
@@ -157,7 +160,11 @@ const HomePage = () => {
                 src={item.img}
                 alt={`carousel-${index}`}
                 draggable="false"
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${
+                  item.fit === "contain"
+                    ? "object-contain bg-black"
+                    : "object-cover"
+                  }`}
               />
               <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-4">
                 <h3 className="text-xl md:text-2xl font-light text-white">
