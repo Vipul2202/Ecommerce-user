@@ -59,7 +59,10 @@ const HomePage = () => {
   }, []);
 
   const carouselData = [
-  
+     {
+      img: carousel4,
+      
+    },
     {
       img: carousel1,
       
@@ -69,10 +72,7 @@ const HomePage = () => {
      
       
     },
-   {
-      img: carousel4,
-      
-    }
+   
   ];
 
   const services = [
