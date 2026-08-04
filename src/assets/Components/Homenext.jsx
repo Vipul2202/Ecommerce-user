@@ -21,7 +21,7 @@ const Homenext = () => {
      { img: carousel4, subtitle: "", title: "" },
     { img: carousel1, subtitle: "", title: "" },
     { img: carousel2, subtitle: "", title: "" },
-    { img: carousel3, subtitle: "Car Washing", title: "Exterior & Interior Washing" },
+   
   ];
 
   const services = [
