@@ -154,18 +154,15 @@ const HomePage = () => {
           {carouselData.map((item, index) => (
             <div
               key={index}
-              className="relative h-[24rem] md:h-[32rem] lg:h-[36rem]"
-            >
+              className="relative w-full aspect-video md:h-[32rem] lg:h-[36rem]">
+            
               <img
                 src={item.img}
                 alt={`carousel-${index}`}
                 draggable="false"
-                className={`w-full h-full ${
-                  item.fit === "contain"
-                    ? "object-contain bg-black"
-                    : "object-cover"
-                  }`}
+                className="w-full h-full object-contain md:object-cover bg-black md:bg-transparent"
               />
+
               <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-4">
                 <h3 className="text-xl md:text-2xl font-light text-white">
                   {item.subtitle}
