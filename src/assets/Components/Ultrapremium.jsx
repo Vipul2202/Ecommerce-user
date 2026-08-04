@@ -31,9 +31,8 @@
            
             "Guaranteed Satisfaction – Brighter headlights",
             "We use Gtechniq and Gyeon products only",
-            
           ],
-          note: "** We are GTechniq Accredited Professional Applicator **",
+          note: "We are GTechniq Accredited Professional Applicator",
           price: "From $499 onwards",
         },
         {
@@ -155,7 +154,7 @@
                     </ul>
     
                     {card.note && (
-                      <p className="text-xs italic text-black/80 mb-3">
+                      <p className="text-xs font-semibold text-white bg-red-600 inline-block px-3 py-1 rounded-full mb-3">
                         {card.note}
                       </p>
                     )}
