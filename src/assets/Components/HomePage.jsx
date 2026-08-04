@@ -163,7 +163,7 @@ const HomePage = () => {
                 className="w-full h-full object-contain md:object-cover bg-black md:bg-transparent"
               />
 
-              <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-4">
+              <div className="absolute inset-0 bg-black/10 flex flex-col justify-center items-center text-center px-4">
                 <h3 className="text-xl md:text-2xl font-light text-white">
                   {item.subtitle}
                 </h3>
