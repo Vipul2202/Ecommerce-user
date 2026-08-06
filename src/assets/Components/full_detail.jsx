@@ -156,7 +156,7 @@ const FullDetail = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD</h3>
-                  <p className="text-gray-400 italic">From $499</p>
+                  <p className="text-gray-400 italic">From $449</p>
                 </div>
               </div>
             </div>

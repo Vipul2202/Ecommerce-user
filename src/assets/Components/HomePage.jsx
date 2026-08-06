@@ -7,6 +7,10 @@ import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 
 import carousel4 from "../../../src/img/gtechniq_s.png";
+import carousel5 from "../../../src/img/myaree.jpeg";
+import carousel6 from "../../../src/img/interior.jpeg";
+import carousel7 from "../../../src/img/banner.jpeg";
+
 
 import about from "../../../src/img/about.jpg";
 import {
@@ -61,17 +65,31 @@ const HomePage = () => {
   const carouselData = [
      {
       img: carousel4,
-      fit: "contain",
       
     },
     {
       img: carousel1,
-      fit: "contain",
+      
+      
+    },
+    {
+      img: carousel5,
+      
+      
+    },
+    {
+      img: carousel6,
+      
+      
+    },
+    {
+      img: carousel7,
+      
       
     },
     {
       img: carousel2,
-      fit: "cover",
+      
      
       
     },

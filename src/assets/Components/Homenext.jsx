@@ -6,6 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import carousel1 from "../../../src/img/carousel-1.jpg";
 import carousel2 from "../../../src/img/carousel-2.jpg";
 import carousel4 from "../../../src/img/gtechniq_s.png";
+import carousel5 from "../../../src/img/myaree.jpeg";
+import carousel6 from "../../../src/img/interior.jpeg";
+import carousel7 from "../../../src/img/banner.jpeg";
+
 
 import team from "../../../src/img/team-2.jpg";
 import { Check, ChevronUp } from 'lucide-react';
@@ -20,8 +24,10 @@ const Homenext = () => {
   const carouselData = [
      { img: carousel4, subtitle: "", title: "" },
     { img: carousel1, subtitle: "", title: "" },
-    { img: carousel2, subtitle: "", title: "" },
-   
+    { img: carousel5, subtitle: "", title: "" },
+   { img: carousel6, subtitle: "", title: "" },
+   { img: carousel7, subtitle: "", title: "" },
+   { img: carousel2, subtitle: "", title: "" },
   ];
 
   const services = [
