@@ -52,6 +52,12 @@ Interior Detail
                   <li className="flex items-center">
                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Odour Eliminator Treatment
                   </li>
+                  <li className="flex items-center">
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Fabric Seats Steam Clean
+                  </li>
+                  <li className="flex items-center">
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Leather Seats Steam Clean 
+                  </li>
                 
                 </ul>
               </div>
@@ -78,7 +84,20 @@ Interior Detail
                 </p>
                
               </div>
-              
+               <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">FABRIC SEATS STEAM CLEAN AND CONDITION</h2>
+                <p className="text-sm leading-relaxed">
+                  At CarSaloon, we understand that your vehicle’s interior is just as important as the exterior — especially the seats you sit on every day. Our Fabric Seats Steam Clean & Condition service is designed to give your car’s upholstery a deep and thorough refresh, removing grime, bacteria, and stubborn stains while preserving the integrity of the material.
+                </p>
+               
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2">LEATHER SEATS CLEAN AND CONDITION</h2>
+                <p className="text-sm leading-relaxed">
+                  Your vehicle's leather seats are a premium feature — but without proper care, they can crack, fade, or lose their supple feel. At CarSaloon, our Leather Seats Clean & Condition service is designed to restore and protect your leather interior, keeping it looking luxurious and feeling smooth.
+                </p>
+               
+              </div>
              
             </div>
           </div>

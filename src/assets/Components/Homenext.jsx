@@ -156,7 +156,9 @@ const Homenext = () => {
         "Includes Mini Detail",
         "Carpets Steam Clean",
         "Roof Lining Steam Clean",
-        "Odour Eliminated Treatment"
+        "Odour Eliminated Treatment",
+        "Fabric Seats Steam Clean",
+        "Leather Seats Steam Clean",
       ],
       buttonStyle: "white",
       popular: false,
