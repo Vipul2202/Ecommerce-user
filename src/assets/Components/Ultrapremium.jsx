@@ -65,7 +65,7 @@
             "Variety of Shades – Match your style",
             "Legal Compliance – Meets local rules",
           ],
-          price: "From $499 onwards",
+          price: "From $349 onwards",
         },
         {
           title: "STAGE 3 PAINT CORRECTION",
@@ -82,7 +82,7 @@
             "Advanced PDR – Perfect results",
             "Guaranteed – Flawless repairs",
           ],
-          price: "From $399 onwards",
+          price: "From $249 onwards",
         },
       ];
     
