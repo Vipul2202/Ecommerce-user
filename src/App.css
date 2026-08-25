@@ -27,3 +27,24 @@
   color: white;
   border-left: 6px solid #ef4444;
 }
+
+/* Scrolling announcement bar */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 12s linear infinite;
+}
+
+.marquee-track span {
+  padding: 0 2rem;
+  white-space: nowrap;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

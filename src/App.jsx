@@ -59,6 +59,18 @@ function App() {
       <ToastContainer position="top-right" autoClose={3000} />
       <Router>
         <ScrollToTop />
+        <div className="bg-[#052c3d] text-white py-1.5 text-sm font-semibold overflow-hidden">
+          <div className="marquee-track">
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+            <span>Walk-ins welcome — No Booking Required</span>
+          </div>
+        </div>
         <TopBar />
         <Navbar />
 
