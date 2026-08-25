@@ -20,7 +20,6 @@ import Ultrapremium from './assets/Components/Ultrapremium'
 import Detailing from './assets/Components/Detailing'
 import Washing from './assets/Components/Washing'
 import About from './assets/Components/About'
-import Products from './assets/Components/Products'
 import CarDetailPage from './assets/Components/CarDetailPage'
 // import BeforeAfterGallery from './assets/Components/BeforeAfterGallery'
 // import Gallery from './assets/Components/Gallery'
@@ -81,7 +80,6 @@ function App() {
           <Route path="/detailing" element={<Detailing />} />
           <Route path="/washing" element={<Washing />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/car-details/:id" element={<CarDetailPage />} />
           <Route path='gallery' element={<Gallery />} />
           <Route path='gallery/:categorySlug' element={<GalleryCategory />} />

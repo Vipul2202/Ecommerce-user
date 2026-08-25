@@ -20,27 +20,27 @@ const Detailing = () => {
   const service = [
     {
       id: 1,
-      title: "Mini Detail",
-      price: "From $149* onwards",
+      title: "Full Detail",
+      price: "From $175 onwards",
       image: team,
       buttonStyle: "black",
-      route: "/mini_detail" // Navigate to CarRentalPage3
+      route: "/full_detail"
     },
     {
       id: 2,
-      title: "Interior Detail",
-      price: "From $229* onwards",
+      title: "Signature Detail",
+      price: "From $275 onwards",
       image: team,
       buttonStyle: "white",
-      route: "/interior_detail" // Navigate to CarRentalPage4
+      route: "/signature_detail"
     },
     {
       id: 3,
-      title: "Full Detail",
-      price: "From $349* onwards",
+      title: "The Works",
+      price: "From $375 onwards",
       image: team,
       buttonStyle: "black",
-      route: "/full_detail" // Navigate to CarRentalPage5
+      route: "/the_works"
     },
   ];
 
