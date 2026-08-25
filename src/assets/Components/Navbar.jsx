@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import GoogleLogo from "../../img/images.png";
+import siteLogo from "../../img/logo.png";
 import axios from "axios";
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
@@ -11,6 +12,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import OpeningHours from "../../../src/assets/Components/OpeningHours";
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isExtrasOpen, setIsExtrasOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -283,6 +285,15 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("resize", handleResize);
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 90);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -643,10 +654,15 @@ Thank you for your order!
   }, [location.pathname]);
   return (
     <>
-      <nav className="bg-[#00a0db] text-white sticky top-0 z-50 shadow-2xl">
+      <nav className="bg-[#00a0db] text-white sticky top-[32px] z-40 shadow-2xl">
         <div className="max-w-screen-xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="hidden lg:flex justify-between items-center w-full font-medium">
             <div className="flex gap-24 items-center">
+              {isScrolled && (
+                <Link to="/" className="flex items-center" aria-label="Go to Home">
+                  <img src={siteLogo} alt="CarSaloon Logo" draggable="false" className="h-12 w-auto" />
+                </Link>
+              )}
               {navItems.map((item, index) => (
                 <Link to={item.href} key={index} className="hover:text-black">
                   {item.label}

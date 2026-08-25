@@ -16,7 +16,93 @@ import { Check, ChevronUp } from 'lucide-react';
 import team1 from "../../../src/img/team1.jpeg";
 import team2 from "../../../src/img/team2.jpg";
 import team3 from "../../../src/img/team3.jpg";
-import team4 from "../../../src/img/team4.jpeg";
+import paintlessDent from "../../img/paintless_dent_repair.png";
+
+const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
+  <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="text-[#00a0db] text-4xl font-bold tracking-wider uppercase mb-4">
+          {eyebrow}
+        </h2>
+        <h1 className="text-3xl md:text-xl lg:text-4xl font-semibold">
+          {heading}
+        </h1>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse min-w-[640px]">
+          <thead>
+            <tr>
+              <th className="text-left p-4 text-gray-400 text-sm font-semibold border-b border-gray-800">
+                Feature
+              </th>
+              {columns.map((col, i) => (
+                <th
+                  key={i}
+                  className="p-4 text-white text-base font-bold bg-[#00a0db] rounded-t-xl"
+                >
+                  {col.name}
+                </th>
+              ))}
+            </tr>
+            <tr>
+              <td className="p-3 text-gray-400 text-xs border-b border-gray-800">
+                Pricing
+              </td>
+              {columns.map((col, i) => (
+                <td
+                  key={i}
+                  className="text-center bg-[#031824] border-b border-gray-800 p-3"
+                >
+                  <div className="text-gray-200 text-xs leading-relaxed">
+                    Sedan <span className="text-[#00a0db] font-semibold">From ${col.sedan}</span><br />
+                    SUV <span className="text-[#00a0db] font-semibold">From ${col.suv}</span><br />
+                    4WD/7-Seater <span className="text-[#00a0db] font-semibold">From ${col.fourWd}</span>
+                  </div>
+                </td>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, ri) => (
+              <tr key={ri}>
+                <td
+                  className={`p-3 text-gray-200 text-sm ${ri !== rows.length - 1 ? "border-b border-gray-800" : ""
+                    }`}
+                >
+                  {row.label}
+                </td>
+                {row.tiers.map((included, ci) => (
+                  <td
+                    key={ci}
+                    className={`text-center ${ri !== rows.length - 1 ? "border-b border-gray-800" : ""
+                      } ${included ? "bg-[#00a0db]/10 text-[#00a0db]" : "text-gray-600"}`}
+                  >
+                    {included ? <Check className="w-4 h-4 mx-auto" /> : "—"}
+                  </td>
+                ))}
+              </tr>
+            ))}
+            <tr>
+              <td className="p-4"></td>
+              {columns.map((col, i) => (
+                <td key={i} className="text-center p-4">
+                  <button
+                    onClick={() => navigate(col.route)}
+                    className="bg-[#00a0db] text-white rounded-full px-5 py-2 text-xs font-semibold hover:bg-[#0088b8] hover:scale-110 transform transition-all duration-300"
+                  >
+                    Learn More
+                  </button>
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+);
 
 const Homenext = () => {
   const navigate = useNavigate();
@@ -68,9 +154,9 @@ const Homenext = () => {
     },
     {
       id: 4,
-      title: "Stage 3 Paint Correction",
-      price: "From $249* onwards",
-      image: team4,
+      title: "Paintless Dent Removal",
+      price: "From $199* onwards",
+      image: paintlessDent,
       buttonStyle: "black",
       route: "/ultrapremium", // Add specific route
     },
@@ -86,105 +172,46 @@ const Homenext = () => {
     autoplay: true,
   };
 
-  const plans = [
-    {
-      id: 1,
-      name: "OUTSIDE ONLY",
-      price: "35",
-      features: [
-        "Wash & Chamois Dry",
-        "Exterior Windows",
-        "Wheels Clean & Tyres Gloss",
-        "Spray-On Wax"
-      ],
-      buttonStyle: "black",
-      popular: false,
-      route: "/outside" // Navigate to CarRentalPage
-    },
-    {
-      id: 2,
-      name: "INSIDE & OUTSIDE",
-      price: "55",
-      features: [
-        "Includes Outside Only",
-        "Interior Wiped & Dusted",
-        "Interior & Boot Vacuumed",
-        "Windows Clean Inside & Out"
-      ],
-      buttonStyle: "white",
-      popular: false,
-      route: "/inside_outside" // Navigate to CarRentalPage1
-    },
-    {
-      id: 3,
-      name: "PREMIUM WASH",
-      price: "95",
-      features: [
-        "Include Inside & Out clean",
-        "Dash & Console Detailed with all plastic trims",
-        "External Plastic Trims Rejuvenation",
-        "Hand Wax & Polish",
-        "Seats Wiped & Spot Clean"
-      ],
-      buttonStyle: "black",
-      popular: false,
-      route: "/premium_wash" // Navigate to CarRentalPage2
-    }
+  const washingColumns = [
+    { name: "OUTSIDE ONLY", route: "/outside", sedan: 35, suv: 45, fourWd: 55 },
+    { name: "INSIDE & OUTSIDE", route: "/inside_outside", sedan: 55, suv: 65, fourWd: 75 },
+    { name: "PREMIUM WASH", route: "/premium_wash", sedan: 95, suv: 105, fourWd: 115 },
   ];
 
-  // Duplicate plans for second section with different routes
-  const plansSecondSection = [
-    {
-      id: 4,
-      name: "MINI DETAIL",
-      price: "149",
-      features: [
-        "Includes Premium Wash",
-        "Clay Block Treatment(Paint Cleansing)",
-        "Interior Trims Detailed & Protection",
-        "Floor Mats Steam Clean"
-      ],
-      buttonStyle: "black",
-      popular: false,
-      route: "/mini_detail" // Navigate to CarRentalPage3
-    },
-    {
-      id: 5,
-      name: "INTERIOR DETAIL",
-      price: "229",
-      features: [
-        "Includes Mini Detail",
-        "Carpets Steam Clean",
-        "Roof Lining Steam Clean",
-        "Odour Eliminated Treatment",
-        "Fabric Seats Steam Clean",
-        "Leather Seats Steam Clean",
-      ],
-      buttonStyle: "white",
-      popular: false,
-      route: "/interior_detail" // Navigate to CarRentalPage4
-    },
-    {
-      id: 6,
-      name: "FULL DETAIL",
-      price: "349",
-      features: [
-        "Include Interior Detail",
-        "Engine Bay Degreased",
-        "Buff & Polish(Correct Minor Scratches)",
-        "Fabric Seats Steam Clean",
-        "Leather Seats Steam Clean"
-      ],
-      buttonStyle: "black",
-      popular: true,
-      route: "/full_detail" // Navigate to CarRentalPage5
-    }
+  const washingRows = [
+    { label: "Wash & Chamois Dry", tiers: [true, true, true] },
+    { label: "Exterior Windows Clean", tiers: [true, true, true] },
+    { label: "Wheels Clean & Tyres Gloss", tiers: [true, true, true] },
+    { label: "Spray-On Wax", tiers: [true, true, true] },
+    { label: "Interior Wiped & Dusted", tiers: [false, true, true] },
+    { label: "Interior & Boot Vacuumed", tiers: [false, true, true] },
+    { label: "Windows Clean Inside & Out", tiers: [false, true, true] },
+    { label: "Dash & Console Detailed (all plastic trims)", tiers: [false, false, true] },
+    { label: "External Plastic Trims Rejuvenation", tiers: [false, false, true] },
+    { label: "Hand Wax & Polish", tiers: [false, false, true] },
+    { label: "Seats Wiped & Spot Clean", tiers: [false, false, true] },
   ];
 
-  // Function to handle navigation to booking page with selected service
-  const handleBookNow = (route) => {
-    navigate(route);
-  };
+  const detailingColumns = [
+    { name: "FULL DETAIL", route: "/full_detail", sedan: 175, suv: 195, fourWd: 225 },
+    { name: "SIGNATURE DETAIL", route: "/signature_detail", sedan: 275, suv: 295, fourWd: 325 },
+    { name: "THE WORKS", route: "/the_works", sedan: 375, suv: 395, fourWd: 425 },
+  ];
+
+  const detailingRows = [
+    { label: "Outside Wash and Wax", tiers: [true, true, true] },
+    { label: "Windows Cleaning", tiers: [true, true, true] },
+    { label: "Interior Trims Detailed & Condition", tiers: [true, true, true] },
+    { label: "Fabric Seats Steam Clean", tiers: [true, true, true] },
+    { label: "Carpet Steam Clean", tiers: [true, true, true] },
+    { label: "Roof Lining Clean", tiers: [true, true, true] },
+    { label: "Leather Seats Clean and Condition", tiers: [true, true, true] },
+    { label: "Head Light Restoration", tiers: [false, true, true] },
+    { label: "Engine Bay Degrease", tiers: [false, true, true] },
+    { label: "Hand Polish", tiers: [false, true, true] },
+    { label: "Buff and Polish", tiers: [false, false, true] },
+    { label: "Underbody Clean (Using Ramp)", tiers: [false, false, true] },
+  ];
 
   // Function to handle "Learn More" navigation for premium services
   const handleLearnMore = (route) => {
@@ -245,7 +272,7 @@ const Homenext = () => {
 
           <div className="text-center mt-16">
             <button
-              onClick={() => navigate('/book-now')}
+              onClick={() => navigate('/ultrapremium')}
               className="bg-[#00a0db] hover:bg-[#00a0db] text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Explore All Services
@@ -254,157 +281,21 @@ const Homenext = () => {
         </div>
       </div>
 
-      {/* First Plans Section */}
-      <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[#00a0db] text-4xl font-bold tracking-wider uppercase mb-4">
-              WASHING SERVICES
-            </h2>
-            <h1 className="text-3xl md:text-xl lg:text-4xl font-semibold">
-              Choose Your Plan
-            </h1>
-          </div>
+      <ComparisonTable
+        eyebrow="Washing Services"
+        heading="Compare Your Plan"
+        columns={washingColumns}
+        rows={washingRows}
+        navigate={navigate}
+      />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {plans.map((plan) => (
-              <div
-                key={plan.id}
-                className={`relative bg-gradient-to-b from-[#00a0db] to-[#00a0db] rounded-2xl p-8 lg:p-10 flex flex-col transform hover:scale-105 transition-all duration-300 ${plan.popular
-                  ? 'min-h-[750px] lg:min-h-[660px] ring-4 ring-white/20 lg:scale-105 hover:scale-110'
-                  : 'min-h-[600px] lg:min-h-[650px]'
-                  }`}
-              >
-                {/* Popular badge */}
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-white text-[#00a0db] px-4 py-1 rounded-full text-xs font-bold">
-                      MOST POPULAR
-                    </div>
-                  </div>
-                )}
-
-                {/* Header */}
-                <div className="text-center mb-8">
-                  <h3 className="text-white font-bold text-2xl mb-4 tracking-wide">
-                    {plan.name}
-                  </h3>
-                  <div className="text-black text-5xl font-bold">
-                    ${plan.price}
-                    <span className="text-2xl">*</span>
-                  </div>
-                  <p className="text-white/90 text-sm italic mt-2">
-                    *price depends on the model
-                  </p>
-                </div>
-
-                {/* Features */}
-                <div className="space-y-4 mb-6 flex-grow">
-                  {plan.features.map((feature, i) => (
-                    <div key={i} className="flex items-start space-x-3">
-                      <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-[#00a0db]" />
-                      </div>
-                      <span className="text-white text-md leading-relaxed">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Button */}
-                <div className="text-center">
-                  <button
-                    onClick={() => handleBookNow(plan.route)}
-                    className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${plan.buttonStyle === "black"
-                      ? "bg-black text-white hover:bg-gray-800"
-                      : "bg-white text-black hover:bg-gray-200"
-                      }`}
-                  >
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Second Plans Section */}
-      <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[#00a0db] text-4xl font-bold tracking-wider uppercase mb-4">
-              DETAILING SERVICES
-            </h2>
-            <h1 className="text-3xl md:text-xl lg:text-4xl font-semibold">
-              Choose Your Plan
-            </h1>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {plansSecondSection.map((plan) => (
-              <div
-                key={plan.id}
-                className={`relative bg-gradient-to-b from-[#00a0db] to-[#00a0db] rounded-2xl p-8 lg:p-10 flex flex-col transform hover:scale-105 transition-all duration-300 ${plan.popular
-                  ? 'min-h-[750px] lg:min-h-[660px] ring-4 ring-white/20 lg:scale-105 hover:scale-110'
-                  : 'min-h-[600px] lg:min-h-[650px]'
-                  }`}
-              >
-                {/* Popular badge */}
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-white text-[#00a0db] px-4 py-1 rounded-full text-xs font-bold">
-                      MOST POPULAR
-                    </div>
-                  </div>
-                )}
-
-                {/* Header */}
-                <div className="text-center mb-8">
-                  <h3 className="text-white font-bold text-2xl mb-4 tracking-wide">
-                    {plan.name}
-                  </h3>
-                  <div className="text-black text-5xl font-bold">
-                    ${plan.price}
-                    <span className="text-2xl">*</span>
-                  </div>
-                  <p className="text-white/90 text-sm italic mt-2">
-                    *price depends on the model
-                  </p>
-                </div>
-
-                {/* Features */}
-                <div className="space-y-4 mb-6 flex-grow">
-                  {plan.features.map((feature, i) => (
-                    <div key={i} className="flex items-start space-x-3">
-                      <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-[#00a0db]" />
-                      </div>
-                      <span className="text-white text-md leading-relaxed">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Button */}
-                <div className="text-center">
-                  <button
-                    onClick={() => handleBookNow(plan.route)}
-                    className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${plan.buttonStyle === "black"
-                      ? "bg-black text-white hover:bg-gray-800"
-                      : "bg-white text-black hover:bg-gray-200"
-                      }`}
-                  >
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <ComparisonTable
+        eyebrow="Detailing Services"
+        heading="Compare Your Plan"
+        columns={detailingColumns}
+        rows={detailingRows}
+        navigate={navigate}
+      />
     </div>
   );
 };

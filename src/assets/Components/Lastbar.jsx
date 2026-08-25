@@ -2,13 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Replace these imports with your actual image imports
-import team1 from "../../img/paintless_dent_repair.png";
 import team2 from "../../img/buff_and_polish.jpg";
 // import team3 from "../..img/team3.jpg";
 import team3 from "../../img/headlight_restoration.jpg";
 // import team4 from "../..img/team4.jpeg";
 import team4 from "../../img/dog_hair_removal.jpg";
 // import team4 from "../../img/team4.png";
+import stage3Paint from "../../../src/img/team4.jpeg";
 
 const Lastbar = () => {
   const navigate = useNavigate();
@@ -16,15 +16,15 @@ const Lastbar = () => {
   const service = [
     {
       id: 1,
-      title: "Paintless Dent Removal",
-      price: "From $199* onwards",
-      image: team1,
+      title: "Stage 3 Paint Correction",
+      price: "From $299* onwards",
+      image: stage3Paint,
       buttonStyle: "black",
     },
     {
       id: 2,
       title: "Buff And Polish",
-      price: "From $179* onwards",
+      price: "From $149* onwards",
       image: team2,
       buttonStyle: "white",
     },

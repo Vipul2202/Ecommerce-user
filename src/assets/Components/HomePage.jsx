@@ -116,22 +116,22 @@ const HomePage = () => {
       link: "/premium_wash"
     },
     {
-      icon: <Sparkles className="w-12 h-12" />,
-      title: "Mini Detail",
-      description: "Quick detailing service",
-      link: "/mini_detail"
-    },
-    {
-      icon: <Home className="w-12 h-12" />,
-      title: "Interior Detail",
-      description: "Deep interior cleaning",
-      link: "/interior_detail"
-    },
-    {
       icon: <Settings className="w-12 h-12" />,
       title: "Full Detail",
       description: "Complete detailing package",
       link: "/full_detail"
+    },
+    {
+      icon: <Sparkles className="w-12 h-12" />,
+      title: "Signature Detail",
+      description: "Restoration-focused detailing",
+      link: "/signature_detail"
+    },
+    {
+      icon: <Home className="w-12 h-12" />,
+      title: "The Works",
+      description: "Best for offroad and pre-sale",
+      link: "/the_works"
     },
     {
       icon: <Wrench className="w-12 h-12" />,
