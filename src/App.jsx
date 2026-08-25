@@ -37,6 +37,7 @@ import MiniDetail from './assets/Components/mini_detail';
 import InteriorDetail from './assets/Components/interior_detail';
 import FullDetail from './assets/Components/full_detail';
 import SignatureDetail from './assets/Components/signature_detail';
+import TheWorks from './assets/Components/the_works';
 
 import Terms from './assets/Components/Terms';
 import Faqs from './assets/Components/Faqs';
@@ -95,6 +96,7 @@ function App() {
          <Route path="/interior_detail" element={<InteriorDetail />} />
          <Route path="/full_detail" element={<FullDetail />} />
          <Route path="/signature_detail" element={<SignatureDetail />} />
+         <Route path="/the_works" element={<TheWorks />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/privacy" element={<Privacy />} />

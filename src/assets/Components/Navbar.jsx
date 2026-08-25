@@ -71,9 +71,8 @@ const Navbar = () => {
     { label: "Inside & Out", href: "/inside_outside" },
     { label: "Premium Wash", href: "/premium_wash" },
     { label: "Full Detail", href: "/full_detail" },
-    { label: "Full Detail Plus", href: null },
     { label: "Signature Detail", href: "/signature_detail" },
-    { label: "Signature Detail Plus", href: null },
+    { label: "The Works", href: "/the_works" },
     { label: "Ultra Premium Finishes", href: "/ultrapremium" },
   ];
 
