@@ -42,7 +42,7 @@ const SignatureDetail = () => {
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Full Detail Plus
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Full Detail
                   </li>
                   <li className="flex items-center">
                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Head Light Restoration

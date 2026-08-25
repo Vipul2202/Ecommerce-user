@@ -57,7 +57,7 @@ Outside Only
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">Exterior Wash:</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">Exterior Wash:</h2>
                 <p className="text-sm leading-relaxed">
                   Our exterior wash thoroughly eliminates dirt and grime from various 
                   surfaces, including paint, glass, plastic trims, wheels, chrome, 
@@ -73,7 +73,7 @@ Outside Only
 
               {/* Our Products */}
               <div>
-                <h2 className="text-lg font-semibold mb-2">Our Products:</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">Our Products:</h2>
                 <p className="text-sm leading-relaxed">
                   We pride ourselves on using safe and effective chemicals. We 
                   exclusively utilize the latest tried, tested, and approved products, 

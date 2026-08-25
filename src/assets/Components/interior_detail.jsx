@@ -64,35 +64,35 @@ Interior Detail
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">CARPETS STEAM CLEAN</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">CARPETS STEAM CLEAN</h2>
                 <p className="text-sm leading-relaxed">
                   Our steam cleaning service thoroughly cleans your vehicle's carpets, effectively lifting dirt, stains, and odors while sanitizing the fibers. This deep-cleaning process restores the carpets to a fresh, pristine condition, leaving them spotless, sanitized, and looking as good as new.
                 </p>
                
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">ROOF LINING STEAM CLEAN</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">ROOF LINING STEAM CLEAN</h2>
                 <p className="text-sm leading-relaxed">
                  We delicately steam clean your vehicle’s roof lining, lifting away dirt, stains, and odors while preserving the fabric's integrity. This rejuvenating process restores your roof lining to a fresh, pristine state, giving your car’s interior an enhanced, renewed look and feel.
                 </p>
                
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">ODOUR ELIMINATOR TREATMENT</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">ODOUR ELIMINATOR TREATMENT</h2>
                 <p className="text-sm leading-relaxed">
                   Say goodbye to unpleasant smells with our powerful Odour Eliminator Treatment. We go beyond masking odors, effectively neutralizing stubborn scents like smoke, food, or pet odors at their source. Using advanced technology, we refresh your vehicle's interior, leaving it with a clean, inviting fragrance that lasts.
                 </p>
                
               </div>
                <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">FABRIC SEATS STEAM CLEAN AND CONDITION</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">FABRIC SEATS STEAM CLEAN AND CONDITION</h2>
                 <p className="text-sm leading-relaxed">
                   At CarSaloon, we understand that your vehicle’s interior is just as important as the exterior — especially the seats you sit on every day. Our Fabric Seats Steam Clean & Condition service is designed to give your car’s upholstery a deep and thorough refresh, removing grime, bacteria, and stubborn stains while preserving the integrity of the material.
                 </p>
                
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">LEATHER SEATS CLEAN AND CONDITION</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">LEATHER SEATS CLEAN AND CONDITION</h2>
                 <p className="text-sm leading-relaxed">
                   Your vehicle's leather seats are a premium feature — but without proper care, they can crack, fade, or lose their supple feel. At CarSaloon, our Leather Seats Clean & Condition service is designed to restore and protect your leather interior, keeping it looking luxurious and feeling smooth.
                 </p>

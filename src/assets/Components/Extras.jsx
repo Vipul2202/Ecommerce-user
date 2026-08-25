@@ -22,6 +22,42 @@ const Extras = () => {
   };
   const serviceCards = [
     {
+      title: "Stage 3 Paint Correction – Restore That Showroom Finish!",
+      Paragraph:
+        "Our Stage 3 Paint Correction tackles swirl marks, surface scratches, and dullness without repainting. Using multi-stage machine polishing, we cut back imperfections in the clear coat and bring the paint back to a deep, mirror-like finish.",
+      offers: [
+        "No Paint, No Filler – Keeps original paint",
+        "Eco-Friendly – No chemicals",
+        "Cost Effective – Avoid full repaint",
+        "Faster – Ideal for minor and surface scratches",
+      ],
+      whyUs: [
+        "Expert Technicians – Precision tools",
+        "Same-Day Service – Back on road quick",
+        "Advanced PDR – Perfect results",
+        "Guaranteed – Flawless repairs",
+      ],
+      price: "From $299 onwards",
+      footer: "Bring Back That Showroom Shine!",
+    },
+    {
+      title: "Buff & Polish – Restore Your Car’s Showroom Shine!",
+      Paragraph:
+        "Our Buff & Polish service is designed to restore your car’s shine and enhance its overall appearance. Using professional-grade compounds and polishing equipment, we gently remove light scratches, swirl marks, oxidation, and dullness from the paint surface.The process smooths the clear coat and revives the original color, leaving your vehicle with a deep, glossy finish.",
+      offers: [
+        "Paint Correction – Removes swirl marks, scratches",
+        "Professional Polishing – Mirror-like gloss",
+        "Protective Wax Coating – Lasting protection",
+      ],
+      whyUs: [
+        "Experienced Technicians – Skilled pros",
+        "Tailored Services – Based on your car’s condition",
+        "Long-Lasting Results – Shiny longer with premium",
+      ],
+      price: "From $149 onwards",
+      footer: "Give Your Car the Glow It Deserves!",
+    },
+    {
       title: "Headlight Restoration – See & Be Seen Clearly!",
       Paragraph:
         "Cloudy, yellowed, or foggy headlights don’t just make your car look old—they also reduce visibility and compromise safety. Our Headlight Restoration Service restores clarity, improves brightness, and enhances the overall look of your vehicle.",
@@ -39,23 +75,6 @@ const Extras = () => {
       ],
       price: "From $50 onwards",
       footer: "Drive Safer with Brighter, Clearer Headlights!",
-    },
-    {
-      title: "Buff & Polish – Restore Your Car’s Showroom Shine!",
-      Paragraph:
-        "Our Buff & Polish service is designed to restore your car’s shine and enhance its overall appearance. Using professional-grade compounds and polishing equipment, we gently remove light scratches, swirl marks, oxidation, and dullness from the paint surface.The process smooths the clear coat and revives the original color, leaving your vehicle with a deep, glossy finish.",
-      offers: [
-        "Paint Correction – Removes swirl marks, scratches",
-        "Professional Polishing – Mirror-like gloss",
-        "Protective Wax Coating – Lasting protection",
-      ],
-      whyUs: [
-        "Experienced Technicians – Skilled pros",
-        "Tailored Services – Based on your car’s condition",
-        "Long-Lasting Results – Shiny longer with premium",
-      ],
-      price: "From $179 onwards",
-      footer: "Give Your Car the Glow It Deserves!",
     },
     {
       title: "Leather Clean & Steam Clean – Professional Leather Care You Can Trust",
@@ -77,25 +96,6 @@ const Extras = () => {
       footer: "Get the Perfect Service for Your Car Today!",
     },
     {
-      title: "Paintless Dent Removal – Flawless Finish Without the Hassle!",
-      Paragraph:
-        "Our Paintless Dent Removal service is a quick and effective way to remove minor dents and dings without repainting. Using specialized tools and techniques, our technicians carefully massage the dented area from behind the panel, restoring it to its original shape while preserving the factory paint. ",
-      offers: [
-        "No Paint, No Filler – Keeps original paint",
-        "Eco-Friendly – No chemicals",
-        "Cost Effective – Avoid full repaint",
-        "Faster – Ideal for small dents",
-      ],
-      whyUs: [
-        "Expert Technicians – Precision tools",
-        "Same-Day Service – Back on road quick",
-        "Advanced PDR – Perfect results",
-        "Guaranteed – Flawless repairs",
-      ],
-      price: "From $199 onwards",
-      footer: "Say Goodbye to Dents – The Smart Way!",
-    },
-    {
       title: "Dog Hair Removal – Say Goodbye to Fur!",
       Paragraph:
         "Our Dog Hair Removal service is designed to eliminate stubborn pet hair from every nook and cranny, leaving your space fresh, clean, and allergen-free.Using specialized tools and techniques, we loosen and lift even the most embedded hairs from fabric, leather, and hard-to-reach areas. ",
@@ -115,25 +115,25 @@ const Extras = () => {
       footer: "Say Goodbye to Fur – Enjoy a Hair-Free Ride!",
     },
     {
-      title: "Underbody Clean & Paint – Protect Your Vehicle from Rust and Corrosion",
+      title: "Bull Bar Polish – Bring Back That Factory Shine!",
       Paragraph:
-        "Our Underbody Clean & Paint service ensures your vehicle stays protected, extending its life and maintaining its value.We start with a thorough underbody wash, removing accumulated grime and salt buildup. Then, we apply a high-quality protective coating or paint, sealing the metal against moisture and corrosion. The result is an underbody that is clean, protected, and ready to withstand harsh conditions. ",
+        "Bull bars take the brunt of dust, grime, and road debris, leaving them dull and scratched over time. Our Bull Bar Polish service cuts back oxidation and surface marks, restoring a clean, glossy finish that matches the rest of your vehicle.",
       offers: [
-        "Complete underbody cleaning to remove dirt, mud, and salt",
-        "Rust prevention and corrosion protection",
-        "Long-lasting protection for all vehicle types",
-        "Enhanced vehicle durability",
+        "Removes oxidation, scuffs, and surface scratches",
+        "Restores shine on alloy and steel bull bars",
+        "Protective finish to slow future dulling",
+        "Careful hand polishing around fittings and lights",
       ],
       whyUs: [
-        "Expert Care – We specialize in underbody protection for all vehicles.",
-        "Experienced Technicians – Skilled in cleaning, painting, and rust prevention.",
-        "Premium Materials – High-quality paints and coatings for lasting results.",
-        "Customer Satisfaction Guarantee – We protect your investment with precision and care.",
+        "Experienced Technicians – Skilled pros",
+        "Tailored Approach – Suited to your bull bar's finish",
+        "Long-Lasting Results – Shine that holds up on the road",
+        "Attention to Detail – Every edge and fitting covered",
       ],
-      price: "From $249 onwards",
-      footer: "Say Goodbye to Rust – Protect Your Vehicle Today!",
+      price: "From $149 onwards",
+      footer: "Give Your Bull Bar the Finish It Deserves!",
     },
-    
+
   ];
 
   return (

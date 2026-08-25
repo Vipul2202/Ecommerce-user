@@ -68,13 +68,12 @@
           price: "From $349 onwards",
         },
         {
-          title: "STAGE 3 PAINT CORRECTION",
-    
+          title: "PAINTLESS DENT REMOVAL",
           offers: [
             "No Paint, No Filler – Keeps original paint",
             "Eco-Friendly – No chemicals",
             "Cost Effective – Avoid full repaint",
-            "Faster – Ideal for minor and surface scratches",
+            "Faster – Ideal for small dents",
           ],
           whyUs: [
             "Expert Technicians – Precision tools",
@@ -82,7 +81,7 @@
             "Advanced PDR – Perfect results",
             "Guaranteed – Flawless repairs",
           ],
-          price: "From $249 onwards",
+          price: "From $199 onwards",
         },
       ];
     

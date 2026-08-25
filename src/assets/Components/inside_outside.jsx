@@ -58,7 +58,7 @@ const InsideOutside = () => {
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">The Details:</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">The Details:</h2>
                 <p className="text-sm leading-relaxed">
                   Our Inside-Outside only Service effectively removes dirt and grime from your seats, dashboard, console, and carpets. We also provide vacuuming of the floors, window cleaning, and surface wiping to leave your car's interior immaculate.
                 </p>
@@ -67,19 +67,19 @@ const InsideOutside = () => {
 
               {/* Our Products */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">INTERIOR WIPED & DUSTED</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">INTERIOR WIPED & DUSTED</h2>
                 <p className="text-sm leading-relaxed">
                   Your dashboard, centre console, steering wheel, gear shift, handbrake, door trims, and leather or vinyl seats are carefully wiped and dusted with a damp cloth. Cup holders are cleaned, and vents and instruments are dusted using a specialized brush.
                 </p>
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">INTERIOR & BOOT VACUUMED</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">INTERIOR & BOOT VACUUMED</h2>
                 <p className="text-sm leading-relaxed">
                   We vacuum your seats, including every crease in fabric or leather, along with carpets, mats, and the boot—making sure to reach under the seats. Door pockets and ashtrays are also thoroughly cleaned. To ensure a complete clean, please empty your boot before our service.
                 </p>
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">WINDOWS CLEANED INSIDE & OUT</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">WINDOWS CLEANED INSIDE & OUT</h2>
                 <p className="text-sm leading-relaxed">
                   We thoroughly clean all windows inside and out, removing dirt, smudges, and streaks for a crystal-clear finish and improved visibility.
                 </p>

@@ -60,25 +60,23 @@ const PremiumWash = () => {
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">DASH & CONSOLE DETAILED (INCLUDING ALL PLASTIC TRIMS)</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">DASH & CONSOLE DETAILED (INCLUDING ALL PLASTIC TRIMS)</h2>
                 <p className="text-sm leading-relaxed">
                   We meticulously clean and detail your dashboard and console, ensuring all plastic trims are free from dust, dirt, and buildup. Every surface, including buttons, vents, and hard-to-reach areas, is carefully wiped and restored for a fresh, well-maintained look.
                 </p>
 
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">EXTERNAL PLASTIC TRIMS REJUVENATION</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">EXTERNAL PLASTIC TRIMS REJUVENATION</h2>
                 <p className="text-sm leading-relaxed">
                   We revitalize the external plastic trims on your vehicle, restoring their original color and luster. Our treatment protects against UV damage, prevents fading, and helps maintain the trims' durability, leaving them looking refreshed and well-preserved.
                 </p>
 
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">HAND WAX AND POLISH</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">HAND WAX AND POLISH</h2>
                 <p className="text-sm leading-relaxed">
-                  our Hand Wax & Polish service is designed to give your vehicle that flawless, showroom finish while adding a protective shield against the elements. Unlike machine polishing, our expert team applies wax by hand for precision, care, and attention to every curve and contour of your car.
-
-                  We use premium-grade carnauba and synthetic waxes that not only enhance your vehicle’s paint depth and gloss but also create a smooth, water-repellent layer that protects against UV rays, road grime, and minor scratches. The gentle polishing process removes light oxidation, swirl marks, and surface imperfections, leaving your paintwork silky-smooth and brilliantly reflective.
+                  Our Hand Wax & Polish service gives your vehicle a flawless, showroom finish while shielding it from the elements. Applied by hand for precision, our premium-grade wax enhances gloss and removes light oxidation and swirl marks for a silky-smooth, reflective finish.
                 </p>
 
               </div>

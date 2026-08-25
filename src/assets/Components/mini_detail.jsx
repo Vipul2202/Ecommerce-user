@@ -57,21 +57,21 @@ Mini Detail
 
               {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">CLAY BLOCK TREATMENT (PAINT CLEANSING)</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">CLAY BLOCK TREATMENT (PAINT CLEANSING)</h2>
                 <p className="text-sm leading-relaxed">
                   Using a clay bar, we remove built-up dirt, grime, and pollutants from your vehicle's paint, which can dull its appearance over time. This process smooths the surface, restoring its shine and preparing it for waxing or sealing. The outcome is a cleaner, smoother finish that helps protect and preserve the paint’s quality.
                 </p>
                
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">INTERIOR TRIMS DETAILED & PROTECTED</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">INTERIOR TRIMS DETAILED & PROTECTED</h2>
                 <p className="text-sm leading-relaxed">
                   We carefully clean and detail all interior trims, including dashboard panels, door handles, and center consoles, removing dirt, dust, and grime. After cleaning, we apply a protective layer to safeguard the trims from wear, fading, and UV damage, keeping them looking fresh and well-maintained for longer.
                 </p>
                
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">FLOOR MATS STEAM CLEAN</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">FLOOR MATS STEAM CLEAN</h2>
                 <p className="text-sm leading-relaxed">
                   Our steam cleaning service deeply cleans your floor mats, removing dirt, stains, and Odors while disinfecting the fabric. This process restores your mats to a fresh, spotless condition, ensuring they look and feel like new.
                 </p>
