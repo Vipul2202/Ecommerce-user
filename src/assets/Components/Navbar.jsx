@@ -12,6 +12,7 @@ import OpeningHours from "../../../src/assets/Components/OpeningHours";
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isExtrasOpen, setIsExtrasOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false); const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -62,8 +63,27 @@ const Navbar = () => {
   };
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
     { label: "Gallery", href: "/gallery" },
+  ];
+
+  const services = [
+    { label: "Outside Only", href: "/outside" },
+    { label: "Inside & Out", href: "/inside_outside" },
+    { label: "Premium Wash", href: "/premium_wash" },
+    { label: "Full Detail", href: "/full_detail" },
+    { label: "Full Detail Plus", href: null },
+    { label: "Signature Detail", href: null },
+    { label: "Signature Detail Plus", href: null },
+    { label: "Ultra Premium Finishes", href: "/ultrapremium" },
+  ];
+
+  const extrasItems = [
+    { label: "Stage 3 Paint Correction", href: "/extras" },
+    { label: "Buff and Polish", href: "/extras" },
+    { label: "Head Light Restoration", href: "/extras" },
+    { label: "Leather Clean/Seats Steam Clean", href: "/extras" },
+    { label: "Dog Hair Removal", href: "/extras" },
+    { label: "Bull Bar Polish", href: "/extras" },
   ];
 
   // API Base URL
@@ -620,6 +640,7 @@ Thank you for your order!
   useEffect(() => {
     setIsOpen(false);
     setIsSidebarOpen(false);
+    setIsExtrasOpen(false);
   }, [location.pathname]);
   return (
     <>
@@ -632,10 +653,16 @@ Thank you for your order!
                   {item.label}
                 </Link>
               ))}
-              <div className="relative">
+              <div
+                className="relative"
+                onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={() => {
+                  setIsOpen(false);
+                  setIsExtrasOpen(false);
+                }}
+              >
                 {/* Toggle button */}
                 <button
-                  onClick={() => setIsOpen(!isOpen)}
                   className="px-4 py-2 flex items-center gap-2 b hover:text-black text-white rounded-full transition-all duration-200"
                 >
                   Services
@@ -644,31 +671,53 @@ Thank you for your order!
 
                 {/* Dropdown */}
                 {isOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
-                    <Link
-                      to="/washing"
-                      className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                  <div className="absolute top-full left-0 w-64 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
+                    {services.map((service, index) =>
+                      service.href ? (
+                        <Link
+                          key={index}
+                          to={service.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                        >
+                          {service.label}
+                        </Link>
+                      ) : (
+                        <span
+                          key={index}
+                          className="block px-4 py-2 text-gray-400 border-b border-gray-300 cursor-not-allowed"
+                        >
+                          {service.label}
+                        </span>
+                      )
+                    )}
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsExtrasOpen(true)}
+                      onMouseLeave={() => setIsExtrasOpen(false)}
                     >
-                      Washing Services
-                    </Link>
-                    <Link
-                      to="/detailing"
-                      className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
-                    >
-                      Detailing Services
-                    </Link>
-                    <Link
-                      to="/ultrapremium"
-                      className="block px-4 py-2 border-b hover:bg-gray-100"
-                    >
-                      Ultra Premium Services
-                    </Link>
-                    <Link
-                      to="/extras"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Extras
-                    </Link>
+                      <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100">
+                        Extras
+                        {isExtrasOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+                      </button>
+                      {isExtrasOpen && (
+                        <div className="absolute top-0 left-full w-64 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
+                          {extrasItems.map((item, index) => (
+                            <Link
+                              key={index}
+                              to={item.href}
+                              onClick={() => {
+                                setIsOpen(false);
+                                setIsExtrasOpen(false);
+                              }}
+                              className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300 last:border-b-0"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
@@ -848,7 +897,7 @@ Thank you for your order!
         {isSidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-30 z-40"></div>}
         <div
           ref={sidebarRef}
-          className={`fixed top-0 right-0 h-full w-64 bg-white text-black z-50 transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`fixed top-0 right-0 h-full w-64 bg-white text-black z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <div className="p-5 flex flex-col gap-5">
             {/* Close button and profile */}
@@ -896,10 +945,16 @@ Thank you for your order!
 ))}
 
             {/* Dropdown Services */}
-            <div className="relative">
+            <div
+              className="relative"
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => {
+                setIsOpen(false);
+                setIsExtrasOpen(false);
+              }}
+            >
               {/* Toggle button */}
               <button
-                onClick={() => setIsOpen(!isOpen)}
                 className=" py-2 flex items-center  b hover:text-black text-black rounded-full transition-all duration-200"
               >
                 Services
@@ -908,35 +963,58 @@ Thank you for your order!
 
               {/* Dropdown */}
               {isOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
-                 <Link
-  to="/washing"
-  onClick={() => {
-    setIsSidebarOpen(false);
-    setIsOpen(false);
-  }}
-  className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
->
-  Washing Services
-</Link>
-                  <Link
-                    to="/detailing"
-                    className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                <div className="mt-2 w-full bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
+                  {services.map((service, index) =>
+                    service.href ? (
+                      <Link
+                        key={index}
+                        to={service.href}
+                        onClick={() => {
+                          setIsSidebarOpen(false);
+                          setIsOpen(false);
+                        }}
+                        className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                      >
+                        {service.label}
+                      </Link>
+                    ) : (
+                      <span
+                        key={index}
+                        className="block px-4 py-2 text-gray-400 border-b border-gray-300 cursor-not-allowed"
+                      >
+                        {service.label}
+                      </span>
+                    )
+                  )}
+                  <div
+                    onMouseEnter={() => setIsExtrasOpen(true)}
+                    onMouseLeave={() => setIsExtrasOpen(false)}
                   >
-                    Detailing Services
-                  </Link>
-                  <Link
-                    to="/ultrapremium"
-                    className="block px-4 py-2 border-b hover:bg-gray-100"
-                  >
-                    Ultra Premium Services
-                  </Link>
-                  <Link
-                    to="/extras"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Extras
-                  </Link>
+                    <button
+                      className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100"
+                    >
+                      Extras
+                      {isExtrasOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+                    </button>
+                    {isExtrasOpen && (
+                      <div className="flex flex-col bg-gray-50">
+                        {extrasItems.map((item, index) => (
+                          <Link
+                            key={index}
+                            to={item.href}
+                            onClick={() => {
+                              setIsSidebarOpen(false);
+                              setIsOpen(false);
+                              setIsExtrasOpen(false);
+                            }}
+                            className="block pl-8 pr-4 py-2 hover:bg-gray-100 border-b border-gray-200 last:border-b-0"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
