@@ -16,6 +16,7 @@ const FullDetail = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-[#00a0db] mb-4">
         Full Detail
         </h1>
+        <p className="text-gray-600 text-lg mb-4">Best for regular care</p>
         <nav className="text-gray-600">
           <span className="text-[#00a0db]">Home</span>
           <span className="mx-2">/</span>
@@ -37,60 +38,76 @@ const FullDetail = () => {
               </h1>
 
               {/* Services Included */}
-              <div className="mb-6">
+              <div className="mb-10">
                 <h2 className="text-lg font-semibold mb-3">Services Included:</h2>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Includes Interior Detail
+                  <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span>Outside Wash and Wax
                   </li>
                   <li className="flex items-center">
-                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Engine Bay Degreased
+                    <span className="w-4 h-4 text-white bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Windows Cleaning
                   </li>
                   <li className="flex items-center">
-                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Buff and Polish (Correct Minor Scratches)
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Interior Trims Detailed & Condition
                   </li>
                   <li className="flex items-center">
                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Fabric Seats Steam Clean
                   </li>
                   <li className="flex items-center">
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Carpet Steam Clean
+                  </li>
+                  <li className="flex items-center">
+                   <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Roof Lining Clean
+                  </li>
+                  <li className="flex items-center">
                    <span className="w-4 h-4 text-white  bg-black mr-2 flex items-center justify-center rounded-sm text-xs font-bol"> ✓</span> Leather Seats Clean and Condition
                   </li>
-                 
+
                 </ul>
               </div>
 
-              {/* Exterior Wash */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">ENGINE BAY DEGREASED</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">OUTSIDE WASH AND WAX</h2>
                 <p className="text-sm leading-relaxed">
-                  Transform your engine bay with our expert degreasing service. We meticulously remove layers of grease, grime, and dirt, revealing a cleaner, more polished engine. This deep clean not only enhances the appearance but also promotes optimal performance by improving airflow and reducing dirt buildup on key components. Your engine will look as powerful as it performs!
+                  A thorough hand wash to lift dirt and road grime, followed by a protective wax layer. This shields your paint from the elements and leaves a deep, glossy shine that lasts.
                 </p>
-               
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">BUFF AND POLISH (CORRECT MINOR SCRATCHES)</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">WINDOWS CLEANING</h2>
                 <p className="text-sm leading-relaxed">
-                  Unlock a flawless finish with our Buff and Polish service. We expertly remove minor scratches and imperfections, restoring your vehicle’s paint to its original shine. Through precision buffing and polishing, we smooth the surface, leaving a glossy, like-new finish that reflects the beauty of your car from every angle.
+                  Inside and out, every window is cleaned streak-free for maximum clarity and visibility. A small detail that makes a big difference to how the car looks and feels.
                 </p>
-               
-              </div>
-               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">FABRIC SEATS STEAM CLEAN AND CONDITION</h2>
-                <p className="text-sm leading-relaxed">
-                  At CarSaloon, we understand that your vehicle’s interior is just as important as the exterior — especially the seats you sit on every day. Our Fabric Seats Steam Clean & Condition service is designed to give your car’s upholstery a deep and thorough refresh, removing grime, bacteria, and stubborn stains while preserving the integrity of the material.
-                </p>
-               
               </div>
               <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">LEATHER SEATS CLEAN AND CONDITION</h2>
+                <h2 className="text-lg font-semibold mb-2 text-black">INTERIOR TRIMS DETAILED & CONDITION</h2>
                 <p className="text-sm leading-relaxed">
-                  Your vehicle's leather seats are a premium feature — but without proper care, they can crack, fade, or lose their supple feel. At CarSaloon, our Leather Seats Clean & Condition service is designed to restore and protect your leather interior, keeping it looking luxurious and feeling smooth.
+                  Dashboard, door panels, and console are wiped down and conditioned to remove dust and grime. This restores a fresh look and protects surfaces from UV fading and cracking.
                 </p>
-               
               </div>
-             
-
-             
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2 text-black">FABRIC SEATS STEAM CLEAN</h2>
+                <p className="text-sm leading-relaxed">
+                  A deep steam clean lifts embedded dirt, bacteria, and stains from fabric upholstery. Your seats come out fresh, sanitised, and free of odours.
+                </p>
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2 text-black">CARPET STEAM CLEAN</h2>
+                <p className="text-sm leading-relaxed">
+                  Floor carpets are steam cleaned to remove trapped dust, dirt, and stains. This leaves the cabin floor looking and smelling like new.
+                </p>
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2 text-black">ROOF LINING CLEAN</h2>
+                <p className="text-sm leading-relaxed">
+                  The roof lining is gently cleaned to remove built-up dust and marks without damaging the fabric. A finishing touch that completes a fully refreshed interior.
+                </p>
+              </div>
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold mb-2 text-black">LEATHER SEATS CLEAN AND CONDITION</h2>
+                <p className="text-sm leading-relaxed">
+                  Leather seats are cleaned and conditioned to lift dirt and grime while keeping the material soft and supple. Regular conditioning helps prevent cracking and fading, keeping your interior looking premium for longer.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -118,7 +135,7 @@ const FullDetail = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $349</p>
+                  <p className="text-gray-400 italic">$175</p>
                 </div>
               </div>
 
@@ -136,7 +153,7 @@ const FullDetail = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $399</p>
+                  <p className="text-gray-400 italic">$195</p>
                 </div>
               </div>
 
@@ -155,8 +172,8 @@ const FullDetail = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">4WD</h3>
-                  <p className="text-gray-400 italic">From $449</p>
+                  <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
+                  <p className="text-gray-400 italic">$225</p>
                 </div>
               </div>
             </div>
