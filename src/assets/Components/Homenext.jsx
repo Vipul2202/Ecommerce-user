@@ -220,6 +220,22 @@ const Homenext = () => {
 
   return (
     <div className="text-white">
+      <ComparisonTable
+        eyebrow="Washing Services"
+        heading="Compare Your Plan"
+        columns={washingColumns}
+        rows={washingRows}
+        navigate={navigate}
+      />
+
+      <ComparisonTable
+        eyebrow="Detailing Services"
+        heading="Compare Your Plan"
+        columns={detailingColumns}
+        rows={detailingRows}
+        navigate={navigate}
+      />
+
       <div className="bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -280,22 +296,6 @@ const Homenext = () => {
           </div>
         </div>
       </div>
-
-      <ComparisonTable
-        eyebrow="Washing Services"
-        heading="Compare Your Plan"
-        columns={washingColumns}
-        rows={washingRows}
-        navigate={navigate}
-      />
-
-      <ComparisonTable
-        eyebrow="Detailing Services"
-        heading="Compare Your Plan"
-        columns={detailingColumns}
-        rows={detailingRows}
-        navigate={navigate}
-      />
     </div>
   );
 };
