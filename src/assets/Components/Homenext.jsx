@@ -31,11 +31,17 @@ const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse min-w-[640px]">
+        <table className="w-full border-collapse min-w-[640px] table-fixed">
+          <colgroup>
+            <col className="w-[30%]" />
+            {columns.map((_, i) => (
+              <col key={i} className="w-[18%]" />
+            ))}
+          </colgroup>
           <thead>
             <tr>
               <th className="text-left p-4 text-gray-400 text-sm font-semibold border-b border-gray-800">
-                Feature
+                Features/Pricing
               </th>
               {columns.map((col, i) => (
                 <th
@@ -47,15 +53,13 @@ const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
               ))}
             </tr>
             <tr>
-              <td className="p-3 text-gray-400 text-xs border-b border-gray-800">
-                Pricing
-              </td>
+              <td className="p-3 border-b border-gray-800"></td>
               {columns.map((col, i) => (
                 <td
                   key={i}
-                  className="text-center bg-[#031824] border-b border-gray-800 p-3"
+                  className="text-center bg-[#031824] border-b border-gray-800 p-2"
                 >
-                  <div className="text-gray-200 text-xs leading-relaxed">
+                  <div className="text-gray-200 text-[11px] leading-relaxed">
                     Sedan <span className="text-[#00a0db] font-semibold">From ${col.sedan}</span><br />
                     SUV <span className="text-[#00a0db] font-semibold">From ${col.suv}</span><br />
                     4WD/7-Seater <span className="text-[#00a0db] font-semibold">From ${col.fourWd}</span>
@@ -79,7 +83,7 @@ const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
                     className={`text-center ${ri !== rows.length - 1 ? "border-b border-gray-800" : ""
                       } ${included ? "bg-[#00a0db]/10 text-[#00a0db]" : "text-gray-600"}`}
                   >
-                    {included ? <Check className="w-4 h-4 mx-auto" /> : "—"}
+                    {included ? <Check className="w-5 h-5 mx-auto" strokeWidth={3.5} /> : "—"}
                   </td>
                 ))}
               </tr>
