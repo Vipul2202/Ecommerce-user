@@ -62,13 +62,21 @@ function App() {
         <div className="sticky top-0 z-50 bg-[#052c3d] text-white py-1.5 text-sm font-semibold overflow-hidden">
           <div className="marquee-track">
             <span>Walk-ins Welcome — No Booking Required</span>
+            <span>-</span>
+            <span>Gtechniq Ceramic Coating</span>
+            <span>-</span>
+            <span>Full Detail</span>
+            <span>-</span>
+            <span>Tinting</span>
+            <span>-</span>
             <span>Walk-ins Welcome — No Booking Required</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
+            <span>-</span>
+            <span>Gtechniq Ceramic Coating</span>
+            <span>-</span>
+            <span>Full Detail</span>
+            <span>-</span>
+            <span>Tinting</span>
+            <span>-</span>
           </div>
         </div>
         <TopBar />

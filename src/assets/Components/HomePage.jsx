@@ -118,7 +118,7 @@ const HomePage = () => {
     {
       icon: <Settings className="w-12 h-12" />,
       title: "Full Detail",
-      description: "Complete detailing package",
+      description: "Best for regular care",
       link: "/full_detail"
     },
     {

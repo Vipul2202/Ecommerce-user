@@ -49,6 +49,11 @@ const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
                   className="p-4 text-white text-base font-bold bg-[#00a0db] rounded-t-xl"
                 >
                   {col.name}
+                  {col.tagline && (
+                    <div className="text-xs font-normal text-white/80 mt-1">
+                      {col.tagline}
+                    </div>
+                  )}
                 </th>
               ))}
             </tr>
@@ -197,9 +202,9 @@ const Homenext = () => {
   ];
 
   const detailingColumns = [
-    { name: "FULL DETAIL", route: "/full_detail", sedan: 175, suv: 195, fourWd: 225 },
-    { name: "SIGNATURE DETAIL", route: "/signature_detail", sedan: 275, suv: 295, fourWd: 325 },
-    { name: "THE WORKS", route: "/the_works", sedan: 375, suv: 395, fourWd: 425 },
+    { name: "FULL DETAIL", tagline: "Best for regular care", route: "/full_detail", sedan: 175, suv: 195, fourWd: 225 },
+    { name: "SIGNATURE DETAIL", tagline: "Best for Restoration", route: "/signature_detail", sedan: 275, suv: 295, fourWd: 325 },
+    { name: "THE WORKS", tagline: "Best for Offroad and Pre-Sale", route: "/the_works", sedan: 375, suv: 395, fourWd: 425 },
   ];
 
   const detailingRows = [
