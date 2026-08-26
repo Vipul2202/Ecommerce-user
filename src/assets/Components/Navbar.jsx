@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isExtrasOpen, setIsExtrasOpen] = useState(false);
+  const [isUltraOpen, setIsUltraOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false); const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -75,7 +76,13 @@ const Navbar = () => {
     { label: "Full Detail", href: "/full_detail" },
     { label: "Signature Detail", href: "/signature_detail" },
     { label: "The Works", href: "/the_works" },
-    { label: "Ultra Premium Finishes", href: "/ultrapremium" },
+  ];
+
+  const ultraItems = [
+    { label: "Ceramic Coating", href: "/ultrapremium" },
+    { label: "Interior Protection Pack", href: "/ultrapremium" },
+    { label: "Windows Tinting", href: "/ultrapremium" },
+    { label: "Paintless Dent Removal", href: "/ultrapremium" },
   ];
 
   const extrasItems = [
@@ -651,6 +658,7 @@ Thank you for your order!
     setIsOpen(false);
     setIsSidebarOpen(false);
     setIsExtrasOpen(false);
+    setIsUltraOpen(false);
   }, [location.pathname]);
   return (
     <>
@@ -674,6 +682,7 @@ Thank you for your order!
                 onMouseLeave={() => {
                   setIsOpen(false);
                   setIsExtrasOpen(false);
+                  setIsUltraOpen(false);
                 }}
               >
                 {/* Toggle button */}
@@ -706,6 +715,33 @@ Thank you for your order!
                         </span>
                       )
                     )}
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsUltraOpen(true)}
+                      onMouseLeave={() => setIsUltraOpen(false)}
+                    >
+                      <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100 border-b border-gray-300">
+                        Ultra Premium Finishes
+                        {isUltraOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+                      </button>
+                      {isUltraOpen && (
+                        <div className="absolute top-0 left-full w-64 bg-white text-black rounded-xl shadow-lg flex flex-col z-50">
+                          {ultraItems.map((item, index) => (
+                            <Link
+                              key={index}
+                              to={item.href}
+                              onClick={() => {
+                                setIsOpen(false);
+                                setIsUltraOpen(false);
+                              }}
+                              className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300 last:border-b-0"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                     <div
                       className="relative"
                       onMouseEnter={() => setIsExtrasOpen(true)}
@@ -966,6 +1002,7 @@ Thank you for your order!
               onMouseLeave={() => {
                 setIsOpen(false);
                 setIsExtrasOpen(false);
+                setIsUltraOpen(false);
               }}
             >
               {/* Toggle button */}
@@ -1001,6 +1038,35 @@ Thank you for your order!
                       </span>
                     )
                   )}
+                  <div
+                    onMouseEnter={() => setIsUltraOpen(true)}
+                    onMouseLeave={() => setIsUltraOpen(false)}
+                  >
+                    <button
+                      className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
+                    >
+                      Ultra Premium Finishes
+                      {isUltraOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+                    </button>
+                    {isUltraOpen && (
+                      <div className="flex flex-col bg-gray-50">
+                        {ultraItems.map((item, index) => (
+                          <Link
+                            key={index}
+                            to={item.href}
+                            onClick={() => {
+                              setIsSidebarOpen(false);
+                              setIsOpen(false);
+                              setIsUltraOpen(false);
+                            }}
+                            className="block pl-8 pr-4 py-2 hover:bg-gray-100 border-b border-gray-200 last:border-b-0"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   <div
                     onMouseEnter={() => setIsExtrasOpen(true)}
                     onMouseLeave={() => setIsExtrasOpen(false)}
