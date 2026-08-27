@@ -26,7 +26,9 @@ const BookNow = () => {
   const [touched, setTouched] = useState({});
 
   const servicesList = [
-    "Outside Only", "Inside and Outside","Premium Wash","Mini Detail", "Interior Detail","Full Detail","Ceramic Coating", "Interior Protection Pack","Windows Tinting", "Paintless Dent Removal","Stage 3 Paint Correction","Buff and Polish", "Head Light Restoration","Leather Clean/Seats Steam Clean","Dog Hair Removal"
+    "Outside Only", "Inside & Out", "Premium Wash", "Full Detail", "Signature Detail", "The Works",
+    "Ceramic Coating", "Interior Protection Pack", "Windows Tinting", "Paintless Dent Removal",
+    "Stage 3 Paint Correction", "Buff and Polish", "Head Light Restoration", "Leather Clean/Seats Steam Clean", "Dog Hair Removal", "Bull Bar Polish"
   ];
 
   useEffect(() => {
@@ -44,14 +46,18 @@ const BookNow = () => {
       let mappedService = decodedService;
 
       switch (decodedService.toLowerCase()) {
-        case 'mini detail':
-          mappedService = 'Mini Detail';
-          break;
-        case 'interior detail':
-          mappedService = 'Interior Detail';
+        case 'inside and outside':
+        case 'inside & out':
+          mappedService = 'Inside & Out';
           break;
         case 'full detail':
           mappedService = 'Full Detail';
+          break;
+        case 'signature detail':
+          mappedService = 'Signature Detail';
+          break;
+        case 'the works':
+          mappedService = 'The Works';
           break;
         case 'ceramic coating':
           mappedService = 'Ceramic Coating';
@@ -62,8 +68,27 @@ const BookNow = () => {
         case 'windows tinting':
           mappedService = 'Windows Tinting';
           break;
+        case 'paintless dent removal':
+          mappedService = 'Paintless Dent Removal';
+          break;
         case 'stage 3 paint correction':
           mappedService = 'Stage 3 Paint Correction';
+          break;
+        case 'buff and polish':
+          mappedService = 'Buff and Polish';
+          break;
+        case 'head light restoration':
+        case 'headlight restoration':
+          mappedService = 'Head Light Restoration';
+          break;
+        case 'leather clean/seats steam clean':
+          mappedService = 'Leather Clean/Seats Steam Clean';
+          break;
+        case 'dog hair removal':
+          mappedService = 'Dog Hair Removal';
+          break;
+        case 'bull bar polish':
+          mappedService = 'Bull Bar Polish';
           break;
         default:
           const foundService = servicesList.find(
