@@ -202,9 +202,9 @@ const Homenext = () => {
   ];
 
   const detailingColumns = [
-    { name: "FULL DETAIL", tagline: "Best for regular care", route: "/full_detail", sedan: 175, suv: 195, fourWd: 225 },
+    { name: "FULL DETAIL", tagline: "Best for Regular Care", route: "/full_detail", sedan: 175, suv: 195, fourWd: 225 },
     { name: "SIGNATURE DETAIL", tagline: "Best for Restoration", route: "/signature_detail", sedan: 275, suv: 295, fourWd: 325 },
-    { name: "THE WORKS", tagline: "Best for Offroad and Pre-Sale", route: "/the_works", sedan: 375, suv: 395, fourWd: 425 },
+    { name: "THE WORKS", tagline: "Best for Offroad & Pre-Sale", route: "/the_works", sedan: 375, suv: 395, fourWd: 425 },
   ];
 
   const detailingRows = [

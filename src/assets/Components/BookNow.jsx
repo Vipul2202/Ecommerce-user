@@ -31,6 +31,12 @@ const BookNow = () => {
     "Stage 3 Paint Correction", "Buff and Polish", "Head Light Restoration", "Leather Clean/Seats Steam Clean", "Dog Hair Removal", "Bull Bar Polish"
   ];
 
+  const serviceTaglines = {
+    "Full Detail": "Best for Regular Care",
+    "Signature Detail": "Best for Restoration",
+    "The Works": "Best for Offroad & Pre-Sale",
+  };
+
   useEffect(() => {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -463,6 +469,9 @@ const BookNow = () => {
                     />
                     <span className={formData.services.includes(service) ? 'text-[#00a0db] font-medium' : ''}>
                       {service}
+                      {serviceTaglines[service] && (
+                        <span className="block text-xs text-gray-400">{serviceTaglines[service]}</span>
+                      )}
                     </span>
                   </label>
                 ))}
