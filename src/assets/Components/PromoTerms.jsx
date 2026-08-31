@@ -6,11 +6,11 @@ const PromoTerms = () => {
       {/* Header Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">Promotional Messages Terms & Conditions</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">Offer Terms & Conditions</h1>
           <div className="flex items-center justify-center space-x-2 text-black">
             <a href="/" className="hover:text-[#00a0db] transition-colors">Home</a>
             <span>/</span>
-            <span>Promotional Messages Terms & Conditions</span>
+            <span>Offer Terms & Conditions</span>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@ const PromoTerms = () => {
           {/* Welcome Text */}
           <div className="mb-12">
             <p className="text-gray-300 text-lg leading-relaxed">
-              These Promotional Messages Terms & Conditions ("Terms") explain how carsaloon.com.au ("Car Saloon," "we," "our," or "us") sends promotional and marketing communications by SMS and email, and how you can manage or opt out of them. These Terms apply in addition to our <a href="/terms" className="text-[#00a0db] underline">Terms of Use</a> and <a href="/privacy" className="text-[#00a0db] underline">Privacy Policy</a>.
+              These Offer Terms & Conditions ("Terms") explain how carsaloon.com.au ("Car Saloon," "we," "our," or "us") sends promotional and marketing communications by SMS and email, and how you can manage or opt out of them. These Terms apply in addition to our <a href="/terms" className="text-[#00a0db] underline">Terms of Use</a> and <a href="/privacy" className="text-[#00a0db] underline">Privacy Policy</a>.
             </p>
           </div>
 
