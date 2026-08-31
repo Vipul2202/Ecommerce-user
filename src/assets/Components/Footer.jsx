@@ -108,6 +108,14 @@ const Footer = () => {
                                     FAQs
                                 </button>
                             </li>
+                            <li>
+                                <button
+                                    onClick={() => handleNavigation("/promotional-terms")}
+                                    className="hover:text-[#00a0db] transition-colors duration-300"
+                                >
+                                    Offer T&Cs
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>

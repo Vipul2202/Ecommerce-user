@@ -42,6 +42,7 @@ import OwnerPanel from './assets/Components/OwnerPanel';
 import Terms from './assets/Components/Terms';
 import Faqs from './assets/Components/Faqs';
 import Privacy from './assets/Components/Privacy';
+import PromoTerms from './assets/Components/PromoTerms';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -120,6 +121,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/promotional-terms" element={<PromoTerms />} />
         </Routes>
 
         <Footer />
