@@ -14,9 +14,10 @@ const BookNow = () => {
     date: "",
     time: "",
     firstName: "",
-    
+
     email: "",
     phone: "",
+    marketingConsent: false,
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -314,9 +315,10 @@ const BookNow = () => {
           date: "",
           time: "",
           firstName: "",
-         
+
           email: "",
           phone: "",
+          marketingConsent: false,
         });
         setErrors({});
         setTouched({});
@@ -592,6 +594,26 @@ const BookNow = () => {
                   <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
                 )}
               </div>
+            </div>
+
+            <div>
+              <label className="flex items-start space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="marketingConsent"
+                  checked={formData.marketingConsent}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, marketingConsent: e.target.checked }))
+                  }
+                  className="accent-[#00a0db] w-4 h-4 mt-1"
+                />
+                <span className="text-sm text-gray-300">
+                  I would like to receive promotional offers and updates from Car Saloon via SMS and email. See our{" "}
+                  <a href="/promotional-terms" target="_blank" rel="noopener noreferrer" className="text-[#00a0db] underline">
+                    Offer Terms & Conditions
+                  </a>.
+                </span>
+              </label>
             </div>
 
             {errors.general && (
