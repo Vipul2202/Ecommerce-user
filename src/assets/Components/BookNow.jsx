@@ -481,6 +481,9 @@ const BookNow = () => {
               {errors.services && (
                 <p className="text-red-400 text-sm mt-2">{errors.services}</p>
               )}
+              <p className="text-amber-400 text-sm mt-3">
+                Please remove all valuables from your car. We practice safe cleaning and try not to touch anything but we are not responsible for the loss of any personal or valuable item.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
