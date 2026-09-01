@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const OFFER_EXPIRY = new Date(2026, 8, 30, 23, 59, 59); // 30 September 2026
 const TOAST_SESSION_KEY = "fathersDayToastDismissed";
@@ -7,6 +8,8 @@ const TOAST_FIRST_DELAY_MS = 10 * 1000; // first toast 10s after the modal close
 
 const MYAREE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
+const MIDLAND_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=7+Loton+Avenue%2C+Midland+WA+6056";
 const MIDLAND_PHONE = "tel:+61478551640";
 
 const Sparkle = ({ className, style }) => (
@@ -162,7 +165,7 @@ const FathersDayOffer = () => {
             </p>
             <h2 className="text-center text-2xl font-bold mb-2">Get 15% off any service</h2>
             <p className="text-center text-sm text-gray-600 mb-4">
-              Walk in and the discount's applied on the spot — no booking needed.
+              Walk-ins Welcome | No Bookings required
             </p>
 
             <div className="bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 p-3 mb-4">
@@ -172,19 +175,28 @@ const FathersDayOffer = () => {
             </div>
 
             <div className="flex flex-col gap-2">
+              <Link
+                to="/booking"
+                onClick={handleCloseModal}
+                className="text-center bg-[#00a0db] text-white py-2 rounded-full font-semibold hover:bg-black transition"
+              >
+                Book Now
+              </Link>
               <a
                 href={MYAREE_MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-center bg-[#00a0db] text-white py-2 rounded-full font-semibold hover:bg-black transition"
-              >
-                Get directions to Myaree
-              </a>
-              <a
-                href={MIDLAND_PHONE}
                 className="text-center border border-gray-300 text-gray-700 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
               >
-                Call the Midland team
+                Myaree Direction
+              </a>
+              <a
+                href={MIDLAND_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center border border-gray-300 text-gray-700 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
+              >
+                Midland Direction
               </a>
             </div>
 
