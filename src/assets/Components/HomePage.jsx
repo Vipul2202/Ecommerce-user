@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import fathersDayBanner from "../../../src/img/fathers-day-banner.jpg";
 import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 
@@ -64,8 +65,12 @@ const HomePage = () => {
 
   const carouselData = [
      {
+      img: fathersDayBanner,
+
+    },
+     {
       img: carousel4,
-      
+
     },
     {
       img: carousel1,
