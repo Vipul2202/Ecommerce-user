@@ -10,7 +10,6 @@ const MYAREE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
 const MIDLAND_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=7+Loton+Avenue%2C+Midland+WA+6056";
-const MIDLAND_PHONE = "tel:+61478551640";
 
 const Sparkle = ({ className, style }) => (
   <svg
@@ -223,28 +222,33 @@ const FathersDayOffer = () => {
             <div>
               <p className="font-semibold text-sm">15% off for Dad</p>
               <p className="text-xs text-gray-600 mt-0.5">
-                Walk in this Father's Day and save on any service.
+                Walk-ins Welcome | No Bookings required
               </p>
             </div>
           </div>
-          <p className="text-xs text-gray-600 mt-2">
-            <span className="font-semibold text-amber-700">Myaree</span> walk-in only &middot;
-            Midland: call to book
-          </p>
-          <div className="flex gap-2 mt-3">
+          <div className="flex flex-col gap-2 mt-3">
+            <Link
+              to="/booking"
+              onClick={handleCloseToast}
+              className="text-center bg-[#00a0db] text-white text-xs py-2 rounded-full font-semibold hover:bg-black transition"
+            >
+              Book Now
+            </Link>
             <a
               href={MYAREE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 text-center bg-[#00a0db] text-white text-xs py-2 rounded-full font-semibold hover:bg-black transition"
+              className="text-center border border-gray-300 text-gray-700 text-xs py-2 rounded-full font-semibold hover:bg-gray-100 transition"
             >
-              Myaree directions
+              Myaree Direction
             </a>
             <a
-              href={MIDLAND_PHONE}
-              className="flex-1 text-center border border-gray-300 text-gray-700 text-xs py-2 rounded-full font-semibold hover:bg-gray-100 transition"
+              href={MIDLAND_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-center border border-gray-300 text-gray-700 text-xs py-2 rounded-full font-semibold hover:bg-gray-100 transition"
             >
-              Call Midland
+              Midland Direction
             </a>
           </div>
           <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Ends 30 Sept</p>
