@@ -93,7 +93,6 @@ function App() {
                 <HomePage />
                 <Homenext />
                 <LastBar />
-                <FathersDayOffer />
               </>
             }
           />
@@ -127,6 +126,7 @@ function App() {
         </Routes>
 
         <Footer />
+        <FathersDayOffer />
       </Router>
     </div>
   )

@@ -4,7 +4,7 @@ const OFFER_EXPIRY = new Date(2026, 8, 30, 23, 59, 59); // 30 September 2026
 const MODAL_STORAGE_KEY = "fathersDayModalLastShown";
 const TOAST_SESSION_KEY = "fathersDayToastDismissed";
 const TOAST_INTERVAL_MS = 2 * 60 * 1000; // repeat every 2 minutes
-const TOAST_FIRST_DELAY_MS = 30 * 1000; // first toast 30s after the modal closes
+const TOAST_FIRST_DELAY_MS = 10 * 1000; // first toast 10s after the modal closes
 
 const MYAREE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
