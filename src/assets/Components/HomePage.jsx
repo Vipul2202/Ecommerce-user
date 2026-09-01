@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import fathersDayBanner from "../../../src/img/fathers-day-banner.jpg";
+import FathersDaySlide from "./FathersDaySlide";
 import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 
@@ -65,7 +65,7 @@ const HomePage = () => {
 
   const carouselData = [
      {
-      img: fathersDayBanner,
+      custom: true,
 
     },
      {
@@ -178,22 +178,28 @@ const HomePage = () => {
             <div
               key={index}
               className="relative w-full aspect-video md:h-[32rem] lg:h-[36rem]">
-            
-              <img
-                src={item.img}
-                alt={`carousel-${index}`}
-                draggable="false"
-                className="w-full h-full object-contain md:object-cover bg-black md:bg-transparent"
-              />
 
-              <div className="absolute inset-0 bg-black/10 flex flex-col justify-center items-center text-center px-4">
-                <h3 className="text-xl md:text-2xl font-light text-white">
-                  {item.subtitle}
-                </h3>
-                <h1 className="text-2xl md:text-4xl font-bold text-white">
-                  {item.title}
-                </h1>
-              </div>
+              {item.custom ? (
+                <FathersDaySlide />
+              ) : (
+                <>
+                  <img
+                    src={item.img}
+                    alt={`carousel-${index}`}
+                    draggable="false"
+                    className="w-full h-full object-contain md:object-cover bg-black md:bg-transparent"
+                  />
+
+                  <div className="absolute inset-0 bg-black/10 flex flex-col justify-center items-center text-center px-4">
+                    <h3 className="text-xl md:text-2xl font-light text-white">
+                      {item.subtitle}
+                    </h3>
+                    <h1 className="text-2xl md:text-4xl font-bold text-white">
+                      {item.title}
+                    </h1>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </Slider>
