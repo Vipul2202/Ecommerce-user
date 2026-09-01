@@ -619,6 +619,10 @@ const BookNow = () => {
               </label>
             </div>
 
+            <p className="text-amber-400 text-sm">
+              <span className="font-semibold">Note:</span> Please remove all valuables from your car. We practice safe cleaning and try not to touch anything but we are not responsible for the loss of any personal or valuable item.
+            </p>
+
             {errors.general && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 <p className="text-sm">{errors.general}</p>

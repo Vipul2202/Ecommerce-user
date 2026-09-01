@@ -43,6 +43,7 @@ import Terms from './assets/Components/Terms';
 import Faqs from './assets/Components/Faqs';
 import Privacy from './assets/Components/Privacy';
 import PromoTerms from './assets/Components/PromoTerms';
+import FathersDayOffer from './assets/Components/FathersDayOffer';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -92,6 +93,7 @@ function App() {
                 <HomePage />
                 <Homenext />
                 <LastBar />
+                <FathersDayOffer />
               </>
             }
           />
