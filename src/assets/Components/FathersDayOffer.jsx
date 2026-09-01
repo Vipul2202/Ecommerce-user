@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const OFFER_EXPIRY = new Date(2026, 8, 30, 23, 59, 59); // 30 September 2026
-const MODAL_STORAGE_KEY = "fathersDayModalLastShown";
 const TOAST_SESSION_KEY = "fathersDayToastDismissed";
 const TOAST_INTERVAL_MS = 2 * 60 * 1000; // repeat every 2 minutes
 const TOAST_FIRST_DELAY_MS = 10 * 1000; // first toast 10s after the modal closes
@@ -68,18 +67,9 @@ const FathersDayOffer = () => {
   useEffect(() => {
     if (offerExpired) return;
 
-    const today = new Date().toDateString();
-    const lastShown = localStorage.getItem(MODAL_STORAGE_KEY);
-    let modalTimer;
-
-    if (lastShown !== today) {
-      modalTimer = setTimeout(() => {
-        setShowModal(true);
-        localStorage.setItem(MODAL_STORAGE_KEY, today);
-      }, 1500);
-    } else {
-      startToastCycle(TOAST_FIRST_DELAY_MS);
-    }
+    const modalTimer = setTimeout(() => {
+      setShowModal(true);
+    }, 1500);
 
     return () => {
       clearTimeout(modalTimer);
