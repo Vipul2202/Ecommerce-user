@@ -226,6 +226,11 @@ const FathersDayOffer = () => {
               </p>
             </div>
           </div>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg text-xs text-gray-700 p-2 mt-3">
+            <span className="font-semibold text-amber-700">Myaree</span> store only. Heading to{" "}
+            <span className="font-semibold text-amber-700">Midland</span>? Call to book your
+            appointment.
+          </div>
           <div className="flex flex-col gap-2 mt-3">
             <Link
               to="/booking"
