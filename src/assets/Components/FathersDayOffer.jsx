@@ -223,6 +223,9 @@ const FathersDayOffer = () => {
               <CarIcon />
             </div>
             <div>
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-[#00a0db]">
+                This Father's Day
+              </p>
               <p className="font-semibold text-sm">15% off* for Dad</p>
               <p className="text-xs text-gray-600 mt-0.5">
                 Walk-ins Welcome
