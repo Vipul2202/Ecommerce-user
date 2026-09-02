@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const OFFER_EXPIRY = new Date(2026, 8, 30, 23, 59, 59); // 30 September 2026
-const TOAST_SESSION_KEY = "fathersDayToastDismissed";
 const TOAST_INTERVAL_MS = 2 * 60 * 1000; // repeat every 2 minutes
 const TOAST_FIRST_DELAY_MS = 10 * 1000; // first toast 10s after the modal closes
 
@@ -53,14 +52,10 @@ const FathersDayOffer = () => {
   const offerExpired = Date.now() > OFFER_EXPIRY.getTime();
 
   const startToastCycle = (initialDelay) => {
-    if (offerExpired || sessionStorage.getItem(TOAST_SESSION_KEY)) return;
+    if (offerExpired) return;
     toastFirstTimerRef.current = setTimeout(() => {
       setShowToast(true);
       toastIntervalRef.current = setInterval(() => {
-        if (sessionStorage.getItem(TOAST_SESSION_KEY)) {
-          clearInterval(toastIntervalRef.current);
-          return;
-        }
         setShowToast(true);
       }, TOAST_INTERVAL_MS);
     }, initialDelay);
@@ -88,7 +83,6 @@ const FathersDayOffer = () => {
 
   const handleCloseToast = () => {
     setShowToast(false);
-    sessionStorage.setItem(TOAST_SESSION_KEY, "1");
     clearTimeout(toastFirstTimerRef.current);
     clearInterval(toastIntervalRef.current);
   };
