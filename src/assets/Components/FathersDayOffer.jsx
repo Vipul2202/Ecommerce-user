@@ -185,6 +185,7 @@ const FathersDayOffer = () => {
                 href={MYAREE_MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleCloseModal}
                 className="text-center border border-gray-300 text-gray-700 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
               >
                 Myaree Direction
@@ -193,6 +194,7 @@ const FathersDayOffer = () => {
                 href={MIDLAND_MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleCloseModal}
                 className="text-center border border-gray-300 text-gray-700 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
               >
                 Midland Direction
