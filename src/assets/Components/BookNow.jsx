@@ -359,6 +359,9 @@ const BookNow = () => {
           <div className="bg-white text-black rounded-lg shadow-lg p-8 max-w-md w-full text-center">
             <h2 className="text-xl font-semibold mb-4">Success</h2>
             <p>Your booking has been successfully submitted!</p>
+            <p className="text-amber-600 text-sm mt-4">
+              <span className="font-semibold">Note:</span> Please remove all valuables from your car. We practice safe cleaning and try not to touch anything but we are not responsible for the loss of any personal or valuable item.
+            </p>
             <button
               onClick={() => setShowModal(false)}
               className="mt-4 px-4 py-2 bg-[#00a0db] text-white rounded hover:bg-blue-600"
