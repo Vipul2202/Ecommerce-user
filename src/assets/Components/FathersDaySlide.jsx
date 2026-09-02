@@ -48,7 +48,7 @@ const FathersDaySlide = () => (
             <span className="block">
               <strong className="text-amber-400">Myaree</strong> — walk in
             </span>
-            <span className="hidden sm:block">
+            <span className="block">
               <strong className="text-amber-400">Midland</strong> — Book Online
             </span>
           </div>
