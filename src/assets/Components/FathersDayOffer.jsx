@@ -162,13 +162,13 @@ const FathersDayOffer = () => {
             <p className="text-center text-xs font-semibold uppercase tracking-wide text-[#00a0db] mb-1">
               This Father's Day
             </p>
-            <h2 className="text-center text-2xl font-bold mb-2">Get 15% off any service</h2>
-            <p className="text-center text-sm text-gray-600 mb-4">
-              Walk-ins Welcome | No Bookings required
-            </p>
+            <h2 className="text-center text-2xl font-bold mb-2">
+              Get 15% off* on Wash and Detail services
+            </h2>
+            <p className="text-center text-sm text-gray-600 mb-4">Walk-ins Welcome</p>
 
             <div className="bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 p-3 mb-4">
-              <span className="font-semibold text-amber-700">Myaree</span> store only. Heading to{" "}
+              <span className="font-semibold text-amber-700">Myaree</span> store - No bookings required. Heading to{" "}
               <span className="font-semibold text-amber-700">Midland</span>? Call to book your
               appointment.
             </div>
@@ -202,6 +202,9 @@ const FathersDayOffer = () => {
             <p className="text-center text-[11px] uppercase tracking-wide text-gray-400 mt-4">
               Offer ends 30 September
             </p>
+            <p className="text-center text-[10px] text-gray-400 mt-1">
+              *Terms and conditions apply
+            </p>
           </div>
         </div>
       )}
@@ -220,14 +223,14 @@ const FathersDayOffer = () => {
               <CarIcon />
             </div>
             <div>
-              <p className="font-semibold text-sm">15% off for Dad</p>
+              <p className="font-semibold text-sm">15% off* for Dad</p>
               <p className="text-xs text-gray-600 mt-0.5">
-                Walk-ins Welcome | No Bookings required
+                Walk-ins Welcome
               </p>
             </div>
           </div>
           <div className="bg-amber-50 border border-amber-200 rounded-lg text-xs text-gray-700 p-2 mt-3">
-            <span className="font-semibold text-amber-700">Myaree</span> store only. Heading to{" "}
+            <span className="font-semibold text-amber-700">Myaree</span> store - No bookings required. Heading to{" "}
             <span className="font-semibold text-amber-700">Midland</span>? Call to book your
             appointment.
           </div>
@@ -257,6 +260,7 @@ const FathersDayOffer = () => {
             </a>
           </div>
           <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Ends 30 Sept</p>
+          <p className="text-[9px] text-gray-400 mt-0.5">*Terms and conditions apply</p>
         </div>
       )}
     </>
