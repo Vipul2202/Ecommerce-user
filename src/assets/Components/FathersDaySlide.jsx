@@ -52,7 +52,7 @@ const FathersDaySlide = () => (
               <strong className="text-amber-400">Midland</strong> — Book Online
             </span>
           </div>
-          <span className="hidden sm:block text-[9px] md:text-xs text-white/60 mt-0.5">
+          <span className="block text-[8px] sm:text-[9px] md:text-xs text-white/60 mt-0.5">
             *Terms and conditions apply
           </span>
         </div>
