@@ -48,8 +48,8 @@ const FathersDaySlide = () => (
             <span className="block">
               <strong className="text-amber-400">Myaree</strong> — walk in
             </span>
-            <span className="hidden sm:block">
-              <strong className="text-amber-400">Midland</strong> — call 0478 551 640
+            <span className="block">
+              <strong className="text-amber-400">Midland</strong> — Book Online
             </span>
           </div>
         </div>
