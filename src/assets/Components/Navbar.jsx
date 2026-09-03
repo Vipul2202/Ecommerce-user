@@ -74,7 +74,7 @@ const Navbar = () => {
     { label: "Inside & Out", href: "/inside_outside" },
     { label: "Premium Wash", href: "/premium_wash" },
     { label: "Full Detail", href: "/full_detail" },
-    { label: "Signature Detail", href: "/signature_detail" },
+    { label: "Signature Detail", href: "/signature_detail", star: true },
     { label: "The Works", href: "/the_works" },
   ];
 
@@ -705,6 +705,7 @@ Thank you for your order!
                           className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
                         >
                           {service.label}
+                          {service.star && <span className="text-amber-500 ml-1">★</span>}
                         </Link>
                       ) : (
                         <span
@@ -1028,6 +1029,7 @@ Thank you for your order!
                         className="block px-4 py-2 hover:bg-gray-100 border-b border-gray-300"
                       >
                         {service.label}
+                        {service.star && <span className="text-amber-500 ml-1">★</span>}
                       </Link>
                     ) : (
                       <span
