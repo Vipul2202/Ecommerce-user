@@ -143,7 +143,7 @@ const FathersDayOffer = () => {
                 }}
               ></div>
               <div className="absolute inset-[3px] rounded-full bg-[#00a0db] text-white flex flex-col items-center justify-center shadow-inner">
-                <span className="text-2xl font-bold leading-none">15%</span>
+                <span className="text-2xl font-bold leading-none">15%*</span>
                 <span className="text-xs uppercase tracking-wide mt-1">Off</span>
               </div>
               <Sparkle className="fdo-sparkle absolute" style={{ top: "-2px", left: "-4px" }} />
@@ -163,8 +163,7 @@ const FathersDayOffer = () => {
 
             <div className="bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 p-3 mb-4">
               <span className="font-semibold text-amber-700">Myaree</span> store - No bookings required. Heading to{" "}
-              <span className="font-semibold text-amber-700">Midland</span>? Call to book your
-              appointment.
+              <span className="font-semibold text-amber-700">Midland</span>? Book Online.
             </div>
 
             <div className="flex flex-col gap-2">
@@ -196,7 +195,7 @@ const FathersDayOffer = () => {
             </div>
 
             <p className="text-center text-[11px] uppercase tracking-wide text-gray-400 mt-4">
-              Offer ends 30 September
+              Offer ends 30/09/2026
             </p>
             <p className="text-center text-[10px] text-gray-400 mt-1">
               *Terms and conditions apply
@@ -230,8 +229,7 @@ const FathersDayOffer = () => {
           </div>
           <div className="bg-amber-50 border border-amber-200 rounded-lg text-xs text-gray-700 p-2 mt-3">
             <span className="font-semibold text-amber-700">Myaree</span> store - No bookings required. Heading to{" "}
-            <span className="font-semibold text-amber-700">Midland</span>? Call to book your
-            appointment.
+            <span className="font-semibold text-amber-700">Midland</span>? Book Online.
           </div>
           <div className="flex flex-col gap-2 mt-3">
             <Link
@@ -258,7 +256,7 @@ const FathersDayOffer = () => {
               Midland Direction
             </a>
           </div>
-          <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Ends 30 Sept</p>
+          <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Ends 30/09/2026</p>
           <p className="text-[9px] text-gray-400 mt-0.5">*Terms and conditions apply</p>
         </div>
       )}
