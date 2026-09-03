@@ -195,7 +195,7 @@ const FathersDayOffer = () => {
             </div>
 
             <p className="text-center text-[11px] uppercase tracking-wide text-gray-400 mt-4">
-              Offer ends 30 September
+              Offer ends 30/09/2026
             </p>
             <p className="text-center text-[10px] text-gray-400 mt-1">
               *Terms and conditions apply
@@ -256,7 +256,7 @@ const FathersDayOffer = () => {
               Midland Direction
             </a>
           </div>
-          <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Ends 30 Sept</p>
+          <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Ends 30/09/2026</p>
           <p className="text-[9px] text-gray-400 mt-0.5">*Terms and conditions apply</p>
         </div>
       )}
