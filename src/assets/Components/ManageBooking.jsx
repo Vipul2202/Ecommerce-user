@@ -104,7 +104,13 @@ const ManageBooking = () => {
     setSubmitError("");
     try {
       const res = await axios.post(`${API}/user/manage-booking/${id}/reschedule`, form);
-      setBooking((prev) => ({ ...prev, ...res.data.data }));
+      setBooking((prev) => ({
+        ...prev,
+        ...res.data.data,
+        booking_date: form.date,
+        booking_time: form.time,
+        services: form.services,
+      }));
       setView("reschedule-requested");
     } catch (err) {
       const errors = err.response?.data?.errors;
@@ -144,15 +150,19 @@ const ManageBooking = () => {
   );
 
   if (!booking.canModify && (view === "landing" || view === "cancel-confirm" || view === "reschedule")) {
+    const isPendingApproval = booking.blockReason === "pending_approval";
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
         <div className="bg-white rounded-2xl shadow p-8 max-w-sm w-full text-center">
           <div className="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-3 text-xl">⏳</div>
-          <h2 className="font-bold text-gray-800 mb-1">Too close to your booking</h2>
+          <h2 className="font-bold text-gray-800 mb-1">
+            {isPendingApproval ? "Change already requested" : "Too close to your booking"}
+          </h2>
           <p className="text-sm text-gray-500 mb-4">
-            Online changes close 24 hours before your appointment. Please call your location directly to make changes now.
+            {booking.blockMessage ||
+              "Online changes close 24 hours before your appointment. Please call your location directly to make changes now."}
           </p>
-          {booking.locationPhone && (
+          {!isPendingApproval && booking.locationPhone && (
             <p className="text-sm bg-red-50 text-red-700 rounded-lg py-2 px-3 font-semibold">
               {booking.location} · {booking.locationPhone}
             </p>
