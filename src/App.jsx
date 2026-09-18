@@ -13,6 +13,7 @@ import Homenext from './assets/Components/Homenext'
 import Footer from './assets/Components/Footer'
 import ContactUs from './assets/Components/Contactus'
 import BookNow from './assets/Components/BookNow'
+import ManageBooking from './assets/Components/ManageBooking'
 import Extras from './assets/Components/Extras'
 // import Service from './assets/Components/Service'
 // import Faqs from './assets/Components/Faqs';
@@ -98,6 +99,7 @@ function App() {
           />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
+          <Route path="/manage-booking/:id" element={<ManageBooking />} />
           <Route path="/extras" element={<Extras />} />
           <Route path="/ultrapremium" element={<Ultrapremium />} />
           <Route path="/detailing" element={<Detailing />} />
