@@ -34,7 +34,7 @@ const ManageBooking = () => {
   const [loadError, setLoadError] = useState("");
   const [booking, setBooking] = useState(null);
 
-  // "landing" | "cancel-confirm" | "reschedule" | "cancel-success" | "reschedule-success"
+  // "landing" | "cancel-confirm" | "reschedule" | "cancel-success" | "reschedule-requested"
   const [view, setView] = useState("landing");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -105,7 +105,7 @@ const ManageBooking = () => {
     try {
       const res = await axios.post(`${API}/user/manage-booking/${id}/reschedule`, form);
       setBooking((prev) => ({ ...prev, ...res.data.data }));
-      setView("reschedule-success");
+      setView("reschedule-requested");
     } catch (err) {
       const errors = err.response?.data?.errors;
       setSubmitError(errors ? errors.join(" ") : err.response?.data?.message || "Something went wrong. Please try again.");
@@ -299,12 +299,12 @@ const ManageBooking = () => {
           </div>
         )}
 
-        {view === "reschedule-success" && (
+        {view === "reschedule-requested" && (
           <div className="text-center py-4">
-            <div className="w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center mx-auto mb-3 text-xl">✓</div>
-            <h2 className="font-bold text-gray-800 mb-1">Booking updated</h2>
+            <div className="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-3 text-xl">⏳</div>
+            <h2 className="font-bold text-gray-800 mb-1">Reschedule request sent</h2>
             <p className="text-sm text-gray-500">
-              You're all set for {formatDate(booking.booking_date)} at {formatTime(booking.booking_time)}. We've notified the team.
+              We've asked to move your booking to {formatDate(booking.booking_date)} at {formatTime(booking.booking_time)}. Our team will confirm by email shortly.
             </p>
           </div>
         )}
