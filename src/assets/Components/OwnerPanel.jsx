@@ -3,6 +3,7 @@ import axios from "axios";
 import * as XLSX from "xlsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReminderRectificationPanel from "./ReminderRectificationPanel";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 const PASSWORD_STORAGE_KEY = "owner_panel_password";
@@ -41,6 +42,7 @@ const OwnerPanel = () => {
   const [downloading, setDownloading] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [deleting, setDeleting] = useState(false);
+  const [view, setView] = useState("bookings");
 
   const authHeaders = (pwd) => ({
     headers: { "x-owner-password": pwd },
@@ -262,13 +264,46 @@ const OwnerPanel = () => {
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
+  const handleAuthExpired = () => {
+    sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
+    setPassword("");
+  };
+
   return (
     <div className="min-h-screen bg-black text-white px-4 sm:px-8 py-10">
       <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <h1 className="text-3xl font-bold text-[#00a0db]">Owner Panel</h1>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setView("bookings")}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                view === "bookings"
+                  ? "bg-[#00a0db] text-white"
+                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
+              }`}
+            >
+              Bookings
+            </button>
+            <button
+              onClick={() => setView("reminder-correction")}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                view === "reminder-correction"
+                  ? "bg-[#00a0db] text-white"
+                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
+              }`}
+            >
+              Reminder Correction
+            </button>
+          </div>
+        </div>
+
+        {view === "reminder-correction" ? (
+          <ReminderRectificationPanel password={password} onAuthExpired={handleAuthExpired} />
+        ) : (
+        <>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <h1 className="text-3xl font-bold text-[#00a0db]">
-            Bookings — Owner Panel
-          </h1>
+          <h2 className="text-xl font-bold text-gray-300">Bookings</h2>
           <div className="flex gap-3">
             {selectedIds.length > 0 && (
               <button
@@ -425,6 +460,8 @@ const OwnerPanel = () => {
             </button>
           </div>
         </div>
+        </>
+        )}
       </div>
       <ToastContainer position="top-center" autoClose={2500} />
     </div>
