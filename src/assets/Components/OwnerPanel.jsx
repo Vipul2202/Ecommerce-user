@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReminderRectificationPanel from "./ReminderRectificationPanel";
+import ReminderActivityPanel from "./ReminderActivityPanel";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 const PASSWORD_STORAGE_KEY = "owner_panel_password";
@@ -295,11 +296,23 @@ const OwnerPanel = () => {
             >
               Reminder Correction
             </button>
+            <button
+              onClick={() => setView("reminder-activity")}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                view === "reminder-activity"
+                  ? "bg-[#00a0db] text-white"
+                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
+              }`}
+            >
+              Reminder Activity
+            </button>
           </div>
         </div>
 
         {view === "reminder-correction" ? (
           <ReminderRectificationPanel password={password} onAuthExpired={handleAuthExpired} />
+        ) : view === "reminder-activity" ? (
+          <ReminderActivityPanel password={password} onAuthExpired={handleAuthExpired} />
         ) : (
         <>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
