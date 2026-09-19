@@ -44,10 +44,60 @@ const OwnerPanel = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const [deleting, setDeleting] = useState(false);
   const [view, setView] = useState("bookings");
+  const [testModeStatus, setTestModeStatus] = useState(null); // { testMode, testEmail }
+  const [togglingTestMode, setTogglingTestMode] = useState(false);
 
   const authHeaders = (pwd) => ({
     headers: { "x-owner-password": pwd },
   });
+
+  const fetchTestModeStatus = async (pwd) => {
+    try {
+      const res = await axios.get(`${API}/admin/reminders/test-mode-status`, authHeaders(pwd));
+      setTestModeStatus(res.data);
+    } catch (error) {
+      // Non-critical — the banner just stays hidden if this fails.
+    }
+  };
+
+  const handleToggleTestMode = async () => {
+    if (!testModeStatus) return;
+    const turningOn = !testModeStatus.testMode;
+    let testEmail;
+    if (turningOn && !testModeStatus.testEmail) {
+      testEmail = window.prompt(
+        "No REMINDER_TEST_EMAIL is set yet. Enter the inbox test-mode emails should redirect to:",
+        ""
+      );
+      if (!testEmail || !testEmail.trim()) return;
+    }
+    const confirmed = window.confirm(
+      turningOn
+        ? "Turn reminder test mode ON? All reminder/rectification emails will redirect to the test inbox instead of real customers."
+        : "Turn reminder test mode OFF? Reminder and rectification emails will start reaching real customers again."
+    );
+    if (!confirmed) return;
+
+    setTogglingTestMode(true);
+    try {
+      const res = await axios.post(
+        `${API}/admin/reminders/test-mode-status`,
+        { testMode: turningOn, ...(testEmail ? { testEmail: testEmail.trim() } : {}) },
+        authHeaders(password)
+      );
+      setTestModeStatus(res.data);
+      toast.success(turningOn ? "Test mode turned ON" : "Test mode turned OFF");
+    } catch (error) {
+      if (error.response?.status === 401) {
+        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
+        setPassword("");
+      } else {
+        toast.error(error.response?.data?.message || "Failed to change test mode");
+      }
+    } finally {
+      setTogglingTestMode(false);
+    }
+  };
 
   const fetchBookings = async (pwd, currentStatus, currentPage) => {
     setLoading(true);
@@ -105,6 +155,11 @@ const OwnerPanel = () => {
     setSelectedIds([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [password, status, page]);
+
+  useEffect(() => {
+    if (password) fetchTestModeStatus(password);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [password]);
 
   const handleStatusTab = (value) => {
     setStatus(value);
@@ -273,6 +328,36 @@ const OwnerPanel = () => {
   return (
     <div className="min-h-screen bg-black text-white px-4 sm:px-8 py-10">
       <div className="max-w-7xl mx-auto">
+        {testModeStatus && (
+          <div
+            className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 px-4 py-3 rounded-lg border text-sm ${
+              testModeStatus.testMode
+                ? "bg-yellow-900/40 border-yellow-700 text-yellow-200"
+                : "bg-green-900/30 border-green-700 text-green-300"
+            }`}
+          >
+            <span>
+              {testModeStatus.testMode
+                ? `Reminder emails: TEST MODE — redirecting to ${testModeStatus.testEmail || "(no test email set)"}`
+                : "Reminder emails: LIVE — sending to real customers"}
+            </span>
+            <button
+              onClick={handleToggleTestMode}
+              disabled={togglingTestMode}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition disabled:opacity-50 ${
+                testModeStatus.testMode
+                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-yellow-600 hover:bg-yellow-700 text-white"
+              }`}
+            >
+              {togglingTestMode
+                ? "Updating..."
+                : testModeStatus.testMode
+                ? "Turn test mode OFF"
+                : "Turn test mode ON"}
+            </button>
+          </div>
+        )}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <h1 className="text-3xl font-bold text-[#00a0db]">Owner Panel</h1>
           <div className="flex gap-2">
