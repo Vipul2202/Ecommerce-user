@@ -54,7 +54,7 @@ const Extras = () => {
         "Tailored Services – Based on your car’s condition",
         "Long-Lasting Results – Shiny longer with premium",
       ],
-      price: "From $149 onwards",
+      price: "From $179 onwards",
       footer: "Give Your Car the Glow It Deserves!",
     },
     {

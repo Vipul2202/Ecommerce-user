@@ -24,7 +24,7 @@ const Lastbar = () => {
     {
       id: 2,
       title: "Buff And Polish",
-      price: "From $149* onwards",
+      price: "From $179* onwards",
       image: team2,
       buttonStyle: "white",
     },
