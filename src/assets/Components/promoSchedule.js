@@ -4,4 +4,7 @@
 
 export const FATHERS_DAY_PROMO_END = new Date('2026-09-30T17:00:00+08:00');
 
-export const isFathersDayPromoActive = () => new Date() < FATHERS_DAY_PROMO_END;
+// Permanently off — not date-based anymore. A device holding a stale
+// cached bundle (e.g. an old mobile session) must never be able to see
+// the popup/slide or claim the discount again, regardless of its clock.
+export const isFathersDayPromoActive = () => false;
