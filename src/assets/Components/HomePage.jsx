@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import FathersDaySlide from "./FathersDaySlide";
+import { isFathersDayPromoActive } from "./promoSchedule";
 import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 
@@ -64,10 +65,7 @@ const HomePage = () => {
   }, []);
 
   const carouselData = [
-     {
-      custom: true,
-
-    },
+     ...(isFathersDayPromoActive() ? [{ custom: true }] : []),
      {
       img: carousel4,
 

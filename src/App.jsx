@@ -45,6 +45,7 @@ import Faqs from './assets/Components/Faqs';
 import Privacy from './assets/Components/Privacy';
 import PromoTerms from './assets/Components/PromoTerms';
 import FathersDayOffer from './assets/Components/FathersDayOffer';
+import { isFathersDayPromoActive } from './assets/Components/promoSchedule';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -128,7 +129,7 @@ function App() {
         </Routes>
 
         <Footer />
-        <FathersDayOffer />
+        {isFathersDayPromoActive() && <FathersDayOffer />}
       </Router>
     </div>
   )
