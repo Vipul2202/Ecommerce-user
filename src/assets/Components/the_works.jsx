@@ -93,7 +93,7 @@ const TheWorks = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">$375</p>
+                  <p className="text-gray-400 italic">$349</p>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ const TheWorks = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">$395</p>
+                  <p className="text-gray-400 italic">$399</p>
                 </div>
               </div>
 
@@ -130,7 +130,7 @@ const TheWorks = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
-                  <p className="text-gray-400 italic">$425</p>
+                  <p className="text-gray-400 italic">$449</p>
                 </div>
               </div>
             </div>

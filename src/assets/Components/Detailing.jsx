@@ -37,7 +37,7 @@ const Detailing = () => {
     {
       id: 3,
       title: "The Works",
-      price: "From $375 onwards",
+      price: "From $349 onwards",
       image: team,
       buttonStyle: "black",
       route: "/the_works"
