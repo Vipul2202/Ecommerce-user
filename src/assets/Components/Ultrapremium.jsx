@@ -37,16 +37,16 @@
         },
         {
           title: "INTERIOR PROTECTION PACK",
-    
+
           offers: [
-            "Paint Correction – Removes swirl marks, scratches",
-            "Professional Polishing – Mirror-like gloss",
-            "Protective Wax Coating – Lasting protection",
+            "Fabric & Leather Guard – Repels spills and stains",
+            "UV Protection Coating – Prevents dashboard and trim fading",
+            "Odour Neutralising Treatment – Keeps your cabin smelling fresh",
           ],
           whyUs: [
-            "Experienced Technicians – Skilled pros",
-            "Tailored Services – Based on your car’s condition",
-            "Long-Lasting Results – Shiny longer with premium",
+            "Premium Protective Products – Long-lasting barrier",
+            "Full Interior Coverage – Seats, dash, and door trims",
+            "Keeps Your Interior Looking Newer, Longer",
           ],
           price: "From $299 onwards",
         },
