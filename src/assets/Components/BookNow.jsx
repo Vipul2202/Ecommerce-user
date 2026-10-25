@@ -252,12 +252,12 @@ const BookNow = () => {
     const newServices = checked
       ? [...formData.services, value]
       : formData.services.filter((service) => service !== value);
-    
+
     setFormData((prev) => ({
       ...prev,
       services: newServices,
     }));
-    
+
     // Validate services
     const newErrors = { ...errors };
     if (newServices.length === 0) {
@@ -266,6 +266,12 @@ const BookNow = () => {
       delete newErrors.services;
     }
     setErrors(newErrors);
+
+    // Ceramic Coating / Windows Tinting need a heads-up about pricing
+    // as soon as the customer selects them, not just before submit.
+    if (checked && SERVICE_NOTICES[value]) {
+      setShowServiceNoticeModal(true);
+    }
   };
 
   const isFormValid = () => {
@@ -303,14 +309,6 @@ const BookNow = () => {
     }
 
     if (hasErrors) {
-      return;
-    }
-
-    // Ceramic Coating / Windows Tinting need a heads-up about pricing
-    // before the booking actually goes through.
-    const applicableNotices = formData.services.filter((s) => SERVICE_NOTICES[s]);
-    if (applicableNotices.length > 0) {
-      setShowServiceNoticeModal(true);
       return;
     }
 
@@ -400,21 +398,12 @@ const BookNow = () => {
                   </p>
                 ))}
             </div>
-            <div className="flex gap-3 justify-center">
+            <div className="flex justify-center">
               <button
                 onClick={() => setShowServiceNoticeModal(false)}
-                className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
-              >
-                Go Back
-              </button>
-              <button
-                onClick={() => {
-                  setShowServiceNoticeModal(false);
-                  submitBooking();
-                }}
                 className="px-4 py-2 bg-[#00a0db] text-white rounded hover:bg-blue-600"
               >
-                Continue
+                Got It
               </button>
             </div>
           </div>
