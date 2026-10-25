@@ -66,8 +66,8 @@
             "Variety of Shades – Match your style",
             "Legal Compliance – Meets local rules",
           ],
-          note: ["In-person inspection required to confirm exact price"],
-          price: "From $349 onwards",
+          priceNote: "A range of tint films is available, and pricing depends on the film you choose. Visit us in-store for a quote.",
+          price: "Price on request",
         },
         {
           title: "PAINTLESS DENT REMOVAL",
@@ -173,9 +173,16 @@
                         alt="Service"
                         className="w-16 h-16 object-cover rounded-full"
                       />
-                      <p className="text-white font-semibold text-sm">
-                        {card.price}
-                      </p>
+                      <div>
+                        <p className="text-white font-semibold text-sm">
+                          {card.price}
+                        </p>
+                        {card.priceNote && (
+                          <p className="text-white/80 text-xs mt-1 italic">
+                            {card.priceNote}
+                          </p>
+                        )}
+                      </div>
                     </div>
                     <button
                       onClick={() => navigate("/booking")}
