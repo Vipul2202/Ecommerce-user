@@ -32,7 +32,7 @@
           ],
           note: [
             "We are GTechniq Accredited Professional Applicator",
-            "Vehicle inspection required prior to booking",
+            "In-person inspection required to confirm exact price",
           ],
           price: "From $499 onwards",
         },
@@ -66,7 +66,7 @@
             "Variety of Shades – Match your style",
             "Legal Compliance – Meets local rules",
           ],
-          note: ["Vehicle inspection required prior to booking"],
+          note: ["In-person inspection required to confirm exact price"],
           price: "From $349 onwards",
         },
         {
