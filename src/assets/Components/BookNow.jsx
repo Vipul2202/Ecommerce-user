@@ -22,6 +22,7 @@ const BookNow = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showServiceNoticeModal, setShowServiceNoticeModal] = useState(false);
   const [minDate, setMinDate] = useState("");
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -31,6 +32,11 @@ const BookNow = () => {
     "Ceramic Coating", "Interior Protection Pack", "Windows Tinting", "Paintless Dent Removal",
     "Stage 3 Paint Correction", "Buff and Polish", "Head Light Restoration", "Leather Clean/Seats Steam Clean", "Dog Hair Removal", "Bull Bar Polish"
   ];
+
+  const SERVICE_NOTICES = {
+    "Ceramic Coating": "In-person inspection required to confirm exact price.",
+    "Windows Tinting": "A range of tint films is available, and pricing depends on the film you choose. Visit us in-store for a quote.",
+  };
 
   const serviceTaglines = {
     "Full Detail": "Best for Regular Care",
@@ -273,7 +279,7 @@ const BookNow = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
+
     // Mark all fields as touched to show validation errors
     const allTouched = {};
     Object.keys(formData).forEach(key => {
@@ -300,6 +306,18 @@ const BookNow = () => {
       return;
     }
 
+    // Ceramic Coating / Windows Tinting need a heads-up about pricing
+    // before the booking actually goes through.
+    const applicableNotices = formData.services.filter((s) => SERVICE_NOTICES[s]);
+    if (applicableNotices.length > 0) {
+      setShowServiceNoticeModal(true);
+      return;
+    }
+
+    await submitBooking();
+  };
+
+  const submitBooking = async () => {
     try {
       setIsLoading(true);
       const payload = formData;
@@ -365,6 +383,40 @@ const BookNow = () => {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {showServiceNoticeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div className="bg-white text-black rounded-lg shadow-lg p-8 max-w-md w-full">
+            <h2 className="text-xl font-semibold mb-4 text-center">Before You Book</h2>
+            <div className="space-y-3 mb-6">
+              {formData.services
+                .filter((s) => SERVICE_NOTICES[s])
+                .map((s) => (
+                  <p key={s} className="text-sm text-gray-700">
+                    <span className="font-semibold">{s}:</span> {SERVICE_NOTICES[s]}
+                  </p>
+                ))}
+            </div>
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={() => setShowServiceNoticeModal(false)}
+                className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+              >
+                Go Back
+              </button>
+              <button
+                onClick={() => {
+                  setShowServiceNoticeModal(false);
+                  submitBooking();
+                }}
+                className="px-4 py-2 bg-[#00a0db] text-white rounded hover:bg-blue-600"
+              >
+                Continue
+              </button>
+            </div>
           </div>
         </div>
       )}
