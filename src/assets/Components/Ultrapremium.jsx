@@ -21,18 +21,19 @@
         {
           title: "CERAMIC COATING",
           offers: [
-            "Oxidation Removal – Eliminates yellowing and cloudiness",
-           "UV Protection Coating – Prevents future fading",
-            "Enhanced Visibility – Improves nighttime driving safety",
+            "Hydrophobic Finish – Repels water, dirt, and grime",
+            "UV & Oxidation Protection – Prevents fading and discolouration",
+            "Deep Gloss Enhancement – Mirror-like, long-lasting shine",
           ],
           whyUs: [
-            "High-Grade Products – Quality restoration kits",
-            "Cost-Effective – Fraction of headlight replacement",
-           
-            "Guaranteed Satisfaction – Brighter headlights",
-            "We use Gtechniq and Gyeon products only",
+            "High-Grade Products – Gtechniq and Gyeon only",
+            "Long-Term Protection – Outlasts traditional wax by years",
+            "Guaranteed Satisfaction – Showroom finish every time",
           ],
-          note: "We are GTechniq Accredited Professional Applicator",
+          note: [
+            "We are GTechniq Accredited Professional Applicator",
+            "Vehicle inspection required prior to booking",
+          ],
           price: "From $499 onwards",
         },
         {
@@ -65,6 +66,7 @@
             "Variety of Shades – Match your style",
             "Legal Compliance – Meets local rules",
           ],
+          note: ["Vehicle inspection required prior to booking"],
           price: "From $349 onwards",
         },
         {
@@ -152,11 +154,14 @@
                       ))}
                     </ul>
     
-                    {card.note && (
-                      <p className="text-xs font-semibold text-white bg-red-600 inline-block px-3 py-1 rounded-full mb-3">
-                        {card.note}
+                    {(card.note || []).map((note, noteIdx) => (
+                      <p
+                        key={noteIdx}
+                        className="text-xs font-semibold text-white bg-red-600 inline-block px-3 py-1 rounded-full mb-3 mr-2"
+                      >
+                        {note}
                       </p>
-                    )}
+                    ))}
                   </div>
     
                   {/* Card Footer */}
