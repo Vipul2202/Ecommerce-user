@@ -549,9 +549,6 @@ const BookingFormV2 = () => {
               <p className="text-xs" style={{ color: "#b2721c" }}>
                 <span className="font-semibold">Note:</span> Please remove all valuables from your car. We practice safe cleaning and try not to touch anything but we are not responsible for the loss of any personal or valuable item.
               </p>
-              <p className="text-xs" style={{ color: "#b2721c" }}>
-                <span className="font-semibold">Promo Code:</span> Please mention your promo code to our staff at the counter while billing to redeem your discount.
-              </p>
               {errors.general && (
                 <div className="rounded-lg px-4 py-3 text-sm" style={{ backgroundColor: "#fde8e8", color: "#b23b3b" }}>
                   {errors.general}
