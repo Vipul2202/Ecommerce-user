@@ -156,7 +156,7 @@ const Homenext = () => {
     {
       id: 3,
       title: "Windows Tinting",
-      price: "From $349* onwards",
+      price: "From $499* onwards",
       image: team3,
       buttonStyle: "black",
       route: "/ultrapremium", // Add specific route

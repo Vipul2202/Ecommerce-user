@@ -29,8 +29,7 @@ const serviceCards = [
     img: tintingImg,
     offers: ["UV & Heat Protection – Blocks 99% UV", "Enhanced Privacy – Keeps prying eyes away", "Clearer Vision – Improves visibility", "Interior Protection – Prevents fading & cracking"],
     whyUs: ["Top Quality Film – Industry leading tints", "Expert Installation – No bubbles", "Variety of Shades – Match your style", "Legal Compliance – Meets local rules"],
-    priceNote: "A range of tint films is available, and pricing depends on the film you choose. Visit us in-store for a quote.",
-    price: "Price on request",
+    price: "From $499 onwards",
   },
   {
     title: "Paintless Dent Removal",
