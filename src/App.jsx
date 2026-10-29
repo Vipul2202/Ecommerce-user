@@ -46,6 +46,7 @@ import Privacy from './assets/Components/Privacy';
 import PromoTerms from './assets/Components/PromoTerms';
 import FathersDayOffer from './assets/Components/FathersDayOffer';
 import { isFathersDayPromoActive } from './assets/Components/promoSchedule';
+import HomePageV2 from './assets/Components/HomePageV2';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -58,34 +59,47 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Redesign preview routes render their own self-contained nav/footer, so
+// the site's existing marquee/TopBar/Navbar/Footer are hidden only on
+// these paths — every other route is completely unaffected.
+const PREVIEW_PATHS = ['/new-home'];
+
+const SiteChrome = ({ children }) => {
+  const { pathname } = useLocation();
+  if (PREVIEW_PATHS.includes(pathname)) return null;
+  return children;
+};
+
 function App() {
   return (
     <div>
       <ToastContainer position="top-right" autoClose={3000} />
       <Router>
         <ScrollToTop />
-        <div className="sticky top-0 z-50 bg-[#052c3d] text-white py-1.5 text-sm font-semibold overflow-hidden">
-          <div className="marquee-track">
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>-</span>
-            <span>Gtechniq Ceramic Coating</span>
-            <span>-</span>
-            <span>Full Detail</span>
-            <span>-</span>
-            <span>Tinting</span>
-            <span>-</span>
-            <span>Walk-ins Welcome — No Booking Required</span>
-            <span>-</span>
-            <span>Gtechniq Ceramic Coating</span>
-            <span>-</span>
-            <span>Full Detail</span>
-            <span>-</span>
-            <span>Tinting</span>
-            <span>-</span>
+        <SiteChrome>
+          <div className="sticky top-0 z-50 bg-[#052c3d] text-white py-1.5 text-sm font-semibold overflow-hidden">
+            <div className="marquee-track">
+              <span>Walk-ins Welcome — No Booking Required</span>
+              <span>-</span>
+              <span>Gtechniq Ceramic Coating</span>
+              <span>-</span>
+              <span>Full Detail</span>
+              <span>-</span>
+              <span>Tinting</span>
+              <span>-</span>
+              <span>Walk-ins Welcome — No Booking Required</span>
+              <span>-</span>
+              <span>Gtechniq Ceramic Coating</span>
+              <span>-</span>
+              <span>Full Detail</span>
+              <span>-</span>
+              <span>Tinting</span>
+              <span>-</span>
+            </div>
           </div>
-        </div>
-        <TopBar />
-        <Navbar />
+          <TopBar />
+          <Navbar />
+        </SiteChrome>
 
         <Routes>
           <Route
@@ -98,6 +112,7 @@ function App() {
               </>
             }
           />
+          <Route path="/new-home" element={<HomePageV2 />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
@@ -128,8 +143,10 @@ function App() {
           <Route path="/promotional-terms" element={<PromoTerms />} />
         </Routes>
 
-        <Footer />
-        {isFathersDayPromoActive() && <FathersDayOffer />}
+        <SiteChrome>
+          <Footer />
+          {isFathersDayPromoActive() && <FathersDayOffer />}
+        </SiteChrome>
       </Router>
     </div>
   )
