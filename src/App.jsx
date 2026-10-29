@@ -50,6 +50,13 @@ import HomePageV2 from './assets/Components/HomePageV2';
 import ServiceTierPageV2 from './assets/Components/ServiceTierPageV2';
 import GalleryV2 from './assets/Components/GalleryV2';
 import GalleryCategoryV2 from './assets/Components/GalleryCategoryV2';
+import AboutV2 from './assets/Components/AboutV2';
+import ContactV2 from './assets/Components/ContactV2';
+import ExtrasV2 from './assets/Components/ExtrasV2';
+import UltrapremiumV2 from './assets/Components/UltrapremiumV2';
+import FaqsV2 from './assets/Components/FaqsV2';
+import LegalPageV2 from './assets/Components/LegalPageV2';
+import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 
 // ScrollToTop component
@@ -77,6 +84,14 @@ const PREVIEW_PATHS = [
   '/new-signature_detail',
   '/new-the_works',
   '/new-gallery',
+  '/new-about',
+  '/new-contact',
+  '/new-extras',
+  '/new-ultrapremium',
+  '/new-faqs',
+  '/new-terms',
+  '/new-privacy',
+  '/new-promotional-terms',
 ];
 
 const SiteChrome = ({ children }) => {
@@ -139,6 +154,14 @@ function App() {
           <Route path="/new-the_works" element={<ServiceTierPageV2 data={serviceTierData.the_works} />} />
           <Route path="/new-gallery" element={<GalleryV2 />} />
           <Route path="/new-gallery/:categorySlug" element={<GalleryCategoryV2 />} />
+          <Route path="/new-about" element={<AboutV2 />} />
+          <Route path="/new-contact" element={<ContactV2 />} />
+          <Route path="/new-extras" element={<ExtrasV2 />} />
+          <Route path="/new-ultrapremium" element={<UltrapremiumV2 />} />
+          <Route path="/new-faqs" element={<FaqsV2 />} />
+          <Route path="/new-terms" element={<LegalPageV2 data={legalPagesData.terms} />} />
+          <Route path="/new-privacy" element={<LegalPageV2 data={legalPagesData.privacy} />} />
+          <Route path="/new-promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
