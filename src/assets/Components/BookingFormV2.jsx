@@ -334,7 +334,10 @@ const BookingFormV2 = () => {
                   I understand I should remove all valuables from my car. Car Saloon practices safe cleaning and tries not to touch anything but is not responsible for the loss of any personal or valuable item.
                 </span>
               </label>
-              <label className="flex items-start gap-2 cursor-pointer">
+              <label
+                className="flex items-start gap-2 cursor-pointer rounded-lg p-3"
+                style={{ backgroundColor: "#fdf1de", border: "1px solid #f0d49a" }}
+              >
                 <input
                   type="checkbox"
                   checked={ackSoiled}
@@ -342,8 +345,8 @@ const BookingFormV2 = () => {
                   className="w-4 h-4 mt-0.5 shrink-0"
                   style={{ accentColor: accent }}
                 />
-                <span className="text-sm text-[#52585d]">
-                  I understand heavily soiled vehicles (mud, sand, pet hair, stains, rubbish or biohazards) will incur an additional surcharge depending on the condition. Car Saloon will advise of any additional cost before starting the cleaning.
+                <span className="text-sm" style={{ color: "#7a4b00" }}>
+                  I understand heavily soiled vehicles (mud, sand, pet hair, stains, rubbish or biohazards) will incur an additional <strong>surcharge</strong> depending on the condition. Car Saloon will advise of any additional cost before starting the cleaning.
                 </span>
               </label>
             </div>
