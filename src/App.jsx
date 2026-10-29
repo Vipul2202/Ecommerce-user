@@ -52,6 +52,7 @@ import MockupAccordion from './assets/Components/MockupAccordion';
 import MockupGrid from './assets/Components/MockupGrid';
 import MockupPriceToggle from './assets/Components/MockupPriceToggle';
 import MockupPriceStrip from './assets/Components/MockupPriceStrip';
+import MockupGridStrip from './assets/Components/MockupGridStrip';
 import serviceTierData from './assets/Components/serviceTierData';
 
 // ScrollToTop component
@@ -82,6 +83,7 @@ const PREVIEW_PATHS = [
   '/mockup-grid',
   '/mockup-price-toggle',
   '/mockup-price-strip',
+  '/mockup-grid-strip',
 ];
 
 const SiteChrome = ({ children }) => {
@@ -137,6 +139,7 @@ function App() {
           <Route path="/mockup-grid" element={<MockupGrid />} />
           <Route path="/mockup-price-toggle" element={<MockupPriceToggle />} />
           <Route path="/mockup-price-strip" element={<MockupPriceStrip />} />
+          <Route path="/mockup-grid-strip" element={<MockupGridStrip />} />
           <Route path="/new-outside" element={<ServiceTierPageV2 data={serviceTierData.outside} />} />
           <Route path="/new-inside_outside" element={<ServiceTierPageV2 data={serviceTierData.inside_outside} />} />
           <Route path="/new-premium_wash" element={<ServiceTierPageV2 data={serviceTierData.premium_wash} />} />
