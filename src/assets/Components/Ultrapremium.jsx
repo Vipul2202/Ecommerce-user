@@ -66,8 +66,7 @@
             "Variety of Shades – Match your style",
             "Legal Compliance – Meets local rules",
           ],
-          priceNote: "A range of tint films is available, and pricing depends on the film you choose. Visit us in-store for a quote.",
-          price: "Price on request",
+          price: "From $499 onwards",
         },
         {
           title: "PAINTLESS DENT REMOVAL",
