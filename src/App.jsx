@@ -48,6 +48,10 @@ import FathersDayOffer from './assets/Components/FathersDayOffer';
 import { isFathersDayPromoActive } from './assets/Components/promoSchedule';
 import HomePageV2 from './assets/Components/HomePageV2';
 import ServiceTierPageV2 from './assets/Components/ServiceTierPageV2';
+import MockupGalleryMasonry from './assets/Components/MockupGalleryMasonry';
+import MockupGallerySlider from './assets/Components/MockupGallerySlider';
+import MockupGalleryFilter from './assets/Components/MockupGalleryFilter';
+import MockupGallerySideBySide from './assets/Components/MockupGallerySideBySide';
 import serviceTierData from './assets/Components/serviceTierData';
 
 // ScrollToTop component
@@ -74,6 +78,10 @@ const PREVIEW_PATHS = [
   '/new-full_detail',
   '/new-signature_detail',
   '/new-the_works',
+  '/mockup-gallery-masonry',
+  '/mockup-gallery-slider',
+  '/mockup-gallery-filter',
+  '/mockup-gallery-side-by-side',
 ];
 
 const SiteChrome = ({ children }) => {
@@ -133,6 +141,10 @@ function App() {
           <Route path="/new-full_detail" element={<ServiceTierPageV2 data={serviceTierData.full_detail} />} />
           <Route path="/new-signature_detail" element={<ServiceTierPageV2 data={serviceTierData.signature_detail} />} />
           <Route path="/new-the_works" element={<ServiceTierPageV2 data={serviceTierData.the_works} />} />
+          <Route path="/mockup-gallery-masonry" element={<MockupGalleryMasonry />} />
+          <Route path="/mockup-gallery-slider" element={<MockupGallerySlider />} />
+          <Route path="/mockup-gallery-filter" element={<MockupGalleryFilter />} />
+          <Route path="/mockup-gallery-side-by-side" element={<MockupGallerySideBySide />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
