@@ -6,7 +6,7 @@ const extrasData = [
     paragraph: "Our Stage 3 Paint Correction tackles swirl marks, surface scratches, and dullness without repainting. Using multi-stage machine polishing, we cut back imperfections in the clear coat and bring the paint back to a deep, mirror-like finish.",
     offers: ["No Paint, No Filler – Keeps original paint", "Eco-Friendly – No chemicals", "Cost Effective – Avoid full repaint", "Faster – Ideal for minor and surface scratches"],
     whyUs: ["Expert Technicians – Precision tools", "Same-Day Service – Back on road quick", "Advanced PDR – Perfect results", "Guaranteed – Flawless repairs"],
-    price: "From $299 onwards",
+    price: "From $399 onwards",
   },
   {
     title: "Buff & Polish",

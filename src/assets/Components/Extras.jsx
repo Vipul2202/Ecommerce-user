@@ -37,7 +37,7 @@ const Extras = () => {
         "Advanced PDR – Perfect results",
         "Guaranteed – Flawless repairs",
       ],
-      price: "From $299 onwards",
+      price: "From $399 onwards",
       footer: "Bring Back That Showroom Shine!",
     },
     {
