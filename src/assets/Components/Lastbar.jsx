@@ -17,7 +17,7 @@ const Lastbar = () => {
     {
       id: 1,
       title: "Stage 3 Paint Correction",
-      price: "From $299* onwards",
+      price: "From $399* onwards",
       image: stage3Paint,
       buttonStyle: "black",
     },
