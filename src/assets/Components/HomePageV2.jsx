@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Car,
@@ -19,32 +19,18 @@ import interiorPackImg from "../../img/team2.jpg";
 import tintingImg from "../../img/team3.jpg";
 import paintlessDentImg from "../../img/paintless_dent_repair.png";
 import myareeImg from "../../img/myaree.jpeg";
-
-// Loads the design's two fonts only while this preview page is mounted —
-// doesn't touch index.html, so the rest of the site is completely
-// unaffected by this page existing.
-const useGoogleFont = () => {
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap";
-    document.head.appendChild(link);
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, []);
-};
+import { RedesignNav, RedesignFooter } from "./RedesignLayout";
+import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
 
 const services = [
-  { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/outside" },
-  { icon: Droplets, title: "Inside & Out", desc: "Complete interior and exterior cleaning", link: "/inside_outside" },
-  { icon: Shield, title: "Premium Wash", desc: "Premium exterior treatment", link: "/premium_wash" },
-  { icon: Settings, title: "Full Detail", desc: "Best for regular care", link: "/full_detail" },
-  { icon: Sparkles, title: "Signature Detail", desc: "Restoration-focused detailing", link: "/signature_detail" },
-  { icon: HomeIcon, title: "The Works", desc: "Best for offroad and pre-sale", link: "/the_works" },
-  { icon: Wrench, title: "Ultra Premium Finishes", desc: "Luxury finishing touches", link: "/ultrapremium" },
-  { icon: Plus, title: "Extras", desc: "Additional services", link: "/extras" },
+  { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/new-outside" },
+  { icon: Droplets, title: "Inside & Out", desc: "Complete interior and exterior cleaning", link: "/new-inside_outside" },
+  { icon: Shield, title: "Premium Wash", desc: "Premium exterior treatment", link: "/new-premium_wash" },
+  { icon: Settings, title: "Full Detail", desc: "Best for regular care", link: "/new-full_detail" },
+  { icon: Sparkles, title: "Signature Detail", desc: "Restoration-focused detailing", link: "/new-signature_detail" },
+  { icon: HomeIcon, title: "The Works", desc: "Best for offroad and pre-sale", link: "/new-the_works" },
+  { icon: Wrench, title: "Ultra Premium Finishes", desc: "Luxury finishing touches", link: "/new-ultrapremium" },
+  { icon: Plus, title: "Extras", desc: "Additional services", link: "/new-extras" },
 ];
 
 const washTiers = [
@@ -60,42 +46,19 @@ const detailTiers = [
 ];
 
 const premium = [
-  { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/ultrapremium" },
-  { title: "Interior Protection Pack", price: "From $299", img: interiorPackImg, route: "/ultrapremium" },
-  { title: "Windows Tinting", price: "Price on request", img: tintingImg, route: "/ultrapremium" },
-  { title: "Paintless Dent Removal", price: "From $199", img: paintlessDentImg, route: "/ultrapremium" },
+  { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/new-ultrapremium" },
+  { title: "Interior Protection Pack", price: "From $299", img: interiorPackImg, route: "/new-ultrapremium" },
+  { title: "Windows Tinting", price: "Price on request", img: tintingImg, route: "/new-ultrapremium" },
+  { title: "Paintless Dent Removal", price: "From $199", img: paintlessDentImg, route: "/new-ultrapremium" },
 ];
-
-const accent = "#0a7fa6";
-const navy = "#0a3b4d";
 
 const HomePageV2 = () => {
   useGoogleFont();
   const navigate = useNavigate();
 
-  const fraunces = { fontFamily: "'Fraunces', serif" };
-
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen">
-      {/* NAV */}
-      <header className="sticky top-0 z-40 bg-[#f8f6f1]/90 backdrop-blur border-b border-[#e7e2d8]">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
-          <div style={fraunces} className="text-xl font-semibold">Car Saloon</div>
-          <nav className="hidden md:flex gap-7 text-sm font-medium text-[#4a5056]">
-            <a href="#services" className="hover:text-[#0a3b4d]">Services</a>
-            <a href="#pricing" className="hover:text-[#0a3b4d]">Pricing</a>
-            <a href="#premium" className="hover:text-[#0a3b4d]">Premium</a>
-            <a href="#locations" className="hover:text-[#0a3b4d]">Locations</a>
-          </nav>
-          <button
-            onClick={() => navigate("/booking")}
-            className="px-5 py-2.5 rounded-full text-sm font-semibold text-white"
-            style={{ backgroundColor: navy }}
-          >
-            Book Now
-          </button>
-        </div>
-      </header>
+      <RedesignNav />
 
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center">
@@ -111,7 +74,7 @@ const HomePageV2 = () => {
           </p>
           <div className="flex gap-3 flex-wrap pt-1">
             <button
-              onClick={() => navigate("/booking")}
+              onClick={() => navigate("/new-booking")}
               className="px-6 py-3 rounded-full font-semibold text-white"
               style={{ backgroundColor: navy }}
             >
@@ -273,7 +236,7 @@ const HomePageV2 = () => {
             <img src={myareeImg} alt="Myaree" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Myaree</div>
-              <button onClick={() => navigate("/booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
+              <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
                 Book at Myaree →
               </button>
             </div>
@@ -284,7 +247,7 @@ const HomePageV2 = () => {
             </div>
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Midland</div>
-              <button onClick={() => navigate("/booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
+              <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
                 Book at Midland →
               </button>
             </div>
@@ -298,7 +261,7 @@ const HomePageV2 = () => {
           <h2 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-white">Ready for the Saloon Treatment?</h2>
           <p className="text-[#cfe3ea] max-w-md">Pick your service, pick your location, and we'll take care of the rest.</p>
           <button
-            onClick={() => navigate("/booking")}
+            onClick={() => navigate("/new-booking")}
             className="mt-2 px-7 py-3 rounded-full font-semibold bg-white"
             style={{ color: navy }}
           >
@@ -307,17 +270,7 @@ const HomePageV2 = () => {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-[#e7e2d8] px-6 py-10">
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-between gap-5 text-sm text-[#7a8188]">
-          <div style={fraunces} className="text-lg text-[#13242c]">Car Saloon</div>
-          <div>© Car Saloon — Midland &amp; Myaree, Perth WA</div>
-          <div className="flex gap-5">
-            <a href="/privacy">Privacy</a>
-            <a href="/promotional-terms">Offer Terms</a>
-          </div>
-        </div>
-      </footer>
+      <RedesignFooter />
     </div>
   );
 };
