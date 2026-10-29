@@ -47,6 +47,8 @@ import PromoTerms from './assets/Components/PromoTerms';
 import FathersDayOffer from './assets/Components/FathersDayOffer';
 import { isFathersDayPromoActive } from './assets/Components/promoSchedule';
 import HomePageV2 from './assets/Components/HomePageV2';
+import ServiceTierPageV2 from './assets/Components/ServiceTierPageV2';
+import serviceTierData from './assets/Components/serviceTierData';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -62,7 +64,17 @@ const ScrollToTop = () => {
 // Redesign preview routes render their own self-contained nav/footer, so
 // the site's existing marquee/TopBar/Navbar/Footer are hidden only on
 // these paths — every other route is completely unaffected.
-const PREVIEW_PATHS = ['/new-home'];
+const PREVIEW_PATHS = [
+  '/new-home',
+  '/new-outside',
+  '/new-inside_outside',
+  '/new-premium_wash',
+  '/new-mini_detail',
+  '/new-interior_detail',
+  '/new-full_detail',
+  '/new-signature_detail',
+  '/new-the_works',
+];
 
 const SiteChrome = ({ children }) => {
   const { pathname } = useLocation();
@@ -113,6 +125,14 @@ function App() {
             }
           />
           <Route path="/new-home" element={<HomePageV2 />} />
+          <Route path="/new-outside" element={<ServiceTierPageV2 data={serviceTierData.outside} />} />
+          <Route path="/new-inside_outside" element={<ServiceTierPageV2 data={serviceTierData.inside_outside} />} />
+          <Route path="/new-premium_wash" element={<ServiceTierPageV2 data={serviceTierData.premium_wash} />} />
+          <Route path="/new-mini_detail" element={<ServiceTierPageV2 data={serviceTierData.mini_detail} />} />
+          <Route path="/new-interior_detail" element={<ServiceTierPageV2 data={serviceTierData.interior_detail} />} />
+          <Route path="/new-full_detail" element={<ServiceTierPageV2 data={serviceTierData.full_detail} />} />
+          <Route path="/new-signature_detail" element={<ServiceTierPageV2 data={serviceTierData.signature_detail} />} />
+          <Route path="/new-the_works" element={<ServiceTierPageV2 data={serviceTierData.the_works} />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
