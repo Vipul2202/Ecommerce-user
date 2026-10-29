@@ -35,7 +35,7 @@ export const PREMIUM_SERVICES = [
 
 // Touch Up Extras — flat prices, same for every vehicle type.
 export const EXTRA_SERVICES = [
-  { key: "stage3_paint_correction", label: "Stage 3 Paint Correction", submitLabel: "Stage 3 Paint Correction", price: 299 },
+  { key: "stage3_paint_correction", label: "Stage 3 Paint Correction", submitLabel: "Stage 3 Paint Correction", price: 399 },
   { key: "buff_polish", label: "Buff & Polish", submitLabel: "Buff and Polish", price: 179 },
   { key: "headlight_restoration", label: "Headlight Restoration", submitLabel: "Head Light Restoration", price: 50 },
   { key: "leather_steam_clean", label: "Leather Clean & Steam Clean", submitLabel: "Leather Clean/Seats Steam Clean", price: 70 },
