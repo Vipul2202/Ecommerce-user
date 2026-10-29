@@ -58,7 +58,7 @@ import FaqsV2 from './assets/Components/FaqsV2';
 import LegalPageV2 from './assets/Components/LegalPageV2';
 import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
-import MockupBookingForm from './assets/Components/MockupBookingForm';
+import BookingFormV2 from './assets/Components/BookingFormV2';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -93,7 +93,7 @@ const PREVIEW_PATHS = [
   '/new-terms',
   '/new-privacy',
   '/new-promotional-terms',
-  '/mockup-booking-form',
+  '/new-booking',
 ];
 
 const SiteChrome = ({ children }) => {
@@ -164,7 +164,7 @@ function App() {
           <Route path="/new-terms" element={<LegalPageV2 data={legalPagesData.terms} />} />
           <Route path="/new-privacy" element={<LegalPageV2 data={legalPagesData.privacy} />} />
           <Route path="/new-promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
-          <Route path="/mockup-booking-form" element={<MockupBookingForm />} />
+          <Route path="/new-booking" element={<BookingFormV2 />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
