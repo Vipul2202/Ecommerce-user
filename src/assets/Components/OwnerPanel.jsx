@@ -46,6 +46,8 @@ const OwnerPanel = () => {
   const [view, setView] = useState("bookings");
   const [testModeStatus, setTestModeStatus] = useState(null); // { testMode, testEmail }
   const [togglingTestMode, setTogglingTestMode] = useState(false);
+  const [customerTestModeStatus, setCustomerTestModeStatus] = useState(null); // { testMode, testEmail }
+  const [togglingCustomerTestMode, setTogglingCustomerTestMode] = useState(false);
 
   const authHeaders = (pwd) => ({
     headers: { "x-owner-password": pwd },
@@ -55,6 +57,15 @@ const OwnerPanel = () => {
     try {
       const res = await axios.get(`${API}/admin/reminders/test-mode-status`, authHeaders(pwd));
       setTestModeStatus(res.data);
+    } catch (error) {
+      // Non-critical — the banner just stays hidden if this fails.
+    }
+  };
+
+  const fetchCustomerTestModeStatus = async (pwd) => {
+    try {
+      const res = await axios.get(`${API}/admin/reminders/customer-test-mode-status`, authHeaders(pwd));
+      setCustomerTestModeStatus(res.data);
     } catch (error) {
       // Non-critical — the banner just stays hidden if this fails.
     }
@@ -96,6 +107,45 @@ const OwnerPanel = () => {
       }
     } finally {
       setTogglingTestMode(false);
+    }
+  };
+
+  const handleToggleCustomerTestMode = async () => {
+    if (!customerTestModeStatus) return;
+    const turningOn = !customerTestModeStatus.testMode;
+    let testEmail;
+    if (turningOn && !customerTestModeStatus.testEmail) {
+      testEmail = window.prompt(
+        "No REMINDER_TEST_EMAIL is set yet. Enter the inbox customer emails should redirect to:",
+        ""
+      );
+      if (!testEmail || !testEmail.trim()) return;
+    }
+    const confirmed = window.confirm(
+      turningOn
+        ? "Turn customer email test mode ON? Approval, cancellation, reschedule, and delete emails will redirect to the test inbox instead of real customers. Admin/branch notifications are not affected."
+        : "Turn customer email test mode OFF? Customer-facing emails will start reaching real customers again."
+    );
+    if (!confirmed) return;
+
+    setTogglingCustomerTestMode(true);
+    try {
+      const res = await axios.post(
+        `${API}/admin/reminders/customer-test-mode-status`,
+        { testMode: turningOn, ...(testEmail ? { testEmail: testEmail.trim() } : {}) },
+        authHeaders(password)
+      );
+      setCustomerTestModeStatus(res.data);
+      toast.success(turningOn ? "Customer email test mode turned ON" : "Customer email test mode turned OFF");
+    } catch (error) {
+      if (error.response?.status === 401) {
+        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
+        setPassword("");
+      } else {
+        toast.error(error.response?.data?.message || "Failed to change customer email test mode");
+      }
+    } finally {
+      setTogglingCustomerTestMode(false);
     }
   };
 
@@ -157,7 +207,10 @@ const OwnerPanel = () => {
   }, [password, status, page]);
 
   useEffect(() => {
-    if (password) fetchTestModeStatus(password);
+    if (password) {
+      fetchTestModeStatus(password);
+      fetchCustomerTestModeStatus(password);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [password]);
 
@@ -353,6 +406,36 @@ const OwnerPanel = () => {
               {togglingTestMode
                 ? "Updating..."
                 : testModeStatus.testMode
+                ? "Turn test mode OFF"
+                : "Turn test mode ON"}
+            </button>
+          </div>
+        )}
+        {customerTestModeStatus && (
+          <div
+            className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 px-4 py-3 rounded-lg border text-sm ${
+              customerTestModeStatus.testMode
+                ? "bg-yellow-900/40 border-yellow-700 text-yellow-200"
+                : "bg-green-900/30 border-green-700 text-green-300"
+            }`}
+          >
+            <span>
+              {customerTestModeStatus.testMode
+                ? `Customer emails: TEST MODE — redirecting to ${customerTestModeStatus.testEmail || "(no test email set)"}`
+                : "Customer emails: LIVE — sending to real customers"}
+            </span>
+            <button
+              onClick={handleToggleCustomerTestMode}
+              disabled={togglingCustomerTestMode}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition disabled:opacity-50 ${
+                customerTestModeStatus.testMode
+                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-yellow-600 hover:bg-yellow-700 text-white"
+              }`}
+            >
+              {togglingCustomerTestMode
+                ? "Updating..."
+                : customerTestModeStatus.testMode
                 ? "Turn test mode OFF"
                 : "Turn test mode ON"}
             </button>
