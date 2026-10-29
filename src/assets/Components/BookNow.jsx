@@ -23,6 +23,9 @@ const BookNow = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showServiceNoticeModal, setShowServiceNoticeModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [ackValuables, setAckValuables] = useState(false);
+  const [ackSoiled, setAckSoiled] = useState(false);
   const [minDate, setMinDate] = useState("");
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -312,6 +315,11 @@ const BookNow = () => {
       return;
     }
 
+    setShowConfirmModal(true);
+  };
+
+  const confirmAndSubmit = async () => {
+    setShowConfirmModal(false);
     await submitBooking();
   };
 
@@ -338,6 +346,8 @@ const BookNow = () => {
         });
         setErrors({});
         setTouched({});
+        setAckValuables(false);
+        setAckSoiled(false);
         setShowModal(true);
       }
     } catch (error) {
@@ -404,6 +414,71 @@ const BookNow = () => {
                 className="px-4 py-2 bg-[#00a0db] text-white rounded hover:bg-blue-600"
               >
                 Got It
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
+          <div className="bg-white text-black rounded-lg shadow-lg p-8 max-w-md w-full">
+            <h2 className="text-xl font-semibold mb-4 text-center">Before You Confirm</h2>
+            <div className="space-y-4 mb-6">
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.marketingConsent}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, marketingConsent: e.target.checked }))}
+                  className="accent-[#00a0db] w-4 h-4 mt-1"
+                />
+                <span className="text-sm text-gray-700">
+                  I would like to receive promotional offers and updates from Car Saloon via SMS and email. See our{" "}
+                  <a href="/promotional-terms" target="_blank" rel="noopener noreferrer" className="text-[#00a0db] underline">
+                    Offer Terms &amp; Conditions
+                  </a>. (Optional)
+                </span>
+              </label>
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={ackValuables}
+                  onChange={(e) => setAckValuables(e.target.checked)}
+                  className="accent-[#00a0db] w-4 h-4 mt-1"
+                />
+                <span className="text-sm text-gray-700">
+                  I understand I should remove all valuables from my car. Car Saloon practices safe cleaning and tries not to touch anything but is not responsible for the loss of any personal or valuable item.
+                </span>
+              </label>
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={ackSoiled}
+                  onChange={(e) => setAckSoiled(e.target.checked)}
+                  className="accent-[#00a0db] w-4 h-4 mt-1"
+                />
+                <span className="text-sm text-gray-700">
+                  I understand heavily soiled vehicles (mud, sand, pet hair, stains, rubbish or biohazards) will incur an additional surcharge depending on the condition. Car Saloon will advise of any additional cost before starting the cleaning.
+                </span>
+              </label>
+            </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={confirmAndSubmit}
+                disabled={!ackValuables || !ackSoiled || isLoading}
+                className={`px-4 py-2 rounded font-semibold transition ${
+                  ackValuables && ackSoiled && !isLoading
+                    ? "bg-[#00a0db] text-white hover:bg-blue-600"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                }`}
+              >
+                Confirm Booking
+              </button>
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="text-gray-500 text-sm py-1"
+              >
+                Go back
               </button>
             </div>
           </div>
@@ -636,34 +711,6 @@ const BookNow = () => {
                 )}
               </div>
             </div>
-
-            <div>
-              <label className="flex items-start space-x-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="marketingConsent"
-                  checked={formData.marketingConsent}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, marketingConsent: e.target.checked }))
-                  }
-                  className="accent-[#00a0db] w-4 h-4 mt-1"
-                />
-                <span className="text-sm text-gray-300">
-                  I would like to receive promotional offers and updates from Car Saloon via SMS and email. See our{" "}
-                  <a href="/promotional-terms" target="_blank" rel="noopener noreferrer" className="text-[#00a0db] underline">
-                    Offer Terms & Conditions
-                  </a>.
-                </span>
-              </label>
-            </div>
-
-            <p className="text-amber-400 text-sm">
-              <span className="font-semibold">Note:</span> Please remove all valuables from your car. We practice safe cleaning and try not to touch anything but we are not responsible for the loss of any personal or valuable item.
-            </p>
-
-            <p className="text-amber-400 text-sm">
-              <span className="font-semibold">Promo Code:</span> Please mention your promo code to our staff at the counter while billing to redeem your discount.
-            </p>
 
             {errors.general && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">

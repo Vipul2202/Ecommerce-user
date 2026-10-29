@@ -45,6 +45,9 @@ const BookingFormV2 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showServiceNoticeModal, setShowServiceNoticeModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [ackValuables, setAckValuables] = useState(false);
+  const [ackSoiled, setAckSoiled] = useState(false);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
@@ -190,6 +193,11 @@ const BookingFormV2 = () => {
 
     if (hasErrors) return;
 
+    setShowConfirmModal(true);
+  };
+
+  const confirmAndSubmit = async () => {
+    setShowConfirmModal(false);
     await submitBooking();
   };
 
@@ -223,6 +231,8 @@ const BookingFormV2 = () => {
         setSelected({});
         setErrors({});
         setTouched({});
+        setAckValuables(false);
+        setAckSoiled(false);
         setShowModal(true);
       }
     } catch (error) {
@@ -286,6 +296,75 @@ const BookingFormV2 = () => {
                 style={{ backgroundColor: navy }}
               >
                 Got It
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full">
+            <h2 style={fraunces} className="text-xl font-semibold mb-4 text-center text-[#13242c]">Before You Confirm</h2>
+            <div className="flex flex-col gap-4 mb-6">
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.marketingConsent}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, marketingConsent: e.target.checked }))}
+                  className="w-4 h-4 mt-0.5 shrink-0"
+                  style={{ accentColor: accent }}
+                />
+                <span className="text-sm text-[#52585d]">
+                  I would like to receive promotional offers and updates from Car Saloon via SMS and email. See our{" "}
+                  <a href="/new-promotional-terms" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: accent }}>
+                    Offer Terms &amp; Conditions
+                  </a>. (Optional)
+                </span>
+              </label>
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={ackValuables}
+                  onChange={(e) => setAckValuables(e.target.checked)}
+                  className="w-4 h-4 mt-0.5 shrink-0"
+                  style={{ accentColor: accent }}
+                />
+                <span className="text-sm text-[#52585d]">
+                  I understand I should remove all valuables from my car. Car Saloon practices safe cleaning and tries not to touch anything but is not responsible for the loss of any personal or valuable item.
+                </span>
+              </label>
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={ackSoiled}
+                  onChange={(e) => setAckSoiled(e.target.checked)}
+                  className="w-4 h-4 mt-0.5 shrink-0"
+                  style={{ accentColor: accent }}
+                />
+                <span className="text-sm text-[#52585d]">
+                  I understand heavily soiled vehicles (mud, sand, pet hair, stains, rubbish or biohazards) will incur an additional surcharge depending on the condition. Car Saloon will advise of any additional cost before starting the cleaning.
+                </span>
+              </label>
+            </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={confirmAndSubmit}
+                disabled={!ackValuables || !ackSoiled || isLoading}
+                className="py-2.5 rounded-full font-semibold text-sm transition-colors"
+                style={
+                  ackValuables && ackSoiled && !isLoading
+                    ? { backgroundColor: navy, color: "#fff" }
+                    : { backgroundColor: "#e7e2d8", color: "#9a9fa4" }
+                }
+              >
+                Confirm Booking
+              </button>
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="text-sm py-1.5 text-[#8a8f94]"
+              >
+                Go back
               </button>
             </div>
           </div>
@@ -533,25 +612,6 @@ const BookingFormV2 = () => {
                   {errors.phone && touched.phone && <p className="text-xs mt-1" style={{ color: "#c23b3b" }}>{errors.phone}</p>}
                 </div>
               </div>
-              <label className="flex items-start gap-2 text-xs text-[#6b7278] cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formData.marketingConsent}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, marketingConsent: e.target.checked }))}
-                  className="w-4 h-4 mt-0.5 shrink-0"
-                  style={{ accentColor: accent }}
-                />
-                I would like to receive promotional offers and updates from Car Saloon via SMS and email. See our{" "}
-                <a href="/new-promotional-terms" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: accent }}>
-                  Offer Terms &amp; Conditions
-                </a>.
-              </label>
-              <p className="text-xs" style={{ color: "#b2721c" }}>
-                <span className="font-semibold">Note:</span> Please remove all valuables from your car. We practice safe cleaning and try not to touch anything but we are not responsible for the loss of any personal or valuable item.
-              </p>
-              <p className="text-xs" style={{ color: "#b2721c" }}>
-                <span className="font-semibold">Promo Code:</span> Please mention your promo code to our staff at the counter while billing to redeem your discount.
-              </p>
               {errors.general && (
                 <div className="rounded-lg px-4 py-3 text-sm" style={{ backgroundColor: "#fde8e8", color: "#b23b3b" }}>
                   {errors.general}
