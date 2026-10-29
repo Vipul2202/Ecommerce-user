@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Check } from "lucide-react";
+import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import { TIER_SERVICES, PREMIUM_SERVICES, EXTRA_SERVICES } from "./bookingServicesData";
@@ -20,6 +20,7 @@ const MockupBookingForm = () => {
     inside_outside: true,
     ceramic_coating: true,
   });
+  const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
 
   const toggle = (key) => setSelected((prev) => ({ ...prev, [key]: !prev[key] }));
 
@@ -43,7 +44,7 @@ const MockupBookingForm = () => {
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
       <RedesignNav />
-      <main className="flex-1">
+      <main className="flex-1 pb-24 lg:pb-0">
         <div className="px-6 pt-14 pb-10 text-center">
           <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Book A Service</span>
           <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Book Now</h1>
@@ -214,8 +215,8 @@ const MockupBookingForm = () => {
             </div>
           </div>
 
-          {/* RIGHT: sticky summary */}
-          <div className="lg:sticky lg:top-24 self-start w-full">
+          {/* RIGHT: sticky summary (desktop only — mobile uses the fixed bottom bar below) */}
+          <div className="hidden lg:block lg:sticky lg:top-24 self-start w-full">
             <div className="bg-white rounded-2xl p-6 flex flex-col gap-4" style={{ border: `1px solid ${border}` }}>
               <h2 style={fraunces} className="text-lg font-semibold text-[#13242c]">Your Estimate</h2>
 
@@ -258,6 +259,63 @@ const MockupBookingForm = () => {
           </div>
         </div>
       </main>
+
+      {/* Mobile-only sticky estimate bar, fixed to the bottom of the viewport */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40">
+        {mobileSummaryOpen && (
+          <div
+            className="bg-white px-5 pt-4 pb-2 max-h-[60vh] overflow-y-auto"
+            style={{ borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}` }}
+          >
+            {lineItems.length === 0 ? (
+              <p className="text-sm text-[#8a8f94] pb-3">Select services to see your estimate build up here.</p>
+            ) : (
+              <div className="flex flex-col gap-2.5 pb-3">
+                {lineItems.map((i) => (
+                  <div key={i.label} className="flex items-start justify-between gap-3 text-sm">
+                    <span className="flex items-start gap-2 text-[#4a5056]">
+                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: accent }} />
+                      {i.label}
+                    </span>
+                    <span className="font-semibold shrink-0" style={{ color: i.price == null ? "#b2721c" : navy }}>
+                      {i.price != null ? fmt(i.price) : "Quote"}
+                    </span>
+                  </div>
+                ))}
+                {hasQuoteItems && (
+                  <p className="text-xs text-[#8a8f94] pt-1">
+                    Items marked "Quote" need an in-person look and aren't included in this total.
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+        <div
+          className="w-full bg-white px-5 py-3 flex items-center justify-between gap-3"
+          style={{ borderTop: mobileSummaryOpen ? "none" : `1px solid ${border}`, boxShadow: "0 -4px 12px rgba(10,59,77,0.08)" }}
+        >
+          <button
+            onClick={() => setMobileSummaryOpen((o) => !o)}
+            className="flex items-center gap-1.5 text-left"
+          >
+            <span style={fraunces} className="text-base font-semibold text-[#13242c]">{fmt(total)}</span>
+            <span className="text-xs text-[#8a8f94]">est. min</span>
+            {mobileSummaryOpen ? (
+              <ChevronDown className="w-4 h-4 text-[#8a8f94]" />
+            ) : (
+              <ChevronUp className="w-4 h-4 text-[#8a8f94]" />
+            )}
+          </button>
+          <button
+            className="px-6 py-2.5 rounded-full font-semibold text-sm text-white shrink-0"
+            style={{ backgroundColor: navy }}
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+
       <RedesignFooter />
     </div>
   );
