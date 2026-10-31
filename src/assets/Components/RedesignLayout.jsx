@@ -13,6 +13,7 @@ const FOOTER_SERVICE_LINKS = [
   { label: "The Works", href: "/new-the_works" },
   { label: "Premium Finishes", href: "/new-ultrapremium" },
   { label: "Add on Enhancements", href: "/new-extras" },
+  { label: "Products", href: "/new-products" },
 ];
 
 const FOOTER_COMPANY_LINKS = [
@@ -49,9 +50,7 @@ const NAV_LINKS = [
   { label: "Gallery", href: "/new-gallery" },
   { label: "Premium", href: "/new-ultrapremium" },
   { label: "Add on Enhancements", href: "/new-extras" },
-  { label: "About", href: "/new-about" },
-  { label: "Contact", href: "/new-contact" },
-  { label: "FAQs", href: "/new-faqs" },
+  { label: "Products", href: "/new-products" },
 ];
 
 export const RedesignNav = () => {
@@ -143,10 +142,8 @@ export const RedesignNav = () => {
           </div>
           <a href="/new-ultrapremium" className="hover:text-[#0a3b4d]">Premium</a>
           <a href="/new-extras" className="hover:text-[#0a3b4d]">Add on Enhancements</a>
+          <a href="/new-products" className="hover:text-[#0a3b4d]">Products</a>
           <a href="/new-gallery" className="hover:text-[#0a3b4d]">Gallery</a>
-          <a href="/new-about" className="hover:text-[#0a3b4d]">About</a>
-          <a href="/new-contact" className="hover:text-[#0a3b4d]">Contact</a>
-          <a href="/new-faqs" className="hover:text-[#0a3b4d]">FAQs</a>
         </nav>
         <div className="flex items-center gap-2 shrink-0">
           <button
@@ -188,10 +185,8 @@ export const RedesignNav = () => {
           )}
           <a href="/new-ultrapremium" onClick={closeMobile} className="py-2.5">Premium</a>
           <a href="/new-extras" onClick={closeMobile} className="py-2.5">Add on Enhancements</a>
+          <a href="/new-products" onClick={closeMobile} className="py-2.5">Products</a>
           <a href="/new-gallery" onClick={closeMobile} className="py-2.5">Gallery</a>
-          <a href="/new-about" onClick={closeMobile} className="py-2.5">About</a>
-          <a href="/new-contact" onClick={closeMobile} className="py-2.5">Contact</a>
-          <a href="/new-faqs" onClick={closeMobile} className="py-2.5">FAQs</a>
         </nav>
       )}
     </header>

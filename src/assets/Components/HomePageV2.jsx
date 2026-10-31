@@ -434,7 +434,12 @@ const HomePageV2 = () => {
 
       {/* LOCATIONS */}
       <section id="locations" className="px-6 pb-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Find Us</span>
+            <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">2 Studios Across Perth</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
           <div className="bg-white rounded-2xl border border-[#e7e2d8] overflow-hidden">
             <img src={myareeImg} alt="Myaree" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
@@ -452,6 +457,7 @@ const HomePageV2 = () => {
                 Book at Midland →
               </button>
             </div>
+          </div>
           </div>
         </div>
       </section>
