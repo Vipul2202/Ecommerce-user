@@ -87,7 +87,7 @@ const HomePageV2 = () => {
             className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
             style={{ backgroundColor: "#fde8e8", color: "#c23b3b" }}
           >
-            <Sparkles className="w-3.5 h-3.5" /> Perth's Detailing Studio
+            <Sparkles className="w-3.5 h-3.5" /> Perth's #1 Detailing Studio
           </span>
           <h1 style={fraunces} className="text-[2.6rem] sm:text-6xl leading-[1.05] font-semibold text-[#13242c]">
             Where your car gets the{" "}
