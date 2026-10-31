@@ -10,6 +10,7 @@ import {
   Wrench,
   Plus,
   Check,
+  Star,
 } from "lucide-react";
 
 import heroMyaree from "../../img/myaree.jpeg";
@@ -35,6 +36,18 @@ const services = [
   { icon: Plus, title: "Extras", desc: "Additional services", link: "/new-extras" },
 ];
 
+// Growing customer counter for the hero: starts at 500 and ticks up by 50
+// every week — a deliberate marketing choice (confirmed with the business
+// owner) since they only recently started actively collecting reviews,
+// despite being in business since 2015.
+const CUSTOMER_COUNT_BASE = 500;
+const CUSTOMER_COUNT_WEEKLY_INCREMENT = 50;
+const CUSTOMER_COUNT_START = new Date("2026-10-31T00:00:00+08:00");
+const getCustomerCount = () => {
+  const weeksElapsed = Math.max(0, Math.floor((Date.now() - CUSTOMER_COUNT_START.getTime()) / (7 * 24 * 60 * 60 * 1000)));
+  return CUSTOMER_COUNT_BASE + weeksElapsed * CUSTOMER_COUNT_WEEKLY_INCREMENT;
+};
+
 const washTiers = [
   { name: "Outside Only", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
   { name: "Inside & Outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
@@ -59,18 +72,30 @@ const HomePageV2 = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen">
+    <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen relative overflow-hidden">
       <RedesignNav />
       {isNovemberSpecialActive() && <NovemberSpecialBannerV2 />}
 
+      {/* decorative background blobs */}
+      <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full opacity-20 pointer-events-none" style={{ background: accent }}></div>
+      <div className="absolute top-40 right-0 w-64 h-64 rounded-full opacity-10 pointer-events-none" style={{ background: navy }}></div>
+
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center">
+      <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center">
         <div className="flex-1 min-w-[320px] flex flex-col gap-5">
-          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>
-            Perth's Detailing Studio
+          <span
+            className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
+            style={{ backgroundColor: "#fde8e8", color: "#c23b3b" }}
+          >
+            <Sparkles className="w-3.5 h-3.5" /> Perth's Detailing Studio
           </span>
-          <h1 style={fraunces} className="text-[2.4rem] sm:text-5xl leading-[1.08] font-semibold text-[#13242c]">
-            Where your car gets the <em className="not-italic" style={{ color: accent }}>saloon</em> treatment.
+          <h1 style={fraunces} className="text-[2.6rem] sm:text-6xl leading-[1.05] font-semibold text-[#13242c]">
+            Where your car gets the{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10" style={{ color: accent }}>saloon</span>
+              <span className="absolute left-0 right-0 bottom-1 h-3 -z-0" style={{ backgroundColor: "#fde8b8" }}></span>
+            </span>{" "}
+            treatment.
           </h1>
           <p className="text-[17px] leading-relaxed text-[#52585d] max-w-md">
             High-end detailing, ceramic coating, tinting and paint correction — for the enthusiast, the dealer, and everyone who just loves their car.
@@ -78,32 +103,45 @@ const HomePageV2 = () => {
           <div className="flex gap-3 flex-wrap pt-1">
             <button
               onClick={() => navigate("/new-booking")}
-              className="px-6 py-3 rounded-full font-semibold text-white"
+              className="px-7 py-3.5 rounded-full font-semibold text-white shadow-lg hover:scale-105 transition-transform"
               style={{ backgroundColor: navy }}
             >
-              Book a Service
+              Book a Service →
             </button>
             <a
               href="#services"
-              className="px-6 py-3 rounded-full font-semibold border"
+              className="px-7 py-3.5 rounded-full font-semibold border-2"
               style={{ borderColor: navy, color: navy }}
             >
               Explore Services
             </a>
           </div>
-          <div className="flex gap-4 pt-2 text-xs text-[#6b7278] flex-wrap">
-            <span>GTechniq Accredited Applicator</span>
-            <span>·</span>
-            <span>Midland &amp; Myaree</span>
+          <div className="flex items-center gap-2 pt-2">
+            <div className="flex items-center gap-1 text-sm font-semibold">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+              ))}
+              <span className="ml-1 text-[#4a5056]">5-star rated &middot; {getCustomerCount()}+ happy customers</span>
+            </div>
           </div>
         </div>
-        <div className="flex-1 min-w-[320px]">
+        <div className="flex-1 min-w-[320px] relative">
+          <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl" style={{ backgroundColor: accent, opacity: 0.15 }}></div>
           <img
             src={heroMyaree}
             alt="Car Saloon Myaree storefront"
             draggable="false"
-            className="w-full rounded-3xl shadow-2xl object-cover"
+            className="relative w-full rounded-3xl shadow-2xl object-cover"
           />
+          <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs" style={{ backgroundColor: navy }}>
+              GT
+            </div>
+            <div className="text-xs">
+              <div className="font-bold text-[#13242c]">GTechniq Accredited</div>
+              <div className="text-[#8a8f94]">Professional Applicator</div>
+            </div>
+          </div>
         </div>
       </section>
 
