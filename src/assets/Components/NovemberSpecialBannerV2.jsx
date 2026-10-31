@@ -20,7 +20,7 @@ const NovemberSpecialBannerV2 = () => {
         <div className="flex items-center gap-4 sm:gap-8 max-w-3xl">
           <div className="relative flex-none w-16 h-16 sm:w-24 sm:h-24 rounded-full flex flex-col items-center justify-center text-center px-1" style={{ backgroundColor: "#0a7fa6" }}>
             <span className="text-sm sm:text-xl font-extrabold leading-none text-white">FREE</span>
-            <span className="text-[7px] sm:text-[10px] uppercase tracking-wide text-white/90 mt-0.5 leading-tight">Engine Bay</span>
+            <span className="text-[7px] sm:text-[10px] uppercase tracking-wide text-white/90 mt-0.5 leading-tight">Engine Bay Clean</span>
           </div>
           <div className="flex flex-col gap-1 sm:gap-2 text-left min-w-0">
             <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-amber-300">

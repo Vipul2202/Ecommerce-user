@@ -29,7 +29,7 @@ const NovemberSpecialSlide = () => (
               FREE
             </span>
             <span className="text-[6px] sm:text-[9px] md:text-xs uppercase tracking-wide text-white mt-0.5 leading-tight">
-              Engine Bay
+              Engine Bay Clean
             </span>
           </div>
         </div>

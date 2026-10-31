@@ -72,7 +72,7 @@ const NovemberSpecialOfferV2 = () => {
 
             <div className="relative mx-auto mb-4 w-24 h-24 rounded-full flex flex-col items-center justify-center text-center px-2" style={{ backgroundColor: navy }}>
               <span style={fraunces} className="text-lg font-semibold leading-none text-white">FREE</span>
-              <span className="text-[10px] uppercase tracking-wide mt-1 leading-tight text-white/80">Engine Bay</span>
+              <span className="text-[10px] uppercase tracking-wide mt-1 leading-tight text-white/80">Engine Bay Clean</span>
             </div>
 
             <p className="text-center text-xs font-bold uppercase tracking-widest mb-1" style={{ color: accent }}>
