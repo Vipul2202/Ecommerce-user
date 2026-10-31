@@ -146,7 +146,7 @@ const HomePage = () => {
     },
     {
       icon: <Plus className="w-12 h-12" />,
-      title: "Extras",
+      title: "Add on Enhancements",
       description: "Additional services",
       link: "/Extras"
     },

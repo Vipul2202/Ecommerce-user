@@ -749,7 +749,7 @@ Thank you for your order!
                       onMouseLeave={() => setIsExtrasOpen(false)}
                     >
                       <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100">
-                        Extras
+                        Add on Enhancements
                         {isExtrasOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
                       </button>
                       {isExtrasOpen && (
@@ -1076,7 +1076,7 @@ Thank you for your order!
                     <button
                       className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100"
                     >
-                      Extras
+                      Add on Enhancements
                       {isExtrasOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
                     </button>
                     {isExtrasOpen && (

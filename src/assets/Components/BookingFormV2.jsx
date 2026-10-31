@@ -650,7 +650,7 @@ const BookingFormV2 = () => {
               )}
 
               <div className="pt-4 flex items-center justify-between" style={{ borderTop: `1px solid ${border}` }}>
-                <span style={fraunces} className="text-base font-semibold text-[#13242c]">Estimated Minimum Total</span>
+                <span style={fraunces} className="text-base font-semibold text-[#13242c]">Estimated Approx Total</span>
                 <span style={fraunces} className="text-xl font-semibold" style={{ color: accent }}>{fmt(total)}</span>
               </div>
               {hasQuoteItems && (
@@ -717,7 +717,7 @@ const BookingFormV2 = () => {
               className="flex items-center gap-1.5 text-left"
             >
               <span style={fraunces} className="text-base font-semibold text-[#13242c]">{fmt(total)}</span>
-              <span className="text-xs text-[#8a8f94]">est. min</span>
+              <span className="text-xs text-[#8a8f94]">est. approx</span>
               {mobileSummaryOpen ? <ChevronDown className="w-4 h-4 text-[#8a8f94]" /> : <ChevronUp className="w-4 h-4 text-[#8a8f94]" />}
             </button>
             <button

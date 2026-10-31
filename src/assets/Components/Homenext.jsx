@@ -133,7 +133,7 @@ const Homenext = () => {
     { label: "Interior Detail", cid: 5 },
     { label: "Full Detail", cid: 6 },
     { label: "Ultra Premium Finishes", link: "ultra_premium_finishes.php" },
-    { label: "Extras", link: "extras.php" },
+    { label: "Add on Enhancements", link: "extras.php" },
   ];
 
   const service = [
