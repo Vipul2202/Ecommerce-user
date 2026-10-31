@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usePrice } from "./PricingContext";
 
 const Outside = () => {
   const navigate = useNavigate();
+  const live = usePrice("outside");
 
   const handleBookNow = () => {
     // Navigate to booking page
@@ -110,7 +112,7 @@ Outside Only
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $35</p>
+                  <p className="text-gray-400 italic">From ${live?.sedan ?? 35}</p>
                 </div>
               </div>
 
@@ -128,7 +130,7 @@ Outside Only
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $45</p>
+                  <p className="text-gray-400 italic">From ${live?.suv ?? 45}</p>
                 </div>
               </div>
 
@@ -148,7 +150,7 @@ Outside Only
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
-                  <p className="text-gray-400 italic">From $55</p>
+                  <p className="text-gray-400 italic">From ${live?.fourWd ?? 55}</p>
                 </div>
               </div>
             </div>

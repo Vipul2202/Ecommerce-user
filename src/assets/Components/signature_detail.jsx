@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usePrice } from "./PricingContext";
 
 const SignatureDetail = () => {
   const navigate = useNavigate();
+  const live = usePrice("signature_detail");
 
   const handleBookNow = () => {
     // Navigate to booking page
@@ -102,7 +104,7 @@ const SignatureDetail = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">$275</p>
+                  <p className="text-gray-400 italic">${live?.sedan ?? 275}</p>
                 </div>
               </div>
 
@@ -120,7 +122,7 @@ const SignatureDetail = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">$295</p>
+                  <p className="text-gray-400 italic">${live?.suv ?? 295}</p>
                 </div>
               </div>
 
@@ -139,7 +141,7 @@ const SignatureDetail = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
-                  <p className="text-gray-400 italic">$325</p>
+                  <p className="text-gray-400 italic">${live?.fourWd ?? 325}</p>
                 </div>
               </div>
             </div>

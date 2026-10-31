@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usePrice } from "./PricingContext";
 
 const InteriorDetail = () => {
   const navigate = useNavigate();
+  const live = usePrice("interior_detail");
 
   const handleBookNow = () => {
     // Navigate to booking page
@@ -126,7 +128,7 @@ Interior Detail
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $229</p>
+                  <p className="text-gray-400 italic">From ${live?.sedan ?? 229}</p>
                 </div>
               </div>
 
@@ -144,7 +146,7 @@ Interior Detail
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $259</p>
+                  <p className="text-gray-400 italic">From ${live?.suv ?? 259}</p>
                 </div>
               </div>
 
@@ -164,7 +166,7 @@ Interior Detail
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
-                  <p className="text-gray-400 italic">From $279</p>
+                  <p className="text-gray-400 italic">From ${live?.fourWd ?? 279}</p>
                 </div>
               </div>
             </div>

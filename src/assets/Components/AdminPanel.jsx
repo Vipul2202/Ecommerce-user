@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReminderRectificationPanel from "./ReminderRectificationPanel";
 import ReminderActivityPanel from "./ReminderActivityPanel";
+import PricingPanel from "./PricingPanel";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 const PASSWORD_STORAGE_KEY = "admin_panel_password";
@@ -454,6 +455,16 @@ const AdminPanel = () => {
               Bookings
             </button>
             <button
+              onClick={() => setView("pricing")}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                view === "pricing"
+                  ? "bg-[#00a0db] text-white"
+                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
+              }`}
+            >
+              Pricing
+            </button>
+            <button
               onClick={() => setView("reminder-correction")}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
                 view === "reminder-correction"
@@ -482,7 +493,9 @@ const AdminPanel = () => {
           </div>
         </div>
 
-        {view === "reminder-correction" ? (
+        {view === "pricing" ? (
+          <PricingPanel password={password} onAuthExpired={handleAuthExpired} />
+        ) : view === "reminder-correction" ? (
           <ReminderRectificationPanel password={password} onAuthExpired={handleAuthExpired} />
         ) : view === "reminder-activity" ? (
           <ReminderActivityPanel password={password} onAuthExpired={handleAuthExpired} />

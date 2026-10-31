@@ -3,6 +3,7 @@
 // versions carry the same real copy and pricing, not placeholders.
 const serviceTierData = {
   outside: {
+    priceKey: "outside",
     title: "Outside Only",
     checklist: ["Wash & chamois dry", "Exterior windows", "Wheels clean and tyres gloss", "Spray on wax"],
     sections: [
@@ -18,6 +19,7 @@ const serviceTierData = {
     pricing: { sedan: 35, suv: 45, fourWd: 55 },
   },
   inside_outside: {
+    priceKey: "inside_outside",
     title: "Inside & Out",
     checklist: ["Includes Outside Only plus", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"],
     sections: [
@@ -29,6 +31,7 @@ const serviceTierData = {
     pricing: { sedan: 55, suv: 65, fourWd: 75 },
   },
   premium_wash: {
+    priceKey: "premium_wash",
     title: "Premium Wash",
     checklist: ["Includes Inside & Out clean plus", "Dash & console detailed with all plastic trims", "External plastic trims rejuvenation", "Hand wax & polish", "Seats wiped & spot clean"],
     sections: [
@@ -39,6 +42,7 @@ const serviceTierData = {
     pricing: { sedan: 95, suv: 105, fourWd: 115 },
   },
   mini_detail: {
+    priceKey: "mini_detail",
     title: "Mini Detail",
     checklist: ["Includes Premium Wash plus", "Clay block treatment (paint cleansing)", "Interior trims detailed & protection", "Floor mats steam clean"],
     sections: [
@@ -49,6 +53,7 @@ const serviceTierData = {
     pricing: { sedan: 149, suv: 179, fourWd: 199 },
   },
   interior_detail: {
+    priceKey: "interior_detail",
     title: "Interior Detail",
     checklist: ["Includes Mini Detail plus", "Carpets steam clean", "Roof lining steam clean", "Odour eliminator treatment", "Fabric seats steam clean", "Leather seats steam clean"],
     sections: [
@@ -61,6 +66,7 @@ const serviceTierData = {
     pricing: { sedan: 229, suv: 259, fourWd: 279 },
   },
   full_detail: {
+    priceKey: "full_detail",
     title: "Full Detail",
     tagline: "Best for Regular Care",
     checklist: ["Outside wash and wax", "Windows cleaning", "Interior trims detailed & condition", "Fabric seats steam clean", "Carpet steam clean", "Roof lining clean", "Leather seats clean and condition"],
@@ -76,6 +82,7 @@ const serviceTierData = {
     pricing: { sedan: 175, suv: 195, fourWd: 225 },
   },
   signature_detail: {
+    priceKey: "signature_detail",
     title: "Signature Detail",
     tagline: "Best for Restoration",
     checklist: ["Includes Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"],
@@ -87,6 +94,7 @@ const serviceTierData = {
     pricing: { sedan: 275, suv: 295, fourWd: 325 },
   },
   the_works: {
+    priceKey: "the_works",
     title: "The Works",
     tagline: "Best for Offroad & Pre-Sale",
     checklist: ["Includes Signature Detail", "Buff and polish", "Underbody clean (using ramp)"],

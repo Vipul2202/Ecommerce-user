@@ -8,42 +8,52 @@ import interiorPackImg from "../../img/team2.jpg";
 import tintingImg from "../../img/team3.jpg";
 import paintlessDentImg from "../../img/paintless_dent_repair.png";
 import Bubble from "./Bubble";
+import { useAllPrices } from "./PricingContext";
 
 const serviceCards = [
   {
     title: "Ceramic Coating",
+    key: "ceramic_coating",
+    fallbackPrice: 499,
+    fallbackQuoteOnly: true,
     img: ceramicImg,
     offers: ["Hydrophobic Finish – Repels water, dirt, and grime", "UV & Oxidation Protection – Prevents fading and discolouration", "Deep Gloss Enhancement – Mirror-like, long-lasting shine"],
     whyUs: ["High-Grade Products – Gtechniq and Gyeon only", "Long-Term Protection – Outlasts traditional wax by years", "Guaranteed Satisfaction – Showroom finish every time"],
-    notes: ["We are GTechniq Accredited Professional Applicator", "In-person inspection required to confirm exact price"],
-    price: "From $499 onwards",
+    notes: ["We are GTechniq Accredited Professional Applicator"],
   },
   {
     title: "Interior Protection Pack",
+    key: "interior_protection_pack",
+    fallbackPrice: 299,
+    fallbackQuoteOnly: false,
     img: interiorPackImg,
     offers: ["Fabric & Leather Guard – Repels spills and stains", "UV Protection Coating – Prevents dashboard and trim fading", "Odour Neutralising Treatment – Keeps your cabin smelling fresh"],
     whyUs: ["Premium Protective Products – Long-lasting barrier", "Full Interior Coverage – Seats, dash, and door trims", "Keeps Your Interior Looking Newer, Longer"],
-    price: "From $299 onwards",
   },
   {
     title: "Window Tinting",
+    key: "window_tinting",
+    fallbackPrice: 499,
+    fallbackQuoteOnly: false,
     img: tintingImg,
     offers: ["UV & Heat Protection – Blocks 99% UV", "Enhanced Privacy – Keeps prying eyes away", "Clearer Vision – Improves visibility", "Interior Protection – Prevents fading & cracking"],
     whyUs: ["Top Quality Film – Industry leading tints", "Expert Installation – No bubbles", "Variety of Shades – Match your style", "Legal Compliance – Meets local rules"],
-    price: "From $499 onwards",
   },
   {
     title: "Paintless Dent Removal",
+    key: "paintless_dent_removal",
+    fallbackPrice: 199,
+    fallbackQuoteOnly: false,
     img: paintlessDentImg,
     offers: ["No Paint, No Filler – Keeps original paint", "Eco-Friendly – No chemicals", "Cost Effective – Avoid full repaint", "Faster – Ideal for small dents"],
     whyUs: ["Expert Technicians – Precision tools", "Same-Day Service – Back on road quick", "Advanced PDR – Perfect results", "Guaranteed – Flawless repairs"],
-    price: "From $199 onwards",
   },
 ];
 
 const UltrapremiumV2 = () => {
   useGoogleFont();
   const navigate = useNavigate();
+  const { pricesByKey } = useAllPrices();
 
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
@@ -60,7 +70,12 @@ const UltrapremiumV2 = () => {
         </div>
 
         <div className="max-w-5xl mx-auto px-6 pb-20 flex flex-col gap-16">
-          {serviceCards.map((card, i) => (
+          {serviceCards.map((card, i) => {
+            const live = pricesByKey[card.key];
+            const quoteOnly = live?.quoteOnly ?? card.fallbackQuoteOnly;
+            const price = live?.flatPrice ?? card.fallbackPrice;
+            const priceText = quoteOnly ? "Price on request" : `From $${price} onwards`;
+            return (
             <div key={card.title} className={`flex flex-col ${i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"} gap-8 items-center`}>
               <div className="w-full md:w-1/2 shrink-0">
                 <img src={card.img} alt={card.title} draggable="false" className="w-full h-72 object-cover rounded-2xl" />
@@ -87,20 +102,24 @@ const UltrapremiumV2 = () => {
                   ))}
                 </div>
 
-                {card.notes && (
+                {(card.notes || quoteOnly) && (
                   <div className="flex flex-wrap gap-2">
-                    {card.notes.map((n) => (
+                    {card.notes?.map((n) => (
                       <span key={n} className="text-xs font-semibold px-3 py-1 rounded-full" style={{ backgroundColor: "#fde8e8", color: "#b23b3b" }}>
                         {n}
                       </span>
                     ))}
+                    {quoteOnly && (
+                      <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ backgroundColor: "#fde8e8", color: "#b23b3b" }}>
+                        In-person inspection required to confirm exact price
+                      </span>
+                    )}
                   </div>
                 )}
 
                 <div className="flex items-center justify-between pt-4 mt-2" style={{ borderTop: `1px solid ${border}` }}>
                   <div>
-                    <div className="font-semibold" style={{ color: accent }}>{card.price}</div>
-                    {card.priceNote && <div className="text-xs text-[#8a8f94] italic mt-0.5 max-w-[220px]">{card.priceNote}</div>}
+                    <div className="font-semibold" style={{ color: accent }}>{priceText}</div>
                   </div>
                   <button
                     onClick={() => navigate("/new-booking")}
@@ -112,7 +131,8 @@ const UltrapremiumV2 = () => {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </main>
       <RedesignFooter />

@@ -62,6 +62,7 @@ import LegalPageV2 from './assets/Components/LegalPageV2';
 import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 import BookingFormV2 from './assets/Components/BookingFormV2';
+import { PricingProvider } from './assets/Components/PricingContext';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -127,6 +128,7 @@ function App() {
   return (
     <div>
       <ToastContainer position="top-right" autoClose={3000} />
+      <PricingProvider>
       <Router>
         <ScrollToTop />
         <SiteChrome>
@@ -226,6 +228,7 @@ function App() {
           {isNovemberSpecialActive() && <NovemberSpecialOfferV2 />}
         </PreviewChrome>
       </Router>
+      </PricingProvider>
     </div>
   )
 }

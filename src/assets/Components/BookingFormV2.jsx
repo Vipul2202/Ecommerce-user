@@ -4,11 +4,10 @@ import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import { TIER_SERVICES, PREMIUM_SERVICES, EXTRA_SERVICES, SERVICE_NOTICES } from "./bookingServicesData";
+import { useMergedTierServices, useMergedFlatServices } from "./PricingContext";
 import Bubble from "./Bubble";
 
 const API = import.meta.env.VITE_API_BASE_URL;
-
-const ALL_SERVICES = [...TIER_SERVICES, ...PREMIUM_SERVICES, ...EXTRA_SERVICES];
 
 const VEHICLE_TYPES = [
   { key: "sedan", label: "Sedan" },
@@ -29,6 +28,9 @@ const todayStr = () => {
 const BookingFormV2 = () => {
   useGoogleFont();
   const minDate = useMemo(() => todayStr(), []);
+  const tierServices = useMergedTierServices(TIER_SERVICES);
+  const premiumServices = useMergedFlatServices(PREMIUM_SERVICES);
+  const extraServices = useMergedFlatServices(EXTRA_SERVICES);
 
   const [vehicleType, setVehicleType] = useState("sedan");
   const [selected, setSelected] = useState({});
@@ -73,17 +75,17 @@ const BookingFormV2 = () => {
 
   const lineItems = useMemo(() => {
     const items = [];
-    TIER_SERVICES.forEach((t) => {
+    tierServices.forEach((t) => {
       if (selected[t.key]) items.push({ key: t.key, label: t.label, submitLabel: t.submitLabel, price: t.pricing[vehicleType] });
     });
-    PREMIUM_SERVICES.forEach((p) => {
+    premiumServices.forEach((p) => {
       if (selected[p.key]) items.push({ key: p.key, label: p.label, submitLabel: p.submitLabel, price: p.price, note: p.note });
     });
-    EXTRA_SERVICES.forEach((e) => {
+    extraServices.forEach((e) => {
       if (selected[e.key]) items.push({ key: e.key, label: e.label, submitLabel: e.submitLabel, price: e.price });
     });
     return items;
-  }, [selected, vehicleType]);
+  }, [selected, vehicleType, tierServices, premiumServices, extraServices]);
 
   const total = lineItems.reduce((sum, i) => sum + (i.price || 0), 0);
   const hasQuoteItems = lineItems.some((i) => i.price == null);
@@ -445,7 +447,7 @@ const BookingFormV2 = () => {
             <div className="bg-white rounded-2xl p-6" style={{ border: `1px solid ${border}` }}>
               <div className="text-xs font-bold uppercase tracking-wide text-[#6b7278] mb-3">Wash &amp; Detail</div>
               <div className="flex flex-col gap-1">
-                {TIER_SERVICES.map((t) => (
+                {tierServices.map((t) => (
                   <label key={t.key} className="flex items-center justify-between gap-3 py-2.5 cursor-pointer" style={{ borderTop: `1px solid ${border}` }}>
                     <span className="flex items-center gap-3">
                       <input
@@ -470,7 +472,7 @@ const BookingFormV2 = () => {
             <div className="bg-white rounded-2xl p-6" style={{ border: `1px solid ${border}` }}>
               <div className="text-xs font-bold uppercase tracking-wide text-[#6b7278] mb-3">Ultra Premium Finishes</div>
               <div className="flex flex-col gap-1">
-                {PREMIUM_SERVICES.map((p) => (
+                {premiumServices.map((p) => (
                   <label key={p.key} className="flex items-center justify-between gap-3 py-2.5 cursor-pointer" style={{ borderTop: `1px solid ${border}` }}>
                     <span className="flex items-center gap-3">
                       <input
@@ -497,7 +499,7 @@ const BookingFormV2 = () => {
             <div className="bg-white rounded-2xl p-6" style={{ border: `1px solid ${border}` }}>
               <div className="text-xs font-bold uppercase tracking-wide text-[#6b7278] mb-3">Touch Up Extras</div>
               <div className="flex flex-col gap-1">
-                {EXTRA_SERVICES.map((e) => (
+                {extraServices.map((e) => (
                   <label key={e.key} className="flex items-center justify-between gap-3 py-2.5 cursor-pointer" style={{ borderTop: `1px solid ${border}` }}>
                     <span className="flex items-center gap-3">
                       <input

@@ -3,7 +3,9 @@ import sedan from "../../../src/img/sedan.png";
 import back from "../../../src/img/back.jpg";
 import carousal from "../../../src/img/carousel-1.jpg";
 import { useNavigate } from "react-router-dom";
+import { useAllPrices } from "./PricingContext";
 const Extras = () => {
+  const { pricesByKey } = useAllPrices();
   const [formData, setFormData] = useState({
     carType: "",
     registration: "",
@@ -37,6 +39,8 @@ const Extras = () => {
         "Advanced PDR – Perfect results",
         "Guaranteed – Flawless repairs",
       ],
+      priceKey: "stage3_paint_correction",
+      fallbackPrice: 299,
       price: "From $299 onwards",
       footer: "Bring Back That Showroom Shine!",
     },
@@ -54,6 +58,8 @@ const Extras = () => {
         "Tailored Services – Based on your car’s condition",
         "Long-Lasting Results – Shiny longer with premium",
       ],
+      priceKey: "buff_polish",
+      fallbackPrice: 179,
       price: "From $179 onwards",
       footer: "Give Your Car the Glow It Deserves!",
     },
@@ -73,6 +79,8 @@ const Extras = () => {
         "Quick Service – Done while you wait",
         "Guaranteed Satisfaction – Brighter headlights",
       ],
+      priceKey: "headlight_restoration",
+      fallbackPrice: 50,
       price: "From $50 onwards",
       footer: "Drive Safer with Brighter, Clearer Headlights!",
     },
@@ -92,6 +100,8 @@ const Extras = () => {
         "Customer Satisfaction Guarantee – We don’t just clean, we bring back the luxury feel.",
         "Eco-Friendly Solutions – Safe for leather, safe for you, and safe for the environment.",
       ],
+      priceKey: "leather_steam_clean",
+      fallbackPrice: 70,
       price: "From $70 onwards",
       footer: "Get the Perfect Service for Your Car Today!",
     },
@@ -111,6 +121,8 @@ const Extras = () => {
         "Fast & Efficient Service – We value your time while delivering top-quality results.",
         "Specialized Equipment – Tools designed to extract hair from any surface.",
       ],
+      priceKey: "dog_hair_removal",
+      fallbackPrice: 50,
       price: "From $50 onwards",
       footer: "Say Goodbye to Fur – Enjoy a Hair-Free Ride!",
     },
@@ -130,6 +142,8 @@ const Extras = () => {
         "Long-Lasting Results – Shine that holds up on the road",
         "Attention to Detail – Every edge and fitting covered",
       ],
+      priceKey: "bull_bar_polish",
+      fallbackPrice: 149,
       price: "From $149 onwards",
       footer: "Give Your Bull Bar the Finish It Deserves!",
     },
@@ -171,7 +185,10 @@ const Extras = () => {
       {/* Cards Section */}
       <div className="max-w-4xl mx-auto px-4 py-10 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {serviceCards.map((card, index) => (
+          {serviceCards.map((card, index) => {
+            const livePrice = pricesByKey[card.priceKey]?.flatPrice ?? card.fallbackPrice;
+            const priceText = `From $${livePrice} onwards`;
+            return (
             <div
               key={index}
               className="bg-[#00a0db] p-6 rounded-lg flex flex-col justify-between "
@@ -218,7 +235,7 @@ const Extras = () => {
                     draggable="false"
                     className="w-16 h-16 object-cover rounded-full"
                   />
-                  <p className="text-white font-semibold text-sm">{card.price}</p>
+                  <p className="text-white font-semibold text-sm">{priceText}</p>
                 </div>
              <button
   onClick={() => handleLearnMore(card.title)}
@@ -229,7 +246,8 @@ const Extras = () => {
 
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
