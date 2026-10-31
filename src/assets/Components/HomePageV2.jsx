@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Car,
@@ -12,6 +12,8 @@ import {
   Check,
   Star,
   Quote,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 import heroMyaree from "../../img/myaree.jpeg";
@@ -88,27 +90,40 @@ const getCustomerCount = () => {
 };
 
 const washTiers = [
-  { name: "Outside Only", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
-  { name: "Inside & Outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
-  { name: "Premium Wash", sedan: 95, suv: 105, fourWd: 115, features: ["Everything in Inside & Outside", "Dash & console detailed", "External plastic trims rejuvenation", "Hand wax & polish"] },
+  { name: "Outside Only", route: "/new-outside", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
+  { name: "Inside & Outside", route: "/new-inside_outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
+  { name: "Premium Wash", route: "/new-premium_wash", sedan: 95, suv: 105, fourWd: 115, features: ["Everything in Inside & Outside", "Dash & console detailed", "External plastic trims rejuvenation", "Hand wax & polish"] },
 ];
 
 const detailTiers = [
-  { name: "Full Detail", tagline: "Best for Regular Care", sedan: 175, suv: 195, fourWd: 225, highlight: false, features: ["Outside wash & wax", "Interior trims detailed", "Fabric & carpet steam clean", "Leather seats clean & condition"] },
-  { name: "Signature Detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
-  { name: "The Works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
+  { name: "Full Detail", route: "/new-full_detail", tagline: "Best for Regular Care", sedan: 175, suv: 195, fourWd: 225, highlight: false, features: ["Outside wash & wax", "Interior trims detailed", "Fabric & carpet steam clean", "Leather seats clean & condition"] },
+  { name: "Signature Detail", route: "/new-signature_detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
+  { name: "The Works", route: "/new-the_works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
 ];
 
 const premium = [
   { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/new-ultrapremium" },
   { title: "Interior Protection Pack", price: "From $299", img: interiorPackImg, route: "/new-ultrapremium" },
-  { title: "Windows Tinting", price: "Price on request", img: tintingImg, route: "/new-ultrapremium" },
+  { title: "Windows Tinting", price: "From $499", img: tintingImg, route: "/new-ultrapremium" },
   { title: "Paintless Dent Removal", price: "From $199", img: paintlessDentImg, route: "/new-ultrapremium" },
 ];
 
 const HomePageV2 = () => {
   useGoogleFont();
   const navigate = useNavigate();
+  const [heroLocation, setHeroLocation] = useState("myaree");
+  const heroMain = heroLocation === "myaree" ? heroMyaree : heroMidland;
+  const heroBadgeImg = heroLocation === "myaree" ? heroMidland : heroMyaree;
+  const heroBadgeLabel = heroLocation === "myaree" ? "Midland" : "Myaree";
+
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTestimonialIndex((i) => (i + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+  const goToTestimonial = (i) => setTestimonialIndex((i + testimonials.length) % testimonials.length);
 
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen relative overflow-hidden">
@@ -169,23 +184,27 @@ const HomePageV2 = () => {
         <div className="flex-1 min-w-[320px] relative">
           <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl" style={{ backgroundColor: accent, opacity: 0.15 }}></div>
           <img
-            src={heroMyaree}
-            alt="Car Saloon Myaree storefront"
+            src={heroMain}
+            alt={`Car Saloon ${heroLocation === "myaree" ? "Myaree" : "Midland"} storefront`}
             draggable="false"
             className="relative w-full rounded-3xl shadow-2xl object-cover"
           />
-          <div className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => setHeroLocation((loc) => (loc === "myaree" ? "midland" : "myaree"))}
+            className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
+          >
             <img
-              src={heroMidland}
-              alt="Car Saloon Midland storefront"
+              src={heroBadgeImg}
+              alt={`Car Saloon ${heroBadgeLabel} storefront`}
               draggable="false"
               className="w-14 h-14 rounded-xl object-cover"
             />
-            <div className="text-xs pr-2">
-              <div className="font-bold text-[#13242c]">Midland</div>
-              <div className="text-[#8a8f94]">Second location</div>
+            <div className="text-xs pr-2 text-left">
+              <div className="font-bold text-[#13242c]">{heroBadgeLabel}</div>
+              <div className="text-[#8a8f94]">Tap to switch</div>
             </div>
-          </div>
+          </button>
           <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs" style={{ backgroundColor: navy }}>
               GT
@@ -254,7 +273,7 @@ const HomePageV2 = () => {
               <div key={t.name} className="bg-white rounded-2xl border border-[#e7e2d8] p-7 flex flex-col gap-4">
                 <div className="font-bold text-lg text-[#13242c]">{t.name}</div>
                 <div className="text-sm font-semibold" style={{ color: accent }}>
-                  Sedan from ${t.sedan} · SUV from ${t.suv} · 4WD from ${t.fourWd}
+                  Sedan from ${t.sedan} · SUV from ${t.suv} · 4WD/7-Seater from ${t.fourWd}
                 </div>
                 <div className="flex flex-col gap-2">
                   {t.features.map((f) => (
@@ -264,6 +283,13 @@ const HomePageV2 = () => {
                     </div>
                   ))}
                 </div>
+                <button
+                  onClick={() => navigate(t.route)}
+                  className="mt-auto self-start px-5 py-2 rounded-full text-sm font-semibold text-white hover:scale-105 transition-transform"
+                  style={{ backgroundColor: accent }}
+                >
+                  Read More →
+                </button>
               </div>
             ))}
           </div>
@@ -284,7 +310,7 @@ const HomePageV2 = () => {
                   <div className="text-xs font-bold mt-0.5" style={{ color: accent }}>{t.tagline}</div>
                 </div>
                 <div className="text-sm font-semibold text-[#6b7278]">
-                  Sedan from ${t.sedan} · SUV from ${t.suv} · 4WD from ${t.fourWd}
+                  Sedan from ${t.sedan} · SUV from ${t.suv} · 4WD/7-Seater from ${t.fourWd}
                 </div>
                 <div className="flex flex-col gap-2">
                   {t.features.map((f) => (
@@ -294,6 +320,13 @@ const HomePageV2 = () => {
                     </div>
                   ))}
                 </div>
+                <button
+                  onClick={() => navigate(t.route)}
+                  className="mt-auto self-start px-5 py-2 rounded-full text-sm font-semibold text-white hover:scale-105 transition-transform"
+                  style={{ backgroundColor: accent }}
+                >
+                  Read More →
+                </button>
               </div>
             ))}
           </div>
@@ -325,7 +358,7 @@ const HomePageV2 = () => {
             ))}
           </div>
           <p className="text-center text-sm text-[#8a8f94] mt-6">
-            Ceramic Coating and Windows Tinting require an in-person inspection to confirm exact pricing.
+            Ceramic Coating requires an in-person inspection to confirm exact pricing.
           </p>
         </div>
       </section>
@@ -334,34 +367,66 @@ const HomePageV2 = () => {
       <section className="relative px-6 py-20 overflow-hidden" style={{ backgroundColor: "#f1ece2" }}>
         <Bubble size={140} top="-8%" right="-4%" opacity={0.1} />
         <Bubble size={80} bottom="6%" left="2%" opacity={0.1} />
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-2xl mx-auto">
           <div className="text-center mb-11">
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>What Our Customers Say</span>
             <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Real Reviews From Google</h2>
-            <div className="flex items-center justify-center gap-6 mt-4 text-sm font-semibold text-[#4a5056]">
-              <span className="flex items-center gap-1.5">
-                <span className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</span>
-                5.0 &middot; Myaree (34 reviews)
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</span>
-                4.9 &middot; Midland (47 reviews)
-              </span>
-            </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-white rounded-2xl border border-[#e7e2d8] p-6 flex flex-col gap-3">
-                <Quote className="w-6 h-6" style={{ color: accent }} />
-                <p className="text-sm text-[#4a5056] leading-relaxed flex-1">{t.quote}</p>
-                <div className="flex items-center justify-between pt-2" style={{ borderTop: `1px solid #e7e2d8` }}>
-                  <div className="font-semibold text-sm text-[#13242c]">{t.name}</div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</span>
-                    <span className="text-xs text-[#8a8f94]">{t.location}</span>
+
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-700 ease-out"
+                style={{ transform: `translateX(-${testimonialIndex * 100}%)` }}
+              >
+                {testimonials.map((t) => (
+                  <div key={t.name} className="flex-none w-full px-1">
+                    <div className="bg-white rounded-2xl border border-[#e7e2d8] p-8 sm:p-10 flex flex-col items-center text-center gap-4 min-h-[260px]">
+                      <Quote className="w-8 h-8" style={{ color: accent }} />
+                      <p className="text-base sm:text-lg text-[#3a4046] leading-relaxed">{t.quote}</p>
+                      <div className="flex flex-col items-center gap-1.5 mt-1">
+                        <span className="flex">{[1, 2, 3, 4, 5].map((i2) => <Star key={i2} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</span>
+                        <div className="font-semibold text-sm text-[#13242c]">{t.name} &middot; {t.location}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => goToTestimonial(testimonialIndex - 1)}
+              aria-label="Previous testimonial"
+              className="hidden sm:flex absolute top-1/2 -left-14 -translate-y-1/2 w-10 h-10 rounded-full bg-white border items-center justify-center hover:scale-105 transition-transform"
+              style={{ borderColor: "#e7e2d8" }}
+            >
+              <ChevronLeft className="w-5 h-5" style={{ color: navy }} />
+            </button>
+            <button
+              type="button"
+              onClick={() => goToTestimonial(testimonialIndex + 1)}
+              aria-label="Next testimonial"
+              className="hidden sm:flex absolute top-1/2 -right-14 -translate-y-1/2 w-10 h-10 rounded-full bg-white border items-center justify-center hover:scale-105 transition-transform"
+              style={{ borderColor: "#e7e2d8" }}
+            >
+              <ChevronRight className="w-5 h-5" style={{ color: navy }} />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center gap-2 mt-7">
+            {testimonials.map((t, i) => (
+              <button
+                key={t.name}
+                type="button"
+                onClick={() => goToTestimonial(i)}
+                aria-label={`Go to testimonial ${i + 1}`}
+                className="h-2 rounded-full transition-all"
+                style={{
+                  width: i === testimonialIndex ? "24px" : "8px",
+                  backgroundColor: i === testimonialIndex ? accent : "#d8d2c4",
+                }}
+              />
             ))}
           </div>
         </div>

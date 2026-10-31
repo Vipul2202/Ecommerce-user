@@ -145,7 +145,7 @@ About
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">4WD</h3>
+                  <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
                   <p className="text-gray-400 italic">From $55</p>
                 </div>
               </div>
