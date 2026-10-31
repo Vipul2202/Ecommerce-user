@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { accent, navy, border, fraunces, useGoogleFont } from "./redesignTheme";
+import siteLogo from "../../img/logo.png";
 
 const SERVICE_LINKS = [
   { label: "Outside Only", href: "/new-outside" },
@@ -29,8 +30,9 @@ export const RedesignNav = () => {
   return (
     <header className="sticky top-0 z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ borderColor: border }}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
-        <a href="/new-home" style={fraunces} className="text-xl font-semibold text-[#1c2024]">
-          Car Saloon
+        <a href="/new-home" className="flex items-center gap-2.5">
+          <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-10 w-10 object-contain" />
+          <span style={fraunces} className="text-xl font-semibold text-[#1c2024]">Car Saloon</span>
         </a>
         <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4a5056]">
           <a href="/new-home" className="hover:text-[#0a3b4d]">Home</a>
@@ -76,7 +78,10 @@ export const RedesignNav = () => {
 export const RedesignFooter = () => (
   <footer className="border-t px-6 py-10" style={{ borderColor: border }}>
     <div className="max-w-6xl mx-auto flex flex-wrap justify-between gap-6 text-sm text-[#7a8188]">
-      <div style={fraunces} className="text-lg text-[#13242c]">Car Saloon</div>
+      <div className="flex items-center gap-2">
+        <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-7 w-7 object-contain" />
+        <span style={fraunces} className="text-lg text-[#13242c]">Car Saloon</span>
+      </div>
       <div className="flex flex-wrap gap-x-6 gap-y-2">
         <a href="/new-outside">Outside Only</a>
         <a href="/new-full_detail">Full Detail</a>
