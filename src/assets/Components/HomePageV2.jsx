@@ -14,12 +14,14 @@ import {
 } from "lucide-react";
 
 import heroMyaree from "../../img/myaree.jpeg";
+import heroMidland from "../../img/midland.jpeg";
 import about from "../../img/about.jpg";
 import ceramicImg from "../../img/team1.jpeg";
 import interiorPackImg from "../../img/team2.jpg";
 import tintingImg from "../../img/team3.jpg";
 import paintlessDentImg from "../../img/paintless_dent_repair.png";
 import myareeImg from "../../img/myaree.jpeg";
+import midlandImg from "../../img/midland.jpeg";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
 import NovemberSpecialBannerV2 from "./NovemberSpecialBannerV2";
@@ -136,6 +138,18 @@ const HomePageV2 = () => {
             draggable="false"
             className="relative w-full rounded-3xl shadow-2xl object-cover"
           />
+          <div className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5">
+            <img
+              src={heroMidland}
+              alt="Car Saloon Midland storefront"
+              draggable="false"
+              className="w-14 h-14 rounded-xl object-cover"
+            />
+            <div className="text-xs pr-2">
+              <div className="font-bold text-[#13242c]">Midland</div>
+              <div className="text-[#8a8f94]">Second location</div>
+            </div>
+          </div>
           <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs" style={{ backgroundColor: navy }}>
               GT
@@ -293,9 +307,7 @@ const HomePageV2 = () => {
             </div>
           </div>
           <div className="bg-white rounded-2xl border border-[#e7e2d8] overflow-hidden">
-            <div className="w-full h-56 flex items-center justify-center" style={{ backgroundColor: navy }}>
-              <span style={fraunces} className="text-white text-2xl">Midland</span>
-            </div>
+            <img src={midlandImg} alt="Midland" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Midland</div>
               <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>

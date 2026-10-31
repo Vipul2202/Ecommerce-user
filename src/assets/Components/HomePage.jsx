@@ -11,6 +11,7 @@ import carousel2 from "../../../src/img/carousel-1.jpg";
 
 import carousel4 from "../../../src/img/gtechniq_s.png";
 import carousel5 from "../../../src/img/myaree.jpeg";
+import carousel5b from "../../../src/img/midland.jpeg";
 import carousel6 from "../../../src/img/interior.jpeg";
 import carousel7 from "../../../src/img/banner.jpeg";
 
@@ -79,8 +80,13 @@ const HomePage = () => {
     },
     {
       img: carousel5,
-      
-      
+
+
+    },
+    {
+      img: carousel5b,
+
+
     },
     {
       img: carousel6,
