@@ -433,7 +433,7 @@ const HomePageV2 = () => {
       </section>
 
       {/* LOCATIONS */}
-      <section id="locations" className="px-6 pb-20">
+      <section id="locations" className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Find Us</span>
