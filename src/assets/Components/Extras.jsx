@@ -154,7 +154,7 @@ const Extras = () => {
     <nav className="text-gray-200">
       <span className="text-black">Home</span>
       <span className=" text-black mx-2">/</span>
-      <span className="text-black">Extras</span>
+      <span className="text-black">Add on Enhancements</span>
     </nav>
   </div>
 </div>

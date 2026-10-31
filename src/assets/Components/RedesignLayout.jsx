@@ -12,7 +12,7 @@ const FOOTER_SERVICE_LINKS = [
   { label: "Full Detail", href: "/new-full_detail" },
   { label: "The Works", href: "/new-the_works" },
   { label: "Premium Finishes", href: "/new-ultrapremium" },
-  { label: "Extras", href: "/new-extras" },
+  { label: "Add on Enhancements", href: "/new-extras" },
 ];
 
 const FOOTER_COMPANY_LINKS = [
@@ -48,7 +48,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/new-home" },
   { label: "Gallery", href: "/new-gallery" },
   { label: "Premium", href: "/new-ultrapremium" },
-  { label: "Extras", href: "/new-extras" },
+  { label: "Add on Enhancements", href: "/new-extras" },
   { label: "About", href: "/new-about" },
   { label: "Contact", href: "/new-contact" },
   { label: "FAQs", href: "/new-faqs" },
@@ -142,7 +142,7 @@ export const RedesignNav = () => {
             )}
           </div>
           <a href="/new-ultrapremium" className="hover:text-[#0a3b4d]">Premium</a>
-          <a href="/new-extras" className="hover:text-[#0a3b4d]">Extras</a>
+          <a href="/new-extras" className="hover:text-[#0a3b4d]">Add on Enhancements</a>
           <a href="/new-gallery" className="hover:text-[#0a3b4d]">Gallery</a>
           <a href="/new-about" className="hover:text-[#0a3b4d]">About</a>
           <a href="/new-contact" className="hover:text-[#0a3b4d]">Contact</a>
@@ -187,7 +187,7 @@ export const RedesignNav = () => {
             </div>
           )}
           <a href="/new-ultrapremium" onClick={closeMobile} className="py-2.5">Premium</a>
-          <a href="/new-extras" onClick={closeMobile} className="py-2.5">Extras</a>
+          <a href="/new-extras" onClick={closeMobile} className="py-2.5">Add on Enhancements</a>
           <a href="/new-gallery" onClick={closeMobile} className="py-2.5">Gallery</a>
           <a href="/new-about" onClick={closeMobile} className="py-2.5">About</a>
           <a href="/new-contact" onClick={closeMobile} className="py-2.5">Contact</a>

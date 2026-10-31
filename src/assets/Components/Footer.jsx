@@ -76,7 +76,7 @@ const Footer = () => {
                             <li><a href="/washing" className="hover:text-[#00a0db]">Washing Service</a></li>
                             <li><a href="/detailing" className="hover:text-[#00a0db]">Detailing Service</a></li>
                             <li><a href="/ultrapremium" className="hover:text-[#00a0db]">Ultra Premium Services</a></li>
-                            <li><a href="/extras" className="hover:text-[#00a0db]">Extras</a></li>
+                            <li><a href="/extras" className="hover:text-[#00a0db]">Add on Enhancements</a></li>
                         </ul>
                     </div>
 

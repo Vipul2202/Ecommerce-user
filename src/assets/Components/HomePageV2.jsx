@@ -34,7 +34,7 @@ const services = [
   { icon: Sparkles, title: "Signature Detail", desc: "Restoration-focused detailing", link: "/new-signature_detail" },
   { icon: HomeIcon, title: "The Works", desc: "Best for offroad and pre-sale", link: "/new-the_works" },
   { icon: Wrench, title: "Ultra Premium Finishes", desc: "Luxury finishing touches", link: "/new-ultrapremium" },
-  { icon: Plus, title: "Extras", desc: "Additional services", link: "/new-extras" },
+  { icon: Plus, title: "Add on Enhancements", desc: "Additional services", link: "/new-extras" },
 ];
 
 // Growing customer counter for the hero: starts at 500 and ticks up by 50
@@ -303,23 +303,6 @@ const HomePageV2 = () => {
               </button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="px-6 pb-24">
-        <div className="relative max-w-6xl mx-auto rounded-3xl py-16 px-10 flex flex-col items-center text-center gap-4 overflow-hidden" style={{ backgroundColor: navy }}>
-          <Bubble size={130} top="-10%" left="-4%" opacity={0.08} color="#ffffff" />
-          <Bubble size={80} bottom="-6%" right="6%" opacity={0.1} color="#ffffff" />
-          <h2 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-white">Ready for the Saloon Treatment?</h2>
-          <p className="text-[#cfe3ea] max-w-md">Pick your service, pick your location, and we'll take care of the rest.</p>
-          <button
-            onClick={() => navigate("/new-booking")}
-            className="mt-2 px-7 py-3 rounded-full font-semibold bg-white"
-            style={{ color: navy }}
-          >
-            Book Now
-          </button>
         </div>
       </section>
 
