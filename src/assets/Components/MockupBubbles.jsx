@@ -37,17 +37,12 @@ const MockupBubbles = () => {
       <div className="absolute top-40 right-0 w-64 h-64 rounded-full opacity-10 pointer-events-none" style={{ background: navy }}></div>
 
       {/* scattered bubbles — new */}
-      <Bubble size={14} top="18%" left="6%" opacity={0.5} />
-      <Bubble size={8} top="12%" left="11%" opacity={0.35} />
-      <Bubble size={22} top="28%" left="3%" opacity={0.25} blur />
-      <Bubble size={10} top="8%" left="46%" opacity={0.4} />
-      <Bubble size={6} top="14%" left="50%" opacity={0.3} />
-      <Bubble size={16} top="60%" left="8%" opacity={0.3} />
-      <Bubble size={28} top="5%" right="8%" opacity={0.18} blur />
-      <Bubble size={12} top="22%" right="4%" opacity={0.4} />
-      <Bubble size={9} top="34%" right="14%" opacity={0.3} />
-      <Bubble size={18} top="70%" right="10%" opacity={0.22} blur />
-      <Bubble size={7} top="78%" right="20%" opacity={0.35} />
+      <Bubble size={140} top="2%" left="-4%" opacity={0.12} />
+      <Bubble size={90} top="55%" left="2%" opacity={0.1} />
+      <Bubble size={60} top="30%" left="40%" opacity={0.08} />
+      <Bubble size={180} top="-8%" right="-6%" opacity={0.1} />
+      <Bubble size={110} top="40%" right="6%" opacity={0.12} />
+      <Bubble size={70} top="75%" right="22%" opacity={0.1} />
 
       <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center">
         <div className="flex-1 min-w-[320px] flex flex-col gap-5">
@@ -95,8 +90,6 @@ const MockupBubbles = () => {
         </div>
         <div className="flex-1 min-w-[320px] relative">
           <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl" style={{ backgroundColor: accent, opacity: 0.15 }}></div>
-          <Bubble size={20} top="-6%" right="18%" opacity={0.5} />
-          <Bubble size={11} top="-2%" right="30%" opacity={0.4} />
           <img
             src={heroMyaree}
             alt="Car Saloon Myaree storefront"
