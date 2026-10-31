@@ -13,7 +13,7 @@ const ALL_SERVICES = [...TIER_SERVICES, ...PREMIUM_SERVICES, ...EXTRA_SERVICES];
 const VEHICLE_TYPES = [
   { key: "sedan", label: "Sedan" },
   { key: "suv", label: "SUV" },
-  { key: "fourWd", label: "4WD" },
+  { key: "fourWd", label: "4WD/7-Seater" },
 ];
 
 const fmt = (n) => `$${n}`;
