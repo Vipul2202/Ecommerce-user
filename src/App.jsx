@@ -61,6 +61,9 @@ import LegalPageV2 from './assets/Components/LegalPageV2';
 import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 import BookingFormV2 from './assets/Components/BookingFormV2';
+import MockupHeroA from './assets/Components/MockupHeroA';
+import MockupHeroB from './assets/Components/MockupHeroB';
+import MockupHeroC from './assets/Components/MockupHeroC';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -96,6 +99,9 @@ const PREVIEW_PATHS = [
   '/new-privacy',
   '/new-promotional-terms',
   '/new-booking',
+  '/mockup-hero-a',
+  '/mockup-hero-b',
+  '/mockup-hero-c',
 ];
 
 const SiteChrome = ({ children }) => {
@@ -177,6 +183,9 @@ function App() {
           <Route path="/new-privacy" element={<LegalPageV2 data={legalPagesData.privacy} />} />
           <Route path="/new-promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
           <Route path="/new-booking" element={<BookingFormV2 />} />
+          <Route path="/mockup-hero-a" element={<MockupHeroA />} />
+          <Route path="/mockup-hero-b" element={<MockupHeroB />} />
+          <Route path="/mockup-hero-c" element={<MockupHeroC />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
