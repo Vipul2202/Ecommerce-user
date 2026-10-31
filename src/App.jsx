@@ -62,10 +62,6 @@ import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 import BookingFormV2 from './assets/Components/BookingFormV2';
 import MockupFooter from './assets/Components/MockupFooter';
-import MockupTopBar from './assets/Components/MockupTopBar';
-import MockupMarqueeB from './assets/Components/MockupMarqueeB';
-import MockupMarqueeC from './assets/Components/MockupMarqueeC';
-import MockupMarqueeD from './assets/Components/MockupMarqueeD';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -102,10 +98,6 @@ const PREVIEW_PATHS = [
   '/new-promotional-terms',
   '/new-booking',
   '/mockup-footer',
-  '/mockup-topbar',
-  '/mockup-marquee-b',
-  '/mockup-marquee-c',
-  '/mockup-marquee-d',
 ];
 
 const SiteChrome = ({ children }) => {
@@ -188,10 +180,6 @@ function App() {
           <Route path="/new-promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
           <Route path="/new-booking" element={<BookingFormV2 />} />
           <Route path="/mockup-footer" element={<MockupFooter />} />
-          <Route path="/mockup-topbar" element={<MockupTopBar />} />
-          <Route path="/mockup-marquee-b" element={<MockupMarqueeB />} />
-          <Route path="/mockup-marquee-c" element={<MockupMarqueeC />} />
-          <Route path="/mockup-marquee-d" element={<MockupMarqueeD />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />

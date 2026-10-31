@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Sparkles, Clock, Phone, Mail } from "lucide-react";
 import { accent, navy, border, fraunces, useGoogleFont } from "./redesignTheme";
 import siteLogo from "../../img/logo.png";
+
+const MARQUEE_ITEMS = ["Walk-ins Welcome — No Booking Required", "GTechniq Ceramic Coating", "Full Detail", "Tinting"];
+
+// Height of the marquee strip below, so the sticky nav header docks right
+// underneath it instead of overlapping (matches the old site's stacked
+// sticky marquee + nav behavior).
+const MARQUEE_HEIGHT = "36px";
 
 const SERVICE_LINKS = [
   { label: "Outside Only", href: "/new-outside" },
@@ -35,7 +42,54 @@ export const RedesignNav = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ borderColor: border }}>
+    <>
+      {/* Marquee */}
+      <div className="sticky top-0 z-50 py-2.5 text-xs font-bold tracking-wide overflow-hidden" style={{ backgroundColor: navy, color: "#fff" }}>
+        <div className="marquee-track">
+          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
+            <span key={i} className="flex items-center gap-2 mx-3">
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
+                <Sparkles className="w-3 h-3" style={{ color: accent }} />
+                {item}
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Info bar — scrolls away, not sticky */}
+      <div className="border-b" style={{ borderColor: border, backgroundColor: "#ffffff" }}>
+        <div className="lg:hidden text-center py-2 text-xs font-semibold" style={{ backgroundColor: "#f1ece2", color: navy }}>
+          Mon&ndash;Fri: 7am&ndash;5pm &middot; Sat: 7am&ndash;4pm (Myaree only) &middot; Sun: By appointment
+        </div>
+        <div className="max-w-6xl mx-auto px-6 py-2.5 hidden lg:flex items-center justify-center gap-10 text-xs">
+          <div className="flex items-center gap-2.5">
+            <Clock className="w-4 h-4" style={{ color: accent }} />
+            <div className="leading-tight">
+              <div className="font-bold" style={{ color: navy }}>Opening Hours</div>
+              <div className="text-[#6b7278]">Mon&ndash;Fri 7am&ndash;5pm &middot; Sat 7am&ndash;4pm (Myaree) &middot; Sun by appt.</div>
+            </div>
+          </div>
+          <div className="w-px h-8" style={{ backgroundColor: border }}></div>
+          <div className="flex items-center gap-2.5">
+            <Phone className="w-4 h-4" style={{ color: accent }} />
+            <div className="leading-tight">
+              <div className="font-bold" style={{ color: navy }}>Call Us</div>
+              <div className="text-[#6b7278]">Midland: 0478 551 640 &middot; Myaree: 0451 288 164</div>
+            </div>
+          </div>
+          <div className="w-px h-8" style={{ backgroundColor: border }}></div>
+          <div className="flex items-center gap-2.5">
+            <Mail className="w-4 h-4" style={{ color: accent }} />
+            <div className="leading-tight">
+              <div className="font-bold" style={{ color: navy }}>Email Us</div>
+              <div className="text-[#6b7278]">info@carsaloon.com.au</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header className="sticky z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ top: MARQUEE_HEIGHT, borderColor: border }}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
         <a href="/new-home" className="flex items-center gap-2.5">
           <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-10 w-10 object-contain" />
@@ -117,6 +171,7 @@ export const RedesignNav = () => {
         </nav>
       )}
     </header>
+    </>
   );
 };
 
