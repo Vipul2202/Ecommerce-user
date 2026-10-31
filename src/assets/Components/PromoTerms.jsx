@@ -111,7 +111,7 @@ const PromoTerms = () => {
                     <div className="mt-3 ml-4 text-white">
                       Car Saloon<br />
                       Email: <a href="mailto:info@carsaloon.com.au" className="text-[#00a0db] underline">info@carsaloon.com.au</a><br />
-                      Midland: 0478 551 640 &nbsp;|&nbsp; Myaree: 0430 170 164
+                      Midland: 0478 551 640 &nbsp;|&nbsp; Myaree: 0451 288 164
                     </div>
                   </div>
                 </li>
