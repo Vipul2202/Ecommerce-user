@@ -143,7 +143,7 @@ const NovemberSpecialOffer = () => {
               ></div>
               <div className="absolute inset-[3px] rounded-full bg-[#00a0db] text-white flex flex-col items-center justify-center shadow-inner text-center px-2">
                 <span className="text-xl font-bold leading-none">FREE</span>
-                <span className="text-[10px] uppercase tracking-wide mt-1 leading-tight">Engine Bay</span>
+                <span className="text-[10px] uppercase tracking-wide mt-1 leading-tight">Engine Bay Clean</span>
               </div>
               <Sparkle className="nso-sparkle absolute" style={{ top: "-2px", left: "-4px" }} />
               <Sparkle
