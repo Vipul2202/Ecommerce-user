@@ -285,8 +285,8 @@ const HomePageV2 = () => {
                 </div>
                 <button
                   onClick={() => navigate(t.route)}
-                  className="mt-auto pt-2 text-sm font-semibold self-start"
-                  style={{ color: accent }}
+                  className="mt-auto self-start px-5 py-2 rounded-full text-sm font-semibold text-white hover:scale-105 transition-transform"
+                  style={{ backgroundColor: accent }}
                 >
                   Read More →
                 </button>
@@ -322,8 +322,8 @@ const HomePageV2 = () => {
                 </div>
                 <button
                   onClick={() => navigate(t.route)}
-                  className="mt-auto pt-2 text-sm font-semibold self-start"
-                  style={{ color: accent }}
+                  className="mt-auto self-start px-5 py-2 rounded-full text-sm font-semibold text-white hover:scale-105 transition-transform"
+                  style={{ backgroundColor: accent }}
                 >
                   Read More →
                 </button>
