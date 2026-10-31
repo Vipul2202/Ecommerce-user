@@ -11,6 +11,7 @@ import {
   Plus,
   Check,
   Star,
+  Quote,
 } from "lucide-react";
 
 import heroMyaree from "../../img/myaree.jpeg";
@@ -37,6 +38,41 @@ const services = [
   { icon: HomeIcon, title: "The Works", desc: "Best for offroad and pre-sale", link: "/new-the_works" },
   { icon: Wrench, title: "Ultra Premium Finishes", desc: "Luxury finishing touches", link: "/new-ultrapremium" },
   { icon: Plus, title: "Add on Enhancements", desc: "Additional services", link: "/new-extras" },
+];
+
+// Real customer reviews, copied verbatim from Car Saloon's Google Business
+// pages (Myaree: 5.0 stars, 34 reviews · Midland: 4.9 stars, 47 reviews).
+const testimonials = [
+  {
+    name: "John Duffy",
+    location: "Myaree",
+    quote: "Fantastic service. I got the protective paint coating when I first bought my new car. After getting a few scratches, I took it back to Car Saloon and they kindly buffed the finish back to almost original state - at no charge. Highly recommend this business. Friendly, efficient, thoroughly professional.",
+  },
+  {
+    name: "Andrew Kirby",
+    location: "Myaree",
+    quote: "Very happy with Gary and his staff at Car Saloon. I had my new Mazda in for a 5 year ceramic coating and the car looks fantastic, the paint shines and is so smooth and comes with a warranty and follow up inspection. The price was also very reasonable.",
+  },
+  {
+    name: "Suze H",
+    location: "Myaree",
+    quote: "Amazing quality and price! Will definitely be making Baljeet my regular detailer.",
+  },
+  {
+    name: "Amanda Flaherty",
+    location: "Midland",
+    quote: "Great customer service. Polite, friendly and very well priced. Did an excellent job on the car! Will definitely be back.",
+  },
+  {
+    name: "Brenda Reilly",
+    location: "Midland",
+    quote: "These guys were recommended to us as we had a chemical overspray on the bonnet of our Jeep. They did a fantastic job of removing all the residue, service was quick and inexpensive for the job done.",
+  },
+  {
+    name: "Ben Chaos",
+    location: "Midland",
+    quote: "Very impressed. The seats steam cleaning made the seats new and feel so fresh, and the signature detail brought the whole car back to life. It feels like I've got a brand-new car again.",
+  },
 ];
 
 // Growing customer counter for the hero: starts at 500 and ticks up by 50
@@ -291,6 +327,43 @@ const HomePageV2 = () => {
           <p className="text-center text-sm text-[#8a8f94] mt-6">
             Ceramic Coating and Windows Tinting require an in-person inspection to confirm exact pricing.
           </p>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="relative px-6 py-20 overflow-hidden" style={{ backgroundColor: "#f1ece2" }}>
+        <Bubble size={140} top="-8%" right="-4%" opacity={0.1} />
+        <Bubble size={80} bottom="6%" left="2%" opacity={0.1} />
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-11">
+            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>What Our Customers Say</span>
+            <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Real Reviews From Google</h2>
+            <div className="flex items-center justify-center gap-6 mt-4 text-sm font-semibold text-[#4a5056]">
+              <span className="flex items-center gap-1.5">
+                <span className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</span>
+                5.0 &middot; Myaree (34 reviews)
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</span>
+                4.9 &middot; Midland (47 reviews)
+              </span>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {testimonials.map((t) => (
+              <div key={t.name} className="bg-white rounded-2xl border border-[#e7e2d8] p-6 flex flex-col gap-3">
+                <Quote className="w-6 h-6" style={{ color: accent }} />
+                <p className="text-sm text-[#4a5056] leading-relaxed flex-1">{t.quote}</p>
+                <div className="flex items-center justify-between pt-2" style={{ borderTop: `1px solid #e7e2d8` }}>
+                  <div className="font-semibold text-sm text-[#13242c]">{t.name}</div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</span>
+                    <span className="text-xs text-[#8a8f94]">{t.location}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
