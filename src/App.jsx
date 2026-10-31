@@ -55,6 +55,7 @@ import GalleryCategoryV2 from './assets/Components/GalleryCategoryV2';
 import AboutV2 from './assets/Components/AboutV2';
 import ContactV2 from './assets/Components/ContactV2';
 import ExtrasV2 from './assets/Components/ExtrasV2';
+import ProductsV2 from './assets/Components/ProductsV2';
 import UltrapremiumV2 from './assets/Components/UltrapremiumV2';
 import FaqsV2 from './assets/Components/FaqsV2';
 import LegalPageV2 from './assets/Components/LegalPageV2';
@@ -90,6 +91,7 @@ const PREVIEW_PATHS = [
   '/new-about',
   '/new-contact',
   '/new-extras',
+  '/new-products',
   '/new-ultrapremium',
   '/new-faqs',
   '/new-terms',
@@ -171,6 +173,7 @@ function App() {
           <Route path="/new-about" element={<AboutV2 />} />
           <Route path="/new-contact" element={<ContactV2 />} />
           <Route path="/new-extras" element={<ExtrasV2 />} />
+          <Route path="/new-products" element={<ProductsV2 />} />
           <Route path="/new-ultrapremium" element={<UltrapremiumV2 />} />
           <Route path="/new-faqs" element={<FaqsV2 />} />
           <Route path="/new-terms" element={<LegalPageV2 data={legalPagesData.terms} />} />
