@@ -61,6 +61,15 @@ const detailTiers = [
   { name: "The Works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
 ];
 
+// Soft decorative bubble, echoing the logo's bubble motif. Used sparingly
+// across section backgrounds — big, light opacity, no hard edges.
+const Bubble = ({ size, top, left, right, bottom, opacity = 0.1, color = accent }) => (
+  <div
+    className="absolute rounded-full pointer-events-none"
+    style={{ width: size, height: size, top, left, right, bottom, backgroundColor: color, opacity }}
+  />
+);
+
 const premium = [
   { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/new-ultrapremium" },
   { title: "Interior Protection Pack", price: "From $299", img: interiorPackImg, route: "/new-ultrapremium" },
