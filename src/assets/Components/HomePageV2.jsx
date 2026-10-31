@@ -60,6 +60,15 @@ const detailTiers = [
   { name: "The Works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
 ];
 
+// Soft decorative bubble, echoing the logo's bubble motif. Used sparingly
+// across section backgrounds — big, light opacity, no hard edges.
+const Bubble = ({ size, top, left, right, bottom, opacity = 0.1, color = accent }) => (
+  <div
+    className="absolute rounded-full pointer-events-none"
+    style={{ width: size, height: size, top, left, right, bottom, backgroundColor: color, opacity }}
+  />
+);
+
 const premium = [
   { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/new-ultrapremium" },
   { title: "Interior Protection Pack", price: "From $299", img: interiorPackImg, route: "/new-ultrapremium" },
@@ -76,12 +85,14 @@ const HomePageV2 = () => {
       <RedesignNav />
       {isNovemberSpecialActive() && <NovemberSpecialBannerV2 />}
 
-      {/* decorative background blobs */}
-      <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full opacity-20 pointer-events-none" style={{ background: accent }}></div>
-      <div className="absolute top-40 right-0 w-64 h-64 rounded-full opacity-10 pointer-events-none" style={{ background: navy }}></div>
-
       {/* HERO */}
-      <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center">
+      <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center overflow-hidden">
+        <Bubble size={140} top="2%" left="-4%" opacity={0.12} />
+        <Bubble size={90} top="55%" left="2%" opacity={0.1} />
+        <Bubble size={60} top="30%" left="40%" opacity={0.08} />
+        <Bubble size={180} top="-8%" right="-6%" opacity={0.1} />
+        <Bubble size={110} top="40%" right="6%" opacity={0.12} />
+        <Bubble size={70} top="75%" right="22%" opacity={0.1} />
         <div className="flex-1 min-w-[320px] flex flex-col gap-5">
           <span
             className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
@@ -146,8 +157,10 @@ const HomePageV2 = () => {
       </section>
 
       {/* ABOUT */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto flex flex-wrap gap-14 items-center">
+      <section className="relative py-20 px-6 overflow-hidden">
+        <Bubble size={100} top="10%" right="-3%" opacity={0.1} />
+        <Bubble size={55} bottom="8%" left="4%" opacity={0.08} />
+        <div className="relative max-w-6xl mx-auto flex flex-wrap gap-14 items-center">
           <div className="flex-1 min-w-[320px]">
             <img src={about} alt="Car Saloon workshop" draggable="false" className="w-full rounded-2xl" />
           </div>
@@ -185,8 +198,11 @@ const HomePageV2 = () => {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="px-6 py-20" style={{ backgroundColor: "#f1ece2" }}>
-        <div className="max-w-6xl mx-auto">
+      <section id="pricing" className="relative px-6 py-20 overflow-hidden" style={{ backgroundColor: "#f1ece2" }}>
+        <Bubble size={160} top="-6%" left="-5%" opacity={0.1} />
+        <Bubble size={90} bottom="4%" right="2%" opacity={0.1} />
+        <Bubble size={50} top="45%" right="18%" opacity={0.08} />
+        <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Washing Services</span>
             <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Compare Your Plan</h2>
@@ -243,8 +259,10 @@ const HomePageV2 = () => {
       </section>
 
       {/* PREMIUM */}
-      <section id="premium" className="px-6 py-20">
-        <div className="max-w-6xl mx-auto">
+      <section id="premium" className="relative px-6 py-20 overflow-hidden">
+        <Bubble size={120} top="5%" right="-4%" opacity={0.1} />
+        <Bubble size={70} bottom="10%" left="2%" opacity={0.1} />
+        <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-11">
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Ultra Premium Finishes</span>
             <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Long-Lasting Services For Your Car</h2>
@@ -298,8 +316,10 @@ const HomePageV2 = () => {
 
       {/* CTA */}
       <section className="px-6 pb-24">
-        <div className="max-w-6xl mx-auto rounded-3xl py-16 px-10 flex flex-col items-center text-center gap-4" style={{ backgroundColor: navy }}>
-          <h2 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-white">Ready for the Saloon Treatment?</h2>
+        <div className="relative max-w-6xl mx-auto rounded-3xl py-16 px-10 flex flex-col items-center text-center gap-4 overflow-hidden" style={{ backgroundColor: navy }}>
+          <Bubble size={130} top="-10%" left="-4%" opacity={0.08} color="#ffffff" />
+          <Bubble size={80} bottom="-6%" right="6%" opacity={0.1} color="#ffffff" />
+          <h2 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-white">Ready for the Saloon Treatment?</h2>
           <p className="text-[#cfe3ea] max-w-md">Pick your service, pick your location, and we'll take care of the rest.</p>
           <button
             onClick={() => navigate("/new-booking")}
