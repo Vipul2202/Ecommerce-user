@@ -4,6 +4,7 @@ import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import { TIER_SERVICES, PREMIUM_SERVICES, EXTRA_SERVICES, SERVICE_NOTICES } from "./bookingServicesData";
+import Bubble from "./Bubble";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
@@ -382,10 +383,12 @@ const BookingFormV2 = () => {
 
       <RedesignNav />
       <form onSubmit={handleSubmit} className="flex-1 pb-24 lg:pb-0">
-        <div className="px-6 pt-14 pb-10 text-center">
-          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Book A Service</span>
-          <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Book Now</h1>
-          <p className="text-[#6b7278] mt-3 max-w-xl mx-auto text-sm">
+        <div className="relative px-6 pt-14 pb-10 text-center overflow-hidden">
+          <Bubble size={100} top="-15%" left="-4%" opacity={0.1} />
+          <Bubble size={60} top="30%" right="6%" opacity={0.1} />
+          <span className="relative text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Book A Service</span>
+          <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Book Now</h1>
+          <p className="relative text-[#6b7278] mt-3 max-w-xl mx-auto text-sm">
             Pick your vehicle type and services to see your estimate update live as you go.
           </p>
         </div>

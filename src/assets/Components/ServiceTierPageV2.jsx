@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Check, Car as SedanIcon } from "lucide-react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
+import Bubble from "./Bubble";
 
 const SEGMENTS = [
   { key: "sedan", label: "Sedan" },
@@ -24,18 +25,22 @@ const ServiceTierPageV2 = ({ data }) => {
       <RedesignNav />
 
       <main className="flex-1">
-        <div className="px-6 pt-14 pb-8 text-center">
-          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>
+        <div className="relative px-6 pt-14 pb-8 text-center overflow-hidden">
+          <Bubble size={110} top="-10%" left="-4%" opacity={0.1} />
+          <Bubble size={70} top="20%" right="4%" opacity={0.1} />
+          <span className="relative text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>
             Washing &amp; Detailing
           </span>
-          <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">
+          <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">
             {data.title}
           </h1>
-          {data.tagline && <p className="text-[#6b7278] mt-2">{data.tagline}</p>}
+          {data.tagline && <p className="relative text-[#6b7278] mt-2">{data.tagline}</p>}
         </div>
 
         <div className="max-w-5xl mx-auto px-6 mb-14">
-          <div className="rounded-2xl p-6 grid sm:grid-cols-3 gap-4" style={{ backgroundColor: navy }}>
+          <div className="relative rounded-2xl p-6 grid sm:grid-cols-3 gap-4 overflow-hidden" style={{ backgroundColor: navy }}>
+            <Bubble size={90} top="-20%" right="-6%" opacity={0.1} color="#ffffff" />
+            <Bubble size={50} bottom="-15%" left="4%" opacity={0.08} color="#ffffff" />
             {SEGMENTS.map((s) => (
               <div key={s.key} className="bg-white/10 rounded-xl p-5 flex flex-col items-center text-center gap-2">
                 <SedanIcon className="w-6 h-6 text-white/80" />

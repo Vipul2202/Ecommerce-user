@@ -24,6 +24,7 @@ import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
 import NovemberSpecialBannerV2 from "./NovemberSpecialBannerV2";
 import { isNovemberSpecialActive } from "./promoSchedule";
+import Bubble from "./Bubble";
 
 const services = [
   { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/new-outside" },
@@ -59,15 +60,6 @@ const detailTiers = [
   { name: "Signature Detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
   { name: "The Works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
 ];
-
-// Soft decorative bubble, echoing the logo's bubble motif. Used sparingly
-// across section backgrounds — big, light opacity, no hard edges.
-const Bubble = ({ size, top, left, right, bottom, opacity = 0.1, color = accent }) => (
-  <div
-    className="absolute rounded-full pointer-events-none"
-    style={{ width: size, height: size, top, left, right, bottom, backgroundColor: color, opacity }}
-  />
-);
 
 const premium = [
   { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/new-ultrapremium" },

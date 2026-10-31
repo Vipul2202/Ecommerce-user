@@ -2,6 +2,7 @@ import React from "react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, fraunces } from "./redesignTheme";
 import about from "../../img/about.jpg";
+import Bubble from "./Bubble";
 
 const AboutV2 = () => {
   useGoogleFont();
@@ -9,9 +10,11 @@ const AboutV2 = () => {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
       <RedesignNav />
       <main className="flex-1">
-        <div className="px-6 pt-14 pb-10 text-center">
-          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>About Us</span>
-          <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Car Wash &amp; Detailing</h1>
+        <div className="relative px-6 pt-14 pb-10 text-center overflow-hidden">
+          <Bubble size={100} top="-15%" left="-4%" opacity={0.1} />
+          <Bubble size={60} top="30%" right="6%" opacity={0.1} />
+          <span className="relative text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>About Us</span>
+          <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Car Wash &amp; Detailing</h1>
         </div>
         <div className="max-w-5xl mx-auto px-6 pb-20 flex flex-wrap gap-12 items-center">
           <div className="flex-1 min-w-[300px]">
