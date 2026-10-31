@@ -45,7 +45,9 @@ import Faqs from './assets/Components/Faqs';
 import Privacy from './assets/Components/Privacy';
 import PromoTerms from './assets/Components/PromoTerms';
 import FathersDayOffer from './assets/Components/FathersDayOffer';
-import { isFathersDayPromoActive } from './assets/Components/promoSchedule';
+import NovemberSpecialOffer from './assets/Components/NovemberSpecialOffer';
+import NovemberSpecialOfferV2 from './assets/Components/NovemberSpecialOfferV2';
+import { isFathersDayPromoActive, isNovemberSpecialActive } from './assets/Components/promoSchedule';
 import HomePageV2 from './assets/Components/HomePageV2';
 import ServiceTierPageV2 from './assets/Components/ServiceTierPageV2';
 import GalleryV2 from './assets/Components/GalleryV2';
@@ -100,6 +102,16 @@ const SiteChrome = ({ children }) => {
   const { pathname } = useLocation();
   const isPreview = PREVIEW_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
   if (isPreview) return null;
+  return children;
+};
+
+// Mirror image of SiteChrome — renders only on /new-* preview paths, so the
+// redesign gets its own site-wide promo popup without showing it twice
+// alongside the old site's version (or vice versa).
+const PreviewChrome = ({ children }) => {
+  const { pathname } = useLocation();
+  const isPreview = PREVIEW_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  if (!isPreview) return null;
   return children;
 };
 
@@ -198,7 +210,12 @@ function App() {
         <SiteChrome>
           <Footer />
           {isFathersDayPromoActive() && <FathersDayOffer />}
+          {isNovemberSpecialActive() && <NovemberSpecialOffer />}
         </SiteChrome>
+
+        <PreviewChrome>
+          {isNovemberSpecialActive() && <NovemberSpecialOfferV2 />}
+        </PreviewChrome>
       </Router>
     </div>
   )

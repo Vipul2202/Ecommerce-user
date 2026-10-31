@@ -21,6 +21,8 @@ import paintlessDentImg from "../../img/paintless_dent_repair.png";
 import myareeImg from "../../img/myaree.jpeg";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
+import NovemberSpecialBannerV2 from "./NovemberSpecialBannerV2";
+import { isNovemberSpecialActive } from "./promoSchedule";
 
 const services = [
   { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/new-outside" },
@@ -59,6 +61,7 @@ const HomePageV2 = () => {
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen">
       <RedesignNav />
+      {isNovemberSpecialActive() && <NovemberSpecialBannerV2 />}
 
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center">
