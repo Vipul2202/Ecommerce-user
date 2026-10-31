@@ -4,7 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import FathersDaySlide from "./FathersDaySlide";
-import { isFathersDayPromoActive } from "./promoSchedule";
+import NovemberSpecialSlide from "./NovemberSpecialSlide";
+import { isFathersDayPromoActive, isNovemberSpecialActive } from "./promoSchedule";
 import carousel1 from "../../../src/img/carousel-2.jpg";
 import carousel2 from "../../../src/img/carousel-1.jpg";
 
@@ -66,6 +67,7 @@ const HomePage = () => {
 
   const carouselData = [
      ...(isFathersDayPromoActive() ? [{ custom: true }] : []),
+     ...(isNovemberSpecialActive() ? [{ customNov: true }] : []),
      {
       img: carousel4,
 
@@ -179,6 +181,8 @@ const HomePage = () => {
 
               {item.custom ? (
                 <FathersDaySlide />
+              ) : item.customNov ? (
+                <NovemberSpecialSlide />
               ) : (
                 <>
                   <img

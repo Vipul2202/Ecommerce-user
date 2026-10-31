@@ -8,3 +8,11 @@ export const FATHERS_DAY_PROMO_END = new Date('2026-09-30T17:00:00+08:00');
 // cached bundle (e.g. an old mobile session) must never be able to see
 // the popup/slide or claim the discount again, regardless of its clock.
 export const isFathersDayPromoActive = () => false;
+
+export const NOVEMBER_SPECIAL_START = new Date('2026-10-31T00:00:00+08:00');
+export const NOVEMBER_SPECIAL_END = new Date('2026-11-30T23:59:59+08:00');
+
+export const isNovemberSpecialActive = () => {
+  const now = Date.now();
+  return now >= NOVEMBER_SPECIAL_START.getTime() && now <= NOVEMBER_SPECIAL_END.getTime();
+};
