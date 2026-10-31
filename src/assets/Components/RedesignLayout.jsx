@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { accent, navy, border, fraunces, useGoogleFont } from "./redesignTheme";
 import siteLogo from "../../img/logo.png";
 
@@ -26,6 +26,13 @@ const NAV_LINKS = [
 export const RedesignNav = () => {
   const navigate = useNavigate();
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileServicesOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ borderColor: border }}>
@@ -63,14 +70,52 @@ export const RedesignNav = () => {
           <a href="/new-contact" className="hover:text-[#0a3b4d]">Contact</a>
           <a href="/new-faqs" className="hover:text-[#0a3b4d]">FAQs</a>
         </nav>
-        <button
-          onClick={() => navigate("/new-booking")}
-          className="px-5 py-2.5 rounded-full text-sm font-semibold text-white shrink-0"
-          style={{ backgroundColor: navy }}
-        >
-          Book Now
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => navigate("/new-booking")}
+            className="px-5 py-2.5 rounded-full text-sm font-semibold text-white"
+            style={{ backgroundColor: navy }}
+          >
+            Book Now
+          </button>
+          <button
+            onClick={() => setMobileOpen((o) => !o)}
+            className="lg:hidden p-2 rounded-lg"
+            style={{ border: `1px solid ${border}` }}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X className="w-5 h-5 text-[#13242c]" /> : <Menu className="w-5 h-5 text-[#13242c]" />}
+          </button>
+        </div>
       </div>
+
+      {mobileOpen && (
+        <nav className="lg:hidden border-t px-6 py-4 flex flex-col gap-1 text-sm font-medium text-[#4a5056]" style={{ borderColor: border }}>
+          <a href="/new-home" onClick={closeMobile} className="py-2.5">Home</a>
+          <button
+            onClick={() => setMobileServicesOpen((o) => !o)}
+            className="flex items-center justify-between py-2.5 text-left"
+          >
+            Services
+            <ChevronDown className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
+          </button>
+          {mobileServicesOpen && (
+            <div className="flex flex-col pl-4 border-l" style={{ borderColor: border }}>
+              {SERVICE_LINKS.map((s) => (
+                <a key={s.href} href={s.href} onClick={closeMobile} className="py-2 text-sm">
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          )}
+          <a href="/new-ultrapremium" onClick={closeMobile} className="py-2.5">Premium</a>
+          <a href="/new-extras" onClick={closeMobile} className="py-2.5">Extras</a>
+          <a href="/new-gallery" onClick={closeMobile} className="py-2.5">Gallery</a>
+          <a href="/new-about" onClick={closeMobile} className="py-2.5">About</a>
+          <a href="/new-contact" onClick={closeMobile} className="py-2.5">Contact</a>
+          <a href="/new-faqs" onClick={closeMobile} className="py-2.5">FAQs</a>
+        </nav>
+      )}
     </header>
   );
 };
