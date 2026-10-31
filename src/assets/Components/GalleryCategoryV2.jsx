@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, border, fraunces } from "./redesignTheme";
 import galleryCategories from "./galleryData";
+import Bubble from "./Bubble";
 
 const GalleryCategoryV2 = () => {
   useGoogleFont();
@@ -29,11 +30,13 @@ const GalleryCategoryV2 = () => {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
       <RedesignNav />
       <main className="flex-1">
-        <div className="px-6 pt-14 pb-10 text-center">
-          <button onClick={() => navigate("/new-gallery")} className="text-sm font-semibold" style={{ color: accent }}>
+        <div className="relative px-6 pt-14 pb-10 text-center overflow-hidden">
+          <Bubble size={100} top="-15%" left="-4%" opacity={0.1} />
+          <Bubble size={60} top="30%" right="6%" opacity={0.1} />
+          <button onClick={() => navigate("/new-gallery")} className="relative text-sm font-semibold" style={{ color: accent }}>
             ← Back to Gallery
           </button>
-          <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c] mt-4">{category.name}</h1>
+          <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-4">{category.name}</h1>
         </div>
         <div className="max-w-6xl mx-auto px-6 pb-20 grid sm:grid-cols-2 gap-6">
           {category.pairs.map((pair, i) => (

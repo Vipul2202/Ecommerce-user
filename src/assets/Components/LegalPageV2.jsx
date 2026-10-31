@@ -1,6 +1,7 @@
 import React from "react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
+import Bubble from "./Bubble";
 
 // Shared template for Terms of Use, Privacy Policy, and Offer Terms &
 // Conditions — same structure, different data (see legalPagesData.js).
@@ -11,9 +12,11 @@ const LegalPageV2 = ({ data }) => {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
       <RedesignNav />
       <main className="flex-1">
-        <div className="px-6 pt-14 pb-6 text-center">
-          <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c]">{data.title}</h1>
-          <p className="text-xs font-bold uppercase tracking-widest mt-3" style={{ color: accent }}>
+        <div className="relative px-6 pt-14 pb-6 text-center overflow-hidden">
+          <Bubble size={80} top="-20%" left="-4%" opacity={0.08} />
+          <Bubble size={50} top="20%" right="6%" opacity={0.08} />
+          <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c]">{data.title}</h1>
+          <p className="relative text-xs font-bold uppercase tracking-widest mt-3" style={{ color: accent }}>
             Last Updated: {data.lastUpdated}
           </p>
         </div>

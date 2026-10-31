@@ -4,6 +4,7 @@ import { Clock, Phone, Mail, MapPin } from "lucide-react";
 import { FaSpinner } from "react-icons/fa";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
+import Bubble from "./Bubble";
 
 const contactInfo = [
   { id: 1, icon: Clock, title: "Opening Hours", details: ["Mon - Fri, 7:00 - 5:00", "Weekends on Appointment"] },
@@ -68,14 +69,17 @@ const ContactV2 = () => {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
       <RedesignNav />
       <main className="flex-1">
-        <div className="px-6 pt-14 pb-10 text-center">
-          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Get In Touch</span>
-          <h1 style={fraunces} className="text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Contact Us</h1>
+        <div className="relative px-6 pt-14 pb-10 text-center overflow-hidden">
+          <Bubble size={100} top="-15%" left="-4%" opacity={0.1} />
+          <Bubble size={60} top="30%" right="6%" opacity={0.1} />
+          <span className="relative text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Get In Touch</span>
+          <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Contact Us</h1>
         </div>
 
         <div className="max-w-5xl mx-auto px-6 pb-20 grid lg:grid-cols-[300px_1fr] gap-8">
-          <div className="rounded-2xl p-7 text-white flex flex-col gap-6" style={{ backgroundColor: navy }}>
-            <h3 style={fraunces} className="text-xl font-semibold">Quick Contact Info</h3>
+          <div className="relative rounded-2xl p-7 text-white flex flex-col gap-6 overflow-hidden" style={{ backgroundColor: navy }}>
+            <Bubble size={80} top="-15%" right="-10%" opacity={0.1} color="#ffffff" />
+            <h3 style={fraunces} className="relative text-xl font-semibold">Quick Contact Info</h3>
             {contactInfo.map((info) => (
               <div key={info.id} className="flex items-start gap-4">
                 <div className="bg-white/15 rounded-full p-2.5 shrink-0">
