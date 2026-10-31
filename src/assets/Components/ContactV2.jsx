@@ -8,7 +8,7 @@ import Bubble from "./Bubble";
 
 const contactInfo = [
   { id: 1, icon: Clock, title: "Opening Hours", details: ["Mon - Fri, 7:00 - 5:00", "Weekends on Appointment"] },
-  { id: 2, icon: Phone, title: "Call Us", details: ["Midland: 0478 551 640", "Myaree: 0430 170 164 / 0451 288 164"] },
+  { id: 2, icon: Phone, title: "Call Us", details: ["Midland: 0478 551 640", "Myaree: 0451 288 164"] },
   { id: 3, icon: Mail, title: "Email Us", details: ["info@carsaloon.com.au"] },
   { id: 4, icon: MapPin, title: "Locations", details: ["7 Loton Avenue, Midland, 6056", "4/41 McCoy Street, Myaree, 6154"] },
 ];

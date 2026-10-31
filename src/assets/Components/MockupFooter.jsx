@@ -120,7 +120,7 @@ const MockupFooter = () => {
             </div>
             <div className="flex items-start gap-2.5 text-sm text-white/75">
               <Phone className="w-4 h-4 shrink-0 mt-0.5" />
-              <span>Midland: 0478 551 640<br />Myaree: 0430 170 164 / 0451 288 164</span>
+              <span>Midland: 0478 551 640<br />Myaree: 0451 288 164</span>
             </div>
             <div className="flex items-center gap-2.5 text-sm text-white/75">
               <Mail className="w-4 h-4 shrink-0" />

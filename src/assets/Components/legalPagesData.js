@@ -121,7 +121,7 @@ const legalPagesData = {
         "Standard message and data charges from your mobile carrier may apply to SMS messages.",
       ]},
       { heading: "4. Who Is Sending These Messages", items: [
-        "All promotional messages will clearly identify Car Saloon as the sender and include our contact details: info@carsaloon.com.au · Midland: 0478 551 640 · Myaree: 0430 170 164.",
+        "All promotional messages will clearly identify Car Saloon as the sender and include our contact details: info@carsaloon.com.au · Midland: 0478 551 640 · Myaree: 0451 288 164.",
       ]},
       { heading: "5. Opting Out / Unsubscribing", items: [
         "You can withdraw your consent and stop receiving promotional messages at any time, free of charge.",
