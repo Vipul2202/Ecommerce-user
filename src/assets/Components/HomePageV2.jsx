@@ -18,6 +18,7 @@ import {
 
 import heroMyaree from "../../img/myaree.jpeg";
 import heroMidland from "../../img/midland.jpeg";
+import gtechniqLogo from "../../img/gtechniq-logo.svg";
 import about from "../../img/about.jpg";
 import ceramicImg from "../../img/team1.jpeg";
 import interiorPackImg from "../../img/team2.jpg";
@@ -78,18 +79,6 @@ const testimonials = [
   },
 ];
 
-// Growing customer counter for the hero: starts at 500 and ticks up by 50
-// every week — a deliberate marketing choice (confirmed with the business
-// owner) since they only recently started actively collecting reviews,
-// despite being in business since 2015.
-const CUSTOMER_COUNT_BASE = 500;
-const CUSTOMER_COUNT_WEEKLY_INCREMENT = 50;
-const CUSTOMER_COUNT_START = new Date("2026-10-31T00:00:00+08:00");
-const getCustomerCount = () => {
-  const weeksElapsed = Math.max(0, Math.floor((Date.now() - CUSTOMER_COUNT_START.getTime()) / (7 * 24 * 60 * 60 * 1000)));
-  return CUSTOMER_COUNT_BASE + weeksElapsed * CUSTOMER_COUNT_WEEKLY_INCREMENT;
-};
-
 const washTiers = [
   { name: "Outside Only", priceKey: "outside", route: "/new-outside", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
   { name: "Inside & Outside", priceKey: "inside_outside", route: "/new-inside_outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
@@ -145,13 +134,15 @@ const HomePageV2 = () => {
             className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
             style={{ backgroundColor: "#fde8e8", color: "#c23b3b" }}
           >
-            <Sparkles className="w-3.5 h-3.5" /> Perth's #1 Detailing Studio
+            <Sparkles className="w-3.5 h-3.5" /> Perth's Premium Car Detailing Studio
           </span>
           <h1 style={fraunces} className="text-[2.6rem] sm:text-6xl leading-[1.05] font-semibold text-[#13242c]">
             Where your car gets the{" "}
             <span className="relative inline-block">
-              <span className="relative z-10" style={{ color: accent }}>saloon</span>
-              <span className="absolute left-0 right-0 bottom-1 h-3 -z-0" style={{ backgroundColor: "#fde8b8" }}></span>
+              <span className="relative z-10 italic" style={{ color: accent }}>saloon</span>
+              <svg className="absolute left-0 -bottom-1 w-full" height="10" viewBox="0 0 100 10" preserveAspectRatio="none" style={{ color: accent }}>
+                <path d="M0,6 Q50,0 100,6" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
+              </svg>
             </span>{" "}
             treatment.
           </h1>
@@ -174,14 +165,6 @@ const HomePageV2 = () => {
               Explore Services
             </a>
           </div>
-          <div className="flex items-center gap-2 pt-2">
-            <div className="flex items-center gap-1 text-sm font-semibold">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-              ))}
-              <span className="ml-1 text-[#4a5056]">5-star rated &middot; {getCustomerCount()}+ happy customers</span>
-            </div>
-          </div>
         </div>
         <div className="flex-1 min-w-[320px] relative">
           <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl" style={{ backgroundColor: accent, opacity: 0.15 }}></div>
@@ -191,10 +174,16 @@ const HomePageV2 = () => {
             draggable="false"
             className="relative w-full rounded-3xl shadow-2xl object-cover"
           />
+          <div className="absolute top-0 left-0 right-0 rounded-t-3xl px-4 py-3 flex items-center gap-3" style={{ backgroundColor: navy }}>
+            <div className="bg-white rounded-lg px-2 py-1 shrink-0">
+              <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto" />
+            </div>
+            <div className="text-xs font-semibold text-white truncate">GTechniq Certified Ceramic Coating</div>
+          </div>
           <button
             type="button"
             onClick={() => setHeroLocation((loc) => (loc === "myaree" ? "midland" : "myaree"))}
-            className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
+            className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
           >
             <img
               src={heroBadgeImg}
@@ -207,15 +196,6 @@ const HomePageV2 = () => {
               <div className="text-[#8a8f94]">Tap to switch</div>
             </div>
           </button>
-          <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs" style={{ backgroundColor: navy }}>
-              GT
-            </div>
-            <div className="text-xs">
-              <div className="font-bold text-[#13242c]">GTechniq Accredited</div>
-              <div className="text-[#8a8f94]">Professional Applicator</div>
-            </div>
-          </div>
         </div>
       </section>
 
