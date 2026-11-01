@@ -174,7 +174,7 @@ const HomePageV2 = () => {
             draggable="false"
             className="relative w-full rounded-3xl shadow-2xl object-cover"
           />
-          <div className="absolute top-0 left-0 right-0 rounded-t-3xl pl-4 pr-36 py-3 flex items-center gap-3" style={{ backgroundColor: "rgba(19,36,44,0.92)" }}>
+          <div className="absolute top-0 left-0 right-0 rounded-t-3xl px-4 py-3 flex items-center gap-3" style={{ backgroundColor: navy }}>
             <div className="bg-white rounded-lg px-2 py-1 shrink-0">
               <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto" />
             </div>
@@ -183,7 +183,7 @@ const HomePageV2 = () => {
           <button
             type="button"
             onClick={() => setHeroLocation((loc) => (loc === "myaree" ? "midland" : "myaree"))}
-            className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
+            className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
           >
             <img
               src={heroBadgeImg}
