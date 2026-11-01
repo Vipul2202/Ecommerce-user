@@ -192,7 +192,7 @@ const HomePageV2 = () => {
           </button>
           <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-5 py-4 flex flex-col gap-2 border-2" style={{ borderColor: accent }}>
             <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-7 w-auto" />
-            <div className="text-xs font-semibold text-[#4a5056]">Accredited Professional Applicator</div>
+            <div className="text-xs font-semibold text-[#4a5056]">GTechniq Certified Ceramic Coating</div>
           </div>
         </div>
       </section>

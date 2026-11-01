@@ -1,6 +1,6 @@
     import React, { useState } from "react";
     import sedan from "../../../src/img/sedan.png";
-    
+    import gtechniqLogo from "../../img/gtechniq-logo.svg";
     import { useNavigate } from "react-router-dom";
     import { useAllPrices } from "./PricingContext";
 
@@ -138,6 +138,12 @@
                     <h2 className="text-2xl font-bold mb-2 items-center flex justify-center text-black">
                       {card.title}
                     </h2>
+                    {card.key === "ceramic_coating" && (
+                      <div className="bg-white rounded-xl px-3 py-2 flex items-center justify-center gap-2 mb-3 border-2 border-black">
+                        <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto" />
+                        <span className="text-xs font-bold text-black">Certified</span>
+                      </div>
+                    )}
                     <p className="text-sm mb-2">{card.Paragraph}</p>
     
                     {/* What We Offer */}

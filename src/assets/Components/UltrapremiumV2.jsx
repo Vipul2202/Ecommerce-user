@@ -7,6 +7,7 @@ import ceramicImg from "../../img/team1.jpeg";
 import interiorPackImg from "../../img/team2.jpg";
 import tintingImg from "../../img/team3.jpg";
 import paintlessDentImg from "../../img/paintless_dent_repair.png";
+import gtechniqLogo from "../../img/gtechniq-logo.svg";
 import Bubble from "./Bubble";
 import { useAllPrices } from "./PricingContext";
 
@@ -77,8 +78,14 @@ const UltrapremiumV2 = () => {
             const priceText = quoteOnly ? "Price on request" : `From $${price} onwards`;
             return (
             <div key={card.title} className={`flex flex-col ${i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"} gap-8 items-center`}>
-              <div className="w-full md:w-1/2 shrink-0">
+              <div className="w-full md:w-1/2 shrink-0 relative">
                 <img src={card.img} alt={card.title} draggable="false" className="w-full h-72 object-cover rounded-2xl" />
+                {card.key === "ceramic_coating" && (
+                  <div className="absolute top-4 left-4 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-2 border-2" style={{ borderColor: accent }}>
+                    <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto" />
+                    <span className="text-xs font-bold text-[#13242c]">Certified</span>
+                  </div>
+                )}
               </div>
               <div className="w-full md:w-1/2 flex flex-col gap-4">
                 <h2 style={fraunces} className="text-2xl font-semibold text-[#13242c]">{card.title}</h2>
