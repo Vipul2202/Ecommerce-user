@@ -45,7 +45,7 @@ const NovemberSpecialSlide = () => (
             Degrease + High-Pressure Clean
           </p>
           <span className="block text-[8px] sm:text-[9px] md:text-xs text-white/60 mt-0.5">
-            *Min. $150 spent on a single booking, on a single car. Not valid with any other offer.
+            *Min. $150 spend per car, per booking. Not valid with any other offer.
           </span>
         </div>
       </div>
