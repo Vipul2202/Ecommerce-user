@@ -174,6 +174,12 @@ const HomePageV2 = () => {
             draggable="false"
             className="relative w-full rounded-3xl shadow-2xl object-cover"
           />
+          <div className="absolute top-0 left-0 right-0 rounded-t-3xl pl-4 pr-36 py-3 flex items-center gap-3" style={{ backgroundColor: "rgba(19,36,44,0.92)" }}>
+            <div className="bg-white rounded-lg px-2 py-1 shrink-0">
+              <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto" />
+            </div>
+            <div className="text-xs font-semibold text-white truncate">GTechniq Certified Ceramic Coating</div>
+          </div>
           <button
             type="button"
             onClick={() => setHeroLocation((loc) => (loc === "myaree" ? "midland" : "myaree"))}
@@ -190,10 +196,6 @@ const HomePageV2 = () => {
               <div className="text-[#8a8f94]">Tap to switch</div>
             </div>
           </button>
-          <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-5 py-4 flex flex-col gap-2 border-2" style={{ borderColor: accent }}>
-            <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-7 w-auto" />
-            <div className="text-xs font-semibold text-[#4a5056]">GTechniq Certified Ceramic Coating</div>
-          </div>
         </div>
       </section>
 
