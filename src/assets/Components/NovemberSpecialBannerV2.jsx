@@ -30,7 +30,7 @@ const NovemberSpecialBannerV2 = () => {
               Spend $150+, get a FREE Engine Bay clean
             </h2>
             <p className="hidden sm:block text-sm md:text-base font-medium text-white/90">
-              Degrease + High-Pressure Clean &middot; Valid 1&ndash;30 Nov 2026
+              Degrease + High-Pressure Clean &middot; Valid till 30/11/2026
             </p>
             <button
               onClick={() => navigate("/new-booking")}

@@ -192,7 +192,7 @@ const NovemberSpecialOffer = () => {
             </div>
 
             <p className="text-center text-[11px] uppercase tracking-wide text-gray-400 mt-4">
-              Valid 1&ndash;30 November 2026
+              Valid till 30/11/2026
             </p>
             <p className="text-center text-[10px] text-gray-400 mt-1">
               *Minimum $150 spent on a single booking, on a single car. Mention this offer when booking. Not valid with any other offer.
@@ -249,7 +249,7 @@ const NovemberSpecialOffer = () => {
               Midland Direction
             </a>
           </div>
-          <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Valid 1&ndash;30 Nov 2026</p>
+          <p className="text-[10px] uppercase tracking-wide text-gray-400 mt-2">Valid till 30/11/2026</p>
           <p className="text-[9px] text-gray-400 mt-0.5">*Min. $150 spent on a single booking, on a single car. Not valid with any other offer.</p>
         </div>
       )}
