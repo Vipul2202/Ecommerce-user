@@ -106,10 +106,22 @@ const PREVIEW_PATHS = [
 // from public nav/footer, only ever reached by typing the URL directly.
 const NO_CHROME_PATHS = ['/admin-panel'];
 
+// React Router matches routes case-insensitively by default, so
+// /NEW-HOME renders HomePageV2 same as /new-home does — but this
+// PREVIEW_PATHS check was doing a case-sensitive string compare, so an
+// uppercase (or mixed-case) URL failed to match and the old site's
+// marquee/nav/footer rendered on top of the new homepage as well.
+// Lowercasing both sides keeps this in sync with React Router's own
+// matching behavior.
+const matchesPath = (pathname, paths) => {
+  const lower = pathname.toLowerCase();
+  return paths.some((p) => lower === p || lower.startsWith(`${p}/`));
+};
+
 const SiteChrome = ({ children }) => {
   const { pathname } = useLocation();
-  const isPreview = PREVIEW_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-  const isNoChrome = NO_CHROME_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  const isPreview = matchesPath(pathname, PREVIEW_PATHS);
+  const isNoChrome = matchesPath(pathname, NO_CHROME_PATHS);
   if (isPreview || isNoChrome) return null;
   return children;
 };
@@ -119,7 +131,7 @@ const SiteChrome = ({ children }) => {
 // alongside the old site's version (or vice versa).
 const PreviewChrome = ({ children }) => {
   const { pathname } = useLocation();
-  const isPreview = PREVIEW_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  const isPreview = matchesPath(pathname, PREVIEW_PATHS);
   if (!isPreview) return null;
   return children;
 };
