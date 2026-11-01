@@ -5,9 +5,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReminderRectificationPanel from "./ReminderRectificationPanel";
 import ReminderActivityPanel from "./ReminderActivityPanel";
+import PricingPanel from "./PricingPanel";
 
 const API = import.meta.env.VITE_API_BASE_URL;
-const PASSWORD_STORAGE_KEY = "owner_panel_password";
+const PASSWORD_STORAGE_KEY = "admin_panel_password";
 
 const STATUS_TABS = [
   { label: "All", value: "" },
@@ -26,7 +27,7 @@ const formatDate = (value) => {
   return date.toLocaleDateString();
 };
 
-const OwnerPanel = () => {
+const AdminPanel = () => {
   const [password, setPassword] = useState(
     () => sessionStorage.getItem(PASSWORD_STORAGE_KEY) || ""
   );
@@ -52,6 +53,11 @@ const OwnerPanel = () => {
   const authHeaders = (pwd) => ({
     headers: { "x-owner-password": pwd },
   });
+
+  const handleLogout = () => {
+    sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
+    setPassword("");
+  };
 
   const fetchTestModeStatus = async (pwd) => {
     try {
@@ -100,8 +106,7 @@ const OwnerPanel = () => {
       toast.success(turningOn ? "Test mode turned ON" : "Test mode turned OFF");
     } catch (error) {
       if (error.response?.status === 401) {
-        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
-        setPassword("");
+        handleLogout();
       } else {
         toast.error(error.response?.data?.message || "Failed to change test mode");
       }
@@ -139,8 +144,7 @@ const OwnerPanel = () => {
       toast.success(turningOn ? "Customer email test mode turned ON" : "Customer email test mode turned OFF");
     } catch (error) {
       if (error.response?.status === 401) {
-        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
-        setPassword("");
+        handleLogout();
       } else {
         toast.error(error.response?.data?.message || "Failed to change customer email test mode");
       }
@@ -178,7 +182,7 @@ const OwnerPanel = () => {
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     if (!passwordInput.trim()) {
-      setAuthError("Enter the owner panel password");
+      setAuthError("Enter the admin panel password");
       return;
     }
     setAuthChecking(true);
@@ -251,8 +255,7 @@ const OwnerPanel = () => {
       fetchBookings(password, status, page);
     } catch (error) {
       if (error.response?.status === 401) {
-        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
-        setPassword("");
+        handleLogout();
       } else {
         toast.error("Failed to delete booking(s)");
       }
@@ -279,8 +282,7 @@ const OwnerPanel = () => {
       fetchBookings(password, status, page);
     } catch (error) {
       if (error.response?.status === 401) {
-        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
-        setPassword("");
+        handleLogout();
       } else {
         toast.error("Could not update booking status");
       }
@@ -328,8 +330,7 @@ const OwnerPanel = () => {
       XLSX.writeFile(workbook, `bookings-${status || "all"}-${dateStamp}.xlsx`);
     } catch (error) {
       if (error.response?.status === 401) {
-        sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
-        setPassword("");
+        handleLogout();
       } else {
         toast.error("Failed to export bookings");
       }
@@ -346,7 +347,7 @@ const OwnerPanel = () => {
           className="bg-[#111] border border-gray-800 rounded-2xl p-8 w-full max-w-sm"
         >
           <h1 className="text-2xl font-bold text-[#00a0db] mb-6 text-center">
-            Owner Panel
+            Admin Panel
           </h1>
           <label className="block text-sm text-gray-400 mb-2">Password</label>
           <input
@@ -374,8 +375,7 @@ const OwnerPanel = () => {
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   const handleAuthExpired = () => {
-    sessionStorage.removeItem(PASSWORD_STORAGE_KEY);
-    setPassword("");
+    handleLogout();
   };
 
   return (
@@ -442,8 +442,8 @@ const OwnerPanel = () => {
           </div>
         )}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <h1 className="text-3xl font-bold text-[#00a0db]">Owner Panel</h1>
-          <div className="flex gap-2">
+          <h1 className="text-3xl font-bold text-[#00a0db]">Admin Panel</h1>
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setView("bookings")}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
@@ -453,6 +453,16 @@ const OwnerPanel = () => {
               }`}
             >
               Bookings
+            </button>
+            <button
+              onClick={() => setView("pricing")}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                view === "pricing"
+                  ? "bg-[#00a0db] text-white"
+                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
+              }`}
+            >
+              Pricing
             </button>
             <button
               onClick={() => setView("reminder-correction")}
@@ -474,10 +484,18 @@ const OwnerPanel = () => {
             >
               Reminder Activity
             </button>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 rounded-full text-sm font-semibold bg-[#111] text-gray-300 hover:bg-red-900 hover:text-red-200 transition"
+            >
+              Logout
+            </button>
           </div>
         </div>
 
-        {view === "reminder-correction" ? (
+        {view === "pricing" ? (
+          <PricingPanel password={password} onAuthExpired={handleAuthExpired} />
+        ) : view === "reminder-correction" ? (
           <ReminderRectificationPanel password={password} onAuthExpired={handleAuthExpired} />
         ) : view === "reminder-activity" ? (
           <ReminderActivityPanel password={password} onAuthExpired={handleAuthExpired} />
@@ -649,4 +667,4 @@ const OwnerPanel = () => {
   );
 };
 
-export default OwnerPanel;
+export default AdminPanel;

@@ -2,6 +2,8 @@
 const extrasData = [
   {
     title: "Stage 3 Paint Correction",
+    key: "stage3_paint_correction",
+    fallbackPrice: 299,
     tagline: "Restore That Showroom Finish!",
     paragraph: "Our Stage 3 Paint Correction tackles swirl marks, surface scratches, and dullness without repainting. Using multi-stage machine polishing, we cut back imperfections in the clear coat and bring the paint back to a deep, mirror-like finish.",
     offers: ["No Paint, No Filler – Keeps original paint", "Eco-Friendly – No chemicals", "Cost Effective – Avoid full repaint", "Faster – Ideal for minor and surface scratches"],
@@ -10,6 +12,8 @@ const extrasData = [
   },
   {
     title: "Buff & Polish",
+    key: "buff_polish",
+    fallbackPrice: 179,
     tagline: "Restore Your Car's Showroom Shine!",
     paragraph: "Our Buff & Polish service is designed to restore your car's shine and enhance its overall appearance. Using professional-grade compounds and polishing equipment, we gently remove light scratches, swirl marks, oxidation, and dullness from the paint surface.",
     offers: ["Paint Correction – Removes swirl marks, scratches", "Professional Polishing – Mirror-like gloss", "Protective Wax Coating – Lasting protection"],
@@ -18,6 +22,8 @@ const extrasData = [
   },
   {
     title: "Headlight Restoration",
+    key: "headlight_restoration",
+    fallbackPrice: 50,
     tagline: "See & Be Seen Clearly!",
     paragraph: "Cloudy, yellowed, or foggy headlights don't just make your car look old — they also reduce visibility and compromise safety. Our Headlight Restoration Service restores clarity, improves brightness, and enhances the overall look of your vehicle.",
     offers: ["Oxidation Removal – Eliminates yellowing and cloudiness", "Deep Cleaning & Polishing – Restores headlights", "UV Protection Coating – Prevents future fading", "Enhanced Visibility – Improves nighttime driving safety"],
@@ -26,6 +32,8 @@ const extrasData = [
   },
   {
     title: "Leather Clean & Steam Clean",
+    key: "leather_steam_clean",
+    fallbackPrice: 70,
     tagline: "Professional Leather Care You Can Trust",
     paragraph: "Our Leather Clean & Steam Clean service restores that original elegance while protecting your investment. We use advanced steam cleaning technology to gently lift dirt and sanitize without harsh chemicals.",
     offers: ["Professional leather steam cleaning and sanitization", "Gentle, pH-balanced leather-safe cleaning solutions", "Removal of dirt, oils, and stubborn stains", "Premium conditioning to prevent cracks and fading"],
@@ -34,6 +42,8 @@ const extrasData = [
   },
   {
     title: "Dog Hair Removal",
+    key: "dog_hair_removal",
+    fallbackPrice: 50,
     tagline: "Say Goodbye to Fur!",
     paragraph: "Our Dog Hair Removal service is designed to eliminate stubborn pet hair from every nook and cranny, leaving your space fresh, clean, and allergen-free, using specialized tools and techniques.",
     offers: ["Professional removal of dog and pet hair from all surfaces", "Safe techniques for leather and delicate fabrics", "Allergen reduction for a healthier environment", "Fresh, hair-free, and revitalized appearance"],
@@ -42,6 +52,8 @@ const extrasData = [
   },
   {
     title: "Bull Bar Polish",
+    key: "bull_bar_polish",
+    fallbackPrice: 149,
     tagline: "Bring Back That Factory Shine!",
     paragraph: "Bull bars take the brunt of dust, grime, and road debris, leaving them dull and scratched over time. Our Bull Bar Polish service cuts back oxidation and surface marks, restoring a clean, glossy finish.",
     offers: ["Removes oxidation, scuffs, and surface scratches", "Restores shine on alloy and steel bull bars", "Protective finish to slow future dulling", "Careful hand polishing around fittings and lights"],

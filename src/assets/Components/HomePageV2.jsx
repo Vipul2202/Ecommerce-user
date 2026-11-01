@@ -30,6 +30,7 @@ import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
 import NovemberSpecialBannerV2 from "./NovemberSpecialBannerV2";
 import { isNovemberSpecialActive } from "./promoSchedule";
 import Bubble from "./Bubble";
+import { useAllPrices } from "./PricingContext";
 
 const services = [
   { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/new-outside" },
@@ -90,27 +91,28 @@ const getCustomerCount = () => {
 };
 
 const washTiers = [
-  { name: "Outside Only", route: "/new-outside", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
-  { name: "Inside & Outside", route: "/new-inside_outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
-  { name: "Premium Wash", route: "/new-premium_wash", sedan: 95, suv: 105, fourWd: 115, features: ["Everything in Inside & Outside", "Dash & console detailed", "External plastic trims rejuvenation", "Hand wax & polish"] },
+  { name: "Outside Only", priceKey: "outside", route: "/new-outside", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
+  { name: "Inside & Outside", priceKey: "inside_outside", route: "/new-inside_outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
+  { name: "Premium Wash", priceKey: "premium_wash", route: "/new-premium_wash", sedan: 95, suv: 105, fourWd: 115, features: ["Everything in Inside & Outside", "Dash & console detailed", "External plastic trims rejuvenation", "Hand wax & polish"] },
 ];
 
 const detailTiers = [
-  { name: "Full Detail", route: "/new-full_detail", tagline: "Best for Regular Care", sedan: 175, suv: 195, fourWd: 225, highlight: false, features: ["Outside wash & wax", "Interior trims detailed", "Fabric & carpet steam clean", "Leather seats clean & condition"] },
-  { name: "Signature Detail", route: "/new-signature_detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
-  { name: "The Works", route: "/new-the_works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
+  { name: "Full Detail", priceKey: "full_detail", route: "/new-full_detail", tagline: "Best for Regular Care", sedan: 175, suv: 195, fourWd: 225, highlight: false, features: ["Outside wash & wax", "Interior trims detailed", "Fabric & carpet steam clean", "Leather seats clean & condition"] },
+  { name: "Signature Detail", priceKey: "signature_detail", route: "/new-signature_detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
+  { name: "The Works", priceKey: "the_works", route: "/new-the_works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
 ];
 
 const premium = [
-  { title: "Ceramic Coating", price: "From $499", img: ceramicImg, route: "/new-ultrapremium" },
-  { title: "Interior Protection Pack", price: "From $299", img: interiorPackImg, route: "/new-ultrapremium" },
-  { title: "Windows Tinting", price: "From $499", img: tintingImg, route: "/new-ultrapremium" },
-  { title: "Paintless Dent Removal", price: "From $199", img: paintlessDentImg, route: "/new-ultrapremium" },
+  { title: "Ceramic Coating", key: "ceramic_coating", fallbackPrice: 499, fallbackQuoteOnly: true, img: ceramicImg, route: "/new-ultrapremium" },
+  { title: "Interior Protection Pack", key: "interior_protection_pack", fallbackPrice: 299, fallbackQuoteOnly: false, img: interiorPackImg, route: "/new-ultrapremium" },
+  { title: "Windows Tinting", key: "window_tinting", fallbackPrice: 499, fallbackQuoteOnly: false, img: tintingImg, route: "/new-ultrapremium" },
+  { title: "Paintless Dent Removal", key: "paintless_dent_removal", fallbackPrice: 199, fallbackQuoteOnly: false, img: paintlessDentImg, route: "/new-ultrapremium" },
 ];
 
 const HomePageV2 = () => {
   useGoogleFont();
   const navigate = useNavigate();
+  const { pricesByKey } = useAllPrices();
   const [heroLocation, setHeroLocation] = useState("myaree");
   const heroMain = heroLocation === "myaree" ? heroMyaree : heroMidland;
   const heroBadgeImg = heroLocation === "myaree" ? heroMidland : heroMyaree;
@@ -269,11 +271,16 @@ const HomePageV2 = () => {
             <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Compare Your Plan</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-5 mb-16">
-            {washTiers.map((t) => (
+            {washTiers.map((t) => {
+              const live = pricesByKey[t.priceKey];
+              const sedan = live?.sedan ?? t.sedan;
+              const suv = live?.suv ?? t.suv;
+              const fourWd = live?.fourWd ?? t.fourWd;
+              return (
               <div key={t.name} className="bg-white rounded-2xl border border-[#e7e2d8] p-7 flex flex-col gap-4">
                 <div className="font-bold text-lg text-[#13242c]">{t.name}</div>
                 <div className="text-sm font-semibold" style={{ color: accent }}>
-                  Sedan from ${t.sedan} · SUV from ${t.suv} · 4WD/7-Seater from ${t.fourWd}
+                  Sedan from ${sedan} · SUV from ${suv} · 4WD/7-Seater from ${fourWd}
                 </div>
                 <div className="flex flex-col gap-2">
                   {t.features.map((f) => (
@@ -291,7 +298,8 @@ const HomePageV2 = () => {
                   Read More →
                 </button>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="text-center mb-10">
@@ -299,7 +307,12 @@ const HomePageV2 = () => {
             <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Compare Your Plan</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {detailTiers.map((t) => (
+            {detailTiers.map((t) => {
+              const live = pricesByKey[t.priceKey];
+              const sedan = live?.sedan ?? t.sedan;
+              const suv = live?.suv ?? t.suv;
+              const fourWd = live?.fourWd ?? t.fourWd;
+              return (
               <div
                 key={t.name}
                 className="bg-white rounded-2xl border p-7 flex flex-col gap-4"
@@ -310,7 +323,7 @@ const HomePageV2 = () => {
                   <div className="text-xs font-bold mt-0.5" style={{ color: accent }}>{t.tagline}</div>
                 </div>
                 <div className="text-sm font-semibold text-[#6b7278]">
-                  Sedan from ${t.sedan} · SUV from ${t.suv} · 4WD/7-Seater from ${t.fourWd}
+                  Sedan from ${sedan} · SUV from ${suv} · 4WD/7-Seater from ${fourWd}
                 </div>
                 <div className="flex flex-col gap-2">
                   {t.features.map((f) => (
@@ -328,7 +341,8 @@ const HomePageV2 = () => {
                   Read More →
                 </button>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -343,7 +357,12 @@ const HomePageV2 = () => {
             <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Long-Lasting Services For Your Car</h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {premium.map((p) => (
+            {premium.map((p) => {
+              const live = pricesByKey[p.key];
+              const quoteOnly = live?.quoteOnly ?? p.fallbackQuoteOnly;
+              const price = live?.flatPrice ?? p.fallbackPrice;
+              const priceText = quoteOnly ? "Price on request" : `From $${price}`;
+              return (
               <button
                 key={p.title}
                 onClick={() => navigate(p.route)}
@@ -352,10 +371,11 @@ const HomePageV2 = () => {
                 <img src={p.img} alt={p.title} draggable="false" className="w-full h-44 object-cover" />
                 <div className="p-4 flex flex-col gap-1">
                   <div className="font-semibold text-sm text-[#13242c]">{p.title}</div>
-                  <div className="text-sm font-semibold" style={{ color: accent }}>{p.price}</div>
+                  <div className="text-sm font-semibold" style={{ color: accent }}>{priceText}</div>
                 </div>
               </button>
-            ))}
+              );
+            })}
           </div>
           <p className="text-center text-sm text-[#8a8f94] mt-6">
             Ceramic Coating requires an in-person inspection to confirm exact pricing.

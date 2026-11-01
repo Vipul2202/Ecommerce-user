@@ -38,7 +38,7 @@ import InteriorDetail from './assets/Components/interior_detail';
 import FullDetail from './assets/Components/full_detail';
 import SignatureDetail from './assets/Components/signature_detail';
 import TheWorks from './assets/Components/the_works';
-import OwnerPanel from './assets/Components/OwnerPanel';
+import AdminPanel from './assets/Components/AdminPanel';
 
 import Terms from './assets/Components/Terms';
 import Faqs from './assets/Components/Faqs';
@@ -62,6 +62,7 @@ import LegalPageV2 from './assets/Components/LegalPageV2';
 import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 import BookingFormV2 from './assets/Components/BookingFormV2';
+import { PricingProvider } from './assets/Components/PricingContext';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -100,10 +101,16 @@ const PREVIEW_PATHS = [
   '/new-booking',
 ];
 
+// The admin panel is a private, owner-only tool — it never carries the
+// public site's marquee/nav/footer or any promo popup. It's never linked
+// from public nav/footer, only ever reached by typing the URL directly.
+const NO_CHROME_PATHS = ['/admin-panel'];
+
 const SiteChrome = ({ children }) => {
   const { pathname } = useLocation();
   const isPreview = PREVIEW_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-  if (isPreview) return null;
+  const isNoChrome = NO_CHROME_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  if (isPreview || isNoChrome) return null;
   return children;
 };
 
@@ -121,6 +128,7 @@ function App() {
   return (
     <div>
       <ToastContainer position="top-right" autoClose={3000} />
+      <PricingProvider>
       <Router>
         <ScrollToTop />
         <SiteChrome>
@@ -203,7 +211,7 @@ function App() {
          <Route path="/full_detail" element={<FullDetail />} />
          <Route path="/signature_detail" element={<SignatureDetail />} />
          <Route path="/the_works" element={<TheWorks />} />
-         <Route path="/owner-panel" element={<OwnerPanel />} />
+         <Route path="/admin-panel" element={<AdminPanel />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -220,6 +228,7 @@ function App() {
           {isNovemberSpecialActive() && <NovemberSpecialOfferV2 />}
         </PreviewChrome>
       </Router>
+      </PricingProvider>
     </div>
   )
 }

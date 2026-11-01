@@ -5,10 +5,12 @@ import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import extrasData from "./extrasData";
 import Bubble from "./Bubble";
+import { useAllPrices } from "./PricingContext";
 
 const ExtrasV2 = () => {
   useGoogleFont();
   const navigate = useNavigate();
+  const { pricesByKey } = useAllPrices();
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
@@ -29,6 +31,8 @@ const ExtrasV2 = () => {
           <div className="bg-white rounded-2xl overflow-hidden" style={{ border: `1px solid ${border}` }}>
             {extrasData.map((card, i) => {
               const open = openIndex === i;
+              const livePrice = pricesByKey[card.key]?.flatPrice ?? card.fallbackPrice;
+              const priceText = `From $${livePrice} onwards`;
               return (
                 <div key={card.title} style={{ borderTop: i > 0 ? `1px solid ${border}` : "none" }}>
                   <button
@@ -40,7 +44,7 @@ const ExtrasV2 = () => {
                       <div className="text-xs font-semibold mt-0.5" style={{ color: accent }}>{card.tagline}</div>
                     </div>
                     <div className="flex items-center gap-4 shrink-0">
-                      <span className="hidden sm:block text-sm font-semibold" style={{ color: accent }}>{card.price}</span>
+                      <span className="hidden sm:block text-sm font-semibold" style={{ color: accent }}>{priceText}</span>
                       <ChevronDown
                         className="w-4 h-4 transition-transform"
                         style={{ color: accent, transform: open ? "rotate(180deg)" : "none" }}
@@ -75,7 +79,7 @@ const ExtrasV2 = () => {
                         </div>
                       </div>
                       <div className="flex items-center justify-between pt-3" style={{ borderTop: `1px solid ${border}` }}>
-                        <span className="sm:hidden font-semibold text-sm" style={{ color: accent }}>{card.price}</span>
+                        <span className="sm:hidden font-semibold text-sm" style={{ color: accent }}>{priceText}</span>
                         <button
                           onClick={() => navigate("/new-booking")}
                           className="ml-auto px-5 py-2 rounded-full text-sm font-semibold text-white"

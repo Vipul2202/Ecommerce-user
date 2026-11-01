@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usePrice } from "./PricingContext";
 
 const PremiumWash = () => {
   const navigate = useNavigate();
+  const live = usePrice("premium_wash");
 
   const handleBookNow = () => {
     // Navigate to booking page
@@ -109,7 +111,7 @@ const PremiumWash = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $95</p>
+                  <p className="text-gray-400 italic">From ${live?.sedan ?? 95}</p>
                 </div>
               </div>
 
@@ -127,7 +129,7 @@ const PremiumWash = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $105</p>
+                  <p className="text-gray-400 italic">From ${live?.suv ?? 105}</p>
                 </div>
               </div>
 
@@ -147,7 +149,7 @@ const PremiumWash = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
-                  <p className="text-gray-400 italic">From $115</p>
+                  <p className="text-gray-400 italic">From ${live?.fourWd ?? 115}</p>
                 </div>
               </div>
             </div>

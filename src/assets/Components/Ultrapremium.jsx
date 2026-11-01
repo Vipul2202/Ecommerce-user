@@ -2,8 +2,10 @@
     import sedan from "../../../src/img/sedan.png";
     
     import { useNavigate } from "react-router-dom";
-    
+    import { useAllPrices } from "./PricingContext";
+
     const Ultrapremium = () => {
+      const { pricesByKey } = useAllPrices();
       const [formData, setFormData] = useState({
         carType: "",
         registration: "",
@@ -20,6 +22,9 @@
       const serviceCards = [
         {
           title: "CERAMIC COATING",
+          key: "ceramic_coating",
+          fallbackPrice: 499,
+          fallbackQuoteOnly: true,
           offers: [
             "Hydrophobic Finish – Repels water, dirt, and grime",
             "UV & Oxidation Protection – Prevents fading and discolouration",
@@ -32,13 +37,13 @@
           ],
           note: [
             "We are GTechniq Accredited Professional Applicator",
-            "In-person inspection required to confirm exact price",
           ],
-          price: "From $499 onwards",
         },
         {
           title: "INTERIOR PROTECTION PACK",
-
+          key: "interior_protection_pack",
+          fallbackPrice: 299,
+          fallbackQuoteOnly: false,
           offers: [
             "Fabric & Leather Guard – Repels spills and stains",
             "UV Protection Coating – Prevents dashboard and trim fading",
@@ -49,11 +54,12 @@
             "Full Interior Coverage – Seats, dash, and door trims",
             "Keeps Your Interior Looking Newer, Longer",
           ],
-          price: "From $299 onwards",
         },
         {
           title: "WINDOW TINTING",
-    
+          key: "window_tinting",
+          fallbackPrice: 499,
+          fallbackQuoteOnly: false,
           offers: [
             "UV & Heat Protection – Blocks 99% UV",
             "Enhanced Privacy – Keeps prying eyes away",
@@ -66,10 +72,12 @@
             "Variety of Shades – Match your style",
             "Legal Compliance – Meets local rules",
           ],
-          price: "From $499 onwards",
         },
         {
           title: "PAINTLESS DENT REMOVAL",
+          key: "paintless_dent_removal",
+          fallbackPrice: 199,
+          fallbackQuoteOnly: false,
           offers: [
             "No Paint, No Filler – Keeps original paint",
             "Eco-Friendly – No chemicals",
@@ -82,7 +90,6 @@
             "Advanced PDR – Perfect results",
             "Guaranteed – Flawless repairs",
           ],
-          price: "From $199 onwards",
         },
       ];
     
@@ -116,7 +123,13 @@
           {/* Cards Section */}
           <div className="max-w-5xl mx-auto px-4 py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {serviceCards.map((card, index) => (
+              {serviceCards.map((card, index) => {
+                const live = pricesByKey[card.key];
+                const quoteOnly = live?.quoteOnly ?? card.fallbackQuoteOnly;
+                const price = live?.flatPrice ?? card.fallbackPrice;
+                const priceText = quoteOnly ? "Price on request" : `From $${price} onwards`;
+                const notes = [...(card.note || []), ...(quoteOnly ? ["In-person inspection required to confirm exact price"] : [])];
+                return (
                 <div
                   key={index}
                   className="bg-[#00a0db] p-6 rounded-lg flex flex-col justify-between"
@@ -153,7 +166,7 @@
                       ))}
                     </ul>
     
-                    {(card.note || []).map((note, noteIdx) => (
+                    {notes.map((note, noteIdx) => (
                       <p
                         key={noteIdx}
                         className="text-xs font-semibold text-white bg-red-600 inline-block px-3 py-1 rounded-full mb-3 mr-2"
@@ -174,13 +187,8 @@
                       />
                       <div>
                         <p className="text-white font-semibold text-sm">
-                          {card.price}
+                          {priceText}
                         </p>
-                        {card.priceNote && (
-                          <p className="text-white/80 text-xs mt-1 italic">
-                            {card.priceNote}
-                          </p>
-                        )}
                       </div>
                     </div>
                     <button
@@ -191,7 +199,8 @@
                     </button>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usePrice } from "./PricingContext";
 import { Link } from 'react-router-dom';
 
 const InsideOutside = () => {
   const navigate = useNavigate();
+  const live = usePrice("inside_outside");
 
   const handleBookNow = () => {
     // Navigate to booking page
@@ -112,7 +114,7 @@ const InsideOutside = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SEDAN</h3>
-                  <p className="text-gray-400 italic">From $55</p>
+                  <p className="text-gray-400 italic">From ${live?.sedan ?? 55}</p>
                 </div>
               </div>
 
@@ -130,7 +132,7 @@ const InsideOutside = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">SUV</h3>
-                  <p className="text-gray-400 italic">From $65</p>
+                  <p className="text-gray-400 italic">From ${live?.suv ?? 65}</p>
                 </div>
               </div>
 
@@ -150,7 +152,7 @@ const InsideOutside = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">4WD / 7 Seater</h3>
-                  <p className="text-gray-400 italic">From $75</p>
+                  <p className="text-gray-400 italic">From ${live?.fourWd ?? 75}</p>
                 </div>
               </div>
             </div>

@@ -17,6 +17,7 @@ import team1 from "../../../src/img/team1.jpeg";
 import team2 from "../../../src/img/team2.jpg";
 import team3 from "../../../src/img/team3.jpg";
 import paintlessDent from "../../img/paintless_dent_repair.png";
+import { useAllPrices } from "./PricingContext";
 
 const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
   <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -115,6 +116,7 @@ const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
 
 const Homenext = () => {
   const navigate = useNavigate();
+  const { pricesByKey } = useAllPrices();
 
   const carouselData = [
      { img: carousel4, subtitle: "", title: "" },
@@ -140,7 +142,9 @@ const Homenext = () => {
     {
       id: 1,
       title: "Ceramic Coating",
-      price: "From $499* onwards",
+      priceKey: "ceramic_coating",
+      fallbackPrice: 499,
+      fallbackQuoteOnly: true,
       image: team1,
       buttonStyle: "black",
       route: "/ultrapremium", // Add specific route
@@ -148,7 +152,9 @@ const Homenext = () => {
     {
       id: 2,
       title: "Interior Protection Pack",
-      price: "From $299* onwards",
+      priceKey: "interior_protection_pack",
+      fallbackPrice: 299,
+      fallbackQuoteOnly: false,
       image: team2,
       buttonStyle: "white",
       route: "/ultrapremium", // Add specific route
@@ -156,7 +162,9 @@ const Homenext = () => {
     {
       id: 3,
       title: "Windows Tinting",
-      price: "From $499* onwards",
+      priceKey: "window_tinting",
+      fallbackPrice: 499,
+      fallbackQuoteOnly: false,
       image: team3,
       buttonStyle: "black",
       route: "/ultrapremium", // Add specific route
@@ -164,7 +172,9 @@ const Homenext = () => {
     {
       id: 4,
       title: "Paintless Dent Removal",
-      price: "From $199* onwards",
+      priceKey: "paintless_dent_removal",
+      fallbackPrice: 199,
+      fallbackQuoteOnly: false,
       image: paintlessDent,
       buttonStyle: "black",
       route: "/ultrapremium", // Add specific route
@@ -256,7 +266,12 @@ const Homenext = () => {
             </h1>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {service.map((item) => (
+            {service.map((item) => {
+              const live = pricesByKey[item.priceKey];
+              const quoteOnly = live?.quoteOnly ?? item.fallbackQuoteOnly;
+              const price = live?.flatPrice ?? item.fallbackPrice;
+              const priceText = quoteOnly ? "Price on request" : `From $${price}* onwards`;
+              return (
               <div
                 key={item.id}
                 className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl hover:shadow-blue-500/50 transition-all duration-500 hover:scale-105"
@@ -275,7 +290,7 @@ const Homenext = () => {
                 {/* Content section */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white transition-all duration-500 transform translate-y-16 group-hover:translate-y-0">
                   <h3 className="text-xl font-bold tracking-wide">{item.title}</h3>
-                  <p className="text-sm opacity-80 mt-1">{item.price}</p>
+                  <p className="text-sm opacity-80 mt-1">{priceText}</p>
                   <button
                     onClick={() => handleLearnMore(item.route)}
                     className={`mt-4 relative px-5 py-2 rounded-full font-medium text-sm overflow-hidden group/button transition-all duration-300
@@ -292,7 +307,8 @@ const Homenext = () => {
                 {/* Neon border effect on hover */}
                 <div className="absolute inset-0 border border-transparent rounded-3xl group-hover:border-blue-400 transition-all duration-500 pointer-events-none"></div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="text-center mt-16">

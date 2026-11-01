@@ -4,6 +4,7 @@ import { Check, Car as SedanIcon } from "lucide-react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import Bubble from "./Bubble";
+import { usePrice } from "./PricingContext";
 
 const SEGMENTS = [
   { key: "sedan", label: "Sedan" },
@@ -19,6 +20,12 @@ const SEGMENTS = [
 const ServiceTierPageV2 = ({ data }) => {
   useGoogleFont();
   const navigate = useNavigate();
+  const live = usePrice(data.priceKey);
+  const pricing = {
+    sedan: live?.sedan ?? data.pricing.sedan,
+    suv: live?.suv ?? data.pricing.suv,
+    fourWd: live?.fourWd ?? data.pricing.fourWd,
+  };
 
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
@@ -45,7 +52,7 @@ const ServiceTierPageV2 = ({ data }) => {
               <div key={s.key} className="bg-white/10 rounded-xl p-5 flex flex-col items-center text-center gap-2">
                 <SedanIcon className="w-6 h-6 text-white/80" />
                 <div className="text-white font-semibold text-sm">{s.label}</div>
-                <div style={fraunces} className="text-2xl font-semibold text-white">From ${data.pricing[s.key]}</div>
+                <div style={fraunces} className="text-2xl font-semibold text-white">From ${pricing[s.key]}</div>
               </div>
             ))}
           </div>
