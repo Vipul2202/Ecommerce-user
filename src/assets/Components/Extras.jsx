@@ -147,6 +147,27 @@ const Extras = () => {
       price: "From $149 onwards",
       footer: "Give Your Bull Bar the Finish It Deserves!",
     },
+    {
+      title: "Antibacterial Aircon Treatment – Breathe Cleaner, Drive Fresher!",
+      Paragraph:
+        "Our Antibacterial Aircon Treatment eliminates bacteria, mould, and musty odours from your vehicle's air conditioning system, leaving every vent blowing clean, fresh air.",
+      offers: [
+        "Kills bacteria, mould and odour-causing germs",
+        "Removes musty, stale AC smells at the source",
+        "Treats the full AC system, not just the vents",
+        "Fresher, healthier air for every passenger",
+      ],
+      whyUs: [
+        "Professional-Grade Treatment – Hospital-grade antibacterial solution",
+        "Fast Turnaround – Done in under an hour",
+        "Long-Lasting Freshness – Odours stay gone for months",
+        "Healthier Cabin – Better for allergy and asthma sufferers",
+      ],
+      priceKey: "antibacterial_aircon_treatment",
+      fallbackPrice: 100,
+      price: "From $100 onwards",
+      footer: "Fresh Air, Every Drive!",
+    },
 
   ];
 
@@ -163,7 +184,7 @@ const Extras = () => {
 
   <div className="relative z-10">
     <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
-      Touch Up Services
+      Add on Enhancements
     </h1>
     <nav className="text-gray-200">
       <span className="text-black">Home</span>
@@ -176,9 +197,9 @@ const Extras = () => {
 
       {/* Centered Description */}
       <div className="text-center px-4 py-8 text-white">
-        <h1 className="text-2xl font-semibold mb-4">About Our Touch Up Service</h1>
+        <h1 className="text-2xl font-semibold mb-4">About Our Add On Enhancements</h1>
         <p className="max-w-4xl mx-auto text-lg text-white">
-          Achieve a flawless finish with Stage 3 Paint Correction, Buff and Polish, Headlight Restoration, Leather Clean & Seat Steam Clean, Dog Hair Removal, and Bull Bar Polish, leaving your vehicle looking and feeling like new.
+          Achieve a flawless finish with Stage 3 Paint Correction, Buff and Polish, Headlight Restoration, Leather Clean & Seat Steam Clean, Dog Hair Removal, Bull Bar Polish, and Antibacterial Aircon Treatment, leaving your vehicle looking, feeling, and smelling like new.
         </p>
       </div>
 

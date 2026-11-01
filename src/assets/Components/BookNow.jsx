@@ -33,7 +33,7 @@ const BookNow = () => {
   const servicesList = [
     "Outside Only", "Inside & Out", "Premium Wash", "Full Detail", "Signature Detail", "The Works",
     "Ceramic Coating", "Interior Protection Pack", "Windows Tinting", "Paintless Dent Removal",
-    "Stage 3 Paint Correction", "Buff and Polish", "Head Light Restoration", "Leather Clean/Seats Steam Clean", "Dog Hair Removal", "Bull Bar Polish"
+    "Stage 3 Paint Correction", "Buff and Polish", "Head Light Restoration", "Leather Clean/Seats Steam Clean", "Dog Hair Removal", "Bull Bar Polish", "Antibacterial Aircon Treatment"
   ];
 
   const SERVICE_NOTICES = {

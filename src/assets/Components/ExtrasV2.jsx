@@ -20,10 +20,10 @@ const ExtrasV2 = () => {
         <div className="relative px-6 pt-14 pb-10 text-center overflow-hidden">
           <Bubble size={100} top="-15%" left="-4%" opacity={0.1} />
           <Bubble size={60} top="30%" right="6%" opacity={0.1} />
-          <span className="relative text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Touch Up Services</span>
+          <span className="relative text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Finishing Touches</span>
           <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-3">Add on Enhancements</h1>
           <p className="relative text-[#6b7278] mt-3 max-w-2xl mx-auto text-sm">
-            Achieve a flawless finish with Stage 3 Paint Correction, Buff and Polish, Headlight Restoration, Leather Clean &amp; Seat Steam Clean, Dog Hair Removal, and Bull Bar Polish.
+            Achieve a flawless finish with Stage 3 Paint Correction, Buff and Polish, Headlight Restoration, Leather Clean &amp; Seat Steam Clean, Dog Hair Removal, Bull Bar Polish, and Antibacterial Aircon Treatment.
           </p>
         </div>
 

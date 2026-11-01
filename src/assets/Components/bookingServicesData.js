@@ -42,6 +42,7 @@ export const EXTRA_SERVICES = [
   { key: "leather_steam_clean", label: "Leather Clean & Steam Clean", submitLabel: "Leather Clean/Seats Steam Clean", price: 70 },
   { key: "dog_hair_removal", label: "Dog Hair Removal", submitLabel: "Dog Hair Removal", price: 50 },
   { key: "bull_bar_polish", label: "Bull Bar Polish", submitLabel: "Bull Bar Polish", price: 149 },
+  { key: "antibacterial_aircon_treatment", label: "Antibacterial Aircon Treatment", submitLabel: "Antibacterial Aircon Treatment", price: 100 },
 ];
 
 // Services that need a heads-up about pricing as soon as they're selected,

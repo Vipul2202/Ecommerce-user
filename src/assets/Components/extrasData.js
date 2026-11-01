@@ -60,6 +60,16 @@ const extrasData = [
     whyUs: ["Experienced Technicians – Skilled pros", "Tailored Approach – Suited to your bull bar's finish", "Long-Lasting Results – Shine that holds up on the road", "Attention to Detail – Every edge and fitting covered"],
     price: "From $149 onwards",
   },
+  {
+    title: "Antibacterial Aircon Treatment",
+    key: "antibacterial_aircon_treatment",
+    fallbackPrice: 100,
+    tagline: "Breathe Cleaner, Drive Fresher!",
+    paragraph: "Our Antibacterial Aircon Treatment eliminates bacteria, mould, and musty odours from your vehicle's air conditioning system, leaving every vent blowing clean, fresh air.",
+    offers: ["Kills bacteria, mould and odour-causing germs", "Removes musty, stale AC smells at the source", "Treats the full AC system, not just the vents", "Fresher, healthier air for every passenger"],
+    whyUs: ["Professional-Grade Treatment – Hospital-grade antibacterial solution", "Fast Turnaround – Done in under an hour", "Long-Lasting Freshness – Odours stay gone for months", "Healthier Cabin – Better for allergy and asthma sufferers"],
+    price: "From $100 onwards",
+  },
 ];
 
 export default extrasData;
