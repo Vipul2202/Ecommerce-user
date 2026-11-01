@@ -115,7 +115,7 @@ export const RedesignNav = () => {
       <header className="sticky z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ top: MARQUEE_HEIGHT, borderColor: border }}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
         <a href="/new-home" className="flex items-center gap-2.5">
-          <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-10 w-10 object-contain" />
+          <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-12 w-auto object-contain" />
           <span style={fraunces} className="text-xl font-semibold text-[#1c2024]">Car Saloon</span>
         </a>
         <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4a5056]">
@@ -224,7 +224,7 @@ export const RedesignFooter = () => {
       <div className="relative max-w-6xl mx-auto px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2.5">
-            <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-9 w-9 object-contain" />
+            <img src={siteLogo} alt="Car Saloon" draggable="false" className="h-12 w-auto object-contain" />
             <span style={fraunces} className="text-lg font-semibold text-white">Car Saloon</span>
           </div>
           <p className="text-sm text-white/70 leading-relaxed">
