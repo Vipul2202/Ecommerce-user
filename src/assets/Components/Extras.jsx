@@ -164,8 +164,8 @@ const Extras = () => {
         "Healthier Cabin – Better for allergy and asthma sufferers",
       ],
       priceKey: "antibacterial_aircon_treatment",
-      fallbackPrice: 100,
-      price: "From $100 onwards",
+      fallbackPrice: 99,
+      price: "From $99 onwards",
       footer: "Fresh Air, Every Drive!",
     },
 
