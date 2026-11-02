@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Sparkles, Star, ShieldCheck, MapPin, TrendingUp } from "lucide-react";
+import { Sparkles, Star, ShieldCheck, MapPin, TrendingUp, ChevronLeft, ChevronRight, Award } from "lucide-react";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import heroMyaree from "../../img/myaree.jpeg";
 import gtechniqLogo from "../../img/gtechniq-logo.svg";
@@ -74,6 +74,22 @@ function useReveal() {
     return () => obs.disconnect();
   }, []);
   return [ref, visible];
+}
+
+// Typewriter effect — types out text, blinking cursor via CSS
+function useTypewriter(text, speedMs = 45) {
+  const [typed, setTyped] = useState("");
+  useEffect(() => {
+    setTyped("");
+    let i = 0;
+    const t = setInterval(() => {
+      i += 1;
+      setTyped(text.slice(0, i));
+      if (i >= text.length) clearInterval(t);
+    }, speedMs);
+    return () => clearInterval(t);
+  }, [text, speedMs]);
+  return typed;
 }
 
 const SPOTLIGHT_SERVICES = [
@@ -385,6 +401,215 @@ const HeroD = () => {
   );
 };
 
+// ---------- E: Glassmorphism, morphing gradient blobs, typewriter headline ----------
+const HeroE = () => {
+  const typed = useTypewriter("Where your car gets the saloon treatment.", 35);
+  return (
+    <div className="relative overflow-hidden" style={{ backgroundColor: "#0f2730" }}>
+      <SectionLabel>Option E — Glassmorphism + morphing gradient blobs + typewriter headline</SectionLabel>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute w-[420px] h-[420px] rounded-full blur-3xl animate-[blobMorph1_10s_ease-in-out_infinite]" style={{ backgroundColor: accent, opacity: 0.35, top: "-10%", left: "5%" }} />
+        <div className="absolute w-[360px] h-[360px] rounded-full blur-3xl animate-[blobMorph2_12s_ease-in-out_infinite]" style={{ backgroundColor: "#5fd0ff", opacity: 0.25, bottom: "-10%", right: "8%" }} />
+      </div>
+      <section className="relative max-w-6xl mx-auto px-6 pb-16 pt-6 flex flex-wrap gap-12 items-center">
+        <div className="flex-1 min-w-[320px] flex flex-col gap-5">
+          <span className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full backdrop-blur-md" style={{ backgroundColor: "rgba(255,255,255,0.12)", color: "white", border: "1px solid rgba(255,255,255,0.25)" }}>
+            <Sparkles className="w-3.5 h-3.5" /> Perth's Premium Car Detailing Studio
+          </span>
+          <h1 style={fraunces} className="text-[2.6rem] sm:text-6xl leading-[1.05] font-semibold text-white min-h-[1.1em] sm:min-h-[2.2em]">
+            {typed}
+            <span className="inline-block w-[3px] h-[0.9em] ml-1 align-middle animate-[blink_0.9s_steps(1)_infinite]" style={{ backgroundColor: "#5fd0ff" }} />
+          </h1>
+          <p className="text-white/70 max-w-md text-lg">High-end detailing, ceramic coating, tinting and paint correction.</p>
+          <div className="flex gap-3 flex-wrap pt-1">
+            <button className="px-7 py-3.5 rounded-full font-semibold text-white shadow-lg hover:scale-105 transition-transform" style={{ backgroundColor: accent }}>Book a Service →</button>
+            <button className="px-7 py-3.5 rounded-full font-semibold border backdrop-blur-md hover:scale-105 transition-transform text-white" style={{ borderColor: "rgba(255,255,255,0.4)" }}>Explore Services</button>
+          </div>
+        </div>
+
+        <div className="flex-1 min-w-[320px] relative">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl p-1.5" style={{ backgroundColor: "rgba(255,255,255,0.15)", backdropFilter: "blur(6px)" }}>
+            <img src={heroMyaree} alt="storefront" className="w-full rounded-2xl object-cover h-[360px]" />
+          </div>
+          <div className="absolute -bottom-7 -left-7 rounded-2xl shadow-2xl p-4 w-64 backdrop-blur-xl" style={{ backgroundColor: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.3)" }}>
+            <div className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: "#5fd0ff" }}>Featured This Month</div>
+            <div style={fraunces} className="text-base font-semibold text-white mb-1">Antibacterial Aircon Treatment</div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-bold text-white">From $99</span>
+              <button className="text-xs font-semibold px-3 py-1.5 rounded-full text-white hover:scale-105 transition-transform" style={{ backgroundColor: accent }}>Book →</button>
+            </div>
+          </div>
+          <div className="absolute -top-5 -right-5 rounded-2xl shadow-xl p-3 flex items-center gap-2 backdrop-blur-xl" style={{ backgroundColor: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.3)" }}>
+            <img src={gtechniqLogo} alt="GTechniq" className="h-6 w-auto" />
+            <span className="text-[11px] font-bold text-white">Certified</span>
+          </div>
+        </div>
+      </section>
+      <style>{`
+        @keyframes blobMorph1 { 0%,100% { transform: translate(0,0) scale(1); border-radius: 50%; } 50% { transform: translate(30px,20px) scale(1.15); border-radius: 42% 58% 60% 40%; } }
+        @keyframes blobMorph2 { 0%,100% { transform: translate(0,0) scale(1); border-radius: 50%; } 50% { transform: translate(-24px,-18px) scale(1.1); border-radius: 58% 42% 40% 60%; } }
+        @keyframes blink { 50% { opacity: 0; } }
+      `}</style>
+    </div>
+  );
+};
+
+// ---------- F: Diagonal split, 3D flip GTechniq badge, swipeable spotlight ----------
+const HeroF = () => {
+  const [flipped, setFlipped] = useState(false);
+  useEffect(() => {
+    const t = setInterval(() => setFlipped((f) => !f), 2600);
+    return () => clearInterval(t);
+  }, []);
+  const [spotIndex, setSpotIndex] = useState(0);
+  const dragStartX = useRef(null);
+  const next = () => setSpotIndex((i) => (i + 1) % SPOTLIGHT_SERVICES.length);
+  const prev = () => setSpotIndex((i) => (i - 1 + SPOTLIGHT_SERVICES.length) % SPOTLIGHT_SERVICES.length);
+  const onPointerDown = (e) => { dragStartX.current = e.clientX; };
+  const onPointerUp = (e) => {
+    if (dragStartX.current === null) return;
+    const dx = e.clientX - dragStartX.current;
+    if (dx > 40) prev();
+    else if (dx < -40) next();
+    dragStartX.current = null;
+  };
+  const spot = SPOTLIGHT_SERVICES[spotIndex];
+
+  return (
+    <div className="bg-[#f8f6f1]">
+      <SectionLabel>Option F — Diagonal split layout + 3D flip GTechniq card + drag-to-swipe spotlight</SectionLabel>
+      <section className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl shadow-xl mx-6" style={{ height: 460 }}>
+        <div className="absolute inset-0 flex">
+          <div
+            className="relative flex flex-col justify-center gap-5 px-8 sm:px-12"
+            style={{ backgroundColor: navy, width: "58%", clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)" }}
+          >
+            <h1 style={fraunces} className="text-3xl sm:text-5xl leading-[1.08] font-semibold text-white max-w-sm">
+              Where your car gets the <span className="italic" style={{ color: "#5fd0ff" }}>saloon</span> treatment.
+            </h1>
+            <p className="text-white/75 max-w-xs">High-end detailing, ceramic coating, tinting and paint correction.</p>
+            <div className="flex gap-3 flex-wrap">
+              <button className="px-6 py-3 rounded-full font-semibold text-white text-sm shadow-lg hover:scale-105 transition-transform" style={{ backgroundColor: accent }}>Book a Service →</button>
+            </div>
+          </div>
+          <div className="relative flex-1">
+            <img src={heroMyaree} alt="storefront" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
+        </div>
+
+        {/* 3D flip GTechniq badge */}
+        <div className="absolute top-6 right-6" style={{ perspective: "800px" }}>
+          <div
+            className="relative w-32 h-20 transition-transform duration-700"
+            style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+          >
+            <div className="absolute inset-0 bg-white rounded-xl shadow-xl flex flex-col items-center justify-center gap-1" style={{ backfaceVisibility: "hidden" }}>
+              <img src={gtechniqLogo} alt="GTechniq" className="h-5 w-auto" />
+              <span className="text-[9px] font-bold" style={{ color: navy }}>Certified</span>
+            </div>
+            <div
+              className="absolute inset-0 rounded-xl shadow-xl flex items-center justify-center text-center px-2"
+              style={{ backgroundColor: accent, backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+            >
+              <span className="text-[10px] font-bold text-white leading-tight">Professional Applicator</span>
+            </div>
+          </div>
+        </div>
+
+        {/* draggable/swipeable spotlight card */}
+        <div
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          className="absolute bottom-6 right-6 bg-white rounded-2xl shadow-2xl p-4 w-64 cursor-grab active:cursor-grabbing select-none"
+        >
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: accent }}>Featured</span>
+            <div className="flex gap-1">
+              <button onClick={prev} className="p-1 rounded-full hover:bg-black/5"><ChevronLeft className="w-3.5 h-3.5" /></button>
+              <button onClick={next} className="p-1 rounded-full hover:bg-black/5"><ChevronRight className="w-3.5 h-3.5" /></button>
+            </div>
+          </div>
+          <div style={fraunces} className="text-base font-semibold text-[#13242c] mb-1">{spot.label}</div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-bold" style={{ color: navy }}>{spot.price}</span>
+            <button className="text-xs font-semibold px-3 py-1.5 rounded-full text-white" style={{ backgroundColor: accent }}>Book →</button>
+          </div>
+          <div className="text-[10px] text-[#8a8f94] mt-2 text-center">← drag to browse →</div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// ---------- G: HUD dashboard — orbiting badge, scroll zoom photo, animated progress stat ----------
+const HeroG = () => {
+  const sectionRef = useRef(null);
+  const [zoom, setZoom] = useState(1);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
+      setZoom(1 + progress * 0.12);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const [barRef, barVisible] = useReveal();
+
+  return (
+    <div className="bg-[#f8f6f1]">
+      <SectionLabel>Option G — Orbiting GTechniq badge + scroll-zoom photo + animated satisfaction bar</SectionLabel>
+      <section ref={sectionRef} className="relative max-w-6xl mx-auto px-6 pt-6 pb-10 flex flex-wrap gap-12 items-center">
+        <div className="flex-1 min-w-[320px] flex flex-col gap-5">
+          <h1 style={fraunces} className="text-[2.6rem] sm:text-6xl leading-[1.05] font-semibold text-[#13242c]">
+            Where your car gets the <span className="italic" style={{ color: accent }}>saloon</span> treatment.
+          </h1>
+          <p className="text-[#4a5056] max-w-md text-lg">High-end detailing, ceramic coating, tinting and paint correction.</p>
+          <div className="flex gap-3 flex-wrap pt-1">
+            <button className="px-7 py-3.5 rounded-full font-semibold text-white shadow-lg hover:scale-105 transition-transform" style={{ backgroundColor: navy }}>Book a Service →</button>
+            <button className="px-7 py-3.5 rounded-full font-semibold border-2 hover:scale-105 transition-transform" style={{ borderColor: navy, color: navy }}>Explore Services</button>
+          </div>
+
+          {/* animated satisfaction bar */}
+          <div ref={barRef} className="pt-4 max-w-sm">
+            <div className="flex items-center justify-between text-xs font-semibold text-[#4a5056] mb-1">
+              <span>Customer Satisfaction</span>
+              <span>{barVisible ? "99%" : "0%"}</span>
+            </div>
+            <div className="h-2.5 rounded-full overflow-hidden" style={{ backgroundColor: border }}>
+              <div className="h-full rounded-full transition-all duration-[1400ms] ease-out" style={{ backgroundColor: accent, width: barVisible ? "99%" : "0%" }} />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 min-w-[320px] relative flex items-center justify-center" style={{ minHeight: 420 }}>
+          <div className="relative w-full rounded-3xl shadow-2xl overflow-hidden" style={{ height: 380 }}>
+            <img src={heroMyaree} alt="storefront" className="w-full h-full object-cover transition-transform duration-200 ease-out" style={{ transform: `scale(${zoom})` }} />
+          </div>
+          {/* orbiting GTechniq badge */}
+          <div className="absolute inset-0 pointer-events-none animate-[orbitSpin_14s_linear_infinite]" style={{ transformOrigin: "50% 50%" }}>
+            <div className="absolute bg-white rounded-full shadow-xl p-2.5 pointer-events-auto animate-[orbitCounterSpin_14s_linear_infinite]" style={{ top: "-14px", left: "calc(50% - 24px)" }}>
+              <img src={gtechniqLogo} alt="GTechniq" className="h-5 w-auto" />
+            </div>
+          </div>
+          <div className="absolute -bottom-4 right-4 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-2">
+            <Award className="w-4 h-4" style={{ color: accent }} />
+            <span className="text-xs font-bold" style={{ color: navy }}>GTechniq Certified Applicator</span>
+          </div>
+        </div>
+      </section>
+      <style>{`
+        @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes orbitCounterSpin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+      `}</style>
+    </div>
+  );
+};
+
 const HeroMockups = () => {
   useGoogleFont();
   return (
@@ -393,6 +618,9 @@ const HeroMockups = () => {
       <HeroB />
       <HeroC />
       <HeroD />
+      <HeroE />
+      <HeroF />
+      <HeroG />
     </div>
   );
 };
