@@ -653,7 +653,7 @@ const BookingFormV2 = () => {
 
               <div className="pt-4 flex items-center justify-between" style={{ borderTop: `1px solid ${border}` }}>
                 <span style={fraunces} className="text-base font-semibold text-[#13242c]">Estimated Approx Total</span>
-                <span style={fraunces} className="text-xl font-semibold" style={{ color: accent }}>{fmt(total)}</span>
+                <span style={{ ...fraunces, color: accent }} className="text-xl font-semibold">{fmt(total)}</span>
               </div>
               {hasQuoteItems && (
                 <p className="text-xs text-[#8a8f94] -mt-2">
