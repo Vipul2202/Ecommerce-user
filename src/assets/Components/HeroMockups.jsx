@@ -251,7 +251,7 @@ const StatCounter = ({ stat }) => {
   const display = stat.decimal ? (value / 10).toFixed(1) : value;
   return (
     <div ref={ref} className="text-center">
-      <div style={fraunces} className="text-3xl font-bold" style={{ color: navy }}>{display}{stat.suffix}</div>
+      <div style={{ ...fraunces, color: navy }} className="text-3xl font-bold">{display}{stat.suffix}</div>
       <div className="text-xs font-semibold text-[#6b7278] mt-1 uppercase tracking-wide">{stat.label}</div>
     </div>
   );
