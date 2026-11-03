@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Car,
@@ -32,6 +32,32 @@ import NovemberSpecialBannerV2 from "./NovemberSpecialBannerV2";
 import { isNovemberSpecialActive } from "./promoSchedule";
 import Bubble from "./Bubble";
 import { useAllPrices } from "./PricingContext";
+
+// Mouse position relative to a container, normalized -1..1 — powers the hero's
+// parallax background blobs and tilting photo card.
+function useMouseParallax(ref) {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const onMove = useCallback(
+    (e) => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      setPos({ x, y });
+    },
+    [ref]
+  );
+  const onLeave = useCallback(() => setPos({ x: 0, y: 0 }), []);
+  return { pos, onMove, onLeave };
+}
+
+// Services rotated through the hero's "Featured This Month" spotlight card.
+const SPOTLIGHT_SERVICES = [
+  { key: "antibacterial_aircon_treatment", label: "Antibacterial Aircon Treatment", fallbackPrice: 99, fallbackQuoteOnly: false, route: "/new-extras" },
+  { key: "ceramic_coating", label: "GTechniq Ceramic Coating", fallbackPrice: 499, fallbackQuoteOnly: true, route: "/new-ultrapremium" },
+  { key: "window_tinting", label: "Window Tinting", fallbackPrice: 499, fallbackQuoteOnly: false, route: "/new-ultrapremium" },
+];
 
 const services = [
   { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/new-outside" },
@@ -107,6 +133,19 @@ const HomePageV2 = () => {
   const heroBadgeImg = heroLocation === "myaree" ? heroMidland : heroMyaree;
   const heroBadgeLabel = heroLocation === "myaree" ? "Midland" : "Myaree";
 
+  const heroRef = useRef(null);
+  const { pos: heroPos, onMove: onHeroMove, onLeave: onHeroLeave } = useMouseParallax(heroRef);
+  const [spotIndex, setSpotIndex] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setSpotIndex((i) => (i + 1) % SPOTLIGHT_SERVICES.length), 3200);
+    return () => clearInterval(t);
+  }, []);
+  const spot = SPOTLIGHT_SERVICES[spotIndex];
+  const spotLive = pricesByKey[spot.key];
+  const spotQuoteOnly = spotLive?.quoteOnly ?? spot.fallbackQuoteOnly;
+  const spotPrice = spotLive?.flatPrice ?? spot.fallbackPrice;
+  const spotPriceText = spotQuoteOnly ? "Price on request" : `From $${spotPrice}`;
+
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -122,14 +161,35 @@ const HomePageV2 = () => {
       {isNovemberSpecialActive() && <NovemberSpecialBannerV2 />}
 
       {/* HERO */}
-      <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-wrap gap-12 items-center overflow-hidden">
-        <Bubble size={140} top="2%" left="-4%" opacity={0.12} />
-        <Bubble size={90} top="55%" left="2%" opacity={0.1} />
-        <Bubble size={60} top="30%" left="40%" opacity={0.08} />
-        <Bubble size={180} top="-8%" right="-6%" opacity={0.1} />
-        <Bubble size={110} top="40%" right="6%" opacity={0.12} />
-        <Bubble size={70} top="75%" right="22%" opacity={0.1} />
-        <div className="flex-1 min-w-[320px] flex flex-col gap-5">
+      <section
+        ref={heroRef}
+        onMouseMove={onHeroMove}
+        onMouseLeave={onHeroLeave}
+        className="relative max-w-6xl mx-auto px-6 pt-16 pb-16 flex flex-wrap gap-12 items-center"
+        style={{ perspective: "1200px" }}
+      >
+        {/* Background parallax blobs — clipped to their own layer so they never cut off the floating badges */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
+          <Bubble size={140} top="2%" left="-4%" opacity={0.12} />
+          <Bubble size={90} top="55%" left="2%" opacity={0.1} />
+          <Bubble size={60} top="30%" left="40%" opacity={0.08} />
+          <Bubble size={180} top="-8%" right="-6%" opacity={0.1} />
+          <Bubble size={110} top="40%" right="6%" opacity={0.12} />
+          <Bubble size={70} top="75%" right="22%" opacity={0.1} />
+          <div
+            className="absolute w-72 h-72 rounded-full transition-transform duration-200 ease-out"
+            style={{ backgroundColor: accent, opacity: 0.1, top: "-10%", left: "-6%", transform: `translate(${heroPos.x * -24}px, ${heroPos.y * -24}px)` }}
+          />
+          <div
+            className="absolute w-56 h-56 rounded-full transition-transform duration-200 ease-out"
+            style={{ backgroundColor: navy, opacity: 0.08, bottom: "-6%", right: "10%", transform: `translate(${heroPos.x * 18}px, ${heroPos.y * 18}px)` }}
+          />
+        </div>
+
+        <div
+          className="flex-1 min-w-[320px] flex flex-col gap-5 relative transition-transform duration-200 ease-out"
+          style={{ transform: `translate(${heroPos.x * -6}px, ${heroPos.y * -4}px)` }}
+        >
           <span
             className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
             style={{ backgroundColor: "#fde8e8", color: "#c23b3b" }}
@@ -166,24 +226,68 @@ const HomePageV2 = () => {
             </a>
           </div>
         </div>
-        <div className="flex-1 min-w-[320px] relative">
+
+        <div
+          className="flex-1 min-w-[320px] relative transition-transform duration-150 ease-out"
+          style={{
+            transform: `perspective(1200px) rotateY(${heroPos.x * 8}deg) rotateX(${heroPos.y * -8}deg) translateZ(0)`,
+            transformStyle: "preserve-3d",
+          }}
+        >
           <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl" style={{ backgroundColor: accent, opacity: 0.15 }}></div>
           <img
             src={heroMain}
             alt={`Car Saloon ${heroLocation === "myaree" ? "Myaree" : "Midland"} storefront`}
             draggable="false"
-            className="relative w-full rounded-3xl shadow-2xl object-cover"
+            className="relative w-full rounded-3xl shadow-2xl object-cover h-[380px]"
           />
-          <div className="absolute top-0 left-0 right-0 rounded-t-3xl px-4 py-3 flex items-center gap-3" style={{ backgroundColor: navy }}>
-            <div className="bg-white rounded-lg px-2 py-1 shrink-0">
-              <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto" />
+
+          {/* Rotating featured-service spotlight */}
+          <div
+            className="absolute -bottom-8 -left-8 bg-white rounded-2xl shadow-2xl p-4 w-64 border transition-transform duration-200"
+            style={{ borderColor: "#e7e2d8", transform: `translateZ(40px) translate(${heroPos.x * 10}px, ${heroPos.y * 10}px)` }}
+          >
+            <div className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: accent }}>Featured This Month</div>
+            <div key={spot.label} style={fraunces} className="text-base font-semibold text-[#13242c] mb-1">{spot.label}</div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-bold" style={{ color: navy }}>{spotPriceText}</span>
+              <button
+                onClick={() => navigate(spot.route)}
+                className="text-xs font-semibold px-3 py-1.5 rounded-full text-white hover:scale-105 transition-transform"
+                style={{ backgroundColor: accent }}
+              >
+                Book →
+              </button>
             </div>
-            <div className="text-xs font-semibold text-white truncate">GTechniq Certified Ceramic Coating</div>
+            <div className="flex gap-1 mt-2">
+              {SPOTLIGHT_SERVICES.map((s, i) => (
+                <button
+                  key={s.key}
+                  type="button"
+                  aria-label={`Show ${s.label}`}
+                  onClick={() => setSpotIndex(i)}
+                  className="h-1 rounded-full flex-1 transition-colors"
+                  style={{ backgroundColor: i === spotIndex ? accent : "#e7e2d8" }}
+                />
+              ))}
+            </div>
           </div>
+
+          {/* GTechniq badge */}
+          <div
+            className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-2.5 transition-transform duration-200"
+            style={{ transform: `translateZ(30px) translate(${heroPos.x * 14}px, ${heroPos.y * 14}px)` }}
+          >
+            <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-9 w-auto" />
+            <span className="text-sm font-bold" style={{ color: navy }}>Certified</span>
+          </div>
+
+          {/* Location switcher */}
           <button
             type="button"
             onClick={() => setHeroLocation((loc) => (loc === "myaree" ? "midland" : "myaree"))}
             className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
+            style={{ transform: `translateZ(30px)` }}
           >
             <img
               src={heroBadgeImg}
@@ -198,6 +302,25 @@ const HomePageV2 = () => {
           </button>
         </div>
       </section>
+
+      {/* TRUST BAR */}
+      <div style={{ backgroundColor: navy }}>
+        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+          <div className="flex items-center gap-2 text-white">
+            <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-5 w-auto bg-white rounded px-1.5 py-0.5" />
+            <span className="text-sm font-semibold">Certified Applicator</span>
+          </div>
+          <div className="flex items-center gap-2 text-white text-sm font-semibold">
+            <Shield className="w-4 h-4" style={{ color: accent }} /> 10+ Years Experience
+          </div>
+          <div className="flex items-center gap-2 text-white text-sm font-semibold">
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 4.9★ Google Rating
+          </div>
+          <div className="flex items-center gap-2 text-white text-sm font-semibold">
+            <HomeIcon className="w-4 h-4" style={{ color: accent }} /> 2 Studios Across Perth
+          </div>
+        </div>
+      </div>
 
       {/* ABOUT */}
       <section className="relative py-20 px-6 overflow-hidden">
