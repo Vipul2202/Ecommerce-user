@@ -28,8 +28,6 @@ import myareeImg from "../../img/myaree.jpeg";
 import midlandImg from "../../img/midland.jpeg";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
-import NovemberSpecialBannerV2 from "./NovemberSpecialBannerV2";
-import { isNovemberSpecialActive } from "./promoSchedule";
 import Bubble from "./Bubble";
 import { useAllPrices } from "./PricingContext";
 
@@ -158,7 +156,6 @@ const HomePageV2 = () => {
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen relative overflow-hidden">
       <RedesignNav />
-      {isNovemberSpecialActive() && <NovemberSpecialBannerV2 />}
 
       {/* HERO */}
       <section
