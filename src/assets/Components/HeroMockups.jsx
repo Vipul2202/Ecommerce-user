@@ -123,18 +123,20 @@ const HeroA = () => {
         ref={containerRef}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
-        className="relative max-w-6xl mx-auto px-6 pb-16 pt-6 flex flex-wrap gap-12 items-center overflow-hidden"
+        className="relative max-w-6xl mx-auto px-6 pb-16 pt-6 flex flex-wrap gap-12 items-center"
         style={{ perspective: "1200px" }}
       >
-        {/* Background parallax blobs — move opposite + slower than cursor */}
-        <div
-          className="absolute w-72 h-72 rounded-full pointer-events-none transition-transform duration-200 ease-out"
-          style={{ backgroundColor: accent, opacity: 0.12, top: "-10%", left: "-6%", transform: `translate(${pos.x * -24}px, ${pos.y * -24}px)` }}
-        />
-        <div
-          className="absolute w-56 h-56 rounded-full pointer-events-none transition-transform duration-200 ease-out"
-          style={{ backgroundColor: navy, opacity: 0.08, bottom: "-6%", right: "10%", transform: `translate(${pos.x * 18}px, ${pos.y * 18}px)` }}
-        />
+        {/* Background parallax blobs — clipped to their own layer so they don't cut off floating badges */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
+          <div
+            className="absolute w-72 h-72 rounded-full transition-transform duration-200 ease-out"
+            style={{ backgroundColor: accent, opacity: 0.12, top: "-10%", left: "-6%", transform: `translate(${pos.x * -24}px, ${pos.y * -24}px)` }}
+          />
+          <div
+            className="absolute w-56 h-56 rounded-full transition-transform duration-200 ease-out"
+            style={{ backgroundColor: navy, opacity: 0.08, bottom: "-6%", right: "10%", transform: `translate(${pos.x * 18}px, ${pos.y * 18}px)` }}
+          />
+        </div>
 
         <div
           className="flex-1 min-w-[320px] flex flex-col gap-5 relative transition-transform duration-200 ease-out"
@@ -185,11 +187,11 @@ const HeroA = () => {
           </div>
 
           <div
-            className="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl p-3 flex items-center gap-2 transition-transform duration-200"
+            className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-2.5 transition-transform duration-200"
             style={{ transform: `translateZ(30px) translate(${pos.x * 14}px, ${pos.y * 14}px)` }}
           >
-            <img src={gtechniqLogo} alt="GTechniq" className="h-6 w-auto" />
-            <span className="text-[11px] font-bold" style={{ color: navy }}>Certified</span>
+            <img src={gtechniqLogo} alt="GTechniq" className="h-9 w-auto" />
+            <span className="text-sm font-bold" style={{ color: navy }}>Certified</span>
           </div>
         </div>
       </section>
