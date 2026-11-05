@@ -50,6 +50,7 @@ import NovemberSpecialOfferV2 from './assets/Components/NovemberSpecialOfferV2';
 import { isFathersDayPromoActive, isNovemberSpecialActive } from './assets/Components/promoSchedule';
 import HomePageV2 from './assets/Components/HomePageV2';
 import HeroMockups from './assets/Components/HeroMockups';
+import TimelineMockups from './assets/Components/TimelineMockups';
 import ServiceTierPageV2 from './assets/Components/ServiceTierPageV2';
 import GalleryV2 from './assets/Components/GalleryV2';
 import GalleryCategoryV2 from './assets/Components/GalleryCategoryV2';
@@ -182,6 +183,7 @@ function App() {
           />
           <Route path="/new-home" element={<HomePageV2 />} />
           <Route path="/mockup-hero2" element={<HeroMockups />} />
+          <Route path="/mockup-timeline" element={<TimelineMockups />} />
           <Route path="/new-outside" element={<ServiceTierPageV2 data={serviceTierData.outside} />} />
           <Route path="/new-inside_outside" element={<ServiceTierPageV2 data={serviceTierData.inside_outside} />} />
           <Route path="/new-premium_wash" element={<ServiceTierPageV2 data={serviceTierData.premium_wash} />} />
