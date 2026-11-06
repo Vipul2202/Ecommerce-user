@@ -180,13 +180,13 @@ const HomePage = () => {
       icon: <Wrench className="w-12 h-12" />,
       title: "Ultra Premium Finishes",
       description: "Luxury finishing touches",
-      link: "/Ultrapremium"
+      link: "/ultrapremium"
     },
     {
       icon: <Plus className="w-12 h-12" />,
       title: "Add on Enhancements",
       description: "Additional services",
-      link: "/Extras"
+      link: "/extras"
     },
   ];
 
@@ -234,12 +234,12 @@ const HomePage = () => {
                   />
 
                   <div className="absolute inset-0 bg-black/10 flex flex-col justify-center items-center text-center px-4">
-                    <h3 className="text-xl md:text-2xl font-light text-white">
+                    <p className="text-xl md:text-2xl font-light text-white">
                       {item.subtitle}
-                    </h3>
-                    <h2 className="text-2xl md:text-4xl font-bold text-white">
+                    </p>
+                    <p className="text-2xl md:text-4xl font-bold text-white">
                       {item.title}
-                    </h2>
+                    </p>
                   </div>
                 </>
               ) : (
@@ -317,12 +317,15 @@ const HomePage = () => {
       <div className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
+            <p className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
               WHAT WE DO?
-            </h2>
+            </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-              Premium Washing Services
+              Car Detailing &amp; Ceramic Coating in Perth
             </h1>
+            <p className="mt-4 text-lg text-gray-300">
+              Premium washing, detailing, tinting and paint correction at our Myaree and Midland studios.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
