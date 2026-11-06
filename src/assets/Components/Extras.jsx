@@ -252,7 +252,8 @@ const Extras = () => {
                 <div className="flex items-center gap-2">
                   <img
                     src={sedan}
-                    alt="Service"
+                    alt=""
+                    aria-hidden="true"
                     draggable="false"
                     className="w-16 h-16 object-cover rounded-full"
                   />

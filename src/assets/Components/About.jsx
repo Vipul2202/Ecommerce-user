@@ -33,7 +33,7 @@ const About = () => {
 
        <section className="py-12 bg-black" id="about">
            <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-             <img src={about} alt="About" draggable="false"  className="w-full md:w-1/2 rounded-lg" />
+             <img src={about} alt="Car Saloon technician detailing a vehicle in Perth" draggable="false"  className="w-full md:w-1/2 rounded-lg" />
              <div className="md:w-1/2">
                <div className="text-[#00a0db] font-bold mb-4 border-b-2 border-[#00a0db] pb-1 inline-block">
                  About
