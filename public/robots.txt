@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Disallow: /new-home
+Disallow: /new-outside
+Disallow: /new-inside_outside
+Disallow: /new-premium_wash
+Disallow: /new-mini_detail
+Disallow: /new-interior_detail
+Disallow: /new-full_detail
+Disallow: /new-signature_detail
+Disallow: /new-the_works
+Disallow: /new-gallery
+Disallow: /new-about
+Disallow: /new-contact
+Disallow: /new-extras
+Disallow: /new-products
+Disallow: /new-ultrapremium
+Disallow: /new-faqs
+Disallow: /new-terms
+Disallow: /new-privacy
+Disallow: /new-promotional-terms
+Disallow: /new-booking
+Disallow: /mockup-hero2
+Disallow: /mockup-timeline
+Disallow: /admin-panel
+
+Sitemap: https://carsaloon.com.au/sitemap.xml
