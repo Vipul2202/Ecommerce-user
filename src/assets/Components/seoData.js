@@ -4,9 +4,9 @@
 // chars where practical — real, specific copy, not placeholders.
 
 const SITE_NAME = "Car Saloon";
-const DEFAULT_TITLE = "Car Saloon | Car Wash & Detailing in Myaree & Midland, Perth";
+const DEFAULT_TITLE = "Perth Premium Car Detailing Studio | Car Saloon – Myaree & Midland";
 const DEFAULT_DESCRIPTION =
-  "Car wash, detailing, GTechniq ceramic coating and window tinting in Perth. Walk-ins welcome at our Myaree and Midland studios — no booking required.";
+  "Perth's premium car detailing studio — ceramic coating, window tinting, car wash and more at our Myaree and Midland studios. Walk-ins welcome, no booking required.";
 
 const seoData = {
   // ---- Old site ----
