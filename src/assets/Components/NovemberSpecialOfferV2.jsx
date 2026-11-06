@@ -4,6 +4,7 @@ import { accent, navy, border, fraunces, useGoogleFont } from "./redesignTheme";
 import { NOVEMBER_SPECIAL_END } from "./promoSchedule";
 
 const SIDE_BANNER_DELAY_MS = 1000;
+const DISMISS_KEY = "novemberSpecialDismissed";
 
 const MYAREE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
@@ -22,6 +23,20 @@ const NovemberSpecialOfferV2 = () => {
 
   useEffect(() => {
     if (offerExpired) return;
+
+    let dismissedThisSession = false;
+    try {
+      dismissedThisSession = sessionStorage.getItem(DISMISS_KEY) === "true";
+    } catch (e) {
+      // sessionStorage unavailable (private mode, etc.) - fall back to showing the modal
+    }
+
+    if (dismissedThisSession) {
+      // Already closed once this browser session - keep the side tab docked, skip the modal.
+      setShowSideBanner(true);
+      return;
+    }
+
     const modalTimer = setTimeout(() => setShowModal(true), 1500);
     return () => {
       clearTimeout(modalTimer);
@@ -32,6 +47,11 @@ const NovemberSpecialOfferV2 = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    try {
+      sessionStorage.setItem(DISMISS_KEY, "true");
+    } catch (e) {
+      // ignore - worst case the modal can reappear on a future page load this session
+    }
     if (offerExpired) return;
     // The sticky side banner takes over once the modal is dismissed, and
     // stays docked there for the rest of the visit (no re-popping toast).
