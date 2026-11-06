@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import './App.css'
 
@@ -8,62 +8,62 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import TopBar from './assets/Components/TopBar'
 import Navbar from './assets/Components/Navbar'
-import HomePage from './assets/Components/HomePage'
-import Homenext from './assets/Components/Homenext'
+const HomePage = lazy(() => import('./assets/Components/HomePage'));
+const Homenext = lazy(() => import('./assets/Components/Homenext'));
 import Footer from './assets/Components/Footer'
-import ContactUs from './assets/Components/Contactus'
-import BookNow from './assets/Components/BookNow'
-import ManageBooking from './assets/Components/ManageBooking'
-import Extras from './assets/Components/Extras'
+const ContactUs = lazy(() => import('./assets/Components/Contactus'));
+const BookNow = lazy(() => import('./assets/Components/BookNow'));
+const ManageBooking = lazy(() => import('./assets/Components/ManageBooking'));
+const Extras = lazy(() => import('./assets/Components/Extras'));
 // import Service from './assets/Components/Service'
 // import Faqs from './assets/Components/Faqs';
-import Ultrapremium from './assets/Components/Ultrapremium'
-import Detailing from './assets/Components/Detailing'
-import Washing from './assets/Components/Washing'
-import About from './assets/Components/About'
-import CarDetailPage from './assets/Components/CarDetailPage'
+const Ultrapremium = lazy(() => import('./assets/Components/Ultrapremium'));
+const Detailing = lazy(() => import('./assets/Components/Detailing'));
+const Washing = lazy(() => import('./assets/Components/Washing'));
+const About = lazy(() => import('./assets/Components/About'));
+const CarDetailPage = lazy(() => import('./assets/Components/CarDetailPage'));
 // import BeforeAfterGallery from './assets/Components/BeforeAfterGallery'
 // import Gallery from './assets/Components/Gallery'
-import Gallery from './assets/Components/Gallery'
-import GalleryCategory from './assets/Components/GalleryCategory'
-import ConfirmationPage from './assets/Components/ConfirmationPage'
-import MyOrders from './assets/Components/MyOrders';
-import LastBar from './assets/Components/Lastbar';
-import Outside from './assets/Components/outside';
-import InsideOutside from './assets/Components/inside_outside';
-import PremiumWash from './assets/Components/premium_wash';
+const Gallery = lazy(() => import('./assets/Components/Gallery'));
+const GalleryCategory = lazy(() => import('./assets/Components/GalleryCategory'));
+const ConfirmationPage = lazy(() => import('./assets/Components/ConfirmationPage'));
+const MyOrders = lazy(() => import('./assets/Components/MyOrders'));
+const LastBar = lazy(() => import('./assets/Components/Lastbar'));
+const Outside = lazy(() => import('./assets/Components/outside'));
+const InsideOutside = lazy(() => import('./assets/Components/inside_outside'));
+const PremiumWash = lazy(() => import('./assets/Components/premium_wash'));
 
-import MiniDetail from './assets/Components/mini_detail';
-import InteriorDetail from './assets/Components/interior_detail';
-import FullDetail from './assets/Components/full_detail';
-import SignatureDetail from './assets/Components/signature_detail';
-import TheWorks from './assets/Components/the_works';
-import AdminPanel from './assets/Components/AdminPanel';
+const MiniDetail = lazy(() => import('./assets/Components/mini_detail'));
+const InteriorDetail = lazy(() => import('./assets/Components/interior_detail'));
+const FullDetail = lazy(() => import('./assets/Components/full_detail'));
+const SignatureDetail = lazy(() => import('./assets/Components/signature_detail'));
+const TheWorks = lazy(() => import('./assets/Components/the_works'));
+const AdminPanel = lazy(() => import('./assets/Components/AdminPanel'));
 
-import Terms from './assets/Components/Terms';
-import Faqs from './assets/Components/Faqs';
-import Privacy from './assets/Components/Privacy';
-import PromoTerms from './assets/Components/PromoTerms';
+const Terms = lazy(() => import('./assets/Components/Terms'));
+const Faqs = lazy(() => import('./assets/Components/Faqs'));
+const Privacy = lazy(() => import('./assets/Components/Privacy'));
+const PromoTerms = lazy(() => import('./assets/Components/PromoTerms'));
 import FathersDayOffer from './assets/Components/FathersDayOffer';
 import NovemberSpecialOffer from './assets/Components/NovemberSpecialOffer';
 import NovemberSpecialOfferV2 from './assets/Components/NovemberSpecialOfferV2';
 import { isFathersDayPromoActive, isNovemberSpecialActive } from './assets/Components/promoSchedule';
-import HomePageV2 from './assets/Components/HomePageV2';
-import HeroMockups from './assets/Components/HeroMockups';
-import TimelineMockups from './assets/Components/TimelineMockups';
-import ServiceTierPageV2 from './assets/Components/ServiceTierPageV2';
-import GalleryV2 from './assets/Components/GalleryV2';
-import GalleryCategoryV2 from './assets/Components/GalleryCategoryV2';
-import AboutV2 from './assets/Components/AboutV2';
-import ContactV2 from './assets/Components/ContactV2';
-import ExtrasV2 from './assets/Components/ExtrasV2';
-import ProductsV2 from './assets/Components/ProductsV2';
-import UltrapremiumV2 from './assets/Components/UltrapremiumV2';
-import FaqsV2 from './assets/Components/FaqsV2';
-import LegalPageV2 from './assets/Components/LegalPageV2';
+const HomePageV2 = lazy(() => import('./assets/Components/HomePageV2'));
+const HeroMockups = lazy(() => import('./assets/Components/HeroMockups'));
+const TimelineMockups = lazy(() => import('./assets/Components/TimelineMockups'));
+const ServiceTierPageV2 = lazy(() => import('./assets/Components/ServiceTierPageV2'));
+const GalleryV2 = lazy(() => import('./assets/Components/GalleryV2'));
+const GalleryCategoryV2 = lazy(() => import('./assets/Components/GalleryCategoryV2'));
+const AboutV2 = lazy(() => import('./assets/Components/AboutV2'));
+const ContactV2 = lazy(() => import('./assets/Components/ContactV2'));
+const ExtrasV2 = lazy(() => import('./assets/Components/ExtrasV2'));
+const ProductsV2 = lazy(() => import('./assets/Components/ProductsV2'));
+const UltrapremiumV2 = lazy(() => import('./assets/Components/UltrapremiumV2'));
+const FaqsV2 = lazy(() => import('./assets/Components/FaqsV2'));
+const LegalPageV2 = lazy(() => import('./assets/Components/LegalPageV2'));
 import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
-import BookingFormV2 from './assets/Components/BookingFormV2';
+const BookingFormV2 = lazy(() => import('./assets/Components/BookingFormV2'));
 import { PricingProvider } from './assets/Components/PricingContext';
 import SEOManager from './assets/Components/SEOManager';
 
@@ -172,6 +172,11 @@ function App() {
           <Navbar />
         </SiteChrome>
 
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center bg-black">
+            <div className="w-12 h-12 rounded-full border-4 border-white border-t-[#00a0db] animate-spin" />
+          </div>
+        }>
         <Routes>
           <Route
             path="/"
@@ -235,6 +240,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/promotional-terms" element={<PromoTerms />} />
         </Routes>
+        </Suspense>
 
         <SiteChrome>
           <Footer />
