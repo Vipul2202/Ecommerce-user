@@ -918,15 +918,7 @@ Thank you for your order!
                     </div>
                   )}
                 </div>
-              ) : (
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="relative px-4 py-2 rounded-full bg-white text-black overflow-hidden group"
-                >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-white">Register</span>
-                  <span className="absolute inset-0 bg-black z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-                </button>
-              )}
+              ) : null}
             </div>
           </div>
 
@@ -1101,7 +1093,7 @@ Thank you for your order!
                 </div>
               )}
             </div>
-            {/* Book Now & Register/Login Buttons (stacked vertically) */}
+            {/* Book Now & account buttons (stacked vertically) */}
             <div className="flex flex-col gap-3 mt-5">
               <Link
                 to="/booking"
@@ -1137,17 +1129,7 @@ Thank you for your order!
                     <span className="absolute inset-0 bg-white z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
                   </button>
                 </>
-              ) : (
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="relative px-4 py-2 rounded-full bg-[#00a0db] text-white text-center overflow-hidden group"
-                >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-[#00a0db]">
-                    Register
-                  </span>
-                  <span className="absolute inset-0 bg-white z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-                </button>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
