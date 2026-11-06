@@ -150,13 +150,25 @@ const BookingFormV2 = () => {
 
     setFormData((prev) => {
       const next = { ...prev, [name]: processedValue };
-      // If the date changes to today and the already-selected time has
-      // since passed, clear it so a stale past time can't be submitted.
-      if (name === "date" && processedValue === minDate && prev.time) {
+      if (name === "date" && prev.time) {
         const [h, m] = prev.time.split(":").map(Number);
-        const now = new Date();
-        const stillValid = h > now.getHours() || (h === now.getHours() && m > now.getMinutes());
-        if (!stillValid) next.time = "";
+
+        // If the date changes to today and the already-selected time has
+        // since passed, clear it so a stale past time can't be submitted.
+        if (processedValue === minDate) {
+          const now = new Date();
+          const stillValid = h > now.getHours() || (h === now.getHours() && m > now.getMinutes());
+          if (!stillValid) next.time = "";
+        }
+
+        // Saturday closes at 4pm - clear a previously-picked later time
+        // if the new date is a Saturday.
+        if (processedValue) {
+          const [y, mo, d] = processedValue.split("-").map(Number);
+          const dayOfWeek = new Date(y, mo - 1, d).getDay();
+          const closeHour = dayOfWeek === 6 ? 16 : 17;
+          if (h > closeHour || (h === closeHour && m > 0)) next.time = "";
+        }
       }
       return next;
     });
@@ -490,26 +502,37 @@ const BookingFormV2 = () => {
                     style={{ border: `1px solid ${errors.time && touched.time ? "#c23b3b" : border}` }}
                   >
                     <option value="">--Select Time</option>
-                    {Array.from({ length: 17 - 7 + 1 }, (_, hourOffset) => {
-                      const hour = hourOffset + 7;
-                      return [0, 30].map((minute) => {
-                        const hour12 = hour % 12 === 0 ? 12 : hour % 12;
-                        const ampm = hour < 12 ? "AM" : "PM";
-                        const minuteStr = minute.toString().padStart(2, "0");
-                        const value = `${hour.toString().padStart(2, "0")}:${minuteStr}`;
-                        const label = `${hour12}:${minuteStr} ${ampm}`;
-                        return { hour, minute, value, label };
-                      });
-                    })
-                      .flat()
-                      .filter(({ hour, minute }) => {
-                        if (formData.date !== minDate) return true;
-                        const now = new Date();
-                        return hour > now.getHours() || (hour === now.getHours() && minute > now.getMinutes());
-                      })
-                      .map(({ value, label }) => (
-                        <option key={value} value={value}>{label}</option>
-                      ))}
+                    {(() => {
+                      // Mon-Fri & Sun: 7am-5pm. Saturday: 7am-4pm.
+                      const openHour = 7;
+                      let closeHour = 17;
+                      if (formData.date) {
+                        const [y, m, d] = formData.date.split("-").map(Number);
+                        const dayOfWeek = new Date(y, m - 1, d).getDay();
+                        if (dayOfWeek === 6) closeHour = 16;
+                      }
+                      const slots = [];
+                      for (let hour = openHour; hour <= closeHour; hour++) {
+                        const minutes = hour === closeHour ? [0] : [0, 30];
+                        minutes.forEach((minute) => {
+                          const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+                          const ampm = hour < 12 ? "AM" : "PM";
+                          const minuteStr = minute.toString().padStart(2, "0");
+                          const value = `${hour.toString().padStart(2, "0")}:${minuteStr}`;
+                          const label = `${hour12}:${minuteStr} ${ampm}`;
+                          slots.push({ hour, minute, value, label });
+                        });
+                      }
+                      return slots
+                        .filter(({ hour, minute }) => {
+                          if (formData.date !== minDate) return true;
+                          const now = new Date();
+                          return hour > now.getHours() || (hour === now.getHours() && minute > now.getMinutes());
+                        })
+                        .map(({ value, label }) => (
+                          <option key={value} value={value}>{label}</option>
+                        ));
+                    })()}
                   </select>
                   {errors.time && touched.time && <p className="text-xs mt-1" style={{ color: "#c23b3b" }}>{errors.time}</p>}
                 </div>
