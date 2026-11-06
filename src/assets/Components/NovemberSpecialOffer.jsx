@@ -174,9 +174,9 @@ const NovemberSpecialOffer = () => {
             <p className="text-center text-xs font-semibold uppercase tracking-wide text-[#00a0db] mb-1">
               November Special
             </p>
-            <h2 className="text-center text-2xl font-bold mb-2">
+            <p className="text-center text-2xl font-bold mb-2">
               Spend $150+, get a FREE Engine Bay clean
-            </h2>
+            </p>
             <p className="text-center text-lg font-semibold text-gray-800 mb-1">Degrease + High-Pressure Clean</p>
             <p className="text-center text-sm text-gray-500 mb-4">
               Book any detailing or coating service worth $150 or more this November and we'll clean your engine bay at no extra cost.

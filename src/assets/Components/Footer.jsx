@@ -36,17 +36,17 @@ const Footer = () => {
                         </p>
                         <p className="flex items-center mb-2">
                             <FaPhoneAlt className="mr-2" />
-                            Midland : 0478 551 640
+                            Midland :&nbsp;<a href="tel:+61478551640" className="hover:text-[#00a0db]">0478 551 640</a>
                             
                         </p>
                          <p className="flex items-center mb-2">
                             <FaPhoneAlt className="mr-2" />
-                            Myaree : 0451 288 164
+                            Myaree :&nbsp;<a href="tel:+61451288164" className="hover:text-[#00a0db]">0451 288 164</a>
                            
                         </p>
                         <p className="flex items-center mb-4">
                             <FaEnvelope className="mr-2" />
-                            info@carsaloon.com.au
+                            <a href="mailto:info@carsaloon.com.au" className="hover:text-[#00a0db]">info@carsaloon.com.au</a>
                         </p>
                         <div className="flex space-x-3">
                         
@@ -129,7 +129,7 @@ const Footer = () => {
                 {/* Footer bottom */}
                 <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm">
                     <p>
-                        &copy; <a href="#" className="text-[#00a0db] hover:underline"> carsaloon.com.au</a>, All Rights Reserved.
+                        &copy; <a href="/" className="text-[#00a0db] hover:underline"> carsaloon.com.au</a>, All Rights Reserved.
                     </p>
                 </div>
             </div>
