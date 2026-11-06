@@ -4,6 +4,7 @@ import { NOVEMBER_SPECIAL_END } from "./promoSchedule";
 
 const TOAST_INTERVAL_MS = 2 * 60 * 1000; // repeat every 2 minutes
 const TOAST_FIRST_DELAY_MS = 10 * 1000; // first toast 10s after the modal closes
+const DISMISS_KEY = "novemberSpecialDismissed";
 
 const MYAREE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
@@ -63,6 +64,19 @@ const NovemberSpecialOffer = () => {
   useEffect(() => {
     if (offerExpired) return;
 
+    let dismissedThisSession = false;
+    try {
+      dismissedThisSession = sessionStorage.getItem(DISMISS_KEY) === "true";
+    } catch (e) {
+      // sessionStorage unavailable (private mode, etc.) - fall back to showing the modal
+    }
+
+    if (dismissedThisSession) {
+      // Already closed once this browser session - go straight to the toast, skip the modal.
+      startToastCycle(0);
+      return;
+    }
+
     const modalTimer = setTimeout(() => {
       setShowModal(true);
     }, 1500);
@@ -77,6 +91,11 @@ const NovemberSpecialOffer = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    try {
+      sessionStorage.setItem(DISMISS_KEY, "true");
+    } catch (e) {
+      // ignore - worst case the modal can reappear on a future page load this session
+    }
     startToastCycle(TOAST_FIRST_DELAY_MS);
   };
 
