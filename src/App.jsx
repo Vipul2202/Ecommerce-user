@@ -65,6 +65,7 @@ import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 import BookingFormV2 from './assets/Components/BookingFormV2';
 import { PricingProvider } from './assets/Components/PricingContext';
+import SEOManager from './assets/Components/SEOManager';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -145,6 +146,7 @@ function App() {
       <PricingProvider>
       <Router>
         <ScrollToTop />
+        <SEOManager />
         <SiteChrome>
           <div className="sticky top-0 z-50 bg-[#052c3d] text-white py-1.5 text-sm font-semibold overflow-hidden">
             <div className="marquee-track">
