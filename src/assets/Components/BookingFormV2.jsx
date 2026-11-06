@@ -148,7 +148,18 @@ const BookingFormV2 = () => {
     let processedValue = value;
     if (name === "phone") processedValue = value.replace(/[^\d\s\-()+]/g, "");
 
-    setFormData((prev) => ({ ...prev, [name]: processedValue }));
+    setFormData((prev) => {
+      const next = { ...prev, [name]: processedValue };
+      // If the date changes to today and the already-selected time has
+      // since passed, clear it so a stale past time can't be submitted.
+      if (name === "date" && processedValue === minDate && prev.time) {
+        const [h, m] = prev.time.split(":").map(Number);
+        const now = new Date();
+        const stillValid = h > now.getHours() || (h === now.getHours() && m > now.getMinutes());
+        if (!stillValid) next.time = "";
+      }
+      return next;
+    });
     if (errors.general) setErrors((prev) => ({ ...prev, general: "" }));
     if (touched[name]) validateField(name, processedValue);
   };
@@ -487,9 +498,18 @@ const BookingFormV2 = () => {
                         const minuteStr = minute.toString().padStart(2, "0");
                         const value = `${hour.toString().padStart(2, "0")}:${minuteStr}`;
                         const label = `${hour12}:${minuteStr} ${ampm}`;
-                        return <option key={value} value={value}>{label}</option>;
+                        return { hour, minute, value, label };
                       });
-                    }).flat()}
+                    })
+                      .flat()
+                      .filter(({ hour, minute }) => {
+                        if (formData.date !== minDate) return true;
+                        const now = new Date();
+                        return hour > now.getHours() || (hour === now.getHours() && minute > now.getMinutes());
+                      })
+                      .map(({ value, label }) => (
+                        <option key={value} value={value}>{label}</option>
+                      ))}
                   </select>
                   {errors.time && touched.time && <p className="text-xs mt-1" style={{ color: "#c23b3b" }}>{errors.time}</p>}
                 </div>
