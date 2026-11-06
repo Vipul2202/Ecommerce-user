@@ -57,6 +57,11 @@ const PrevArrow = ({ onClick }) => (
 
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [autoplay, setAutoplay] = useState(true);
+  // Only the first couple of hero slides load their image up front; the rest
+  // load just before they slide into view (see `beforeChange` below). This
+  // avoids requesting all 7 hero images on page load, which was hurting LCP.
+  const [loadedSlides, setLoadedSlides] = useState(() => new Set([0, 1]));
   const sliderRef = useRef(null); // ✅ Ref added
 
   useEffect(() => {
@@ -64,6 +69,19 @@ const HomePage = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Stop the hero carousel's autoplay once the visitor starts interacting
+    // with the page, instead of letting it cycle forever.
+    const stopAutoplay = () => setAutoplay(false);
+    const interactionEvents = ["wheel", "touchstart", "mousedown", "keydown"];
+    interactionEvents.forEach((evt) =>
+      window.addEventListener(evt, stopAutoplay, { passive: true, once: true })
+    );
+    return () => {
+      interactionEvents.forEach((evt) => window.removeEventListener(evt, stopAutoplay));
+    };
   }, []);
 
   const carouselData = [
@@ -164,12 +182,14 @@ const HomePage = () => {
   speed: 800,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: true,
+  autoplay: autoplay,
   autoplaySpeed: 3000,
   arrows: true,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
-  lazyLoad: "ondemand",
+  beforeChange: (_current, next) => {
+    setLoadedSlides((prev) => (prev.has(next) ? prev : new Set(prev).add(next)));
+  },
   };
 
   // ✅ Updated functions to use ref instead of querySelector
@@ -190,7 +210,7 @@ const HomePage = () => {
                 <FathersDaySlide />
               ) : item.customNov ? (
                 <NovemberSpecialSlide />
-              ) : (
+              ) : loadedSlides.has(index) ? (
                 <>
                   <img
                     src={item.img}
@@ -208,6 +228,8 @@ const HomePage = () => {
                     </h2>
                   </div>
                 </>
+              ) : (
+                <div className="w-full h-full bg-black" />
               )}
             </div>
           ))}
