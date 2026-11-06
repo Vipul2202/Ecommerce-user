@@ -10,6 +10,24 @@
 // fails to render, this logs a warning and leaves `dist/` untouched for
 // that page rather than breaking the build. A failure here should never
 // block a deploy - worst case, a page just stays SPA-only, same as today.
+//
+// REQUIRED nginx config change (one-time, not part of this script):
+// the site's nginx server block's `location / { try_files $uri $uri/
+// /index.html; }` must become:
+//   try_files $uri $uri.html $uri/ /app-shell.html;
+// - `$uri.html` serves a prerendered page (e.g. /about -> about.html)
+//   without nginx's automatic directory-redirect, which would otherwise
+//   send /about -> /about/ and break React Router's route matching.
+// - `$uri/` is kept (after $uri.html) so `/` itself still resolves to
+//   dist/index.html via nginx's `index` directive - it's the one path
+//   with no flat .html alternative.
+// - the fallback points at `/app-shell.html` (a neutral shell), not
+//   `/index.html` (which is now the *homepage's* prerendered content) -
+//   otherwise every non-prerendered path (dynamic routes, /new-* preview
+//   pages, typos) would incorrectly inherit the homepage's title/meta.
+//
+// Verified end-to-end against a real nginx instance with this exact
+// config (not just assumed from docs) - see PR description for details.
 
 import { existsSync, mkdirSync, writeFileSync, copyFileSync } from "fs";
 import { dirname, join } from "path";
@@ -48,7 +66,12 @@ const ROUTES = [
 
 function outputPathFor(route) {
   if (route === "/") return join(DIST_DIR, "index.html");
-  return join(DIST_DIR, route.replace(/^\//, ""), "index.html");
+  // Flat "<route>.html" files, not nested "<route>/index.html" - nginx's
+  // `try_files` auto-redirects a directory match to add a trailing slash
+  // (e.g. /about -> /about/) before serving its index.html, and that
+  // redirected URL breaks React Router's route matching. A flat .html
+  // file avoids that redirect entirely - see the nginx config note above.
+  return join(DIST_DIR, `${route.replace(/^\//, "")}.html`);
 }
 
 function waitForServer(url, timeoutMs) {
@@ -72,13 +95,20 @@ async function main() {
     return;
   }
 
-  // Save a copy of the original (un-prerendered) SPA shell as 404.html.
-  // `serve-handler` automatically serves this for any path with no
-  // matching file (dynamic routes, noindex preview pages, typos), so the
-  // app keeps working everywhere - this file is what makes that possible.
-  // IMPORTANT: this requires the production server to run `serve` WITHOUT
-  // the `-s`/`--single` flag - see the prerender README notes.
-  copyFileSync(join(DIST_DIR, "index.html"), join(DIST_DIR, "404.html"));
+  // Save a copy of the original (un-prerendered) SPA shell under two names:
+  // - app-shell.html: what production (nginx) serves for any path with no
+  //   matching file (dynamic routes like /car-details/:id, noindex preview
+  //   pages, typos) via its `try_files $uri $uri.html /app-shell.html;`
+  //   fallback - see the nginx config note at the top of this file.
+  // - 404.html: `serve` (the package used for local verification below,
+  //   and by anyone running `npx serve dist` to test this locally) only
+  //   recognizes that exact filename for its own automatic SPA fallback.
+  //   Without it, the routes below would hit a real 404 instead of
+  //   booting the SPA, and we'd capture that error page instead of the
+  //   actual rendered content.
+  const shellHtml = join(DIST_DIR, "index.html");
+  copyFileSync(shellHtml, join(DIST_DIR, "app-shell.html"));
+  copyFileSync(shellHtml, join(DIST_DIR, "404.html"));
 
   // Spawn a local static server (same "serve" package used in production)
   // to render each route against, matching what a real visitor/crawler
