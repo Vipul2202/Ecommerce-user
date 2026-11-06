@@ -55,9 +55,9 @@ const Lastbar = () => {
           <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
             Some Over the Top Services
           </h2>
-          <h1 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-4xl md:text-5xl font-bold">
             Car Touch-up Services
-          </h1>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
