@@ -193,7 +193,7 @@ const HomePage = () => {
                 <>
                   <img
                     src={item.img}
-                    alt={`carousel-${index}`}
+                    alt="Car Saloon car detailing studio"
                     draggable="false"
                     className="w-full h-full object-contain md:object-cover bg-black md:bg-transparent"
                   />
@@ -250,7 +250,7 @@ const HomePage = () => {
     <div className="w-full md:w-1/3 flex justify-center">
       <img
         src={about}
-        alt="About"
+        alt="Car Saloon technician detailing a vehicle in Perth"
         draggable="false"
         className="rounded-lg w-full"
       />

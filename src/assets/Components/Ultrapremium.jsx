@@ -188,7 +188,8 @@
                       <img
                         draggable="false"
                         src={sedan}
-                        alt="Service"
+                        alt=""
+                        aria-hidden="true"
                         className="w-16 h-16 object-cover rounded-full"
                       />
                       <div>
