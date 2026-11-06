@@ -52,13 +52,19 @@ const Footer = () => {
                         
                             <a
                                 href="https://www.facebook.com/p/Carsaloon-Perth-100075514525242/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Car Saloon on Facebook"
                                 className="p-2 bg-white rounded-full hover:bg-[#00a0db] transition-colors duration-300"
                             >
                                 <FaFacebookF className="text-black " />
                             </a>
-                            
+
                             <a
                                 href="https://www.instagram.com/carsaloon_perth"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Car Saloon on Instagram"
                                 className="p-2 bg-white rounded-full hover:bg-[#00a0db] transition-colors duration-300"
                             >
                                 <FaInstagram className="text-black hover:text-white" />

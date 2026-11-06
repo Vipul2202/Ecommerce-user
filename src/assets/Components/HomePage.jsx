@@ -169,6 +169,7 @@ const HomePage = () => {
   arrows: true,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
+  lazyLoad: "ondemand",
   };
 
   // ✅ Updated functions to use ref instead of querySelector
@@ -217,12 +218,14 @@ const HomePage = () => {
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-6 z-20">
             <button
               onClick={triggerPrev}
+              aria-label="Previous slide"
               className="bg-white/20 p-2 rounded-full text-white backdrop-blur-md border border-white/30"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={triggerNext}
+              aria-label="Next slide"
               className="bg-white/20 p-2 rounded-full text-white backdrop-blur-md border border-white/30"
             >
               <FaArrowRight />
