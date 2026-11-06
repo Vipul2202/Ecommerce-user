@@ -34,9 +34,9 @@ Outside Only
           {/* Left Section - About */}
           <div className="lg:col-span-2">
             <div className="bg-[#00a0db] rounded-lg p-8 md:p-12 text-white">
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 flex justify-center items-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 flex justify-center items-center">
                 About Outside Only
-              </h1>
+              </h2>
 
               {/* Services Included */}
               <div className="mb-6">

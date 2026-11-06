@@ -38,9 +38,9 @@ const NovemberSpecialSlide = () => (
           <span className="hidden sm:block text-[10px] md:text-sm font-bold tracking-widest uppercase text-amber-400">
             November Special
           </span>
-          <h1 className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight text-balance">
+          <h2 className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight text-balance">
             Spend $150+, get a FREE Engine Bay clean
-          </h1>
+          </h2>
           <p className="hidden sm:block text-base md:text-xl font-semibold text-white leading-snug">
             Degrease + High-Pressure Clean
           </p>

@@ -26,9 +26,9 @@ const ComparisonTable = ({ eyebrow, heading, columns, rows, navigate }) => (
         <h2 className="text-[#00a0db] text-4xl font-bold tracking-wider uppercase mb-4">
           {eyebrow}
         </h2>
-        <h1 className="text-3xl md:text-xl lg:text-4xl font-semibold">
+        <h2 className="text-3xl md:text-xl lg:text-4xl font-semibold">
           {heading}
-        </h1>
+        </h2>
       </div>
 
       <div className="overflow-x-auto">
@@ -261,9 +261,9 @@ const Homenext = () => {
             <h2 className="text-[#00a0db] text-sm font-semibold tracking-wider uppercase mb-4">
               HAVE A LOOK AT OUR PREMIUM SERVICES
             </h2>
-            <h1 className="text-4xl md:text-5xl font-bold">
+            <h2 className="text-4xl md:text-5xl font-bold">
               Long Lasting Services For Your Car
-            </h1>
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {service.map((item) => {

@@ -197,7 +197,7 @@ const Extras = () => {
 
       {/* Centered Description */}
       <div className="text-center px-4 py-8 text-white">
-        <h1 className="text-2xl font-semibold mb-4">About Our Add On Enhancements</h1>
+        <h2 className="text-2xl font-semibold mb-4">About Our Add On Enhancements</h2>
         <p className="max-w-4xl mx-auto text-lg text-white">
           Achieve a flawless finish with Stage 3 Paint Correction, Buff and Polish, Headlight Restoration, Leather Clean & Seat Steam Clean, Dog Hair Removal, Bull Bar Polish, and Antibacterial Aircon Treatment, leaving your vehicle looking, feeling, and smelling like new.
         </p>
