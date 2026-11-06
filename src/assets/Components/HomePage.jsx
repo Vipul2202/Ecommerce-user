@@ -57,7 +57,6 @@ const PrevArrow = ({ onClick }) => (
 
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [autoplay, setAutoplay] = useState(true);
   // Only the first couple of hero slides load their image up front; the rest
   // load just before they slide into view (see `beforeChange` below). This
   // avoids requesting all 7 hero images on page load, which was hurting LCP.
@@ -72,15 +71,30 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    // Stop the hero carousel's autoplay once the visitor starts interacting
-    // with the page, instead of letting it cycle forever.
-    const stopAutoplay = () => setAutoplay(false);
+    // Pause the hero carousel's autoplay while the visitor is actively
+    // interacting with the page, and resume it once they've been idle
+    // for a bit, instead of letting it cycle forever in the background.
+    // Uses the slider's imperative play/pause (not the `autoplay` prop) -
+    // react-slick's prop-driven autoplay can't resume from an explicit
+    // pause once `state.autoplaying === "paused"`.
+    const RESUME_DELAY_MS = 6000;
+    let resumeTimer = null;
+
+    const handleInteraction = () => {
+      sliderRef.current?.slickPause();
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        sliderRef.current?.slickPlay();
+      }, RESUME_DELAY_MS);
+    };
+
     const interactionEvents = ["wheel", "touchstart", "mousedown", "keydown"];
     interactionEvents.forEach((evt) =>
-      window.addEventListener(evt, stopAutoplay, { passive: true, once: true })
+      window.addEventListener(evt, handleInteraction, { passive: true })
     );
     return () => {
-      interactionEvents.forEach((evt) => window.removeEventListener(evt, stopAutoplay));
+      interactionEvents.forEach((evt) => window.removeEventListener(evt, handleInteraction));
+      clearTimeout(resumeTimer);
     };
   }, []);
 
@@ -182,7 +196,7 @@ const HomePage = () => {
   speed: 800,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: autoplay,
+  autoplay: true,
   autoplaySpeed: 3000,
   arrows: true,
   nextArrow: <NextArrow />,
