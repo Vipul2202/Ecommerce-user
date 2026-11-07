@@ -8,7 +8,7 @@ const Terms = () => {
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">Terms of Use</h1>
           <div className="flex items-center justify-center space-x-2 text-black-100">
-            <a href="#" className="hover:text-black transition-colors">Home</a>
+            <a href="/" className="hover:text-black transition-colors">Home</a>
             <span>/</span>
             <span>Terms of Use</span>
           </div>

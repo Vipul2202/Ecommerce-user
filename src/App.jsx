@@ -66,6 +66,7 @@ import serviceTierData from './assets/Components/serviceTierData';
 const BookingFormV2 = lazy(() => import('./assets/Components/BookingFormV2'));
 import { PricingProvider } from './assets/Components/PricingContext';
 import SEOManager from './assets/Components/SEOManager';
+import NotFound from './assets/Components/NotFound';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -239,6 +240,7 @@ function App() {
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/promotional-terms" element={<PromoTerms />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
 

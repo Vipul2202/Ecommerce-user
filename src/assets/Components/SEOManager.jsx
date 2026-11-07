@@ -40,7 +40,9 @@ const SEOManager = () => {
 
   useEffect(() => {
     const { title, description } = getSeoForPath(pathname);
-    const url = `${SITE_URL}${pathname}`;
+    // Canonical is always the lowercase path, so /Extras and /extras don't
+    // compete as duplicate pages.
+    const url = `${SITE_URL}${pathname.toLowerCase()}`;
     const noIndex = isNoIndexPath(pathname);
 
     document.title = title;

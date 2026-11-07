@@ -8,7 +8,7 @@ const Privacy = () => {
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">Privacy Policy</h1>
           <div className="flex items-center justify-center space-x-2 text-black">
-            <a href="#" className="hover:text-white transition-colors">Home</a>
+            <a href="/" className="hover:text-white transition-colors">Home</a>
             <span>/</span>
             <span>Privacy Policy</span>
           </div>

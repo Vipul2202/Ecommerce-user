@@ -24,7 +24,7 @@ const ContactUs = () => {
             id: 1,
             icon: <Clock className="w-6 h-6" />,
             title: "Opening Hour",
-            details: ["Mon - Fri, 7:00 - 5:00", "Weekends on Appointment"],
+            details: ["Mon–Fri: 7:00AM–5:00PM", "Sat: 7:00AM–4:00PM (Myaree only)", "Sun: Appointment only"],
         },
         {
             id: 2,
@@ -137,7 +137,18 @@ const ContactUs = () => {
                                     <div>
                                         <h4 className="font-semibold text-md mb-1">{info.title}</h4>
                                         {info.details.map((d, i) => (
-                                            <p key={i} className="text-sm">{d}</p>
+                                            <p key={i} className="text-sm">
+                                                {/\d{4} \d{3} \d{3}/.test(d) ? (
+                                                    <>
+                                                        {d.split(':')[0]}:{' '}
+                                                        <a href={`tel:+61${d.match(/\d{4} \d{3} \d{3}/)[0].replace(/\s/g, '').slice(1)}`} className="hover:underline">
+                                                            {d.match(/\d{4} \d{3} \d{3}/)[0]}
+                                                        </a>
+                                                    </>
+                                                ) : d.includes('@') ? (
+                                                    <a href={`mailto:${d}`} className="hover:underline">{d}</a>
+                                                ) : d}
+                                            </p>
                                         ))}
                                     </div>
                                 </div>

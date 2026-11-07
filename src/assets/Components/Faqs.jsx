@@ -83,7 +83,7 @@ const Faqs = () => {
             Frequently Asked Questions
           </h1>
           <div className="flex items-center justify-center space-x-2 text-black">
-            <a href="#" className="hover:text-white transition-colors">Home</a>
+            <a href="/" className="hover:text-white transition-colors">Home</a>
             <span>/</span>
             <span>FAQ</span>
           </div>
