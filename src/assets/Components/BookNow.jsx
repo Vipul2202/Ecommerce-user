@@ -347,6 +347,12 @@ const BookNow = () => {
       
       console.log("Booking response:", response);
       if (response.status === 200 || response.status === 201) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            location: payload.location,
+            services: payload.services,
+          });
+        }
         setFormData({
           location:"",
           registration: "",
