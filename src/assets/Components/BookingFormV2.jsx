@@ -236,6 +236,12 @@ const BookingFormV2 = () => {
       const response = await axios.post(`${API}/user/create-booking`, payload);
 
       if (response.status === 200 || response.status === 201) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            location: payload.location,
+            services: payload.services,
+          });
+        }
         setFormData({
           location: "",
           registration: "",
