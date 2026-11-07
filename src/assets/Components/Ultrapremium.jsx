@@ -24,7 +24,7 @@
           title: "CERAMIC COATING",
           key: "ceramic_coating",
           fallbackPrice: 499,
-          fallbackQuoteOnly: true,
+          fallbackQuoteOnly: false,
           offers: [
             "Hydrophobic Finish – Repels water, dirt, and grime",
             "UV & Oxidation Protection – Prevents fading and discolouration",

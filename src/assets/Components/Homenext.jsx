@@ -144,7 +144,7 @@ const Homenext = () => {
       title: "Ceramic Coating",
       priceKey: "ceramic_coating",
       fallbackPrice: 499,
-      fallbackQuoteOnly: true,
+      fallbackQuoteOnly: false,
       image: team1,
       buttonStyle: "black",
       route: "/ultrapremium", // Add specific route
