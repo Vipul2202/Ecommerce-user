@@ -36,7 +36,7 @@ function isNoIndexPath(pathname) {
 // Sets document.title + meta description + Open Graph/Twitter tags +
 // robots/canonical on every route change, from the lookup table in seoData.js.
 const SEOManager = () => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
     const { title, description } = getSeoForPath(pathname);
@@ -66,7 +66,18 @@ const SEOManager = () => {
     upsertMeta("name", "twitter:title", title);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", OG_IMAGE);
-  }, [pathname]);
+
+    // Google tag's automatic page_view only fires on the initial document
+    // load (see index.html, send_page_view: false) - client-side route
+    // changes need to be reported manually, one per navigation.
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
+        page_path: `${pathname}${search}`,
+        page_title: title,
+        page_location: window.location.href,
+      });
+    }
+  }, [pathname, search]);
 
   return null;
 };
