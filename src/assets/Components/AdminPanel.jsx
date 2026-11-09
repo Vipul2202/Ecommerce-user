@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ReminderRectificationPanel from "./ReminderRectificationPanel";
 import ReminderActivityPanel from "./ReminderActivityPanel";
 import PricingPanel from "./PricingPanel";
+import EmailFailuresPanel from "./EmailFailuresPanel";
+import NotificationsPanel from "./NotificationsPanel";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 const PASSWORD_STORAGE_KEY = "admin_panel_password";
@@ -16,6 +18,15 @@ const STATUS_TABS = [
   { label: "Approved", value: "approved" },
   { label: "Declined", value: "cancelled" },
   { label: "Completed", value: "completed" },
+];
+
+const NAV_ITEMS = [
+  { label: "Bookings", value: "bookings" },
+  { label: "Pricing", value: "pricing" },
+  { label: "Reminder Correction", value: "reminder-correction" },
+  { label: "Reminder Activity", value: "reminder-activity" },
+  { label: "Email Failures", value: "email-failures" },
+  { label: "Notifications", value: "notifications" },
 ];
 
 const PAGE_SIZE = 20;
@@ -49,6 +60,7 @@ const AdminPanel = () => {
   const [togglingTestMode, setTogglingTestMode] = useState(false);
   const [customerTestModeStatus, setCustomerTestModeStatus] = useState(null); // { testMode, testEmail }
   const [togglingCustomerTestMode, setTogglingCustomerTestMode] = useState(false);
+  const [unresolvedFailureCount, setUnresolvedFailureCount] = useState(0);
 
   const authHeaders = (pwd) => ({
     headers: { "x-owner-password": pwd },
@@ -74,6 +86,15 @@ const AdminPanel = () => {
       setCustomerTestModeStatus(res.data);
     } catch (error) {
       // Non-critical — the banner just stays hidden if this fails.
+    }
+  };
+
+  const fetchEmailFailureCount = async (pwd) => {
+    try {
+      const res = await axios.get(`${API}/admin/email-failures`, authHeaders(pwd));
+      setUnresolvedFailureCount(res.data?.total || 0);
+    } catch (error) {
+      // Non-critical — the sidebar badge just stays at 0 if this fails.
     }
   };
 
@@ -214,9 +235,19 @@ const AdminPanel = () => {
     if (password) {
       fetchTestModeStatus(password);
       fetchCustomerTestModeStatus(password);
+      fetchEmailFailureCount(password);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [password]);
+
+  // Refresh the unresolved-count badge whenever leaving the Email Failures
+  // tab, so resend/dismiss actions taken there are reflected right away.
+  useEffect(() => {
+    if (password && view !== "email-failures") {
+      fetchEmailFailureCount(password);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view]);
 
   const handleStatusTab = (value) => {
     setStatus(value);
@@ -378,120 +409,49 @@ const AdminPanel = () => {
     handleLogout();
   };
 
+  const needsAttention = Boolean(testModeStatus?.testMode || customerTestModeStatus?.testMode);
+
   return (
-    <div className="min-h-screen bg-black text-white px-4 sm:px-8 py-10">
-      <div className="max-w-7xl mx-auto">
-        {testModeStatus && (
-          <div
-            className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 px-4 py-3 rounded-lg border text-sm ${
-              testModeStatus.testMode
-                ? "bg-yellow-900/40 border-yellow-700 text-yellow-200"
-                : "bg-green-900/30 border-green-700 text-green-300"
-            }`}
-          >
-            <span>
-              {testModeStatus.testMode
-                ? `Reminder emails: TEST MODE — redirecting to ${testModeStatus.testEmail || "(no test email set)"}`
-                : "Reminder emails: LIVE — sending to real customers"}
-            </span>
-            <button
-              onClick={handleToggleTestMode}
-              disabled={togglingTestMode}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition disabled:opacity-50 ${
-                testModeStatus.testMode
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-yellow-600 hover:bg-yellow-700 text-white"
-              }`}
-            >
-              {togglingTestMode
-                ? "Updating..."
-                : testModeStatus.testMode
-                ? "Turn test mode OFF"
-                : "Turn test mode ON"}
-            </button>
-          </div>
-        )}
-        {customerTestModeStatus && (
-          <div
-            className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 px-4 py-3 rounded-lg border text-sm ${
-              customerTestModeStatus.testMode
-                ? "bg-yellow-900/40 border-yellow-700 text-yellow-200"
-                : "bg-green-900/30 border-green-700 text-green-300"
-            }`}
-          >
-            <span>
-              {customerTestModeStatus.testMode
-                ? `Customer emails: TEST MODE — redirecting to ${customerTestModeStatus.testEmail || "(no test email set)"}`
-                : "Customer emails: LIVE — sending to real customers"}
-            </span>
-            <button
-              onClick={handleToggleCustomerTestMode}
-              disabled={togglingCustomerTestMode}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition disabled:opacity-50 ${
-                customerTestModeStatus.testMode
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-yellow-600 hover:bg-yellow-700 text-white"
-              }`}
-            >
-              {togglingCustomerTestMode
-                ? "Updating..."
-                : customerTestModeStatus.testMode
-                ? "Turn test mode OFF"
-                : "Turn test mode ON"}
-            </button>
-          </div>
-        )}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <h1 className="text-3xl font-bold text-[#00a0db]">Admin Panel</h1>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setView("bookings")}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                view === "bookings"
-                  ? "bg-[#00a0db] text-white"
-                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
-              }`}
-            >
-              Bookings
-            </button>
-            <button
-              onClick={() => setView("pricing")}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                view === "pricing"
-                  ? "bg-[#00a0db] text-white"
-                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
-              }`}
-            >
-              Pricing
-            </button>
-            <button
-              onClick={() => setView("reminder-correction")}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                view === "reminder-correction"
-                  ? "bg-[#00a0db] text-white"
-                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
-              }`}
-            >
-              Reminder Correction
-            </button>
-            <button
-              onClick={() => setView("reminder-activity")}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                view === "reminder-activity"
-                  ? "bg-[#00a0db] text-white"
-                  : "bg-[#111] text-gray-300 hover:bg-gray-800"
-              }`}
-            >
-              Reminder Activity
-            </button>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 rounded-full text-sm font-semibold bg-[#111] text-gray-300 hover:bg-red-900 hover:text-red-200 transition"
-            >
-              Logout
-            </button>
-          </div>
+    <div className="min-h-screen bg-black text-white flex">
+      <aside className="w-60 shrink-0 bg-[#0a0a0a] border-r border-gray-800 flex flex-col">
+        <div className="px-5 py-6 border-b border-gray-800">
+          <h1 className="text-lg font-bold text-[#00a0db] tracking-tight">Admin Panel</h1>
         </div>
+        <nav className="flex-1 px-3 py-4 space-y-1">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.value}
+              onClick={() => setView(item.value)}
+              className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition text-left ${
+                view === item.value
+                  ? "bg-[#00a0db] text-white"
+                  : "text-gray-300 hover:bg-gray-900"
+              }`}
+            >
+              <span>{item.label}</span>
+              {item.value === "notifications" && needsAttention && (
+                <span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0" aria-label="Needs attention" />
+              )}
+              {item.value === "email-failures" && unresolvedFailureCount > 0 && (
+                <span className="text-xs bg-red-600 text-white rounded-full px-2 py-0.5 shrink-0 leading-none">
+                  {unresolvedFailureCount}
+                </span>
+              )}
+            </button>
+          ))}
+        </nav>
+        <div className="px-3 py-4 border-t border-gray-800">
+          <button
+            onClick={handleLogout}
+            className="w-full px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-300 hover:bg-red-900 hover:text-red-200 transition text-left"
+          >
+            Logout
+          </button>
+        </div>
+      </aside>
+
+      <main className="flex-1 px-6 sm:px-10 py-10 overflow-x-auto">
+        <div className="max-w-7xl mx-auto">
 
         {view === "pricing" ? (
           <PricingPanel password={password} onAuthExpired={handleAuthExpired} />
@@ -499,6 +459,17 @@ const AdminPanel = () => {
           <ReminderRectificationPanel password={password} onAuthExpired={handleAuthExpired} />
         ) : view === "reminder-activity" ? (
           <ReminderActivityPanel password={password} onAuthExpired={handleAuthExpired} />
+        ) : view === "email-failures" ? (
+          <EmailFailuresPanel password={password} onAuthExpired={handleAuthExpired} />
+        ) : view === "notifications" ? (
+          <NotificationsPanel
+            testModeStatus={testModeStatus}
+            togglingTestMode={togglingTestMode}
+            onToggleTestMode={handleToggleTestMode}
+            customerTestModeStatus={customerTestModeStatus}
+            togglingCustomerTestMode={togglingCustomerTestMode}
+            onToggleCustomerTestMode={handleToggleCustomerTestMode}
+          />
         ) : (
         <>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -661,7 +632,8 @@ const AdminPanel = () => {
         </div>
         </>
         )}
-      </div>
+        </div>
+      </main>
       <ToastContainer position="top-center" autoClose={2500} />
     </div>
   );
