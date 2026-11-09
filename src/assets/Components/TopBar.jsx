@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../../src/img/logo.png";
 import OpeningHours from "../../../src/assets/Components/OpeningHours";
 
 const TopBar = () => {
@@ -19,7 +18,7 @@ const TopBar = () => {
           <a href="/" className="block w-32" aria-label="Go to Home">
             <img
               draggable="false"
-              src={logo}
+              src="/logo.png"
               alt="CarSaloon Logo"
               className="w-40 h-auto object-contain mx-auto lg:mx-0"
             />

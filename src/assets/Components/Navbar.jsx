@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import GoogleLogo from "../../img/images.png";
-import siteLogo from "../../img/logo.png";
 import axios from "axios";
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
@@ -668,7 +667,7 @@ Thank you for your order!
             <div className="flex gap-24 items-center">
               {isScrolled && (
                 <Link to="/" className="flex items-center" aria-label="Go to Home">
-                  <img src={siteLogo} alt="CarSaloon Logo" draggable="false" className="h-12 w-auto" />
+                  <img src="/logo.png" alt="CarSaloon Logo" draggable="false" className="h-12 w-auto" />
                 </Link>
               )}
               {navItems.map((item, index) => (
