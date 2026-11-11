@@ -128,39 +128,43 @@ const Faqs = () => {
                   </div>
                 </button>
 
-                {/* Answer Content */}
-                {expandedItems[index] && (
-                  <div className="px-6 pb-6">
-                    <div className="border-t border-gray-700 pt-4">
-                      <p className="text-gray-300 leading-relaxed mb-4">
-                        {faq.answer}
-                      </p>
-                      
-                      {/* Detailed Points (for air-con treatment question) */}
-                      {faq.details && (
-                        <div className="space-y-6 mt-6">
-                          {faq.details.map((detail, detailIndex) => (
-                            <div key={detailIndex} className="ml-4">
-                              <h4 className="text-[#00a0db] font-semibold mb-3 text-lg">
-                                {detailIndex + 1}. {detail.title}
-                              </h4>
-                              <ul className="space-y-2 ml-4">
-                                {detail.points.map((point, pointIndex) => (
-                                  <li key={pointIndex} className="flex items-start">
-                                    <span className="text-[#00a0db] mr-3 mt-1">•</span>
-                                    <span className="text-gray-300 leading-relaxed">
-                                      {point}
-                                    </span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                {/* Answer Content - always rendered in the DOM (so search
+                    engines can read it without simulating a click) and
+                    just visually collapsed with CSS when not expanded. */}
+                <div
+                  className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${
+                    expandedItems[index] ? "max-h-[2000px] opacity-100 pb-6" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="border-t border-gray-700 pt-4">
+                    <p className="text-gray-300 leading-relaxed mb-4">
+                      {faq.answer}
+                    </p>
+
+                    {/* Detailed Points (for air-con treatment question) */}
+                    {faq.details && (
+                      <div className="space-y-6 mt-6">
+                        {faq.details.map((detail, detailIndex) => (
+                          <div key={detailIndex} className="ml-4">
+                            <h4 className="text-[#00a0db] font-semibold mb-3 text-lg">
+                              {detailIndex + 1}. {detail.title}
+                            </h4>
+                            <ul className="space-y-2 ml-4">
+                              {detail.points.map((point, pointIndex) => (
+                                <li key={pointIndex} className="flex items-start">
+                                  <span className="text-[#00a0db] mr-3 mt-1">•</span>
+                                  <span className="text-gray-300 leading-relaxed">
+                                    {point}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
