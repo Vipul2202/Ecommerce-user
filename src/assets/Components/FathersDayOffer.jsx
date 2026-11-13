@@ -159,8 +159,6 @@ const FathersDayOffer = () => {
             <h2 className="text-center text-2xl font-bold mb-2">
               Get 15% off* on Wash and Detail services
             </h2>
-            <p className="text-center text-lg font-semibold text-gray-800 mb-4">Walk-ins Welcome</p>
-
             <div className="flex flex-col gap-2">
               <Link
                 to="/booking"
@@ -217,9 +215,6 @@ const FathersDayOffer = () => {
                 This Father's Day
               </p>
               <p className="font-semibold text-sm">15% off* for Dad</p>
-              <p className="text-sm font-semibold text-gray-800 mt-1">
-                Walk-ins Welcome
-              </p>
             </div>
           </div>
           <div className="flex flex-col gap-2 mt-3">

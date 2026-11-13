@@ -6,7 +6,7 @@
 const SITE_NAME = "Car Saloon";
 const DEFAULT_TITLE = "Perth Premium Car Detailing Studio | Car Saloon – Myaree & Midland";
 const DEFAULT_DESCRIPTION =
-  "Perth's premium car detailing studio — ceramic coating, window tinting, car wash and more at our Myaree and Midland studios. Walk-ins welcome, no booking required.";
+  "Perth's premium car detailing studio — ceramic coating, window tinting, car wash and more at our Myaree and Midland studios.";
 
 const seoData = {
   // ---- Old site ----
@@ -36,7 +36,7 @@ const seoData = {
   },
   "/washing": {
     title: "Car Wash Services | Car Saloon Perth",
-    description: "Outside Only, Inside & Out, and Premium Wash packages at Car Saloon's Myaree and Midland studios in Perth. Walk-ins welcome.",
+    description: "Outside Only, Inside & Out, and Premium Wash packages at Car Saloon's Myaree and Midland studios in Perth.",
   },
   "/about": {
     title: "About Car Saloon | Perth Car Detailing Since 2015",
