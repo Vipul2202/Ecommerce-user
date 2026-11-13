@@ -41,9 +41,6 @@ const FathersDaySlide = () => (
           <h1 className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight text-balance">
             Get 15% off* on Wash and Detail services
           </h1>
-          <p className="hidden sm:block text-base md:text-xl font-semibold text-white leading-snug">
-            Walk-ins Welcome
-          </p>
           <span className="block text-[8px] sm:text-[9px] md:text-xs text-white/60 mt-0.5">
             *Terms and conditions apply
           </span>

@@ -28,7 +28,7 @@ const FOOTER_LEGAL_LINKS = [
   { label: "Offer T&Cs", href: "/new-promotional-terms" },
 ];
 
-const MARQUEE_ITEMS = ["Walk-ins Welcome — No Booking Required", "GTechniq Ceramic Coating", "Full Detail", "Tinting"];
+const MARQUEE_ITEMS = ["GTechniq Ceramic Coating", "Full Detail", "Tinting"];
 
 // Height of the marquee strip below, so the sticky nav header docks right
 // underneath it instead of overlapping (matches the old site's stacked
