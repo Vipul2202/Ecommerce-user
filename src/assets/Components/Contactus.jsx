@@ -24,7 +24,7 @@ const ContactUs = () => {
             id: 1,
             icon: <Clock className="w-6 h-6" />,
             title: "Opening Hour",
-            details: ["Mon–Fri: 7:00AM–5:00PM", "Sat: 7:00AM–4:00PM (Myaree only)", "Sun: Appointment only"],
+            details: ["Mon–Fri: 7:00AM–5:00PM", "Sat & Sun: Appointment only"],
         },
         {
             id: 2,
