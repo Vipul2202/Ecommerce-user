@@ -82,14 +82,14 @@ export const RedesignNav = () => {
       {/* Info bar — scrolls away, not sticky */}
       <div className="border-b" style={{ borderColor: border, backgroundColor: "#ffffff" }}>
         <div className="lg:hidden text-center py-2 text-xs font-semibold" style={{ backgroundColor: "#f1ece2", color: navy }}>
-          Mon&ndash;Fri: 7am&ndash;5pm &middot; Sat: 7am&ndash;4pm (Myaree only) &middot; Sun: By appointment
+          Mon&ndash;Fri: 7am&ndash;5pm &middot; Sat &amp; Sun: By appointment
         </div>
         <div className="max-w-6xl mx-auto px-6 py-2.5 hidden lg:flex items-center justify-center gap-10 text-xs">
           <div className="flex items-center gap-2.5">
             <Clock className="w-4 h-4" style={{ color: accent }} />
             <div className="leading-tight">
               <div className="font-bold" style={{ color: navy }}>Opening Hours</div>
-              <div className="text-[#6b7278]">Mon&ndash;Fri 7am&ndash;5pm &middot; Sat 7am&ndash;4pm (Myaree) &middot; Sun by appt.</div>
+              <div className="text-[#6b7278]">Mon&ndash;Fri 7am&ndash;5pm &middot; Sat &amp; Sun by appt.</div>
             </div>
           </div>
           <div className="w-px h-8" style={{ backgroundColor: border }}></div>
