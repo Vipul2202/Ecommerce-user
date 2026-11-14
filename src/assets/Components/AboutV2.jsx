@@ -44,7 +44,10 @@ const AboutV2 = () => {
           </div>
           <div className="flex-1 min-w-[300px]">
             <p className="text-[#52585d] leading-loose text-[17px]">
-              We are a specialized facility that provides professional cleaning and detailing services for vehicles. We offer a range of services, from basic exterior washes to full interior and exterior detailing. At Car Saloon, we use automated systems, high-pressure water jets, eco-friendly cleaning solutions, and manual handwashing techniques to ensure a thorough and gentle cleaning process.
+              We are a specialized facility that provides professional cleaning and detailing services for vehicles. We offer a range of services, from basic exterior washes to full interior and exterior detailing. At Car Saloon, we use automated systems, high-pressure water jets, biodegradable cleaning solutions, and manual handwashing techniques to ensure a thorough and gentle cleaning process.
+            </p>
+            <p className="text-[#52585d] leading-loose text-[17px] mt-4">
+              We use biodegradable products across our wash and detailing services, so the care we put into your car doesn't come at the environment's expense.
             </p>
           </div>
         </div>

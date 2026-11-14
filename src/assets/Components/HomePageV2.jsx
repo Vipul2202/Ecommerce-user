@@ -14,6 +14,7 @@ import {
   Quote,
   ChevronLeft,
   ChevronRight,
+  Leaf,
 } from "lucide-react";
 
 import heroMyaree from "../../img/myaree.jpeg";
@@ -305,6 +306,9 @@ const HomePageV2 = () => {
           </div>
           <div className="flex items-center gap-2 text-white text-sm font-semibold">
             <HomeIcon className="w-4 h-4" style={{ color: accent }} /> 2 Studios Across Perth
+          </div>
+          <div className="flex items-center gap-2 text-white text-sm font-semibold">
+            <Leaf className="w-4 h-4" style={{ color: accent }} /> Biodegradable Products
           </div>
         </div>
       </div>
