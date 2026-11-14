@@ -309,6 +309,8 @@ const HomePage = () => {
         At Car Saloon, we offer high-end detailing, ceramic coating, tinting, and paint correction tailored for true enthusiasts.
         Our friendly professionals go beyond the basics, offering precision dent and paint repair that revives your car’s flawless finish.
         From underbody washes to full detailing, we’re here to help you drive clean, confident, and proud.
+        <br /><br />
+        We use biodegradable products across our wash and detailing services, so the care we put into your car doesn't come at the environment's expense.
       </p>
     </div>
   </div>
