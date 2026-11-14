@@ -184,10 +184,7 @@ const HomePageV2 = () => {
           />
         </div>
 
-        <div
-          className="flex-1 min-w-[320px] flex flex-col gap-5 relative transition-transform duration-200 ease-out"
-          style={{ transform: `translate(${heroPos.x * -6}px, ${heroPos.y * -4}px)` }}
-        >
+        <div className="flex-1 min-w-[320px] flex flex-col gap-5 relative">
           <span
             className="inline-flex items-center gap-1.5 self-start text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
             style={{ backgroundColor: "#fde8e8", color: "#c23b3b" }}
