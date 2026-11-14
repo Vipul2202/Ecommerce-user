@@ -224,33 +224,27 @@ const HomePageV2 = () => {
           </div>
         </div>
 
-        <div
-          className="flex-1 min-w-[320px] relative transition-transform duration-150 ease-out"
-          style={{
-            transform: `perspective(1200px) rotateY(${heroPos.x * 8}deg) rotateX(${heroPos.y * -8}deg) translateZ(0)`,
-            transformStyle: "preserve-3d",
-          }}
-        >
+        <div className="w-full lg:flex-1 lg:min-w-[320px] relative">
           <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl" style={{ backgroundColor: accent, opacity: 0.15 }}></div>
           <img
             src={heroMain}
             alt={`Car Saloon ${heroLocation === "myaree" ? "Myaree" : "Midland"} storefront`}
             draggable="false"
-            className="relative w-full rounded-3xl shadow-2xl object-cover h-[380px]"
+            className="relative w-full rounded-3xl shadow-2xl object-cover h-[280px] lg:h-[380px]"
           />
 
           {/* Rotating featured-service spotlight */}
           <div
-            className="absolute -bottom-8 -left-8 bg-white rounded-2xl shadow-2xl p-4 w-64 border transition-transform duration-200"
-            style={{ borderColor: "#e7e2d8", transform: `translateZ(40px) translate(${heroPos.x * 10}px, ${heroPos.y * 10}px)` }}
+            className="absolute bottom-3 left-3 lg:-bottom-8 lg:-left-8 bg-white rounded-2xl shadow-2xl p-3 lg:p-4 w-44 lg:w-64 border"
+            style={{ borderColor: "#e7e2d8" }}
           >
-            <div className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: accent }}>Featured This Month</div>
-            <div key={spot.label} style={fraunces} className="text-base font-semibold text-[#13242c] mb-1">{spot.label}</div>
+            <div className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: accent }}>Featured This Month</div>
+            <div key={spot.label} style={fraunces} className="text-sm lg:text-base font-semibold text-[#13242c] mb-1">{spot.label}</div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-bold" style={{ color: navy }}>{spotPriceText}</span>
+              <span className="text-xs lg:text-sm font-bold" style={{ color: navy }}>{spotPriceText}</span>
               <button
                 onClick={() => navigate(spot.route)}
-                className="text-xs font-semibold px-3 py-1.5 rounded-full text-white hover:scale-105 transition-transform"
+                className="text-xs font-semibold px-2.5 lg:px-3 py-1 lg:py-1.5 rounded-full text-white hover:scale-105 transition-transform"
                 style={{ backgroundColor: accent }}
               >
                 Book →
@@ -271,30 +265,26 @@ const HomePageV2 = () => {
           </div>
 
           {/* GTechniq badge */}
-          <div
-            className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-2.5 transition-transform duration-200"
-            style={{ transform: `translateZ(30px) translate(${heroPos.x * 14}px, ${heroPos.y * 14}px)` }}
-          >
-            <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-9 w-auto" />
-            <span className="text-sm font-bold" style={{ color: navy }}>Certified</span>
+          <div className="absolute top-3 right-3 lg:-top-6 lg:-right-6 bg-white rounded-2xl shadow-xl p-2.5 lg:p-4 flex items-center gap-2 lg:gap-2.5">
+            <img src={gtechniqLogo} alt="GTechniq" draggable="false" className="h-6 lg:h-9 w-auto" />
+            <span className="text-xs lg:text-sm font-bold" style={{ color: navy }}>Certified</span>
           </div>
 
           {/* Location switcher */}
           <button
             type="button"
             onClick={() => setHeroLocation((loc) => (loc === "myaree" ? "midland" : "myaree"))}
-            className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2.5 hover:scale-105 transition-transform cursor-pointer"
-            style={{ transform: `translateZ(30px)` }}
+            className="absolute top-3 left-3 lg:top-auto lg:-bottom-5 lg:-right-5 lg:left-auto bg-white rounded-2xl shadow-xl p-1.5 lg:p-2 flex items-center gap-1.5 lg:gap-2.5 hover:scale-105 transition-transform cursor-pointer"
           >
             <img
               src={heroBadgeImg}
               alt={`Car Saloon ${heroBadgeLabel} storefront`}
               draggable="false"
-              className="w-14 h-14 rounded-xl object-cover"
+              className="w-9 h-9 lg:w-14 lg:h-14 rounded-xl object-cover"
             />
-            <div className="text-xs pr-2 text-left">
+            <div className="text-[11px] lg:text-xs pr-1.5 lg:pr-2 text-left">
               <div className="font-bold text-[#13242c]">{heroBadgeLabel}</div>
-              <div className="text-[#8a8f94]">Tap to switch</div>
+              <div className="text-[#8a8f94] hidden lg:block">Tap to switch</div>
             </div>
           </button>
         </div>
