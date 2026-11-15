@@ -552,7 +552,7 @@ const HomePageV2 = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-5">
           <div className="bg-white rounded-2xl border border-[#e7e2d8] overflow-hidden">
-            <img src={myareeImg} alt="Myaree" draggable="false" className="w-full h-56 object-cover" />
+            <img src={myareeImg} alt="Car Saloon Myaree studio storefront" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Myaree</div>
               <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
@@ -561,7 +561,7 @@ const HomePageV2 = () => {
             </div>
           </div>
           <div className="bg-white rounded-2xl border border-[#e7e2d8] overflow-hidden">
-            <img src={midlandImg} alt="Midland" draggable="false" className="w-full h-56 object-cover" />
+            <img src={midlandImg} alt="Car Saloon Midland studio storefront" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Midland</div>
               <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>

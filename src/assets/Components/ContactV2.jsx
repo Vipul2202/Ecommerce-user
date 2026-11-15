@@ -8,8 +8,14 @@ import Bubble from "./Bubble";
 
 const contactInfo = [
   { id: 1, icon: Clock, title: "Opening Hours", details: ["Mon - Fri, 7:00 - 5:00", "Weekends on Appointment"] },
-  { id: 2, icon: Phone, title: "Call Us", details: ["Midland: 0478 551 640", "Myaree: 0451 288 164"] },
-  { id: 3, icon: Mail, title: "Email Us", details: ["info@carsaloon.com.au"] },
+  {
+    id: 2, icon: Phone, title: "Call Us",
+    details: [
+      { text: "Midland: 0478 551 640", href: "tel:+61478551640" },
+      { text: "Myaree: 0451 288 164", href: "tel:+61451288164" },
+    ],
+  },
+  { id: 3, icon: Mail, title: "Email Us", details: [{ text: "info@carsaloon.com.au", href: "mailto:info@carsaloon.com.au" }] },
   { id: 4, icon: MapPin, title: "Locations", details: ["7 Loton Avenue, Midland, 6056", "4/41 McCoy Street, Myaree, 6154"] },
 ];
 
@@ -87,9 +93,15 @@ const ContactV2 = () => {
                 </div>
                 <div>
                   <div className="font-semibold text-sm mb-1">{info.title}</div>
-                  {info.details.map((d) => (
-                    <p key={d} className="text-xs text-white/80">{d}</p>
-                  ))}
+                  {info.details.map((d) => {
+                    const text = typeof d === "string" ? d : d.text;
+                    const href = typeof d === "string" ? null : d.href;
+                    return href ? (
+                      <a key={text} href={href} className="block text-xs text-white/80 hover:underline">{text}</a>
+                    ) : (
+                      <p key={text} className="text-xs text-white/80">{text}</p>
+                    );
+                  })}
                 </div>
               </div>
             ))}

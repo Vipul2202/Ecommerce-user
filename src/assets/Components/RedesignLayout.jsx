@@ -97,7 +97,9 @@ export const RedesignNav = () => {
             <Phone className="w-4 h-4" style={{ color: accent }} />
             <div className="leading-tight">
               <div className="font-bold" style={{ color: navy }}>Call Us</div>
-              <div className="text-[#6b7278]">Midland: 0478 551 640 &middot; Myaree: 0451 288 164</div>
+              <div className="text-[#6b7278]">
+                <a href="tel:+61478551640" className="hover:underline">Midland: 0478 551 640</a> &middot; <a href="tel:+61451288164" className="hover:underline">Myaree: 0451 288 164</a>
+              </div>
             </div>
           </div>
           <div className="w-px h-8" style={{ backgroundColor: border }}></div>
@@ -277,11 +279,14 @@ export const RedesignFooter = () => {
           </div>
           <div className="flex items-start gap-2.5 text-sm text-white/75">
             <Phone className="w-4 h-4 shrink-0 mt-0.5" />
-            <span>Midland: 0478 551 640<br />Myaree: 0451 288 164</span>
+            <span>
+              <a href="tel:+61478551640" className="hover:underline">Midland: 0478 551 640</a><br />
+              <a href="tel:+61451288164" className="hover:underline">Myaree: 0451 288 164</a>
+            </span>
           </div>
           <div className="flex items-center gap-2.5 text-sm text-white/75">
             <Mail className="w-4 h-4 shrink-0" />
-            <span>info@carsaloon.com.au</span>
+            <a href="mailto:info@carsaloon.com.au" className="hover:underline">info@carsaloon.com.au</a>
           </div>
         </div>
       </div>
