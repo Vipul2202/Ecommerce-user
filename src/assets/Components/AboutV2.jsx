@@ -15,11 +15,21 @@ const timeline = [
     title: "A new chapter in Perth",
     text: "In 2014 we moved to Perth for bigger and better opportunities. A year later, Car Saloon was born with one clear vision: every car that comes through our doors is detailed with genuine attention and care.",
   },
+  {
+    year: "2024",
+    title: "First store opens in Midland",
+    text: "We opened our first permanent studio in Midland, giving that same hand-finished care a dedicated home.",
+  },
+  {
+    year: "2026",
+    title: "Second store opens in Myaree",
+    text: "Demand grew, and we opened a second studio in Myaree — two dedicated homes for Car Saloon-level care across Perth.",
+  },
 ];
 
 const approach = [
   { title: "Limited daily bookings", text: "We take on only a few vehicles each day so every car gets our full focus." },
-  { title: "Quality products", text: "We use only trusted, professional-grade products." },
+  { title: "Quality products", text: "We use only trusted, biodegradable, professional-grade products." },
   { title: "Experienced professionals", text: "Your car is in skilled, careful hands." },
   { title: "No rushed jobs", text: "We take the time to do it right, every time." },
 ];

@@ -324,6 +324,13 @@ const HomePageV2 = () => {
             <p className="text-[#52585d] leading-loose">
               Your car deserves more than a rinse — it deserves respect. We offer high-end detailing, ceramic coating, tinting and paint correction tailored for true enthusiasts. From underbody washes to full detailing, precision dent and paint repair revives your car's flawless finish — so you drive clean, confident and proud.
             </p>
+            <button
+              onClick={() => navigate("/new-about")}
+              className="inline-flex items-center gap-1.5 self-start font-semibold text-sm hover:gap-2.5 transition-all"
+              style={{ color: accent }}
+            >
+              Read our story →
+            </button>
           </div>
         </div>
       </section>
