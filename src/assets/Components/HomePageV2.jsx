@@ -324,6 +324,19 @@ const HomePageV2 = () => {
             <p className="text-[#52585d] leading-loose">
               Your car deserves more than a rinse — it deserves respect. We offer high-end detailing, ceramic coating, tinting and paint correction tailored for true enthusiasts. From underbody washes to full detailing, precision dent and paint repair revives your car's flawless finish — so you drive clean, confident and proud.
             </p>
+            <div className="grid sm:grid-cols-2 gap-3 mt-1">
+              {[
+                "10+ years of hands-on detailing experience",
+                "GTechniq certified ceramic coating",
+                "Biodegradable products on every vehicle",
+                "2 studios across Perth — Midland & Myaree",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-2">
+                  <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: accent }} />
+                  <span className="text-sm text-[#52585d]">{item}</span>
+                </div>
+              ))}
+            </div>
             <button
               onClick={() => navigate("/new-about")}
               className="inline-flex items-center gap-1.5 self-start font-semibold text-sm hover:gap-2.5 transition-all"
