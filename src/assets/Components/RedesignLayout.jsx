@@ -10,7 +10,7 @@ const FOOTER_SERVICE_LINKS = [
   { label: "Inside & Out", href: "/new-inside_outside" },
   { label: "Full Detail", href: "/new-full_detail" },
   { label: "The Works", href: "/new-the_works" },
-  { label: "Premium Finishes", href: "/new-ultrapremium" },
+  { label: "Ultra-Premium Finishes", href: "/new-ultrapremium" },
   { label: "Add on Enhancements", href: "/new-extras" },
   { label: "Products", href: "/new-products" },
 ];
