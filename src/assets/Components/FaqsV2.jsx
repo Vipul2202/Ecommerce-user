@@ -39,27 +39,31 @@ const FaqsV2 = () => {
                     style={{ color: accent, transform: openIndex === i ? "rotate(180deg)" : "none" }}
                   />
                 </button>
-                {openIndex === i && (
-                  <div className="px-6 pb-6 text-sm leading-relaxed text-[#52585d]">
-                    <p>{faq.answer}</p>
-                    {faq.details && (
-                      <div className="mt-4 flex flex-col gap-4">
-                        {faq.details.map((d, di) => (
-                          <div key={d.title}>
-                            <div className="font-semibold text-[#13242c] mb-1">{di + 1}. {d.title}</div>
-                            <ul className="flex flex-col gap-1 ml-4">
-                              {d.points.map((p) => (
-                                <li key={p} className="flex gap-2 text-[#52585d]">
-                                  <span style={{ color: accent }}>•</span>{p}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
+                {/* Always in the DOM (so crawlers can read it without simulating a
+                    click) and just visually collapsed with CSS when not expanded. */}
+                <div
+                  className={`px-6 overflow-hidden transition-all duration-300 ease-in-out text-sm leading-relaxed text-[#52585d] ${
+                    openIndex === i ? "max-h-[2000px] opacity-100 pb-6" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p>{faq.answer}</p>
+                  {faq.details && (
+                    <div className="mt-4 flex flex-col gap-4">
+                      {faq.details.map((d, di) => (
+                        <div key={d.title}>
+                          <div className="font-semibold text-[#13242c] mb-1">{di + 1}. {d.title}</div>
+                          <ul className="flex flex-col gap-1 ml-4">
+                            {d.points.map((p) => (
+                              <li key={p} className="flex gap-2 text-[#52585d]">
+                                <span style={{ color: accent }}>•</span>{p}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
