@@ -141,7 +141,7 @@ export const RedesignNav = () => {
               </div>
             )}
           </div>
-          <a href="/new-ultrapremium" className="hover:text-[#0a3b4d]">Premium</a>
+          <a href="/new-ultrapremium" className="hover:text-[#0a3b4d]">Ultra-Premium Finishes</a>
           <a href="/new-extras" className="hover:text-[#0a3b4d]">Add on Enhancements</a>
           <a href="/new-products" className="hover:text-[#0a3b4d]">Products</a>
           <a href="/new-gallery" className="hover:text-[#0a3b4d]">Gallery</a>
@@ -184,7 +184,7 @@ export const RedesignNav = () => {
               ))}
             </div>
           )}
-          <a href="/new-ultrapremium" onClick={closeMobile} className="py-2.5">Premium</a>
+          <a href="/new-ultrapremium" onClick={closeMobile} className="py-2.5">Ultra-Premium Finishes</a>
           <a href="/new-extras" onClick={closeMobile} className="py-2.5">Add on Enhancements</a>
           <a href="/new-products" onClick={closeMobile} className="py-2.5">Products</a>
           <a href="/new-gallery" onClick={closeMobile} className="py-2.5">Gallery</a>

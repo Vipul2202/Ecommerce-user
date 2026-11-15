@@ -12,13 +12,23 @@ const timeline = [
   },
   {
     year: "2015",
-    title: "A new chapter in Perth",
-    text: "In 2014 we moved to Perth for bigger and better opportunities. A year later, Car Saloon was born with one clear vision: every car that comes through our doors is detailed with genuine attention and care.",
+    title: "Earning our place on the dealership floor",
+    text: "In 2014 we moved to Perth for bigger and better opportunities, and Car Saloon was born a year later. We didn't open a storefront first — we earned contracts detailing for dealership groups like Audi, BMW, Ferrari and more. Every brand had its own standard, every client a different expectation, and no two cars came with the same brief. Getting it right, every time, was the job.",
+  },
+  {
+    year: "2018",
+    title: "Juggling sites, chasing consistency",
+    text: "As more dealerships trusted us with their cars, we found ourselves running operations across multiple sites at once — different showrooms, different schedules, different pressures. Keeping the same standard of care no matter where the work happened became the real challenge, and it forced us to build processes we still rely on today.",
+  },
+  {
+    year: "2021",
+    title: "Growing a team, not just a workforce",
+    text: "The hardest part was never the cars — it was the people. We put real time into training every technician to a standard worthy of the vehicles passing through our hands, turning a handful of detailers into a team capable of handling anything from a daily runabout to a six-figure exotic.",
   },
   {
     year: "2024",
     title: "First store opens in Midland",
-    text: "We opened our first permanent studio in Midland, giving that same hand-finished care a dedicated home.",
+    text: "After years of proving ourselves behind the scenes for dealerships, we opened our first permanent studio in Midland — the first time we got to serve everyday customers directly, face-to-face, with the same care we'd spent years perfecting.",
   },
   {
     year: "2026",
