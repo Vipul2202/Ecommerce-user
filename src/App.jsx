@@ -51,6 +51,7 @@ import { isFathersDayPromoActive, isNovemberSpecialActive } from './assets/Compo
 const HomePageV2 = lazy(() => import('./assets/Components/HomePageV2'));
 const HeroMockups = lazy(() => import('./assets/Components/HeroMockups'));
 const TimelineMockups = lazy(() => import('./assets/Components/TimelineMockups'));
+const AboutMockups = lazy(() => import('./assets/Components/AboutMockups'));
 const ServiceTierPageV2 = lazy(() => import('./assets/Components/ServiceTierPageV2'));
 const GalleryV2 = lazy(() => import('./assets/Components/GalleryV2'));
 const GalleryCategoryV2 = lazy(() => import('./assets/Components/GalleryCategoryV2'));
@@ -105,10 +106,11 @@ const PREVIEW_PATHS = [
   '/new-booking',
 ];
 
-// The admin panel is a private, owner-only tool — it never carries the
-// public site's marquee/nav/footer or any promo popup. It's never linked
-// from public nav/footer, only ever reached by typing the URL directly.
-const NO_CHROME_PATHS = ['/admin-panel'];
+// The admin panel and the /mockup-* internal design-review pages are
+// private, owner-only tools — they never carry the public site's
+// marquee/nav/footer or any promo popup. None of these are linked from
+// public nav/footer, only ever reached by typing the URL directly.
+const NO_CHROME_PATHS = ['/admin-panel', '/mockup-hero2', '/mockup-timeline', '/mockup-about'];
 
 // React Router matches routes case-insensitively by default, so
 // /NEW-HOME renders HomePageV2 same as /new-home does — but this
@@ -188,6 +190,7 @@ function App() {
           <Route path="/new-home" element={<HomePageV2 />} />
           <Route path="/mockup-hero2" element={<HeroMockups />} />
           <Route path="/mockup-timeline" element={<TimelineMockups />} />
+          <Route path="/mockup-about" element={<AboutMockups />} />
           <Route path="/new-outside" element={<ServiceTierPageV2 data={serviceTierData.outside} />} />
           <Route path="/new-inside_outside" element={<ServiceTierPageV2 data={serviceTierData.inside_outside} />} />
           <Route path="/new-premium_wash" element={<ServiceTierPageV2 data={serviceTierData.premium_wash} />} />

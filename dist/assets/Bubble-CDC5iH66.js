@@ -1,0 +1,1 @@
+import{j as l,s as u}from"./index-CXrIUtSI.js";const d=({size:e,top:o,left:s,right:t,bottom:n,opacity:a=.1,color:r=u})=>l.jsx("div",{className:"absolute rounded-full pointer-events-none",style:{width:e,height:e,top:o,left:s,right:t,bottom:n,backgroundColor:r,opacity:a}});export{d as B};
