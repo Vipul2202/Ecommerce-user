@@ -148,8 +148,11 @@ const NovemberSpecialOfferV2 = () => {
           <span className="text-[10px] font-bold text-white" style={{ writingMode: "vertical-rl" }}>
             NOVEMBER SPECIAL
           </span>
-          <span className="flex items-center justify-center w-6 h-6 rounded-full text-[9px] font-bold text-white" style={{ backgroundColor: accent }}>
-            %
+          <span className="relative flex items-center justify-center w-6 h-6">
+            <span className="absolute inline-flex w-full h-full rounded-full animate-ping" style={{ backgroundColor: accent, opacity: 0.6 }} />
+            <span className="relative flex items-center justify-center w-6 h-6 rounded-full text-[9px] font-bold text-white" style={{ backgroundColor: accent }}>
+              %
+            </span>
           </span>
         </button>
       )}
