@@ -229,7 +229,7 @@ export const RedesignFooter = () => {
             <span style={fraunces} className="text-lg font-semibold text-white">Car Saloon</span>
           </div>
           <p className="text-sm text-white/70 leading-relaxed">
-            Perth's #1 detailing studio — high-end washing, detailing, ceramic coating and more since 2015.
+            Perth's premium detailing studio — high-end washing, detailing, ceramic coating and more since 2015.
           </p>
           <div className="flex gap-3 pt-1">
             <a
