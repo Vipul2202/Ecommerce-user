@@ -41,8 +41,8 @@ const BookingConfirmationV2 = () => {
           </h1>
           <p className="relative text-[#6b7278] mt-3 max-w-xl mx-auto text-sm">
             {booking?.email
-              ? `We've received your request. Our team will confirm your appointment and email ${booking.email} shortly.`
-              : "We've received your booking request. Our team will confirm your appointment by email shortly."}
+              ? `Our team will confirm your appointment and send you a confirmation shortly on ${booking.email}.`
+              : "Our team will confirm your appointment and send you a confirmation shortly on your email address."}
           </p>
         </div>
 
