@@ -273,18 +273,32 @@ export const RedesignFooter = () => {
 
         <div className="flex flex-col gap-3">
           <h4 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: accent }}>Get In Touch</h4>
-          <div className="flex items-start gap-2.5 text-sm text-white/75">
-            <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
-            <span>7 Loton Avenue, Midland, 6056<br />4/41 McCoy Street, Myaree, 6154</span>
+
+          <div className="text-sm text-white/75">
+            <div className="font-semibold text-white/90 mb-1.5">Midland</div>
+            <div className="flex items-start gap-2.5 mb-1">
+              <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
+              <span>7 Loton Avenue, Midland, 6056</span>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <Phone className="w-4 h-4 shrink-0 mt-0.5" />
+              <a href="tel:+61478551640" className="hover:underline">0478 551 640</a>
+            </div>
           </div>
-          <div className="flex items-start gap-2.5 text-sm text-white/75">
-            <Phone className="w-4 h-4 shrink-0 mt-0.5" />
-            <span>
-              <a href="tel:+61478551640" className="hover:underline">Midland: 0478 551 640</a><br />
-              <a href="tel:+61451288164" className="hover:underline">Myaree: 0451 288 164</a>
-            </span>
+
+          <div className="text-sm text-white/75 mt-2">
+            <div className="font-semibold text-white/90 mb-1.5">Myaree</div>
+            <div className="flex items-start gap-2.5 mb-1">
+              <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
+              <span>4/41 McCoy Street, Myaree, 6154</span>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <Phone className="w-4 h-4 shrink-0 mt-0.5" />
+              <a href="tel:+61451288164" className="hover:underline">0451 288 164</a>
+            </div>
           </div>
-          <div className="flex items-center gap-2.5 text-sm text-white/75">
+
+          <div className="flex items-center gap-2.5 text-sm text-white/75 mt-1">
             <Mail className="w-4 h-4 shrink-0" />
             <a href="mailto:info@carsaloon.com.au" className="hover:underline">info@carsaloon.com.au</a>
           </div>
