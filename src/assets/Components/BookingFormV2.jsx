@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Check, ChevronUp, ChevronDown } from "lucide-react";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
@@ -45,8 +46,8 @@ const BookingFormV2 = () => {
     marketingConsent: false,
   });
 
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [showServiceNoticeModal, setShowServiceNoticeModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -255,7 +256,7 @@ const BookingFormV2 = () => {
         setSelected({});
         setErrors({});
         setTouched({});
-        setShowModal(true);
+        navigate("/new-booking-confirmation", { state: { booking: response.data.booking } });
       }
     } catch (error) {
       if (error.response?.data?.errors) {
@@ -284,22 +285,6 @@ const BookingFormV2 = () => {
 
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }} className="bg-[#f8f6f1] text-[#1c2024] min-h-screen flex flex-col">
-      {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center">
-            <h2 style={fraunces} className="text-xl font-semibold mb-3 text-[#13242c]">Success</h2>
-            <p className="text-sm text-[#52585d]">Your booking has been successfully submitted!</p>
-            <button
-              onClick={() => setShowModal(false)}
-              className="mt-5 px-6 py-2.5 rounded-full font-semibold text-sm text-white"
-              style={{ backgroundColor: navy }}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
       {showServiceNoticeModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
           <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full">

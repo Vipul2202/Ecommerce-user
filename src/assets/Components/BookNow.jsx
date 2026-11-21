@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 const API = import.meta.env.VITE_API_BASE_URL;
 
 const BookNow = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     location:"",
@@ -21,7 +22,6 @@ const BookNow = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [showServiceNoticeModal, setShowServiceNoticeModal] = useState(false);
   const [minDate, setMinDate] = useState("");
   const [errors, setErrors] = useState({});
@@ -367,7 +367,7 @@ const BookNow = () => {
         });
         setErrors({});
         setTouched({});
-        setShowModal(true);
+        navigate("/booking-confirmation", { state: { booking: response.data.booking } });
       }
     } catch (error) {
       console.error("Booking failed:", error);
@@ -399,20 +399,6 @@ const BookNow = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white relative">
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-          <div className="bg-white text-black rounded-lg shadow-lg p-8 max-w-md w-full text-center">
-            <h2 className="text-xl font-semibold mb-4">Success</h2>
-            <p>Your booking has been successfully submitted!</p>
-            <button
-              onClick={() => setShowModal(false)}
-              className="mt-4 px-4 py-2 bg-[#00a0db] text-white rounded hover:bg-blue-600"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
 
       {showServiceNoticeModal && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
