@@ -5,6 +5,11 @@ import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { accent, navy, border, fraunces, useGoogleFont } from "./redesignTheme";
 import Bubble from "./Bubble";
 
+const MYAREE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
+const MIDLAND_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=7+Loton+Avenue%2C+Midland+WA+6056";
+
 const FOOTER_SERVICE_LINKS = [
   { label: "Outside Only", href: "/new-outside" },
   { label: "Inside & Out", href: "/new-inside_outside" },
@@ -229,7 +234,7 @@ export const RedesignFooter = () => {
             <span style={fraunces} className="text-lg font-semibold text-white">Car Saloon</span>
           </div>
           <p className="text-sm text-white/70 leading-relaxed">
-            Perth's premium detailing studio — high-end washing, detailing, ceramic coating and more since 2015.
+            Perth's Premium Car Detailing Studio — High-end detailing, ceramic coating, tinting and paint correction.
           </p>
           <div className="flex gap-3 pt-1">
             <a
@@ -278,7 +283,7 @@ export const RedesignFooter = () => {
             <div className="font-semibold text-white/90 mb-1.5">Midland</div>
             <div className="flex items-start gap-2.5 mb-1">
               <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
-              <span>7 Loton Avenue, Midland, 6056</span>
+              <a href={MIDLAND_MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">7 Loton Avenue, Midland, 6056</a>
             </div>
             <div className="flex items-start gap-2.5">
               <Phone className="w-4 h-4 shrink-0 mt-0.5" />
@@ -290,7 +295,7 @@ export const RedesignFooter = () => {
             <div className="font-semibold text-white/90 mb-1.5">Myaree</div>
             <div className="flex items-start gap-2.5 mb-1">
               <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
-              <span>4/41 McCoy Street, Myaree, 6154</span>
+              <a href={MYAREE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">4/41 McCoy Street, Myaree, 6154</a>
             </div>
             <div className="flex items-start gap-2.5">
               <Phone className="w-4 h-4 shrink-0 mt-0.5" />
