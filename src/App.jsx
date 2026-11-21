@@ -13,6 +13,7 @@ const Homenext = lazy(() => import('./assets/Components/Homenext'));
 import Footer from './assets/Components/Footer'
 const ContactUs = lazy(() => import('./assets/Components/Contactus'));
 const BookNow = lazy(() => import('./assets/Components/BookNow'));
+const BookingConfirmation = lazy(() => import('./assets/Components/BookingConfirmation'));
 const ManageBooking = lazy(() => import('./assets/Components/ManageBooking'));
 const Extras = lazy(() => import('./assets/Components/Extras'));
 // import Service from './assets/Components/Service'
@@ -64,6 +65,7 @@ const LegalPageV2 = lazy(() => import('./assets/Components/LegalPageV2'));
 import legalPagesData from './assets/Components/legalPagesData';
 import serviceTierData from './assets/Components/serviceTierData';
 const BookingFormV2 = lazy(() => import('./assets/Components/BookingFormV2'));
+const BookingConfirmationV2 = lazy(() => import('./assets/Components/BookingConfirmationV2'));
 import { PricingProvider } from './assets/Components/PricingContext';
 import SEOManager from './assets/Components/SEOManager';
 import NotFound from './assets/Components/NotFound';
@@ -103,6 +105,7 @@ const PREVIEW_PATHS = [
   '/new-privacy',
   '/new-promotional-terms',
   '/new-booking',
+  '/new-booking-confirmation',
 ];
 
 // The admin panel is a private, owner-only tool — it never carries the
@@ -208,8 +211,10 @@ function App() {
           <Route path="/new-privacy" element={<LegalPageV2 data={legalPagesData.privacy} />} />
           <Route path="/new-promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
           <Route path="/new-booking" element={<BookingFormV2 />} />
+          <Route path="/new-booking-confirmation" element={<BookingConfirmationV2 />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/booking" element={<BookNow />} />
+          <Route path="/booking-confirmation" element={<BookingConfirmation />} />
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
           <Route path="/extras" element={<Extras />} />
           <Route path="/ultrapremium" element={<Ultrapremium />} />

@@ -20,6 +20,7 @@ Disallow: /new-terms
 Disallow: /new-privacy
 Disallow: /new-promotional-terms
 Disallow: /new-booking
+Disallow: /new-booking-confirmation
 Disallow: /mockup-hero2
 Disallow: /mockup-timeline
 Disallow: /admin-panel
