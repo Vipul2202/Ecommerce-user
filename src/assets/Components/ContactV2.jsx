@@ -6,6 +6,11 @@ import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
 import Bubble from "./Bubble";
 
+const MYAREE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
+const MIDLAND_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=7+Loton+Avenue%2C+Midland+WA+6056";
+
 const contactInfo = [
   { id: 1, icon: Clock, title: "Opening Hours", details: ["Mon - Fri, 7:00 - 5:00", "Weekends on Appointment"] },
   {
@@ -16,7 +21,13 @@ const contactInfo = [
     ],
   },
   { id: 3, icon: Mail, title: "Email Us", details: [{ text: "info@carsaloon.com.au", href: "mailto:info@carsaloon.com.au" }] },
-  { id: 4, icon: MapPin, title: "Locations", details: ["7 Loton Avenue, Midland, 6056", "4/41 McCoy Street, Myaree, 6154"] },
+  {
+    id: 4, icon: MapPin, title: "Locations",
+    details: [
+      { text: "7 Loton Avenue, Midland, 6056", href: MIDLAND_MAPS_URL },
+      { text: "4/41 McCoy Street, Myaree, 6154", href: MYAREE_MAPS_URL },
+    ],
+  },
 ];
 
 const ContactV2 = () => {
@@ -96,8 +107,17 @@ const ContactV2 = () => {
                   {info.details.map((d) => {
                     const text = typeof d === "string" ? d : d.text;
                     const href = typeof d === "string" ? null : d.href;
+                    const external = href?.startsWith("http");
                     return href ? (
-                      <a key={text} href={href} className="block text-xs text-white/80 hover:underline">{text}</a>
+                      <a
+                        key={text}
+                        href={href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="block text-xs text-white/80 hover:underline"
+                      >
+                        {text}
+                      </a>
                     ) : (
                       <p key={text} className="text-xs text-white/80">{text}</p>
                     );
