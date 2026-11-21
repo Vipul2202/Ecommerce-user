@@ -56,6 +56,7 @@ const SPOTLIGHT_SERVICES = [
   { key: "antibacterial_aircon_treatment", label: "Antibacterial Aircon Treatment", fallbackPrice: 99, fallbackQuoteOnly: false, route: "/new-extras" },
   { key: "ceramic_coating", label: "GTechniq Ceramic Coating", fallbackPrice: 499, fallbackQuoteOnly: true, route: "/new-ultrapremium" },
   { key: "window_tinting", label: "Window Tinting", fallbackPrice: 499, fallbackQuoteOnly: false, route: "/new-ultrapremium" },
+  { key: "full_detail", label: "Full Detail", fallbackPrice: 175, fallbackQuoteOnly: false, route: "/new-full_detail" },
 ];
 
 const services = [
