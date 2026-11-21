@@ -37,19 +37,6 @@ const timeline = [
   },
 ];
 
-const brandGroups = [
-  {
-    title: "Everyday Cars",
-    text: "Daily drivers get the same hand-finished care as everything else that comes through our doors.",
-    brands: ["Volkswagen", "Volvo", "Hyundai", "MG", "Mazda", "and more"],
-  },
-  {
-    title: "Prestige & Exotic Cars",
-    text: "Years on dealership floors across Perth earned us the trust of some of the most demanding brands and owners around.",
-    brands: ["Range Rover", "Ferrari", "Lamborghini", "Maserati", "and more"],
-  },
-];
-
 const approach = [
   { title: "Limited daily bookings", text: "We take on only a few vehicles each day so every car gets our full focus." },
   { title: "Quality products", text: "We use only trusted, biodegradable, professional-grade products." },
@@ -94,32 +81,6 @@ const AboutV2 = () => {
                 <div style={{ ...fraunces, color: accent }} className="text-3xl font-bold mb-1">{t.year}</div>
                 <h3 style={fraunces} className="text-lg font-semibold text-[#13242c] mb-2">{t.title}</h3>
                 <p className="text-[#52585d] leading-relaxed text-[15px] text-justify">{t.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* BRANDS WE'VE WORKED WITH */}
-        <div className="max-w-5xl mx-auto px-6 pb-16">
-          <div className="text-center mb-10">
-            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Trusted By</span>
-            <h3 style={fraunces} className="text-2xl sm:text-3xl font-semibold text-[#13242c] mt-2">From everyday drives to the exotics</h3>
-            <p className="text-[#6b7278] mt-2 max-w-xl mx-auto text-sm">Years on dealership floors across every price point means we've handled it all — here's a taste of the brands that have trusted us.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {brandGroups.map((g) => (
-              <div
-                key={g.title}
-                className="bg-white rounded-2xl p-6"
-                style={{ borderTop: `3px solid ${accent}`, borderLeft: `1px solid ${border}`, borderRight: `1px solid ${border}`, borderBottom: `1px solid ${border}` }}
-              >
-                <h4 style={fraunces} className="text-lg font-semibold text-[#13242c] mb-1">{g.title}</h4>
-                <p className="text-sm text-[#6b7278] mb-4">{g.text}</p>
-                <div className="flex flex-wrap gap-2">
-                  {g.brands.map((b) => (
-                    <span key={b} className="text-xs font-semibold px-3 py-1.5 rounded-full" style={{ backgroundColor: "#f1ece2", color: navy }}>{b}</span>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
