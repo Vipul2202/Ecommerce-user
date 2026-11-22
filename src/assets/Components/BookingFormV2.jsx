@@ -535,7 +535,7 @@ const BookingFormV2 = () => {
                   name="firstName"
                   placeholder="Name"
                   value={formData.firstName}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange({ target: { name: "firstName", value: e.target.value.toUpperCase() } })}
                   onBlur={handleBlur}
                   className="w-full rounded-lg px-3 py-2.5 text-sm"
                   style={{ border: `1px solid ${errors.firstName && touched.firstName ? "#c23b3b" : border}` }}
