@@ -174,8 +174,8 @@ function App() {
         </SiteChrome>
 
         <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center bg-black">
-            <div className="w-12 h-12 rounded-full border-4 border-white border-t-[#00a0db] animate-spin" />
+          <div className="min-h-screen flex items-center justify-center bg-[#f8f6f1]">
+            <div className="w-12 h-12 rounded-full border-4 border-[#e7e2d8] border-t-[#0a7fa6] animate-spin" />
           </div>
         }>
         <Routes>
