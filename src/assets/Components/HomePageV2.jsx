@@ -15,6 +15,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Leaf,
+  Lightbulb,
+  PawPrint,
+  Wind,
 } from "lucide-react";
 
 import heroMyaree from "../../img/myaree.jpeg";
@@ -122,6 +125,13 @@ const premium = [
   { title: "Interior Protection Pack", key: "interior_protection_pack", fallbackPrice: 299, fallbackQuoteOnly: false, img: interiorPackImg, route: "/ultrapremium" },
   { title: "Windows Tinting", key: "window_tinting", fallbackPrice: 499, fallbackQuoteOnly: false, img: tintingImg, route: "/ultrapremium" },
   { title: "Paintless Dent Removal", key: "paintless_dent_removal", fallbackPrice: 199, fallbackQuoteOnly: false, img: paintlessDentImg, route: "/ultrapremium" },
+];
+
+const addOns = [
+  { title: "Stage 3 Paint Correction", key: "stage3_paint_correction", fallbackPrice: 299, fallbackQuoteOnly: false, icon: Sparkles, route: "/extras" },
+  { title: "Headlight Restoration", key: "headlight_restoration", fallbackPrice: 50, fallbackQuoteOnly: false, icon: Lightbulb, route: "/extras" },
+  { title: "Dog Hair Removal", key: "dog_hair_removal", fallbackPrice: 50, fallbackQuoteOnly: false, icon: PawPrint, route: "/extras" },
+  { title: "Antibacterial Aircon Treatment", key: "antibacterial_aircon_treatment", fallbackPrice: 99, fallbackQuoteOnly: false, icon: Wind, route: "/extras" },
 ];
 
 const HomePageV2 = () => {
@@ -492,6 +502,41 @@ const HomePageV2 = () => {
           <p className="text-center text-sm text-[#8a8f94] mt-6">
             Ceramic Coating requires an in-person inspection to confirm exact pricing.
           </p>
+        </div>
+      </section>
+
+      {/* ADD ON ENHANCEMENTS */}
+      <section className="relative px-6 py-20 overflow-hidden" style={{ backgroundColor: "#f1ece2" }}>
+        <Bubble size={110} top="8%" left="-4%" opacity={0.1} />
+        <Bubble size={65} bottom="8%" right="2%" opacity={0.1} />
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-11">
+            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: accent }}>Add on Enhancements</span>
+            <h2 style={fraunces} className="text-3xl font-semibold text-[#13242c] mt-2">Finish The Job Right</h2>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {addOns.map((a) => {
+              const live = pricesByKey[a.key];
+              const quoteOnly = live?.quoteOnly ?? a.fallbackQuoteOnly;
+              const price = live?.flatPrice ?? a.fallbackPrice;
+              const priceText = quoteOnly ? "Price on request" : `From $${price}`;
+              return (
+                <button
+                  key={a.title}
+                  onClick={() => navigate(a.route)}
+                  className="bg-white rounded-2xl border border-[#e7e2d8] overflow-hidden text-left flex flex-col"
+                >
+                  <div className="w-full h-44 flex items-center justify-center" style={{ backgroundColor: "#f8f6f1" }}>
+                    <a.icon className="w-12 h-12" style={{ color: accent }} />
+                  </div>
+                  <div className="p-4 flex flex-col gap-1">
+                    <div className="font-semibold text-sm text-[#13242c]">{a.title}</div>
+                    <div className="text-sm font-semibold" style={{ color: accent }}>{priceText}</div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
