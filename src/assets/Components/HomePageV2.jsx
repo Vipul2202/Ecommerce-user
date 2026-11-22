@@ -297,7 +297,7 @@ const HomePageV2 = () => {
             <span className="text-sm font-semibold">Certified Applicator</span>
           </div>
           <div className="flex items-center gap-2 text-white text-sm font-semibold">
-            <Shield className="w-4 h-4" style={{ color: accent }} /> 10+ Years Experience
+            <Shield className="w-4 h-4" style={{ color: accent }} /> 20+ Years Experience
           </div>
           <div className="flex items-center gap-2 text-white text-sm font-semibold">
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 4.9★ Google Rating
@@ -327,7 +327,7 @@ const HomePageV2 = () => {
             </p>
             <div className="grid sm:grid-cols-2 gap-3 mt-1">
               {[
-                "10+ years of hands-on detailing experience",
+                "20+ years of hands-on detailing experience",
                 "GTechniq certified ceramic coating",
                 "Biodegradable products on every vehicle",
                 "2 studios across Perth — Midland & Myaree",
