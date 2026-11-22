@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { Clock, Phone, Mail, MapPin } from "lucide-react";
+import { Clock, Mail, MapPin } from "lucide-react";
 import { FaSpinner } from "react-icons/fa";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, border, fraunces } from "./redesignTheme";
@@ -14,20 +14,20 @@ const MIDLAND_MAPS_URL =
 const contactInfo = [
   { id: 1, icon: Clock, title: "Opening Hours", details: ["Mon - Fri, 7:00 - 5:00", "Weekends on Appointment"] },
   {
-    id: 2, icon: Phone, title: "Call Us",
-    details: [
-      { text: "Midland: 0478 551 640", href: "tel:+61478551640" },
-      { text: "Myaree: 0451 288 164", href: "tel:+61451288164" },
-    ],
-  },
-  { id: 3, icon: Mail, title: "Email Us", details: [{ text: "info@carsaloon.com.au", href: "mailto:info@carsaloon.com.au" }] },
-  {
-    id: 4, icon: MapPin, title: "Locations",
+    id: 2, icon: MapPin, title: "Midland",
     details: [
       { text: "7 Loton Avenue, Midland, 6056", href: MIDLAND_MAPS_URL },
-      { text: "4/41 McCoy Street, Myaree, 6154", href: MYAREE_MAPS_URL },
+      { text: "0478 551 640", href: "tel:+61478551640" },
     ],
   },
+  {
+    id: 3, icon: MapPin, title: "Myaree",
+    details: [
+      { text: "4/41 McCoy Street, Myaree, 6154", href: MYAREE_MAPS_URL },
+      { text: "0451 288 164", href: "tel:+61451288164" },
+    ],
+  },
+  { id: 4, icon: Mail, title: "Email Us", details: [{ text: "info@carsaloon.com.au", href: "mailto:info@carsaloon.com.au" }] },
 ];
 
 const ContactV2 = () => {
