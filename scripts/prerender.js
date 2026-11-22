@@ -46,6 +46,7 @@ const ROUTES = [
   "/washing",
   "/detailing",
   "/extras",
+  "/products",
   "/ultrapremium",
   "/outside",
   "/inside_outside",

@@ -58,7 +58,7 @@ const ServiceTierPageV2 = ({ data }) => {
           </div>
           <div className="text-center mt-5">
             <button
-              onClick={() => navigate("/new-booking")}
+              onClick={() => navigate("/booking")}
               className="px-8 py-3 rounded-full font-semibold text-white"
               style={{ backgroundColor: navy }}
             >

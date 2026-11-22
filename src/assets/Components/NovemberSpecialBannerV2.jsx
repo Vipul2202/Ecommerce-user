@@ -33,7 +33,7 @@ const NovemberSpecialBannerV2 = () => {
               Degrease + High-Pressure Clean &middot; Valid till 30/11/2026
             </p>
             <button
-              onClick={() => navigate("/new-booking")}
+              onClick={() => navigate("/booking")}
               className="mt-1 self-start px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-white"
               style={{ backgroundColor: navy }}
             >

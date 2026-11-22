@@ -17,7 +17,7 @@ const GalleryCategoryV2 = () => {
         <RedesignNav />
         <main className="flex-1 flex flex-col items-center justify-center gap-4 py-24">
           <h2 style={fraunces} className="text-2xl font-semibold text-[#13242c]">Category not found</h2>
-          <button onClick={() => navigate("/new-gallery")} className="text-sm font-semibold" style={{ color: accent }}>
+          <button onClick={() => navigate("/gallery")} className="text-sm font-semibold" style={{ color: accent }}>
             ← Back to Gallery
           </button>
         </main>
@@ -33,7 +33,7 @@ const GalleryCategoryV2 = () => {
         <div className="relative px-6 pt-14 pb-10 text-center overflow-hidden">
           <Bubble size={100} top="-15%" left="-4%" opacity={0.1} />
           <Bubble size={60} top="30%" right="6%" opacity={0.1} />
-          <button onClick={() => navigate("/new-gallery")} className="relative text-sm font-semibold" style={{ color: accent }}>
+          <button onClick={() => navigate("/gallery")} className="relative text-sm font-semibold" style={{ color: accent }}>
             ← Back to Gallery
           </button>
           <h1 style={fraunces} className="relative text-3xl sm:text-4xl font-semibold text-[#13242c] mt-4">{category.name}</h1>

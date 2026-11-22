@@ -9,7 +9,7 @@ const DEFAULT_DESCRIPTION =
   "Perth's premium car detailing studio — ceramic coating, window tinting, car wash and more at our Myaree and Midland studios.";
 
 const seoData = {
-  // ---- Old site ----
+  // ---- Canonical pages (the redesign, live at these URLs) ----
   "/": {
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
@@ -102,8 +102,14 @@ const seoData = {
     title: "Offer Terms & Conditions | Car Saloon",
     description: "Terms and conditions for Car Saloon's current promotional offers.",
   },
+  "/products": {
+    title: "New Products Coming Soon | Car Saloon Perth",
+    description: "Car Saloon is launching its own range of detailing products. Stay tuned for our 2027 product line.",
+  },
 
-  // ---- New site (redesign preview) ----
+  // ---- /new-* aliases — noindexed, see isNoIndexPath in SEOManager.jsx.
+  // Metadata here only matters for the brief moment before a visitor's
+  // browser would otherwise notice these are the same pages as above. ----
   "/new-home": {
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,

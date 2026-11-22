@@ -25,12 +25,20 @@ function upsertLink(rel, href) {
   el.setAttribute("href", href);
 }
 
-// Pages that shouldn't compete with the live site in search results: the
-// /new-* redesign preview (not launched yet), /mockup-* prototype pages,
-// and the owner-only admin panel.
+// Pages that shouldn't compete with the live site in search results:
+// /new-* is now just a hidden alias of its canonical counterpart (see
+// App.jsx) kept working for old links, /mockup-* are internal design
+// prototypes, /admin-panel is the owner-only tool, and
+// /booking-confirmation is a transactional thank-you page with no
+// content of its own worth indexing.
 function isNoIndexPath(pathname) {
   const lower = pathname.toLowerCase();
-  return lower.startsWith("/new-") || lower.startsWith("/mockup-") || lower.startsWith("/admin-panel");
+  return (
+    lower.startsWith("/new-") ||
+    lower.startsWith("/mockup-") ||
+    lower.startsWith("/admin-panel") ||
+    lower === "/booking-confirmation"
+  );
 }
 
 // Sets document.title + meta description + Open Graph/Twitter tags +

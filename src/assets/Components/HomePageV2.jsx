@@ -53,21 +53,21 @@ function useMouseParallax(ref) {
 
 // Services rotated through the hero's "Featured This Month" spotlight card.
 const SPOTLIGHT_SERVICES = [
-  { key: "antibacterial_aircon_treatment", label: "Antibacterial Aircon Treatment", fallbackPrice: 99, fallbackQuoteOnly: false, route: "/new-extras" },
-  { key: "ceramic_coating", label: "GTechniq Ceramic Coating", fallbackPrice: 499, fallbackQuoteOnly: true, route: "/new-ultrapremium" },
-  { key: "window_tinting", label: "Window Tinting", fallbackPrice: 499, fallbackQuoteOnly: false, route: "/new-ultrapremium" },
-  { key: "full_detail", label: "Full Detail", fallbackPrice: 175, fallbackQuoteOnly: false, route: "/new-full_detail" },
+  { key: "antibacterial_aircon_treatment", label: "Antibacterial Aircon Treatment", fallbackPrice: 99, fallbackQuoteOnly: false, route: "/extras" },
+  { key: "ceramic_coating", label: "GTechniq Ceramic Coating", fallbackPrice: 499, fallbackQuoteOnly: true, route: "/ultrapremium" },
+  { key: "window_tinting", label: "Window Tinting", fallbackPrice: 499, fallbackQuoteOnly: false, route: "/ultrapremium" },
+  { key: "full_detail", label: "Full Detail", fallbackPrice: 175, fallbackQuoteOnly: false, route: "/full_detail" },
 ];
 
 const services = [
-  { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/new-outside" },
-  { icon: Droplets, title: "Inside & Out", desc: "Complete interior and exterior cleaning", link: "/new-inside_outside" },
-  { icon: Shield, title: "Premium Wash", desc: "Premium exterior treatment", link: "/new-premium_wash" },
-  { icon: Settings, title: "Full Detail", desc: "Best for regular care", link: "/new-full_detail" },
-  { icon: Sparkles, title: "Signature Detail", desc: "Restoration-focused detailing", link: "/new-signature_detail" },
-  { icon: HomeIcon, title: "The Works", desc: "Best for offroad and pre-sale", link: "/new-the_works" },
-  { icon: Wrench, title: "Ultra Premium Finishes", desc: "Luxury finishing touches", link: "/new-ultrapremium" },
-  { icon: Plus, title: "Add on Enhancements", desc: "Additional services", link: "/new-extras" },
+  { icon: Car, title: "Outside Only", desc: "Exterior wash and rinse", link: "/outside" },
+  { icon: Droplets, title: "Inside & Out", desc: "Complete interior and exterior cleaning", link: "/inside_outside" },
+  { icon: Shield, title: "Premium Wash", desc: "Premium exterior treatment", link: "/premium_wash" },
+  { icon: Settings, title: "Full Detail", desc: "Best for regular care", link: "/full_detail" },
+  { icon: Sparkles, title: "Signature Detail", desc: "Restoration-focused detailing", link: "/signature_detail" },
+  { icon: HomeIcon, title: "The Works", desc: "Best for offroad and pre-sale", link: "/the_works" },
+  { icon: Wrench, title: "Ultra Premium Finishes", desc: "Luxury finishing touches", link: "/ultrapremium" },
+  { icon: Plus, title: "Add on Enhancements", desc: "Additional services", link: "/extras" },
 ];
 
 // Real customer reviews, copied verbatim from Car Saloon's Google Business
@@ -106,22 +106,22 @@ const testimonials = [
 ];
 
 const washTiers = [
-  { name: "Outside Only", priceKey: "outside", route: "/new-outside", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
-  { name: "Inside & Outside", priceKey: "inside_outside", route: "/new-inside_outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
-  { name: "Premium Wash", priceKey: "premium_wash", route: "/new-premium_wash", sedan: 95, suv: 105, fourWd: 115, features: ["Everything in Inside & Outside", "Dash & console detailed", "External plastic trims rejuvenation", "Hand wax & polish"] },
+  { name: "Outside Only", priceKey: "outside", route: "/outside", sedan: 35, suv: 45, fourWd: 55, features: ["Wash & chamois dry", "Exterior windows clean", "Wheels clean & tyres gloss", "Spray-on wax"] },
+  { name: "Inside & Outside", priceKey: "inside_outside", route: "/inside_outside", sedan: 55, suv: 65, fourWd: 75, features: ["Everything in Outside Only", "Interior wiped & dusted", "Interior & boot vacuumed", "Windows clean inside & out"] },
+  { name: "Premium Wash", priceKey: "premium_wash", route: "/premium_wash", sedan: 95, suv: 105, fourWd: 115, features: ["Everything in Inside & Outside", "Dash & console detailed", "External plastic trims rejuvenation", "Hand wax & polish"] },
 ];
 
 const detailTiers = [
-  { name: "Full Detail", priceKey: "full_detail", route: "/new-full_detail", tagline: "Best for Regular Care", sedan: 175, suv: 195, fourWd: 225, highlight: false, features: ["Outside wash & wax", "Interior trims detailed", "Fabric & carpet steam clean", "Leather seats clean & condition"] },
-  { name: "Signature Detail", priceKey: "signature_detail", route: "/new-signature_detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
-  { name: "The Works", priceKey: "the_works", route: "/new-the_works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
+  { name: "Full Detail", priceKey: "full_detail", route: "/full_detail", tagline: "Best for Regular Care", sedan: 175, suv: 195, fourWd: 225, highlight: false, features: ["Outside wash & wax", "Interior trims detailed", "Fabric & carpet steam clean", "Leather seats clean & condition"] },
+  { name: "Signature Detail", priceKey: "signature_detail", route: "/signature_detail", tagline: "Best for Restoration", sedan: 275, suv: 295, fourWd: 325, highlight: true, features: ["Everything in Full Detail", "Head light restoration", "Engine bay degrease", "Hand polish"] },
+  { name: "The Works", priceKey: "the_works", route: "/the_works", tagline: "Best for Offroad & Pre-Sale", sedan: 349, suv: 399, fourWd: 449, highlight: false, features: ["Everything in Signature Detail", "Buff & polish", "Underbody clean (using ramp)"] },
 ];
 
 const premium = [
-  { title: "Ceramic Coating", key: "ceramic_coating", fallbackPrice: 499, fallbackQuoteOnly: true, img: ceramicImg, route: "/new-ultrapremium" },
-  { title: "Interior Protection Pack", key: "interior_protection_pack", fallbackPrice: 299, fallbackQuoteOnly: false, img: interiorPackImg, route: "/new-ultrapremium" },
-  { title: "Windows Tinting", key: "window_tinting", fallbackPrice: 499, fallbackQuoteOnly: false, img: tintingImg, route: "/new-ultrapremium" },
-  { title: "Paintless Dent Removal", key: "paintless_dent_removal", fallbackPrice: 199, fallbackQuoteOnly: false, img: paintlessDentImg, route: "/new-ultrapremium" },
+  { title: "Ceramic Coating", key: "ceramic_coating", fallbackPrice: 499, fallbackQuoteOnly: true, img: ceramicImg, route: "/ultrapremium" },
+  { title: "Interior Protection Pack", key: "interior_protection_pack", fallbackPrice: 299, fallbackQuoteOnly: false, img: interiorPackImg, route: "/ultrapremium" },
+  { title: "Windows Tinting", key: "window_tinting", fallbackPrice: 499, fallbackQuoteOnly: false, img: tintingImg, route: "/ultrapremium" },
+  { title: "Paintless Dent Removal", key: "paintless_dent_removal", fallbackPrice: 199, fallbackQuoteOnly: false, img: paintlessDentImg, route: "/ultrapremium" },
 ];
 
 const HomePageV2 = () => {
@@ -207,7 +207,7 @@ const HomePageV2 = () => {
           </p>
           <div className="flex gap-3 flex-wrap pt-1">
             <button
-              onClick={() => navigate("/new-booking")}
+              onClick={() => navigate("/booking")}
               className="px-7 py-3.5 rounded-full font-semibold text-white shadow-lg hover:scale-105 transition-transform"
               style={{ backgroundColor: navy }}
             >
@@ -339,7 +339,7 @@ const HomePageV2 = () => {
               ))}
             </div>
             <button
-              onClick={() => navigate("/new-about")}
+              onClick={() => navigate("/about")}
               className="inline-flex items-center gap-1.5 self-start font-semibold text-sm hover:gap-2.5 transition-all"
               style={{ color: accent }}
             >
@@ -576,7 +576,7 @@ const HomePageV2 = () => {
             <img src={myareeImg} alt="Car Saloon Myaree studio storefront" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Myaree</div>
-              <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
+              <button onClick={() => navigate("/booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
                 Book at Myaree →
               </button>
             </div>
@@ -585,7 +585,7 @@ const HomePageV2 = () => {
             <img src={midlandImg} alt="Car Saloon Midland studio storefront" draggable="false" className="w-full h-56 object-cover" />
             <div className="p-6 flex flex-col gap-2">
               <div className="font-bold text-xl text-[#13242c]">Midland</div>
-              <button onClick={() => navigate("/new-booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
+              <button onClick={() => navigate("/booking")} className="text-sm font-semibold self-start" style={{ color: accent }}>
                 Book at Midland →
               </button>
             </div>
