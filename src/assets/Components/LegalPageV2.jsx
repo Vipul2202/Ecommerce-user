@@ -50,7 +50,7 @@ const LegalPageV2 = ({ data }) => {
             <div className="rounded-2xl p-8" style={{ border: `1px solid ${border}`, backgroundColor: "#ffffff" }}>
               <h3 style={fraunces} className="text-xl font-semibold text-[#13242c] mb-2">{data.ctaHeading}</h3>
               <p className="text-[#6b7278] text-sm mb-5">{data.ctaBody}</p>
-              <a href="/new-contact" className="inline-block px-6 py-2.5 rounded-full font-semibold text-sm text-white" style={{ backgroundColor: navy }}>
+              <a href="/contact" className="inline-block px-6 py-2.5 rounded-full font-semibold text-sm text-white" style={{ backgroundColor: navy }}>
                 Contact Us
               </a>
             </div>

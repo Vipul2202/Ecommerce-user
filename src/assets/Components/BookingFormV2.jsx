@@ -256,7 +256,7 @@ const BookingFormV2 = () => {
         setSelected({});
         setErrors({});
         setTouched({});
-        navigate("/new-booking-confirmation", { state: { booking: response.data.booking } });
+        navigate("/booking-confirmation", { state: { booking: response.data.booking } });
       }
     } catch (error) {
       if (error.response?.data?.errors) {
@@ -581,7 +581,7 @@ const BookingFormV2 = () => {
                   style={{ accentColor: accent }}
                 />
                 I would like to receive promotional offers and updates from Car Saloon via SMS and email. See our{" "}
-                <a href="/new-promotional-terms" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: accent }}>
+                <a href="/promotional-terms" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: accent }}>
                   Offer Terms &amp; Conditions
                 </a>.
               </label>

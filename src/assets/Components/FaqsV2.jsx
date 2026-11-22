@@ -73,7 +73,7 @@ const FaqsV2 = () => {
           <div className="rounded-2xl p-8" style={{ backgroundColor: navy }}>
             <h3 style={fraunces} className="text-xl font-semibold text-white mb-2">Still Have Questions?</h3>
             <p className="text-white/80 text-sm mb-5">Can't find the answer you're looking for? Our team is here to help.</p>
-            <button onClick={() => navigate("/new-contact")} className="px-6 py-2.5 rounded-full font-semibold text-sm bg-white" style={{ color: navy }}>
+            <button onClick={() => navigate("/contact")} className="px-6 py-2.5 rounded-full font-semibold text-sm bg-white" style={{ color: navy }}>
               Contact Us
             </button>
           </div>

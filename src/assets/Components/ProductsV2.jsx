@@ -39,7 +39,7 @@ const ProductsV2 = () => {
           </p>
           <div className="relative flex flex-wrap items-center justify-center gap-3 mt-7">
             <button
-              onClick={() => navigate("/new-booking")}
+              onClick={() => navigate("/booking")}
               className="px-7 py-3.5 rounded-full font-semibold text-white shadow-lg hover:scale-105 transition-transform"
               style={{ backgroundColor: navy }}
             >

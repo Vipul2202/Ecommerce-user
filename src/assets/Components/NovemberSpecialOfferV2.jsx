@@ -64,7 +64,7 @@ const NovemberSpecialOfferV2 = () => {
     clearTimeout(sideBannerTimerRef.current);
   };
 
-  const goBook = () => navigate("/new-booking");
+  const goBook = () => navigate("/booking");
 
   if (offerExpired) return null;
 

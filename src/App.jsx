@@ -8,43 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import TopBar from './assets/Components/TopBar'
 import Navbar from './assets/Components/Navbar'
-const HomePage = lazy(() => import('./assets/Components/HomePage'));
-const Homenext = lazy(() => import('./assets/Components/Homenext'));
 import Footer from './assets/Components/Footer'
-const ContactUs = lazy(() => import('./assets/Components/Contactus'));
-const BookNow = lazy(() => import('./assets/Components/BookNow'));
-const BookingConfirmation = lazy(() => import('./assets/Components/BookingConfirmation'));
 const ManageBooking = lazy(() => import('./assets/Components/ManageBooking'));
-const Extras = lazy(() => import('./assets/Components/Extras'));
-// import Service from './assets/Components/Service'
-// import Faqs from './assets/Components/Faqs';
-const Ultrapremium = lazy(() => import('./assets/Components/Ultrapremium'));
 const Detailing = lazy(() => import('./assets/Components/Detailing'));
 const Washing = lazy(() => import('./assets/Components/Washing'));
-const About = lazy(() => import('./assets/Components/About'));
 const CarDetailPage = lazy(() => import('./assets/Components/CarDetailPage'));
-// import BeforeAfterGallery from './assets/Components/BeforeAfterGallery'
-// import Gallery from './assets/Components/Gallery'
-const Gallery = lazy(() => import('./assets/Components/Gallery'));
-const GalleryCategory = lazy(() => import('./assets/Components/GalleryCategory'));
 const ConfirmationPage = lazy(() => import('./assets/Components/ConfirmationPage'));
 const MyOrders = lazy(() => import('./assets/Components/MyOrders'));
-const LastBar = lazy(() => import('./assets/Components/Lastbar'));
-const Outside = lazy(() => import('./assets/Components/outside'));
-const InsideOutside = lazy(() => import('./assets/Components/inside_outside'));
-const PremiumWash = lazy(() => import('./assets/Components/premium_wash'));
-
-const MiniDetail = lazy(() => import('./assets/Components/mini_detail'));
-const InteriorDetail = lazy(() => import('./assets/Components/interior_detail'));
-const FullDetail = lazy(() => import('./assets/Components/full_detail'));
-const SignatureDetail = lazy(() => import('./assets/Components/signature_detail'));
-const TheWorks = lazy(() => import('./assets/Components/the_works'));
 const AdminPanel = lazy(() => import('./assets/Components/AdminPanel'));
-
-const Terms = lazy(() => import('./assets/Components/Terms'));
-const Faqs = lazy(() => import('./assets/Components/Faqs'));
-const Privacy = lazy(() => import('./assets/Components/Privacy'));
-const PromoTerms = lazy(() => import('./assets/Components/PromoTerms'));
 import FathersDayOffer from './assets/Components/FathersDayOffer';
 import NovemberSpecialOffer from './assets/Components/NovemberSpecialOffer';
 import NovemberSpecialOfferV2 from './assets/Components/NovemberSpecialOfferV2';
@@ -81,10 +52,40 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Redesign preview routes render their own self-contained nav/footer, so
-// the site's existing marquee/TopBar/Navbar/Footer are hidden only on
-// these paths — every other route is completely unaffected.
+// Redesigned pages render their own self-contained nav/footer, so the
+// site's old marquee/TopBar/Navbar/Footer are hidden on these paths —
+// every other route (the handful not yet migrated to the redesign:
+// manage-booking, my-orders, car-details, confirmation, washing,
+// detailing) is completely unaffected.
+//
+// The site migrated onto the redesign at its canonical URLs (/, /about,
+// /booking, ...) rather than at separate /new-* URLs. The /new-* paths
+// are kept working as hidden aliases of their canonical counterpart —
+// never linked from anywhere, noindexed, disallowed in robots.txt — so
+// any old bookmark or shared link from before the migration still goes
+// somewhere real instead of 404ing.
 const PREVIEW_PATHS = [
+  '/',
+  '/outside',
+  '/inside_outside',
+  '/premium_wash',
+  '/mini_detail',
+  '/interior_detail',
+  '/full_detail',
+  '/signature_detail',
+  '/the_works',
+  '/gallery',
+  '/about',
+  '/contact',
+  '/extras',
+  '/products',
+  '/ultrapremium',
+  '/faqs',
+  '/terms',
+  '/privacy',
+  '/promotional-terms',
+  '/booking',
+  '/booking-confirmation',
   '/new-home',
   '/new-outside',
   '/new-inside_outside',
@@ -178,19 +179,34 @@ function App() {
           </div>
         }>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <HomePage />
-                <Homenext />
-                <LastBar />
-              </>
-            }
-          />
+          {/* ---- Live site (the redesign, at its canonical URLs) ---- */}
+          <Route path="/" element={<HomePageV2 />} />
+          <Route path="/outside" element={<ServiceTierPageV2 data={serviceTierData.outside} />} />
+          <Route path="/inside_outside" element={<ServiceTierPageV2 data={serviceTierData.inside_outside} />} />
+          <Route path="/premium_wash" element={<ServiceTierPageV2 data={serviceTierData.premium_wash} />} />
+          <Route path="/mini_detail" element={<ServiceTierPageV2 data={serviceTierData.mini_detail} />} />
+          <Route path="/interior_detail" element={<ServiceTierPageV2 data={serviceTierData.interior_detail} />} />
+          <Route path="/full_detail" element={<ServiceTierPageV2 data={serviceTierData.full_detail} />} />
+          <Route path="/signature_detail" element={<ServiceTierPageV2 data={serviceTierData.signature_detail} />} />
+          <Route path="/the_works" element={<ServiceTierPageV2 data={serviceTierData.the_works} />} />
+          <Route path="/gallery" element={<GalleryV2 />} />
+          <Route path="/gallery/:categorySlug" element={<GalleryCategoryV2 />} />
+          <Route path="/about" element={<AboutV2 />} />
+          <Route path="/contact" element={<ContactV2 />} />
+          <Route path="/extras" element={<ExtrasV2 />} />
+          <Route path="/products" element={<ProductsV2 />} />
+          <Route path="/ultrapremium" element={<UltrapremiumV2 />} />
+          <Route path="/faqs" element={<FaqsV2 />} />
+          <Route path="/terms" element={<LegalPageV2 data={legalPagesData.terms} />} />
+          <Route path="/privacy" element={<LegalPageV2 data={legalPagesData.privacy} />} />
+          <Route path="/promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
+          <Route path="/booking" element={<BookingFormV2 />} />
+          <Route path="/booking-confirmation" element={<BookingConfirmationV2 />} />
+
+          {/* ---- /new-* aliases — kept working for anyone with an old
+               bookmark or shared link from before the migration, but never
+               linked anywhere and noindexed (see SEOManager.jsx) ---- */}
           <Route path="/new-home" element={<HomePageV2 />} />
-          <Route path="/mockup-hero2" element={<HeroMockups />} />
-          <Route path="/mockup-timeline" element={<TimelineMockups />} />
           <Route path="/new-outside" element={<ServiceTierPageV2 data={serviceTierData.outside} />} />
           <Route path="/new-inside_outside" element={<ServiceTierPageV2 data={serviceTierData.inside_outside} />} />
           <Route path="/new-premium_wash" element={<ServiceTierPageV2 data={serviceTierData.premium_wash} />} />
@@ -212,35 +228,20 @@ function App() {
           <Route path="/new-promotional-terms" element={<LegalPageV2 data={legalPagesData.promoTerms} />} />
           <Route path="/new-booking" element={<BookingFormV2 />} />
           <Route path="/new-booking-confirmation" element={<BookingConfirmationV2 />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/booking" element={<BookNow />} />
-          <Route path="/booking-confirmation" element={<BookingConfirmation />} />
+
+          {/* ---- Not yet migrated — still the old design ---- */}
           <Route path="/manage-booking/:id" element={<ManageBooking />} />
-          <Route path="/extras" element={<Extras />} />
-          <Route path="/ultrapremium" element={<Ultrapremium />} />
           <Route path="/detailing" element={<Detailing />} />
           <Route path="/washing" element={<Washing />} />
-          <Route path="/about" element={<About />} />
           <Route path="/car-details/:id" element={<CarDetailPage />} />
-          <Route path='gallery' element={<Gallery />} />
-          <Route path='gallery/:categorySlug' element={<GalleryCategory />} />
           <Route path='confirmation' element={<ConfirmationPage />} />
-          {/* <Route path="/service" element={<Service />} /> */}
           <Route path="my-orders" element={<MyOrders />} />
-          <Route path="/outside" element={<Outside />} />
-          <Route path="/inside_outside" element={<InsideOutside />} />
-          <Route path="/premium_wash" element={<PremiumWash />} />
-          <Route path="/mini_detail" element={<MiniDetail />} />
+          <Route path="/admin-panel" element={<AdminPanel />} />
 
-         <Route path="/interior_detail" element={<InteriorDetail />} />
-         <Route path="/full_detail" element={<FullDetail />} />
-         <Route path="/signature_detail" element={<SignatureDetail />} />
-         <Route path="/the_works" element={<TheWorks />} />
-         <Route path="/admin-panel" element={<AdminPanel />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/faqs" element={<Faqs />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/promotional-terms" element={<PromoTerms />} />
+          {/* ---- Internal, owner-only design-review tools ---- */}
+          <Route path="/mockup-hero2" element={<HeroMockups />} />
+          <Route path="/mockup-timeline" element={<TimelineMockups />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

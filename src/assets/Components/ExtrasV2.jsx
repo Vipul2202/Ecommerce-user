@@ -81,7 +81,7 @@ const ExtrasV2 = () => {
                       <div className="flex items-center justify-between pt-3" style={{ borderTop: `1px solid ${border}` }}>
                         <span className="sm:hidden font-semibold text-sm" style={{ color: accent }}>{priceText}</span>
                         <button
-                          onClick={() => navigate("/new-booking")}
+                          onClick={() => navigate("/booking")}
                           className="ml-auto px-5 py-2 rounded-full text-sm font-semibold text-white"
                           style={{ backgroundColor: navy }}
                         >

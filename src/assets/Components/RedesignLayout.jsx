@@ -11,26 +11,26 @@ const MIDLAND_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=7+Loton+Avenue%2C+Midland+WA+6056";
 
 const FOOTER_SERVICE_LINKS = [
-  { label: "Outside Only", href: "/new-outside" },
-  { label: "Inside & Out", href: "/new-inside_outside" },
-  { label: "Full Detail", href: "/new-full_detail" },
-  { label: "The Works", href: "/new-the_works" },
-  { label: "Ultra-Premium Finishes", href: "/new-ultrapremium" },
-  { label: "Add on Enhancements", href: "/new-extras" },
-  { label: "Products", href: "/new-products" },
+  { label: "Outside Only", href: "/outside" },
+  { label: "Inside & Out", href: "/inside_outside" },
+  { label: "Full Detail", href: "/full_detail" },
+  { label: "The Works", href: "/the_works" },
+  { label: "Ultra-Premium Finishes", href: "/ultrapremium" },
+  { label: "Add on Enhancements", href: "/extras" },
+  { label: "Products", href: "/products" },
 ];
 
 const FOOTER_COMPANY_LINKS = [
-  { label: "About Us", href: "/new-about" },
-  { label: "Gallery", href: "/new-gallery" },
-  { label: "FAQs", href: "/new-faqs" },
-  { label: "Contact Us", href: "/new-contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "FAQs", href: "/faqs" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const FOOTER_LEGAL_LINKS = [
-  { label: "Terms of Use", href: "/new-terms" },
-  { label: "Privacy Policy", href: "/new-privacy" },
-  { label: "Offer T&Cs", href: "/new-promotional-terms" },
+  { label: "Terms of Use", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Offer T&Cs", href: "/promotional-terms" },
 ];
 
 const MARQUEE_ITEMS = ["GTechniq Ceramic Coating", "Full Detail", "Tinting"];
@@ -41,20 +41,20 @@ const MARQUEE_ITEMS = ["GTechniq Ceramic Coating", "Full Detail", "Tinting"];
 const MARQUEE_HEIGHT = "36px";
 
 const SERVICE_LINKS = [
-  { label: "Outside Only", href: "/new-outside" },
-  { label: "Inside & Out", href: "/new-inside_outside" },
-  { label: "Premium Wash", href: "/new-premium_wash" },
-  { label: "Full Detail", href: "/new-full_detail" },
-  { label: "Signature Detail", href: "/new-signature_detail" },
-  { label: "The Works", href: "/new-the_works" },
+  { label: "Outside Only", href: "/outside" },
+  { label: "Inside & Out", href: "/inside_outside" },
+  { label: "Premium Wash", href: "/premium_wash" },
+  { label: "Full Detail", href: "/full_detail" },
+  { label: "Signature Detail", href: "/signature_detail" },
+  { label: "The Works", href: "/the_works" },
 ];
 
 const NAV_LINKS = [
-  { label: "Home", href: "/new-home" },
-  { label: "Gallery", href: "/new-gallery" },
-  { label: "Premium", href: "/new-ultrapremium" },
-  { label: "Add on Enhancements", href: "/new-extras" },
-  { label: "Products", href: "/new-products" },
+  { label: "Home", href: "/" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Premium", href: "/ultrapremium" },
+  { label: "Add on Enhancements", href: "/extras" },
+  { label: "Products", href: "/products" },
 ];
 
 export const RedesignNav = () => {
@@ -120,12 +120,12 @@ export const RedesignNav = () => {
 
       <header className="sticky z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ top: MARQUEE_HEIGHT, borderColor: border }}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
-        <a href="/new-home" className="flex items-center gap-2.5">
+        <a href="/" className="flex items-center gap-2.5">
           <img src="/logo.png" alt="Car Saloon" draggable="false" className="h-16 w-auto object-contain drop-shadow-sm" />
           <span style={fraunces} className="text-xl font-semibold text-[#1c2024]">Car Saloon</span>
         </a>
         <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4a5056]">
-          <a href="/new-home" className="hover:text-[#0a3b4d]">Home</a>
+          <a href="/" className="hover:text-[#0a3b4d]">Home</a>
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -146,14 +146,14 @@ export const RedesignNav = () => {
               </div>
             )}
           </div>
-          <a href="/new-ultrapremium" className="hover:text-[#0a3b4d]">Ultra-Premium Finishes</a>
-          <a href="/new-extras" className="hover:text-[#0a3b4d]">Add on Enhancements</a>
-          <a href="/new-products" className="hover:text-[#0a3b4d]">Products</a>
-          <a href="/new-gallery" className="hover:text-[#0a3b4d]">Gallery</a>
+          <a href="/ultrapremium" className="hover:text-[#0a3b4d]">Ultra-Premium Finishes</a>
+          <a href="/extras" className="hover:text-[#0a3b4d]">Add on Enhancements</a>
+          <a href="/products" className="hover:text-[#0a3b4d]">Products</a>
+          <a href="/gallery" className="hover:text-[#0a3b4d]">Gallery</a>
         </nav>
         <div className="flex items-center gap-2 shrink-0">
           <button
-            onClick={() => navigate("/new-booking")}
+            onClick={() => navigate("/booking")}
             className="px-5 py-2.5 rounded-full text-sm font-semibold text-white"
             style={{ backgroundColor: navy }}
           >
@@ -172,7 +172,7 @@ export const RedesignNav = () => {
 
       {mobileOpen && (
         <nav className="lg:hidden border-t px-6 py-4 flex flex-col gap-1 text-sm font-medium text-[#4a5056]" style={{ borderColor: border }}>
-          <a href="/new-home" onClick={closeMobile} className="py-2.5">Home</a>
+          <a href="/" onClick={closeMobile} className="py-2.5">Home</a>
           <button
             onClick={() => setMobileServicesOpen((o) => !o)}
             className="flex items-center justify-between py-2.5 text-left"
@@ -189,10 +189,10 @@ export const RedesignNav = () => {
               ))}
             </div>
           )}
-          <a href="/new-ultrapremium" onClick={closeMobile} className="py-2.5">Ultra-Premium Finishes</a>
-          <a href="/new-extras" onClick={closeMobile} className="py-2.5">Add on Enhancements</a>
-          <a href="/new-products" onClick={closeMobile} className="py-2.5">Products</a>
-          <a href="/new-gallery" onClick={closeMobile} className="py-2.5">Gallery</a>
+          <a href="/ultrapremium" onClick={closeMobile} className="py-2.5">Ultra-Premium Finishes</a>
+          <a href="/extras" onClick={closeMobile} className="py-2.5">Add on Enhancements</a>
+          <a href="/products" onClick={closeMobile} className="py-2.5">Products</a>
+          <a href="/gallery" onClick={closeMobile} className="py-2.5">Gallery</a>
         </nav>
       )}
     </header>
@@ -217,7 +217,7 @@ export const RedesignFooter = () => {
             <p className="text-white/70 text-sm mt-1">Book online in under a minute — Midland &amp; Myaree.</p>
           </div>
           <button
-            onClick={() => navigate("/new-booking")}
+            onClick={() => navigate("/booking")}
             className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm"
             style={{ backgroundColor: accent, color: "#fff" }}
           >
@@ -326,7 +326,7 @@ export const RedesignFooter = () => {
 };
 
 // Wraps page content with the shared redesign nav + footer, and loads the
-// shared fonts. Every /new-* page (except /new-home, which builds its own
+// shared fonts. Every /* page (except /, which builds its own
 // hero around this same nav/footer) should use this.
 const RedesignLayout = ({ children }) => {
   useGoogleFont();

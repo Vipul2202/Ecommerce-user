@@ -25,7 +25,7 @@ const GalleryV2 = () => {
           {galleryCategories.map((cat, i) => (
             <button
               key={cat.slug}
-              onClick={() => navigate(`/new-gallery/${cat.slug}`)}
+              onClick={() => navigate(`/gallery/${cat.slug}`)}
               className={`w-full break-inside-avoid relative rounded-2xl overflow-hidden block text-left ${HEIGHTS[i % HEIGHTS.length]}`}
             >
               <img src={cat.thumbnail} alt={cat.name} className="w-full h-full object-cover" draggable="false" />

@@ -91,7 +91,7 @@ const BookingConfirmationV2 = () => {
                 Call Myaree: 0451 288 164
               </a>
               <button
-                onClick={() => navigate("/new-home")}
+                onClick={() => navigate("/")}
                 className="px-6 py-3 rounded-full font-semibold text-sm text-white"
                 style={{ border: "1px solid rgba(255,255,255,0.4)" }}
               >
