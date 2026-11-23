@@ -233,6 +233,8 @@ const BookingFormV2 = () => {
         email: formData.email,
         phone: formData.phone,
         marketingConsent: formData.marketingConsent,
+        vehicleType: VEHICLE_TYPES.find((v) => v.key === vehicleType)?.label || vehicleType,
+        estimatedTotal: hasQuoteItems ? `${fmt(total)} + items quoted in-store` : fmt(total),
       };
       const response = await axios.post(`${API}/user/create-booking`, payload);
 
