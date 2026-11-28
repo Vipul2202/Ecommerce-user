@@ -24,3 +24,14 @@ export const isDecemberSpecialActive = () => {
   const now = Date.now();
   return now >= DECEMBER_SPECIAL_START.getTime() && now <= DECEMBER_SPECIAL_END.getTime();
 };
+
+// Purely decorative (Santa hat on the logo, hero snowfall) - runs a day
+// past the December Special itself so the site still feels festive on
+// Christmas Day, after the booking deadline has passed.
+export const CHRISTMAS_DECOR_START = new Date('2026-12-01T00:00:00+08:00');
+export const CHRISTMAS_DECOR_END = new Date('2026-12-25T23:59:59+08:00');
+
+export const isChristmasDecorActive = () => {
+  const now = Date.now();
+  return now >= CHRISTMAS_DECOR_START.getTime() && now <= CHRISTMAS_DECOR_END.getTime();
+};
