@@ -7,16 +7,10 @@ import Bubble from "./Bubble";
 import { isChristmasDecorActive } from "./promoSchedule";
 
 const SantaHat = ({ className = "" }) => (
-  <svg viewBox="0 0 64 48" className={className} aria-hidden="true">
-    <path
-      d="M6 44 C6 44 9 15 33 7 C51 1 61 13 58 22 C55 14 45 11 36 15 C21 21 15 34 15 44 Z"
-      fill="#c23b3b"
-    />
-    <circle cx="58" cy="15" r="7" fill="#fff" />
-    <path
-      d="M2 44 C2 39 11 37 21 37 C35 37 51 39 59 44 C59 47 2 47 2 44 Z"
-      fill="#fff"
-    />
+  <svg viewBox="0 0 60 60" className={className} aria-hidden="true">
+    <path d="M6 46 L27 6 Q30 1 33 6 L52 46 Z" fill="#c23b3b" />
+    <circle cx="29.5" cy="6" r="6.5" fill="#fff" />
+    <rect x="2" y="42" width="54" height="13" rx="6.5" fill="#fff" />
   </svg>
 );
 
