@@ -19,7 +19,8 @@ const AdminPanel = lazy(() => import('./assets/Components/AdminPanel'));
 import FathersDayOffer from './assets/Components/FathersDayOffer';
 import NovemberSpecialOffer from './assets/Components/NovemberSpecialOffer';
 import NovemberSpecialOfferV2 from './assets/Components/NovemberSpecialOfferV2';
-import { isFathersDayPromoActive, isNovemberSpecialActive } from './assets/Components/promoSchedule';
+import DecemberSpecialOfferV2 from './assets/Components/DecemberSpecialOfferV2';
+import { isFathersDayPromoActive, isNovemberSpecialActive, isDecemberSpecialActive } from './assets/Components/promoSchedule';
 const HomePageV2 = lazy(() => import('./assets/Components/HomePageV2'));
 const HeroMockups = lazy(() => import('./assets/Components/HeroMockups'));
 const TimelineMockups = lazy(() => import('./assets/Components/TimelineMockups'));
@@ -254,6 +255,7 @@ function App() {
 
         <PreviewChrome>
           {isNovemberSpecialActive() && <NovemberSpecialOfferV2 />}
+          {isDecemberSpecialActive() && <DecemberSpecialOfferV2 />}
         </PreviewChrome>
       </Router>
       </PricingProvider>
