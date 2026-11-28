@@ -110,10 +110,6 @@ const DecemberSpecialOfferV2 = () => {
               </p>
             </div>
 
-            <p className="text-center text-xs text-[#4a5056] mb-4">
-              Also this month: Full Detail from <strong>$175</strong> &middot; Window Tint from <strong>$499</strong>
-            </p>
-
             <div className="flex flex-col gap-2">
               <button
                 onClick={() => { handleCloseModal(); goBook(); }}
