@@ -4,6 +4,15 @@ import { ChevronDown, Menu, X, Sparkles, Clock, Phone, Mail, MapPin, ArrowRight 
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { accent, navy, border, fraunces, useGoogleFont } from "./redesignTheme";
 import Bubble from "./Bubble";
+import { isChristmasDecorActive } from "./promoSchedule";
+
+const SantaHat = ({ className = "" }) => (
+  <svg viewBox="0 0 60 60" className={className} aria-hidden="true">
+    <path d="M6 46 L27 6 Q30 1 33 6 L52 46 Z" fill="#c23b3b" />
+    <circle cx="29.5" cy="6" r="6.5" fill="#fff" />
+    <rect x="2" y="42" width="54" height="13" rx="6.5" fill="#fff" />
+  </svg>
+);
 
 const MYAREE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=4%2F41+McCoy+Street%2C+Myaree+WA+6154";
@@ -121,7 +130,12 @@ export const RedesignNav = () => {
       <header className="sticky z-40 bg-[#f8f6f1]/90 backdrop-blur border-b" style={{ top: MARQUEE_HEIGHT, borderColor: border }}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
         <a href="/" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Car Saloon" draggable="false" className="h-16 w-auto object-contain drop-shadow-sm" />
+          <div className="relative shrink-0">
+            <img src="/logo.png" alt="Car Saloon" draggable="false" className="h-16 w-auto object-contain drop-shadow-sm" />
+            {isChristmasDecorActive() && (
+              <SantaHat className="absolute -top-2.5 -right-1.5 w-7 h-auto rotate-[-10deg] drop-shadow-sm" />
+            )}
+          </div>
           <span style={fraunces} className="text-xl font-semibold text-[#1c2024]">Car Saloon</span>
         </a>
         <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4a5056]">

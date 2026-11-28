@@ -32,6 +32,8 @@ import myareeImg from "../../img/myaree.jpeg";
 import midlandImg from "../../img/midland.jpeg";
 import { RedesignNav, RedesignFooter } from "./RedesignLayout";
 import { useGoogleFont, accent, navy, fraunces } from "./redesignTheme";
+import Snowfall from "./Snowfall";
+import { isChristmasDecorActive } from "./promoSchedule";
 import Bubble from "./Bubble";
 import { useAllPrices } from "./PricingContext";
 
@@ -194,6 +196,8 @@ const HomePageV2 = () => {
             style={{ backgroundColor: navy, opacity: 0.08, bottom: "-6%", right: "10%", transform: `translate(${heroPos.x * 18}px, ${heroPos.y * 18}px)` }}
           />
         </div>
+
+        {isChristmasDecorActive() && <Snowfall className="rounded-3xl z-[1]" />}
 
         <div className="flex-1 min-w-[320px] flex flex-col gap-5 relative">
           <span
