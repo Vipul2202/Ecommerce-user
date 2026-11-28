@@ -16,3 +16,11 @@ export const isNovemberSpecialActive = () => {
   const now = Date.now();
   return now >= NOVEMBER_SPECIAL_START.getTime() && now <= NOVEMBER_SPECIAL_END.getTime();
 };
+
+export const DECEMBER_SPECIAL_START = new Date('2026-12-01T00:00:00+08:00');
+export const DECEMBER_SPECIAL_END = new Date('2026-12-24T23:59:59+08:00');
+
+export const isDecemberSpecialActive = () => {
+  const now = Date.now();
+  return now >= DECEMBER_SPECIAL_START.getTime() && now <= DECEMBER_SPECIAL_END.getTime();
+};
